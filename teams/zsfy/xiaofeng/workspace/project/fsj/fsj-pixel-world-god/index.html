@@ -295,7 +295,7 @@ function defaultSel(f){
 function selectTask(i){
   TASK=i; const s=planSteps()[i]||{};
   FLOWID=(s.flows&&s.flows[0])||null; SEL=defaultSel(activeFlow());
-  renderTasks(); renderFlows(); renderTree();
+  renderTasks(); renderFlows();
   const td=document.getElementById('taskdetail');
   if(td){td.style.display='flex';td.innerHTML=`<button class="back" onclick="hideTaskDetail()">← 返回任务列表</button><div class="tdc"><h4>${esc(s.title||'(无标题)')}</h4><div class="tag">${esc(s.p||'')} · ${esc(s.status||'—')} · 截止 ${esc(s.due||'—')}</div><div class="body">${esc(s.detail||'(暂无详情)')}</div><div class="out">验收：${esc(s.output||'—')}</div></div>`;}
 }
@@ -417,7 +417,7 @@ async function load(){
     if(TASK<0){const i=planSteps().findIndex(s=>s.flows&&s.flows.length);TASK=i>=0?i:0;}
     if(!FLOWID){const s=planSteps()[TASK];FLOWID=(s&&s.flows&&s.flows[0])||null;}
     if(SEL<0)SEL=defaultSel(activeFlow());
-    renderTasks();renderFlows();renderTree();renderFeed();
+    renderTasks();renderFlows();renderFeed();
   }catch(e){}
 }
 document.querySelectorAll('.ptabs span').forEach(tb=>tb.addEventListener('click',()=>{
@@ -440,7 +440,7 @@ document.querySelectorAll('.ptabs span').forEach(tb=>tb.addEventListener('click'
       console.log('[WS] 连接中…');
       ws = new WebSocket((location.protocol==='https:'?'wss://':'ws://') + location.host + '/ws');
       ws.onopen = () => { console.log('[WS] ✓ 已连接，收到init'); const d=document.getElementById('wsdot'); if(d){d.textContent='● 实时'; d.style.color='#3fb950';} };
-      ws.onmessage = e => { const m = JSON.parse(e.data); console.log('[WS] 收到', m.type); if(m.data){ DATA=m.data; renderTasks(); renderFlows(); renderTree(); renderFeed(); console.log('[渲染] tasklist/flowlist/feed 已重绘 @', new Date().toTimeString().slice(0,8)); } };
+      ws.onmessage = e => { const m = JSON.parse(e.data); console.log('[WS] 收到', m.type); if(m.data){ DATA=m.data; renderTasks(); renderFlows(); renderFeed(); console.log('[渲染] tasklist/flowlist/feed 已重绘 @', new Date().toTimeString().slice(0,8)); } };
       ws.onclose = () => { const d=document.getElementById('wsdot'); if(d){d.textContent='● 断线重连中'; d.style.color='#f85149';} clearTimeout(wsRetry); wsRetry=setTimeout(wsConnect,2000); };
       ws.onerror = () => { try{ws.close();}catch{} };
     }
