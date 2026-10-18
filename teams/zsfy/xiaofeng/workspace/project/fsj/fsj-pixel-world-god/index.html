@@ -295,6 +295,7 @@ function defaultSel(f){
   return i<0?0:i;
 }
 function selectTask(i){
+  FOLLOW=false; const fb=document.getElementById('followBtn'); if(fb){fb.textContent='🔓 自由浏览';fb.style.color='#9a94b5';fb.style.borderColor='#9a94b5';}
   TASK=i; const s=planSteps()[i]||{};
   FLOWID=(s.flows&&s.flows[0])||null; SEL=defaultSel(activeFlow());
   renderTasks(); renderFlows();
@@ -360,6 +361,27 @@ function renderTree(){
   el.innerHTML='<div style="font-size:9px;color:#5a6b80;margin-bottom:2px">Ni 趋势 · s1→s'+st.length+'</div><svg width="100%" height="50" viewBox="0 0 '+W+' 70" preserveAspectRatio="xMidYMid meet">'+svg+'</svg>';
 }
 let FOLLOW=true;
+function applyFollow(){
+  if(!FOLLOW||!DATA||!DATA.now)return;
+  const nf=DATA.now.flow, ns=DATA.now.step_no;
+  // 切流：agentPtr 流 ≠ 当前流 → 找对应任务并切
+  if(nf&&FLOWID!==nf){
+    const tf=((DATA.flows)||[]).find(x=>x.id===nf);
+    if(tf){
+      FLOWID=nf;
+      const ps=planSteps();
+      const ti=ps.findIndex(s=>s.flows&&s.flows.includes(nf));
+      if(ti>=0)TASK=ti;
+    }
+  }
+  // 切步骤
+  const f=((DATA.flows)||[]).find(x=>x.id===FLOWID);
+  if(f){
+    const idx=f.steps.findIndex(s=>s.no===ns);
+    if(idx>=0&&SEL!==idx)SEL=idx;
+  }
+  renderTasks();renderFlows();renderDetail(SEL>=0?SEL:0);
+}
 function toggleFollow(){
   FOLLOW=!FOLLOW;
   const btn=document.getElementById('followBtn');
@@ -368,13 +390,7 @@ function toggleFollow(){
     btn.style.color=FOLLOW?'#2fd6c5':'#9a94b5';
     btn.style.borderColor=FOLLOW?'#2fd6c5':'#9a94b5';
   }
-  if(FOLLOW){
-    const f=((DATA&&DATA.flows)||[]).find(x=>x.id===FLOWID)||activeFlow();
-    if(f&&DATA.now){
-      const idx=f.steps.findIndex(s=>s.no===DATA.now.step_no);
-      if(idx>=0){ SEL=idx; renderFlows(); renderDetail(idx); }
-    }
-  }
+  if(FOLLOW)applyFollow();
 }
 function focusFlow(i){ if(SEL!==i){ SEL=i; FOLLOW=false; const btn=document.getElementById('followBtn'); if(btn){btn.textContent='🔓 自由浏览';btn.style.color='#9a94b5';btn.style.borderColor='#9a94b5';} renderFlows(); renderDetail(i);} }
 function renderDetail(i){
@@ -515,7 +531,7 @@ document.querySelectorAll('.ptabs span').forEach(tb=>tb.addEventListener('click'
       console.log('[WS] 连接中…');
       ws = new WebSocket((location.protocol==='https:'?'wss://':'ws://') + location.host + '/ws');
       ws.onopen = () => { console.log('[WS] ✓ 已连接，收到init'); const d=document.getElementById('wsdot'); if(d){d.textContent='● 实时'; d.style.color='#3fb950';} };
-      ws.onmessage = e => { const m = JSON.parse(e.data); console.log('[WS] 收到', m.type); if(m.data){ DATA=m.data; if(FOLLOW&&DATA.now){ const f=((DATA.flows)||[]).find(x=>x.id===FLOWID)||activeFlow(); if(f){ const idx=f.steps.findIndex(s=>s.no===DATA.now.step_no); if(idx>=0) SEL=idx; } } renderTasks(); renderFlows(); renderDetail(SEL>=0?SEL:0); renderFeed(); console.log('[渲染] 已重绘 @', new Date().toTimeString().slice(0,8)); } };
+      ws.onmessage = e => { const m = JSON.parse(e.data); console.log('[WS] 收到', m.type); if(m.data){ DATA=m.data; if(FOLLOW)applyFollow(); renderTasks(); renderFlows(); renderDetail(SEL>=0?SEL:0); renderFeed(); console.log('[渲染] 已重绘 @', new Date().toTimeString().slice(0,8)); } };
       ws.onclose = () => { const d=document.getElementById('wsdot'); if(d){d.textContent='● 断线重连中'; d.style.color='#f85149';} clearTimeout(wsRetry); wsRetry=setTimeout(wsConnect,2000); };
       ws.onerror = () => { try{ws.close();}catch{} };
     }
