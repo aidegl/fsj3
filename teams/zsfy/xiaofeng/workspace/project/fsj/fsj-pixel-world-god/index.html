@@ -345,38 +345,41 @@ function renderDetail(i){
   const s=f.steps[i]; if(!s)return;
   const dt=document.getElementById('sdetail'); if(!dt)return;
   const bl=Array.isArray(s.bashen)?s.bashen:(s.bashen?[s.bashen.main,s.bashen.aux].filter(Boolean):[]);
-  const bsChips=bl.map((x,k)=>'<span class="bchip'+(k?' aux':'')+'">'+x+(k?'·辅':'·主')+'</span>').join(' ');
-  const modChips=(s.module||'').split('+').filter(Boolean).map(m=>'<span class="mchip">'+m.trim()+'</span>').join(' ');
-  let html='<div class="dcap">步骤详情 · s'+s.no+'</div>';
-  html+='<div class="drow"><b>'+esc(s.title)+'</b></div>';
-  html+='<div class="drow">'+modChips+(bsChips?' '+bsChips:'')+'</div>';
-  if(s.emo) html+='<div class="drow"><span class="emob">'+s.emo+'</span></div>';
-  if(s.status==='blocked') html+='<div class="drow" style="color:#ff8080">⛔ 困惑：'+esc(s.blockedOn||'')+'</div>';
-  if(s.decision) html+='<div class="drow">选：'+esc(s.decision.chosen)+' · 因：'+esc(s.decision.why)+'</div>';
-  if(s.output) html+='<div class="drow" style="color:#9a94b5">产出：'+esc(s.output)+'</div>';
-  // 八神 → mermaid 可视化
-  if(bl.length>=2){
-    const mid='mm'+Date.now();
-    html+='<div class="drow"><div id="'+mid+'" style="background:rgba(13,16,23,.6);border-radius:8px;padding:6px"></div></div>';
-    const def='graph LR\n  S[s'+s.no+' · '+s.title.slice(0,8)+'] --> M['+bl[0]+' · 主]\n  S --> A['+bl[1]+' · 辅]\n  M -.->|性格策略| A\n  style M fill:#1aa39b,color:#fff\n  style A fill:#5e5878,color:#fff';
-    setTimeout(()=>{
-      try{ if(window.mermaid){ mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose'});
-        mermaid.render('svg'+mid,def).then(r=>{const el=document.getElementById(mid);if(el)el.innerHTML=r.svg;}).catch(()=>{});
-      }}catch(e){}
-    },50);
+  const modChips=(s.module||'').split('+').filter(Boolean).map(m=>'<span style="display:inline-block;padding:1px 6px;border:1px dashed rgba(47,214,197,.5);border-radius:6px;font-size:10px;color:#2fd6c5;margin-right:4px">'+m.trim()+'</span>').join(' ');
+  const bsChips=bl.map((x,k)=>'<span style="display:inline-block;padding:1px 6px;border:1px solid '+(k?'#9a94b5':'#2fd6c5')+';border-radius:6px;font-size:10px;color:'+(k?'#9a94b5':'#2fd6c5')+';margin-right:4px">'+x+(k?'·辅':'·主')+'</span>').join(' ');
+  let h='<div style="display:flex;flex-direction:column;height:100%;overflow-y:auto;padding:4px 2px">';
+  h+='<div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px">'+esc(s.title)+'</div>';
+  h+='<div style="display:flex;gap:4px;flex-wrap:wrap;margin:6px 0">'+modChips+bsChips+'</div>';
+  if(s.status==='blocked') h+='<div style="color:#ff8080;font-size:11px;margin:4px 0">⛔ '+esc(s.blockedOn||'')+'</div>';
+  if(s.emo) h+='<div style="margin:6px 0"><span style="font-size:14px">'+emoIcon(s.emo)+'</span> <span style="font-size:12px;color:#fff">'+s.emo+'</span></div>';
+  if(s.decision){
+    h+='<div style="margin:6px 0">';
+    h+='<div style="font-size:10px;color:#9a94b5;margin-bottom:2px">✓ 选择</div>';
+    h+='<div style="font-size:12px;color:#cfd6e4">'+esc(s.decision.chosen)+'</div>';
+    h+='<div style="font-size:10px;color:#9a94b5;margin-top:4px;margin-bottom:2px">为什么</div>';
+    h+='<div style="font-size:12px;color:#cfd6e4">'+esc(s.decision.why)+'</div>';
+    if(s.decision.alternatives&&s.decision.alternatives.length){
+      h+='<div style="font-size:10px;color:#9a94b5;margin-top:4px;margin-bottom:2px">✗ 弃</div>';
+      h+=s.decision.alternatives.map(alt=>'<div style="font-size:11px;color:#6c9be8;text-decoration:line-through">'+esc(alt)+'</div>').join('');
+    }
+    h+='</div>';
   }
-  // demoHits → 七列表格
+  if(s.output) h+='<div style="margin:6px 0"><div style="font-size:10px;color:#9a94b5">产出</div><div style="font-size:12px;color:#cfd6e4">'+esc(s.output)+'</div></div>';
+  if(s.note) h+='<div style="margin:6px 0;font-size:11px;color:#6c9be8;font-style:italic">💭 '+esc(String(s.note).slice(0,80))+'</div>';
+  // 检索结果表格
   const hls=s.demoHits||[];
   if(hls.length){
-    html+='<div class="drow" style="margin-top:4px"><b>检索结果</b></div>';
-    html+='<table class="dtab"><tr><th>时间</th><th>检索方式</th><th>查询</th><th>命中</th><th>Top1</th><th>关联</th><th>漏召</th></tr>';
-    hls.forEach(h=>{
-      html+='<tr><td>'+esc(h.t||'—')+'</td><td>'+esc(h.way||h.channel||'—')+'</td><td>'+esc(h.q||'—')+'</td><td>'+(h.hits!==undefined?h.hits:(h.count!==undefined?h.count:'—'))+'</td><td>'+esc(String(h.top||'—').slice(0,14))+'</td><td>'+(h.rel!==undefined?h.rel:'—')+'</td><td style="color:'+(h.miss?'#ff8080':'inherit')+'">'+(h.miss?'是':'否')+'</td></tr>';
+    h+='<div style="margin:10px 0 4px;font-size:11px;color:#9a94b5;font-weight:600">检索结果（HAP实时）</div>';
+    h+='<table style="width:100%;border-collapse:collapse;font-size:10.5px">';
+    h+='<tr><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.08)">频道</th><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.08)">命中</th></tr>';
+    hls.forEach(d=>{
+      const c=d.miss?'#ff8080':'#cfd6e4';
+      h+='<tr><td style="padding:3px 4px;color:'+c+';font-size:11px">'+esc(d.channel||d.way||'—')+'</td><td style="padding:3px 4px;color:'+c+';font-size:11px">'+(d.count||d.hits||0)+'条</td></tr>';
     });
-    html+='</table>';
+    h+='</table>';
   }
-  if(!bl.length&&!hls.length&&s.note) html+='<div class="drow" style="color:#9a94b5">note：'+esc(String(s.note).slice(0,60))+'</div>';
-  dt.innerHTML=html;
+  h+='</div>';
+  dt.innerHTML=h;
 }
 function renderTree(){
   const f=activeFlow(); let compUsed=false; if(!f)return;
