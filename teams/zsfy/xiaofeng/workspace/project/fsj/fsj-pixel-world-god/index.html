@@ -173,6 +173,7 @@ body{font:13px/1.5 'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',
 .pnum{flex:none;align-self:center;margin-left:18px;font:bold 14px Consolas,monospace;color:#fff}
 #sdetail{padding:4px 0;max-height:180px;overflow-y:auto}
 .dcap{font-size:10.5px;color:#9a94b5;margin:2px 0}
+#sdetail{flex:1;min-height:120px;overflow-y:auto;display:flex;flex-direction:column}
 .drow{font-size:11px;color:#cfd6e4;margin:3px 0;line-height:1.5}
 .dtab{width:100%;border-collapse:collapse;font-size:10px;margin:4px 0}
 .dtab th{color:#9a94b5;font-weight:500;text-align:left;padding:2px 4px;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -324,8 +325,9 @@ function renderFlows(){
     const bs=bl.map((x,k)=>'<span class="bchip'+(k?' aux':'')+'">'+x+(k?'·辅':'·主')+'</span>').join('');
     const emo=nowHit?'<span class="blink">⌨</span> <span class="cc">正在执行 s'+s.no+' '+s.title+' —— '+(DATA.now.action||'')+'</span>'+(bs?'<span class="bchip" style="margin-left:8px">八神:'+bs+'</span>':''):(s.emo?'<span class="emob">'+emoIcon(s.emo)+' '+s.emo+'</span> ':(s.continuous?'⚙ 持续观察中…':(s.compile==='running'&&comp?'':(s.status==='blocked'?('🤔 困惑 · '+(s.blockedOn||'等待')):(s.status==='todo'?'':(ST_EMO[s.status]||''))))));
     const ti=(s.module||'').includes('Ti')?'<span class="tichip" title="Ti模块是共享数据：其他流亦可编辑引用">⧉ Ti模块 · 共享数据</span>':'';
+    const agentOn=(DATA&&DATA.now&&DATA.now.flow===f.id&&DATA.now.step_no===s.no);
     let html=`<div class="frow${i===SEL?'':' uns'}" onclick="focusFlow(${i})">
-      <span class="slot1"><img class="dia${i===SEL?'':' diahide'}" src="assets/figma/dia-marker.svg" alt=""></span>
+      <span class="slot1"><img class="dia${agentOn?'':' diahide'}" src="assets/figma/dia-marker.svg" alt=""></span>
       <span class="slot2">${comp?'<span class="comp-spin"></span>':(ST_ICON[s.status]||ST_ICON.todo)}</span>
       <span class="ftext">${esc(s.title)}${ti}</span></div>`;
     const hl=hitLine(s);
