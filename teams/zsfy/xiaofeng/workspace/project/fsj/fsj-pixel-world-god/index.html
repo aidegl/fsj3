@@ -238,7 +238,8 @@ body{font:13px/1.5 'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',
           <div class="vdiv"></div>
           <div id="dtree">
             <div class="cap">功能视图 · 步骤详情</div>
-            <div id="sdetail"></div>
+            <div id="sdetail" style="flex:1;overflow-y:auto;min-height:0"></div>
+            <div id="treeview" style="flex:none;height:70px;padding:4px 0 0;border-top:1px solid rgba(255,255,255,.06)"></div>
             
           </div>
         </div>
@@ -338,6 +339,24 @@ function renderFlows(){
     }
     return html;
   }).join('');
+}
+
+function renderTree(){
+  const f=DATA.flow||((DATA.flows||[])[0]); if(!f)return;
+  const el=document.getElementById('treeview'); if(!el)return;
+  const col=st=>st==='done'?'#17cc68':st==='running'?'#1174ff':st==='blocked'?'#ff8080':st==='veto'?'#ffc229':'#9a94b5';
+  const cols2=['#1174ff','#17cc68','#9a94b5','#ff8080','#1174ff','#7ee06a','#17cc68','#ffc229'];
+  const st=f.steps, W=380, x0=24, dx=Math.min(70,(W-x0-24)/Math.max(1,st.length-1)), y1=22, y2=54;
+  let svg='';
+  st.forEach((s,i)=>{
+    const x=x0+i*dx;
+    svg+='<rect x="'+(x-5)+'" y="'+(y1-5)+'" width="10" height="10" transform="rotate(45 '+x+' '+y1+')" fill="'+col(s.status)+'"/>';
+    svg+='<rect x="'+(x-5)+'" y="'+(y2-5)+'" width="10" height="10" transform="rotate(45 '+x+' '+y2+')" fill="'+cols2[i%cols2.length]+'"/>';
+    if(i<st.length-1){const nx=x0+(i+1)*dx;
+      svg+='<path d="M'+(x+8)+' '+y1+' L'+(nx-9)+' '+y1+'" stroke="#2a3a55" stroke-width="1.6"/>';
+      svg+='<path d="M'+x+' '+(y1+8)+' C'+x+' '+y2+', '+nx+' '+y1+', '+nx+' '+(y2-9)+'" stroke="'+cols2[(i+1)%cols2.length]+'" stroke-width="1.2" fill="none" opacity=".7"/>';}
+  });
+  el.innerHTML='<div style="font-size:9px;color:#5a6b80;margin-bottom:2px">Ni 趋势 · s1→s'+st.length+'</div><svg width="100%" height="50" viewBox="0 0 '+W+' 70" preserveAspectRatio="xMidYMid meet">'+svg+'</svg>';
 }
 function focusFlow(i){ if(SEL!==i){SEL=i;renderFlows();renderDetail(i);} }
 function renderDetail(i){
@@ -457,7 +476,7 @@ async function load(){
     if(TASK<0){const i=planSteps().findIndex(s=>s.flows&&s.flows.length);TASK=i>=0?i:0;}
     if(!FLOWID){const s=planSteps()[TASK];FLOWID=(s&&s.flows&&s.flows[0])||null;}
     if(SEL<0)SEL=defaultSel(activeFlow());
-    renderTasks();renderFlows();renderFeed();
+    renderTasks();renderFlows();renderTree();renderFeed();
   }catch(e){}
 }
 document.querySelectorAll('.ptabs span').forEach(tb=>tb.addEventListener('click',()=>{
