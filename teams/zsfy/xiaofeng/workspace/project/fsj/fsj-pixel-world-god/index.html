@@ -515,7 +515,7 @@ document.querySelectorAll('.ptabs span').forEach(tb=>tb.addEventListener('click'
       console.log('[WS] 连接中…');
       ws = new WebSocket((location.protocol==='https:'?'wss://':'ws://') + location.host + '/ws');
       ws.onopen = () => { console.log('[WS] ✓ 已连接，收到init'); const d=document.getElementById('wsdot'); if(d){d.textContent='● 实时'; d.style.color='#3fb950';} };
-      ws.onmessage = e => { const m = JSON.parse(e.data); console.log('[WS] 收到', m.type); if(m.data){ DATA=m.data; renderTasks(); renderFlows(); renderFeed(); console.log('[渲染] tasklist/flowlist/feed 已重绘 @', new Date().toTimeString().slice(0,8)); } };
+      ws.onmessage = e => { const m = JSON.parse(e.data); console.log('[WS] 收到', m.type); if(m.data){ DATA=m.data; if(FOLLOW&&DATA.now){ const f=((DATA.flows)||[]).find(x=>x.id===FLOWID)||activeFlow(); if(f){ const idx=f.steps.findIndex(s=>s.no===DATA.now.step_no); if(idx>=0) SEL=idx; } } renderTasks(); renderFlows(); renderDetail(SEL>=0?SEL:0); renderFeed(); console.log('[渲染] 已重绘 @', new Date().toTimeString().slice(0,8)); } };
       ws.onclose = () => { const d=document.getElementById('wsdot'); if(d){d.textContent='● 断线重连中'; d.style.color='#f85149';} clearTimeout(wsRetry); wsRetry=setTimeout(wsConnect,2000); };
       ws.onerror = () => { try{ws.close();}catch{} };
     }
