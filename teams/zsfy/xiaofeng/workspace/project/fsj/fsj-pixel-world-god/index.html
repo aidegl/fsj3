@@ -366,50 +366,13 @@ function renderDetail(i){
   const bl=Array.isArray(s.bashen)?s.bashen:(s.bashen?[s.bashen.main,s.bashen.aux].filter(Boolean):[]);
   const hls=s.demoHits||[];
 
-  // ─── 模式一：八神步骤 → mermaid 可视化 ───
-  if(bl.length>=2 && !hls.length){
-    const mid='mm'+Date.now();
-    let h='<div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:6px">'+esc(s.title)+'</div>';
-    h+='<div style="display:flex;gap:4px;margin:6px 0">';
-    h+='<span style="padding:2px 8px;border:1px solid #2fd6c5;border-radius:8px;font-size:11px;color:#2fd6c5">'+bl[0]+'·主</span>';
-    h+='<span style="padding:2px 8px;border:1px dashed #9a94b5;border-radius:8px;font-size:11px;color:#9a94b5">'+bl[1]+'·辅</span>';
-    h+='</div>';
-    h+='<div style="margin:8px 0;font-size:11px;color:#9a94b5">八神配对可视化</div>';
-    h+='<div id="'+mid+'" style="background:rgba(13,16,23,.4);border-radius:8px;padding:8px;min-height:200px;display:flex;align-items:center;justify-content:center"></div>';
-    if(s.emo) h+='<div style="margin:6px 0"><span style="font-size:14px">'+emoIcon(s.emo)+'</span> <span style="font-size:12px;color:#fff">'+s.emo+'</span></div>';
-    if(s.note) h+='<div style="margin:6px 0;font-size:11px;color:#6c9be8;font-style:italic">'+esc(String(s.note).slice(0,80))+'</div>';
-    dt.innerHTML=h;
-    // mermaid 渲染
-    const def='graph TD\n  S[<b>s'+s.no+'</b><br>'+s.title.slice(0,10)+'] --> M['+bl[0]+'<br><small>主</small>]\n  S --> A['+bl[1]+'<br><small>辅</small>]\n  M -.->|性格策略| A\n  style S fill:#16121f,color:#e8e8e8,stroke:#2fd6c5\n  style M fill:#1aa39b,color:#fff\n  style A fill:#5e5878,color:#fff';
-    setTimeout(()=>{
-      try{
-        if(window.mermaid){
-          mermaid.initialize({startOnLoad:false,theme:'dark',flowchart:{useMaxWidth:true,htmlLabels:true},securityLevel:'loose'});
-          mermaid.render('svg'+mid,def).then(r=>{
-            const el=document.getElementById(mid);
-            if(el)el.innerHTML=r.svg;
-          }).catch(()=>{});
-        }
-      }catch(e){}
-    },80);
-    return;
-  }
-
-  // ─── 模式二：检索步骤 → 七列表格 ───
-  if(hls.length){
+  // ─── 模式一：检索 → 七列表格 ───
+  if(hls.length && !bl.length){
     let h='<div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">'+esc(s.title)+'</div>';
     if(s.emo) h+='<div style="margin:4px 0"><span style="font-size:13px">'+emoIcon(s.emo)+'</span> <span style="font-size:11px;color:#fff">'+s.emo+'</span></div>';
     h+='<div style="margin:8px 0 4px;font-size:11px;color:#9a94b5;font-weight:600">检索结果</div>';
     h+='<table style="width:100%;border-collapse:collapse;font-size:10.5px">';
-    h+='<tr>';
-    h+='<th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">时间</th>';
-    h+='<th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">方式</th>';
-    h+='<th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">查询</th>';
-    h+='<th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">命中</th>';
-    h+='<th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">Top1</th>';
-    h+='<th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">关联</th>';
-    h+='<th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">漏召</th>';
-    h+='</tr>';
+    h+='<tr><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">时间</th><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">方式</th><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">查询</th><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">命中</th><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">Top1</th><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">关联</th><th style="text-align:left;padding:3px 4px;color:#9a94b5;font-weight:500;border-bottom:1px solid rgba(255,255,255,.1)">漏召</th></tr>';
     hls.forEach(d=>{
       const mc=d.miss?'color:#ff8080':'color:#cfd6e4';
       h+='<tr>';
@@ -428,14 +391,49 @@ function renderDetail(i){
     return;
   }
 
-  // ─── 模式三：默认 → 基本信息 ───
+  // ─── 模式二：思考型（Ni/Ti/有bashen/无检索）→ mermaid 推理流程图 ───
+  const mid='mm'+Date.now();
   let h='<div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">'+esc(s.title)+'</div>';
-  if(bl.length) h+='<div style="margin:4px 0">'+bl.map((x,k)=>'<span style="padding:1px 6px;border:1px solid '+(k?'#9a94b5':'#2fd6c5')+';border-radius:6px;font-size:10px;color:'+(k?'#9a94b5':'#2fd6c5')+';margin-right:4px">'+x+'</span>').join('')+'</div>';
-  if(s.status==='blocked') h+='<div style="color:#ff8080;font-size:11px;margin:4px 0">⛔ '+esc(s.blockedOn||'')+'</div>';
-  if(s.decision) h+='<div style="margin:6px 0;font-size:12px;color:#cfd6e4">'+esc(s.decision.chosen)+'</div>';
-  if(s.output) h+='<div style="margin:4px 0;font-size:11px;color:#9a94b5">产出：'+esc(s.output)+'</div>';
-  if(s.note) h+='<div style="margin:4px 0;font-size:11px;color:#6c9be8">'+esc(String(s.note).slice(0,80))+'</div>';
+  if(bl.length) h+='<div style="display:flex;gap:4px;margin:4px 0">'+bl.map((x,k)=>'<span style="padding:2px 8px;border:1px solid '+(k?'#9a94b5':'#2fd6c5')+';border-radius:8px;font-size:11px;color:'+(k?'#9a94b5':'#2fd6c5')+'">'+x+(k?'·辅':'·主')+'</span>').join('')+'</div>';
+  if(s.emo) h+='<div style="margin:4px 0"><span style="font-size:13px">'+emoIcon(s.emo)+'</span> <span style="font-size:11px;color:#fff">'+s.emo+'</span></div>';
+  h+='<div style="margin:8px 0;font-size:11px;color:#9a94b5">推理流程</div>';
+  h+='<div id="'+mid+'" style="background:rgba(13,16,23,.4);border-radius:8px;padding:8px;min-height:160px;display:flex;align-items:center;justify-content:center;flex:1"></div>';
+  if(s.note) h+='<div style="margin:6px 0;font-size:11px;color:#6c9be8;font-style:italic">'+esc(String(s.note).slice(0,80))+'</div>';
   dt.innerHTML=h;
+
+  // mermaid 推理图生成（从 decision 数据构建）
+  let def='graph LR\n';
+  def+='  Q[📋 '+s.title.slice(0,12)+']\n';
+  if(s.decision){
+    def+='  Q --> D{' + (s.module||'判断') + '}\n';
+    def+='  D -->|✓ 选| C[' + s.decision.chosen.slice(0,14) + ']\n';
+    if(s.decision.alternatives&&s.decision.alternatives.length){
+      s.decision.alternatives.forEach((alt,ak)=>{
+        def+='  D -->|✗ 弃| R'+ak+'[' + alt.slice(0,10) + ']\n';
+      });
+    }
+    if(s.status==='done') def+='  C --> E[✅ 完成]\n';
+    else if(s.status==='running') def+='  C --> E[🔄 进行中]\n';
+    else if(s.status==='blocked') def+='  C --> E[⛔ 困惑: '+String(s.blockedOn||'').slice(0,8)+']\n';
+    else def+='  C --> E[◻ 等待]\n';
+  } else {
+    def+='  Q --> S[' + s.status + ']\n';
+  }
+  def+='  style Q fill:#16121f,color:#e8e8e8,stroke:#2fd6c5\n';
+  def+='  style D fill:#1d2a44,color:#fff\n';
+  def+='  style C fill:#1aa39b,color:#fff\n';
+  def+='  style E fill:#16121f,color:#9a94b5,stroke:#5a6b80\n';
+  setTimeout(()=>{
+    try{
+      if(window.mermaid){
+        mermaid.initialize({startOnLoad:false,theme:'dark',flowchart:{useMaxWidth:true,htmlLabels:true},securityLevel:'loose'});
+        mermaid.render('svg'+mid,def).then(r=>{
+          const el=document.getElementById(mid);
+          if(el)el.innerHTML=r.svg;
+        }).catch(()=>{});
+      }
+    }catch(e){}
+  },80);
 }
 function renderTree(){
   const f=activeFlow(); let compUsed=false; if(!f)return;
