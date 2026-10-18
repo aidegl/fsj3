@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>像素视界 · 上帝端</title>
+    <link rel="stylesheet" href="./css/god.css?v=2">
+</head>
+<body>
+    <!-- 顶部：地图切换 / 角色聚焦 / 状态 -->
+    <header id="topbar">
+        <div class="tb-left">
+            <span class="tb-title">像素视界 · 上帝端</span>
+            <select id="sc-select" class="tb-select" title="切换地图场景"></select>
+        </div>
+        <div class="tb-center">
+            <label class="tb-label">聚焦角色</label>
+            <select id="focus-select" class="tb-select" title="聚焦到该角色所在位置"></select>
+        </div>
+        <div class="tb-right">
+            <span id="tb-stats" class="tb-stats"></span>
+            <span id="tb-ws" class="tb-ws tb-ws-off">● 连接中…</span>
+            <span id="tb-clock" class="tb-clock"></span>
+        </div>
+    </header>
+
+    <main id="stage">
+        <!-- 场景视图（唯一主视图） -->
+        <section id="scene-view" class="view">
+            <canvas id="sc-canvas"></canvas>
+            <div id="sc-tooltip" class="sc-tooltip" style="display:none"></div>
+            <div id="sc-title" class="sc-title"></div>
+            <div id="sc-zoomtip" class="sc-zoomtip">方向键移动 · 空格+拖动平移 · 滚轮缩放 · 悬停名牌 · 点击看资料</div>
+        </section>
+
+        <!-- 角色资料卡（左侧栏） -->
+        <aside id="profile" class="profile" style="display:none">
+            <button id="pf-close" class="pf-close">✕</button>
+            <div id="pf-body"></div>
+        </aside>
+
+        <!-- 行动记录（右侧栏，当前 mock 数据） -->
+        <aside id="activity" class="activity" style="display:none">
+            <button id="act-close" class="pf-close">✕</button>
+            <div class="act-head">📜 行动记录 <span class="act-mock-tag">mock</span></div>
+            <div id="act-body"></div>
+        </aside>
+
+        <div id="toast" class="toast" style="display:none"></div>
+    </main>
+
+    <script type="module" src="./js/app.js?v=2"></script>
+</body>
+</html>

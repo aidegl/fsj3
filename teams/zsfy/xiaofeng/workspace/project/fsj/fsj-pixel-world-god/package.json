@@ -1,0 +1,16 @@
+{
+  "name": "fsj-pixel-world-god",
+  "version": "1.0.0",
+  "description": "> PC 网页端的\"造物主视角\"——俯瞰整个像素世界如何运转。\r > 状态：**规划阶段，待东城确认 PRD 后开工**\r > 手机端（姊妹项目）：[../fsj-pixel-world/](../fsj-pixel-world/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ws": "^8.22.0"
+  }
+}

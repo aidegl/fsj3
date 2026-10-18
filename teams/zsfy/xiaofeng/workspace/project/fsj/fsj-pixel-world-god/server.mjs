@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+/**
+ * server.mjs — fsj-pixel-world-god v2 服务
+ * 静态托管本项目 + /api/data（flow/计划/命中率日志聚合）+ COOP/COEP（Godot WASM 需要）
+ * 用法: node server.mjs [端口=8321]
+ */
+import http from 'node:http';
+import { WebSocketServer } from 'ws';
+import fs, { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
+const sseClients = new Set();
+function broadcast(type, data){
+  const msg = `data: ${JSON.stringify({type, data})}`;
+  for(const res of sseClients){ try{ res.write(msg); }catch{ sseClients.delete(res); } }
+}
+// fs.watch 计划流目录 + 计划文件：一变就推（去抖150ms合并连写）
+let wDebounce;
+function watchPush(){ console.log("[watchPush] 触发", new Date().toTimeString().slice(0,8)); clearTimeout(wDebounce); wDebounce = setTimeout(()=>{ const d=loadData(); broadcast('update', d); wsPush('update', d); }, 150); }
+try{ fs.watch('D:/Item/fsj/workspace/wuming/flows', ()=>watchPush()); console.log('[watcher] flows目录已挂'); }catch(e){ console.log('[watcher] 挂载失败:', e.message); }
+try{ fs.watch('D:/Item/fsj/workspace/wuming', (e,f)=>{ if(f&&f.startsWith('plan-')) watchPush(); }); }catch{}
+const PORT = Number(process.argv[2]) || 8321;
+const FLOWS_DIR = 'D:/Item/fsj/workspace/wuming/flows';
+const SOURCES = {
+  flow: 'D:/Item/fsj/workspace/wuming/flows/flow-20261017-wuming-001.json',
+  plan: 'D:/Item/fsj/workspace/wuming/plan-2026-10-18.json',
+  hits: 'D:/Item/fsj/tmp-api/retrieval-hit-log.jsonl',
+};
+
+function loadData() {
+  const out = { flow: null, flows: [], plan: null, hits: [] };
+  try { out.flow = JSON.parse(readFileSync(SOURCES.flow, 'utf8')); } catch {}
+  try { out.now = JSON.parse(readFileSync(FLOWS_DIR + '/.loopstate.json', 'utf8')); } catch {}
+  try { out.flows = readdirSync(FLOWS_DIR).filter(f => f.startsWith('flow-') && f.endsWith('.json')).map(f => { try { return JSON.parse(readFileSync(FLOWS_DIR + '/' + f, 'utf8')); } catch { return null; } }).filter(Boolean); } catch {}
+  try { out.plan = JSON.parse(readFileSync(SOURCES.plan, 'utf8')); } catch {}
+  try {
+    const lines = readFileSync(SOURCES.hits, 'utf8').trim().split('\n');
+    out.hits = lines.slice(-50).map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean).reverse();
+  } catch {}
+  return out;
+}
+
+const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.wasm': 'application/wasm', '.pck': 'application/octet-stream', '.ico': 'image/x-icon', '.ttf': 'font/ttf', '.md': 'text/markdown; charset=utf-8' };
+
+const wsClients = new Set();
+const wss = new WebSocketServer({ noServer: true });
+function wsPush(type, data){
+  const msg = JSON.stringify({type, data});
+  for(const c of wsClients){ try{ c.send(msg); }catch{ wsClients.delete(c); } }
+}
+const server = http.createServer((req, res) => {
+  // Godot WASM 跨线程需要 COOP/COEP；全响应都带，无害
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  res.setHeader('Cache-Control','no-store');
+  if (req.url === '/api/events') {
+    res.writeHead(200, { 'Content-Type':'text/event-stream', 'Cache-Control':'no-store', 'Connection':'keep-alive' });
+    res.write(`data: ${JSON.stringify({type:'init', data:loadData()})}`);
+    sseClients.add(res);
+    req.on('close', ()=>sseClients.delete(res));
+    return;
+  }
+  if (req.url === '/api/data') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    return res.end(JSON.stringify(loadData()));
+  }
+  let p = decodeURIComponent(req.url.split('?')[0]);
+  if (p === '/') p = '/index.html';
+  const file = path.join(ROOT, p);
+  if (file.startsWith(ROOT) && existsSync(file) && statSync(file).isFile()) {
+    res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream' });
+    return res.end(readFileSync(file));
+  }
+  res.writeHead(404); res.end('404');
+});
+server.on('upgrade', (req, sock, head) => {
+  if (req.url === '/ws') {
+    wss.handleUpgrade(req, sock, head, ws => {
+      wsClients.add(ws);
+      ws.send(JSON.stringify({type:'init', data:loadData()}));
+      ws.on('close', ()=>wsClients.delete(ws));
+    });
+  } else sock.destroy();
+});
+server.listen(PORT, () => console.log(`fsj-pixel-world-god v2: http://localhost:${PORT} + ws`));
