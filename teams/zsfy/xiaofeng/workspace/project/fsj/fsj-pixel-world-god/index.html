@@ -44,7 +44,9 @@ body{font:13px/1.5 'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',
 #left{width:360px;flex:none;padding:22px 13px 12px;display:flex;flex-direction:column;align-items:center;min-height:0;border-radius:0 12px 12px 0;border:0}
 #left img#ava{width:138px;height:138px;border-radius:50%;object-fit:cover;border:2px solid #2fd6c5;box-shadow:0 0 12px rgba(47,214,197,.35)}
 #left .name{font-family:'Noto Serif SC','Songti SC',serif;font-size:25px;letter-spacing:13px;margin:18px 0 6px;text-indent:13px}
-#left .lv{font-size:16px;color:#9a94b5;margin-bottom:10px;width:100%;text-align:center;padding:0}
+#left .lvrow{display:flex;justify-content:space-between;align-items:baseline;width:calc(100% - 20px);margin:10px 10px 6px}
+#left .lvt{font-size:15px;font-weight:700;color:#e8e8e8}
+#left .lxp{font-size:11px;color:#6c9be8}
 #left .lv b{color:#6c9be8;font-weight:400}
 #left .exp{height:7px;border-radius:3px;background:#22314a;overflow:hidden;margin:0 10px 16px;width:calc(100% - 20px)}
 #left .exp i{display:block;height:100%;width:62%;background:linear-gradient(90deg,#1174ff,#6c9be8)}
@@ -216,7 +218,7 @@ body{font:13px/1.5 'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',
       <div id="left" class="glow">
         <img id="ava" src="assets/figma/img20260413163909130561.png" alt="祈景宗">
         <div class="name">祈景宗</div>
-        <div class="lv">Lv12 <b>1,240,000</b> / 2,000,000 EXP</div>
+        <div class="lvrow"><span class="lvt">Lv12</span><span class="lxp">1,240,000 / 2,000,000 EXP</span></div><div class="exp"><i></i></div>
         <div class="exp"><i></i></div>
         <div class="ptabs"><span class="on">任务</span><span>信息</span><span>路由</span><span>技能</span></div>
 <div class="rtabs" id="rtabs"><span class="on">必读</span><span>情绪</span><span>八神</span><span>通用</span><span>智能</span></div>
