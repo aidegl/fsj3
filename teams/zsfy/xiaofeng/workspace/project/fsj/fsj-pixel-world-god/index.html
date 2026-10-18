@@ -319,7 +319,7 @@ function renderFlows(){
   const el=document.getElementById('flowlist');
   const f=((DATA&&DATA.flows)||[]).find(x=>x.id===FLOWID)||activeFlow(); let compUsed=false;
   if(!f){el.innerHTML='<div class="frow"><span class="ftext" style="opacity:.5">该任务尚未建流（建流后此处显示流里的每一项）</span></div>';return;}
-  el.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0;padding:10px 20px;position:sticky;top:0;z-index:10;background:#16121f;backdrop-filter:blur(4px);border-bottom:1px solid rgba(255,255,255,.12)"><span style="font-size:16px;font-weight:700;color:#fff">计划流</span><button id="followBtn" onclick="toggleFollow()" style="background:#131a26;border:1px solid #2fd6c5;color:#2fd6c5;font-size:10px;padding:2px 10px;border-radius:10px;cursor:pointer">🧲 跟随中</button></div>`+f.steps.map((s,i)=>{
+  el.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0;padding:10px 20px;position:sticky;top:0;z-index:10;background:#0D1017;backdrop-filter:blur(4px);border-bottom:1px solid rgba(255,255,255,.12)"><span style="font-size:16px;font-weight:700;color:#fff">计划流</span><button id="followBtn" onclick="toggleFollow()" style="background:#131a26;border:1px solid #2fd6c5;color:#2fd6c5;font-size:10px;padding:2px 10px;border-radius:10px;cursor:pointer">🧲 跟随中</button></div>`+f.steps.map((s,i)=>{
     const comp=(s.compile==='running'&&!compUsed);
     if(s.compile==='running')compUsed=true;
     const nowHit=(DATA&&DATA.now&&DATA.now.flow===f.id&&DATA.now.step_no===s.no&&(Date.now()-(DATA.now.ts||0))<180000);
