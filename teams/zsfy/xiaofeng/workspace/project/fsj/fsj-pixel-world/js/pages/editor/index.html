@@ -1,0 +1,37 @@
+<div class="editor-page">
+    <div class="ed-top px-panel">
+        <button class="px-btn tiny" id="edBack">‹ 世界</button>
+        <div class="ed-title"><span id="edName">-</span> · 形象编辑</div>
+        <button class="px-btn primary tiny" id="edSave">保存</button>
+    </div>
+
+    <!-- 三面 Tab 切换 -->
+    <div class="ed-tabs">
+        <button class="ed-tab active" data-face="down">正面</button>
+        <button class="ed-tab" data-face="up">背面</button>
+        <button class="ed-tab" data-face="side">侧面（左）</button>
+    </div>
+
+    <!-- 单个大画布（编辑当前面） -->
+    <div class="ed-canvas-wrap">
+        <canvas id="edCanvas" class="ed-cv"></canvas>
+    </div>
+
+    <div class="ed-tools">
+        <button class="ed-tool active" data-tool="pen">✏️ 画笔</button>
+        <button class="ed-tool" data-tool="eraser">🧽 橡皮</button>
+        <button class="ed-tool" data-tool="picker">💧 吸色</button>
+        <button class="ed-tool" id="edUndo">↩️ 撤销</button>
+        <button class="ed-tool" id="edClear">🗑️ 清空本面</button>
+    </div>
+
+    <div class="ed-palette-wrap">
+        <div class="ed-palette" id="edPalette"></div>
+    </div>
+
+    <div class="ed-foot">
+        <button class="px-btn tiny" id="edExport">导出 JSON</button>
+        <button class="px-btn tiny" id="edReset">恢复原始形象</button>
+        <div class="ed-tip">保存后世界中的形象立即生效</div>
+    </div>
+</div>

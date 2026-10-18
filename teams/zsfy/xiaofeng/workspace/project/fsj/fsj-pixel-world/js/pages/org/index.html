@@ -1,0 +1,99 @@
+<div class="org-page">
+    <button class="back-btn" id="orgBack">‹ 返回世界</button>
+
+    <!-- 横幅（组织信息） -->
+    <div class="banner">
+        <div class="banner-avatar" id="orgAvatar">🏛️</div>
+        <div class="banner-info">
+            <div class="banner-name" id="orgName">加载中…</div>
+            <div class="banner-meta" id="orgMeta">—</div>
+        </div>
+        <span class="banner-level" id="orgLevel">—</span>
+    </div>
+
+    <!-- 加载/错误态 -->
+    <div class="loading" id="orgLoading" style="display:none">加载中…</div>
+    <div class="error" id="orgError" style="display:none"></div>
+
+    <!-- 功能卡片 -->
+    <div class="cards" id="orgCards">
+        <div class="card wide" data-key="members">
+            <div class="card-icon">🏠</div>
+            <div class="card-text">
+                <div class="card-name">成员大厅</div>
+                <div class="card-sub">辰 · 含排行榜二级菜单</div>
+            </div>
+            <div class="card-zhi">辰</div>
+        </div>
+
+        <div class="card" data-key="rules">
+            <div class="card-icon">📜</div>
+            <div class="card-name">规则</div>
+            <div class="card-sub">组织规章 · 入退会</div>
+            <div class="card-zhi">申</div>
+        </div>
+
+        <div class="card" data-key="culture">
+            <div class="card-icon">🎋</div>
+            <div class="card-name">文化</div>
+            <div class="card-sub">价值观 · 愿景 · 仪式</div>
+            <div class="card-zhi">酉</div>
+        </div>
+
+        <div class="card" data-key="forum">
+            <div class="card-icon">💬</div>
+            <div class="card-name">论坛</div>
+            <div class="card-sub">自由讨论区</div>
+            <div class="card-zhi">丑</div>
+        </div>
+
+        <div class="card" data-key="review">
+            <div class="card-icon">🔁</div>
+            <div class="card-name">复盘</div>
+            <div class="card-sub">事后总结</div>
+            <div class="card-zhi">戌</div>
+        </div>
+
+        <div class="card" data-key="tasks">
+            <div class="card-icon">📋</div>
+            <div class="card-name">任务计划</div>
+            <div class="card-sub">最小可执行计划</div>
+            <div class="card-zhi">亥子</div>
+        </div>
+
+        <div class="card" data-key="shop">
+            <div class="card-icon">🛒</div>
+            <div class="card-name">商城</div>
+            <div class="card-sub">积分兑换</div>
+            <div class="card-zhi">未</div>
+        </div>
+
+        <div class="card" data-key="rd">
+            <div class="card-icon">🔬</div>
+            <div class="card-name">研发部门</div>
+            <div class="card-sub">含技能库</div>
+            <div class="card-zhi">乙寅</div>
+        </div>
+
+        <div class="card" data-key="projects">
+            <div class="card-icon">🚀</div>
+            <div class="card-name">项目部</div>
+            <div class="card-sub">进行中项目</div>
+            <div class="card-zhi">巳</div>
+        </div>
+    </div>
+
+    <!-- 底部 tab 栏 -->
+    <div class="tabbar">
+        <div class="tabbar-item active"><span>🏛️</span>公会</div>
+        <div class="tabbar-item"><span>🎁</span>福利</div>
+        <div class="tabbar-item"><span>⚙️</span>设置</div>
+        <div class="tabbar-item"><span>❓</span>帮助</div>
+    </div>
+
+    <!-- 浮动消息按钮 -->
+    <button class="msg-fab" id="orgMsg">💬</button>
+
+    <!-- Toast -->
+    <div class="org-toast" id="orgToast" style="display:none"></div>
+</div>

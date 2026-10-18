@@ -1,0 +1,170 @@
+/* 组织页面 - 公会 UI（自适应：随屏宽变，卡片列数 auto-fit） */
+* { box-sizing: border-box; }
+.org-page {
+    width: 100%;
+    max-width: 600px;                  /* 上限：宽屏下卡片也不会被拉得过大 */
+    margin: 0 auto;
+    padding: 12px 12px 80px;           /* 底部留出固定 tabbar 的空间（80px 固定） */
+    min-height: 100vh;
+    background: linear-gradient(180deg, #2a3d5c 0%, #1a2840 100%);
+    color: #fff;
+    position: relative;
+}
+
+/* 返回按钮 */
+.back-btn {
+    position: fixed; top: 12px; left: 12px;
+    background: rgba(0,0,0,.5); color: #fff;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; padding: 4px 10px;
+    font-size: 12px; cursor: pointer;
+    z-index: 50;
+}
+
+/* 横幅 */
+.banner {
+    background: linear-gradient(135deg, #FFC229 0%, #d9931a 100%);
+    border: 3px solid #030303;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+    margin: 36px 0 14px;
+}
+.banner-avatar {
+    width: 56px; height: 56px;
+    background: #fff;
+    border: 3px solid #030303;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+.banner-info { flex: 1; min-width: 0; }
+.banner-name {
+    font-size: 18px; font-weight: 800; color: #030303;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.banner-meta { font-size: 11px; color: #030303; opacity: .75; margin-top: 4px; }
+.banner-level {
+    background: #030303; color: #FFC229;
+    padding: 4px 10px; border-radius: 4px;
+    font-size: 12px; font-weight: 800;
+    flex-shrink: 0;
+}
+
+/* 加载/错误 */
+.loading, .error {
+    text-align: center; padding: 40px 20px;
+    color: rgba(255,255,255,.6); font-size: 14px;
+}
+.error { color: #ff7a7a; }
+
+/* 卡片网格：固定 2 列（不随屏宽扩张） */
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.card {
+    background: #fff;
+    border: 3px solid #030303;
+    border-radius: 8px;
+    padding: 12px 10px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+    cursor: pointer;
+    position: relative;
+    transition: transform .12s ease-out, box-shadow .12s ease-out;
+    user-select: none;
+    min-height: 100px;
+}
+.card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 rgba(0,0,0,.4);
+}
+.card-icon { font-size: 32px; line-height: 1; }
+.card-name {
+    font-size: 14px; font-weight: 800; color: #030303;
+    margin-top: 6px;
+}
+.card-sub {
+    font-size: 10px; color: #717171;
+    margin-top: 2px; line-height: 1.4;
+}
+.card-zhi {
+    position: absolute; top: 6px; right: 6px;
+    background: #FFC229; color: #030303;
+    font-size: 9px; font-weight: 700;
+    padding: 1px 5px; border-radius: 3px;
+    border: 1.5px solid #030303;
+}
+/* 宽卡：固定 2 列下跨满整行 */
+.card.wide {
+    grid-column: span 2;
+    display: flex; align-items: center; gap: 10px;
+}
+.card.wide .card-icon { font-size: 28px; }
+.card.wide .card-text { flex: 1; }
+.card.wide .card-name { margin-top: 0; }
+
+/* 红点 */
+.card .dot {
+    position: absolute; top: -4px; right: -4px;
+    min-width: 18px; height: 18px;
+    color: #fff;
+    border: 2px solid #030303;
+    border-radius: 50%;
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 4px;
+}
+.dot.hot { background: #E83B3B; }
+.dot.warm { background: #FFC229; color: #030303; }
+
+/* 浮动消息按钮（避开底部 tabbar；位置固定 px 不随屏变） */
+.msg-fab {
+    position: fixed; right: 16px; bottom: 80px;
+    width: 56px; height: 56px;
+    background: #E83B3B; color: #fff;
+    border: 3px solid #030303; border-radius: 50%;
+    font-size: 24px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 40;
+}
+.msg-fab:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 rgba(0,0,0,.4); }
+
+/* 底部 tabbar：固定视口底部；图标用固定 px 不随 rem 缩放 */
+.tabbar {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: #1a2840;
+    border-top: 2px solid rgba(255,255,255,.15);
+    padding: 6px 12px calc(6px + env(safe-area-inset-bottom));
+    display: flex; gap: 6px;
+    z-index: 30;
+    /* 与 org-page 同宽并居中 */
+    max-width: 600px;
+    margin: 0 auto;
+}
+.tabbar-item {
+    flex: 1; text-align: center; padding: 4px 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    /* 固定 px：图标在所有屏宽下都是同样大小，不会变巨或变小 */
+    font-size: 11px;
+    color: rgba(255,255,255,.5);
+}
+.tabbar-item.active { background: #FFC229; color: #030303; font-weight: 700; }
+.tabbar-item span { display: block; font-size: 20px; margin-bottom: 2px; }
+
+/* Toast */
+.org-toast {
+    position: fixed; left: 50%; bottom: 90px;
+    transform: translateX(-50%);
+    background: rgba(3,3,3,.85); color: #FFE6BB;
+    padding: 10px 18px; border-radius: 6px;
+    font-size: 13px; max-width: 80vw;
+    text-align: center; pointer-events: none;
+    z-index: 99;
+}

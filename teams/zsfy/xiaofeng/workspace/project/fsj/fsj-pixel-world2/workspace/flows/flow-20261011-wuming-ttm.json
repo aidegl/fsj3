@@ -1,0 +1,46 @@
+{
+  "flowVersion": "1.1",
+  "id": "flow-20261011-wuming-ttm",
+  "agent": "wuming",
+  "dim": 2,
+  "task": "ttm 记忆三剑客调用",
+  "status": "running",
+  "startedAt": "2026-10-11T09:31:13.136Z",
+  "finishedAt": null,
+  "strategyNote": "ttm 统一入口：必读权重/必读小抄/临时小抄 的读写留痕",
+  "steps": [
+    {
+      "no": 1,
+      "type": "execute",
+      "title": "ttm.weight",
+      "status": "done",
+      "startedAt": "17:31:13",
+      "endedAt": "17:31:13",
+      "decision": {
+        "chosen": "读取必读权重",
+        "why": "按必读内容防压缩规则加载",
+        "alternatives": []
+      },
+      "output": "3 条"
+    }
+  ],
+  "revisions": [],
+  "stepDelta": {
+    "type": "execute",
+    "title": "ttm.weight",
+    "status": "done",
+    "startedAt": "17:31:13",
+    "endedAt": "17:31:13",
+    "decision": {
+      "chosen": "读取必读权重",
+      "why": "按必读内容防压缩规则加载",
+      "alternatives": []
+    },
+    "output": "3 条"
+  },
+  "ttm": {
+    "op": "weight",
+    "count": 3,
+    "at": "2026-10-11T09:31:13.135Z"
+  }
+}

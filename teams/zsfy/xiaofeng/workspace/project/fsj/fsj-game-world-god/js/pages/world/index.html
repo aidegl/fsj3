@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <canvas id="gwCanvas"></canvas>
+
+    <!-- 顶栏：玩家信息卡 + WS 状态 -->
+    <div class="gw-topbar">
+        <div class="gw-player-card">
+            <div class="gw-level" id="gwLevel">LV 1</div>
+            <div class="gw-exp" id="gwExp">经验值：0</div>
+            <div class="gw-expbar"><i id="gwExpFill"></i></div>
+        </div>
+        <div class="gw-ws" id="gwWs">● 实时</div>
+    </div>
+
+    <!-- 位置 HUD -->
+    <div class="gw-pos-hud" id="gwPosHud">
+        <span id="gwPosName">-</span>
+        <span id="gwPosXY">(-,-)</span>
+    </div>
+
+    <!-- 左侧功能列 -->
+    <div class="gw-fn-col left">
+        <div class="gw-fn-icon" data-fn="cards">🃏</div>
+        <div class="gw-fn-icon" data-fn="tasks">📋</div>
+        <div class="gw-fn-icon" data-fn="ideas">💡</div>
+        <div class="gw-fn-icon" data-fn="org">🏛</div>
+    </div>
+
+    <!-- 右侧功能列 -->
+    <div class="gw-fn-col right">
+        <div class="gw-fn-icon" data-fn="map">🗺</div>
+        <div class="gw-fn-icon" data-fn="shop">🛒</div>
+        <div class="gw-fn-icon" data-fn="msg">💬</div>
+        <div class="gw-fn-icon" data-fn="charge">⚡</div>
+        <div class="gw-fn-icon" data-fn="draw">🎨</div>
+    </div>
+
+    <!-- 底部计划流面板 -->
+    <div class="gw-flow-bar" id="gwFlowBar">
+        <div class="gw-flow-title">计划流</div>
+        <div class="gw-flow-steps" id="gwFlowSteps"></div>
+    </div>
+</body>
+</html>

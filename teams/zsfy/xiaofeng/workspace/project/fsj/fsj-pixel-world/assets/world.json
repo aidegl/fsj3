@@ -1,0 +1,153 @@
+{
+  "world": "天界",
+  "mingcheng": "像素视界·天界",
+  "miaoshu": "天界是一个抽象平面，五行局与东城住所悬浮其间。全景图只显示重要信息，进入局后比例放大、细节呈现。",
+  "scenes": [
+    {
+      "id": "tianfugong",
+      "name": "天孚宫",
+      "anchorPct": [50, 6],
+      "zhushen": "区",
+      "agentId": "",
+      "color": "#FFC229",
+      "biaoyu": "天界宫城·诸局环拱",
+      "ready": true,
+      "xsdt": "75fdbe30-0dcb-47c8-90d2-7efd6a76df8d"
+    },
+    {
+      "id": "tu",
+      "name": "土局",
+      "anchorPct": [
+        50,
+        24
+      ],
+      "zhushen": "小粽",
+      "agentId": "demo-xiaozong",
+      "color": "#d9931a",
+      "biaoyu": "中枢·承载决策",
+      "ready": true,
+      "xsdt": "3a52a722-ddca-412b-a66a-f0454daeb24e"
+    },
+    {
+      "id": "mu",
+      "name": "木局",
+      "anchorPct": [
+        26,
+        12
+      ],
+      "zhushen": "小风",
+      "agentId": "demo-xiaofeng",
+      "color": "#2bd64f",
+      "biaoyu": "工坊·生长建造",
+      "ready": false
+    },
+    {
+      "id": "shui",
+      "name": "水局",
+      "anchorPct": [
+        74,
+        12
+      ],
+      "zhushen": "梦瑶",
+      "agentId": "demo-mengyao",
+      "color": "#00A2E8",
+      "biaoyu": "画境·流动留白",
+      "ready": false
+    },
+    {
+      "id": "huo",
+      "name": "火局",
+      "anchorPct": [
+        26,
+        56
+      ],
+      "zhushen": "小云",
+      "agentId": "demo-xiaoyun",
+      "color": "#f35a5a",
+      "biaoyu": "星台·洞察趋势",
+      "ready": false
+    },
+    {
+      "id": "jin",
+      "name": "金局",
+      "anchorPct": [
+        74,
+        56
+      ],
+      "zhushen": "阿说",
+      "agentId": "demo-ashuo",
+      "color": "#929292",
+      "biaoyu": "书阁·言说故事",
+      "ready": false
+    },
+    {
+      "id": "dongcheng",
+      "name": "东城住所",
+      "anchorPct": [
+        50,
+        79
+      ],
+      "zhushen": "东城",
+      "agentId": "demo-dongcheng",
+      "color": "#ba7326",
+      "biaoyu": "创始者分身居所",
+      "ready": false
+    }
+  ],
+  "lujing": [
+    {
+      "from": [50, 6],
+      "to": [50, 24]
+    },
+    {
+      "from": [
+        50,
+        24
+      ],
+      "to": [
+        26,
+        12
+      ]
+    },
+    {
+      "from": [
+        50,
+        24
+      ],
+      "to": [
+        74,
+        12
+      ]
+    },
+    {
+      "from": [
+        50,
+        24
+      ],
+      "to": [
+        26,
+        56
+      ]
+    },
+    {
+      "from": [
+        50,
+        24
+      ],
+      "to": [
+        74,
+        56
+      ]
+    },
+    {
+      "from": [
+        50,
+        24
+      ],
+      "to": [
+        50,
+        79
+      ]
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>盒子</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/hezi.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 分类导航 -->
+    <div class="category-nav" id="category-nav">
+      <div class="category-item active" data-index="0">全部</div>
+      <div class="category-item" data-index="1">饮品</div>
+      <div class="category-item" data-index="2">零食</div>
+      <div class="category-item" data-index="3">主食</div>
+      <div class="category-item" data-index="4">日用品</div>
+    </div>
+
+    <!-- 商品网格 -->
+    <div class="product-list" id="product-list">
+      <div class="loading-state" id="loading-state">
+        <div class="loading-spinner"></div>
+        <p>加载中...</p>
+      </div>
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <p>暂无商品</p>
+      </div>
+    </div>
+
+    <!-- 详情面板（隐藏） -->
+    <div class="detail-panel" id="detail-panel">
+      <div class="detail-header">
+        <span class="detail-title">订单详情</span>
+        <span class="detail-close" id="detail-close">×</span>
+      </div>
+      <div class="detail-body" id="detail-body">
+        <!-- JS 渲染 -->
+      </div>
+    </div>
+
+    <!-- 底部支付栏 -->
+    <div class="pay-bar" id="pay-bar" style="display:none;">
+      <div class="pay-left">
+        <span class="pay-count" id="pay-count">共 0 件</span>
+        <span class="pay-total">合计 <em id="pay-total">¥0.00</em></span>
+        <span class="detail-toggle" id="detail-toggle">查看详情</span>
+      </div>
+      <div class="pay-btn" id="pay-btn">立即下单</div>
+    </div>
+
+    <!-- 支付方式选择模态框 -->
+    <div class="pay-mode-mask" id="pay-mode-mask" style="display:none;" onclick="HeziPage.hidePayModeModal()"></div>
+    <div class="pay-mode-modal" id="pay-mode-modal" style="display:none;">
+      <div class="pay-mode-header">
+        <span class="pay-mode-title">选择支付方式</span>
+        <span class="pay-mode-close" id="pay-mode-close" onclick="HeziPage.hidePayModeModal()">×</span>
+      </div>
+      <div class="pay-mode-body">
+        <!-- 余额支付 -->
+        <div class="pay-mode-card" id="pay-mode-card-balance" onclick="HeziPage.selectPayMode('balance')">
+          <div class="pay-mode-card-left">
+            <div class="pay-mode-icon-balance">💰</div>
+            <div class="pay-mode-card-info">
+              <div class="pay-mode-card-name">余额支付</div>
+              <div class="pay-mode-card-desc">使用账户余额支付，余额不足时无法使用</div>
+            </div>
+          </div>
+          <div class="pay-mode-radio" id="pay-mode-radio-balance"></div>
+        </div>
+        <!-- 微信支付 -->
+        <div class="pay-mode-card pay-mode-card-active" id="pay-mode-card-wechat" onclick="HeziPage.selectPayMode('wechat')">
+          <div class="pay-mode-card-left">
+            <div class="pay-mode-icon-wechat">💳</div>
+            <div class="pay-mode-card-info">
+              <div class="pay-mode-card-name">微信支付</div>
+              <div class="pay-mode-card-desc">使用微信支付全额付款</div>
+            </div>
+          </div>
+          <div class="pay-mode-radio pay-mode-radio-active" id="pay-mode-radio-wechat"></div>
+        </div>
+        <!-- 支付金额预览 -->
+        <div class="pay-mode-preview">
+          <div class="pay-mode-preview-row">
+            <span>应付金额</span>
+            <span class="pay-mode-preview-amount" id="pay-mode-preview-amount">¥0.00</span>
+          </div>
+          <div class="pay-mode-preview-row" id="pay-mode-balance-row">
+            <span>可用余额</span>
+            <span class="pay-mode-balance-value" id="pay-mode-balance-value">¥0.00</span>
+          </div>
+        </div>
+      </div>
+      <div class="pay-mode-footer">
+        <div class="pay-mode-confirm-btn" id="pay-mode-confirm" onclick="HeziPage.confirmPayMode()">确认支付</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 调试面板 -->
+  <div id="debug-fab" onclick="toggleDebugPanel()" style="position:fixed;bottom:12px;right:12px;width:36px;height:36px;background:rgba(0,0,0,0.6);color:#0f0;border:1px solid #0f0;border-radius:50%;font-size:14px;cursor:pointer;z-index:99998;display:none;align-items:center;justify-content:center;">🐛</div>
+  <div id="debug-overlay" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.85);color:#0f0;padding:8px;max-height:180px;overflow:auto;font-size:11px;font-family:monospace;z-index:99999;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+      <span>调试日志</span>
+      <div>
+        <button id="debug-copy-btn" onclick="copyDebugLog()" style="background:#0a0;color:#0f0;border:1px solid #0f0;padding:2px 8px;font-size:10px;cursor:pointer;margin-right:4px;">复制</button>
+        <button id="debug-hide-btn" onclick="toggleDebugPanel()" style="background:#a00;color:#fff;border:1px solid #f00;padding:2px 8px;font-size:10px;cursor:pointer;">隐藏</button>
+      </div>
+    </div>
+    <pre id="debug-log-content" style="margin:0;white-space:pre-wrap;word-break:break-all;"></pre>
+  </div>
+
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+  <script src="js/fsj-api.js?v=20260611a"></script>
+  <script src="js/hezi.js"></script>
+  <script>
+    // 页面内调试面板
+    (function() {
+      window.DEBUG_LOG = [];
+      window.logDebug = function(msg) {
+        var el = document.getElementById('debug-log-content');
+        var ts = new Date().toLocaleTimeString();
+        window.DEBUG_LOG.push('[' + ts + '] ' + msg);
+        if (el) {
+          el.textContent = window.DEBUG_LOG.join('\n');
+          el.scrollTop = el.scrollHeight;
+        }
+        console.log('[H5 Debug]', msg);
+      };
+      window.copyDebugLog = function() {
+        var text = window.DEBUG_LOG.join('\n');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            var btn = document.getElementById('debug-copy-btn');
+            btn.textContent = '已复制';
+            setTimeout(function() { btn.textContent = '复制'; }, 1500);
+          }).catch(function() {
+            window.logDebug('复制失败，尝试备用方法');
+            copyFallback(text);
+          });
+        } else {
+          copyFallback(text);
+        }
+      };
+      function copyFallback(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          var btn = document.getElementById('debug-copy-btn');
+          btn.textContent = '已复制';
+          setTimeout(function() { btn.textContent = '复制'; }, 1500);
+        } catch (e) {
+          window.logDebug('复制失败: ' + e.message);
+        }
+        document.body.removeChild(ta);
+      }
+      window.toggleDebugPanel = function () {
+        var panel = document.getElementById('debug-overlay');
+        var fab = document.getElementById('debug-fab');
+        var logEl = document.getElementById('debug-log-content');
+        if (!panel || !fab) return;
+        var visible = panel.style.display !== 'none';
+        panel.style.display = visible ? 'none' : 'block';
+        fab.style.display = visible ? 'none' : 'flex';
+        if (!visible && logEl) {
+          logEl.scrollTop = logEl.scrollHeight;
+        }
+      };
+    })();
+  </script>
+</body>
+</html>

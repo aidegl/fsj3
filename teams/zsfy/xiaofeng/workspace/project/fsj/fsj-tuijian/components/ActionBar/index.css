@@ -1,0 +1,78 @@
+/* 右侧操作栏（对标抖音原版精修） */
+.action-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.1rem 0;
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.action-btn i {
+    font-size: 0.56rem;
+    margin-bottom: 0.06rem;
+    line-height: 1;
+    /* 四向黑描边 + 投影：任何亮暗背景都清晰 */
+    text-shadow:
+        0.015rem 0.015rem 0 rgba(0, 0, 0, 0.55),
+        -0.015rem 0.015rem 0 rgba(0, 0, 0, 0.55),
+        0.015rem -0.015rem 0 rgba(0, 0, 0, 0.55),
+        -0.015rem -0.015rem 0 rgba(0, 0, 0, 0.55),
+        0 0.03rem 0.08rem rgba(0, 0, 0, 0.45);
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 点按弹跳反馈 */
+.action-btn:active i {
+    transform: scale(0.8);
+}
+
+/* 点赞后的弹跳动画 */
+.action-btn.liked-burst i.fa-heart {
+    animation: heartBurst 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes heartBurst {
+    0% { transform: scale(0.4); }
+    60% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+
+.action-btn .fa-heart {
+    color: #fe2c55;
+}
+
+.action-btn .fa-star {
+    color: #ffc043;
+}
+
+.action-btn-icon-only {
+    margin-top: 0.12rem;
+}
+
+.action-btn-icon-only i {
+    font-size: 0.42rem;
+    margin-bottom: 0;
+    opacity: 0.75;
+}
+
+.action-count {
+    font-size: 0.24rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow:
+        0.012rem 0.012rem 0 rgba(0, 0, 0, 0.55),
+        -0.012rem 0.012rem 0 rgba(0, 0, 0, 0.55),
+        0.012rem -0.012rem 0 rgba(0, 0, 0, 0.55),
+        -0.012rem -0.012rem 0 rgba(0, 0, 0, 0.55);
+}

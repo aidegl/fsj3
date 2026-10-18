@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>FSJ 智能体记忆手册</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans SC','PingFang SC',sans-serif;max-width:860px;margin:40px auto;padding:0 20px;color:#1e293b;line-height:1.8;background:#fafafa}
+h1{font-size:2rem;font-weight:900;color:#0f172a;margin:0 0 8px}
+.sub{color:#94a3b8;font-size:14px;margin-bottom:32px}
+h2{font-size:1.35rem;font-weight:800;color:#0f172a;margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+h3{font-size:1rem;font-weight:700;color:#334155;margin:18px 0 6px}
+p{margin:8px 0;color:#475569}
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin:12px 0;background:#fff}
+th{background:#f8fafc;padding:8px 12px;text-align:left;border:1px solid #e2e8f0;font-weight:600;color:#334155}
+td{padding:8px 12px;border:1px solid #e2e8f0;color:#475569}
+code{font-family:monospace;font-size:.85em;background:#f1f5f9;padding:2px 6px;border-radius:4px;color:#7c3aed}
+.note{background:#fffbeb;border-left:3px solid #f59e0b;padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.88rem}
+.ok{background:#f0fdf4;border-left:3px solid #22c55e;padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.88rem}
+.tag{display:inline-block;font-size:11px;background:#22c55e;color:#fff;padding:2px 10px;border-radius:999px;margin-right:6px;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<h1>FSJ 智能体记忆手册</h1>
+<p class="sub">记忆架构 × 项目知识 · 人复习 + AI 查阅</p>
+
+<h2>记忆架构</h2>
+<p><b>记忆只写云端一处（孚骨架），本地只留工作缓存。</b></p>
+
+<h3>读写路径</h3>
+<table>
+<tr><th>动作</th><th>路径</th></tr>
+<tr><td>启动第一步</td><td>Node 代理读路由 56960130</td></tr>
+<tr><td>写记忆</td><td>元表建知识记录，fabuzhe=自己 rowid，fu 挂骨架</td></tr>
+<tr><td>收尾</td><td>拍板当场上云，流水进 session-log</td></tr>
+</table>
+
+<h3>必读权重规则（0~10000 分）</h3>
+<table>
+<tr><th>分数</th><th>身份</th><th>含义</th><th>策略</th></tr>
+<tr><td>0-2</td><td>—</td><td>临时想法、低频片段</td><td>不进搜索</td></tr>
+<tr><td>3-5</td><td>—</td><td>按需检索</td><td>按需</td></tr>
+<tr><td><b>8001-9000</b></td><td><b>临时小抄</b></td><td>agent 定期编排的数据（≤100 条），全量加载（rowid/mingcheng/miaoshu），用前核对 miaoshu 场景任务匹配</td><td>全量加载</td></tr>
+<tr><td><b>9001-9900</b></td><td><b>必读小抄</b></td><td>每轮高频稳定数据（≤100 条），全量加载</td><td>全量加载</td></tr>
+<tr><td><b>9901-10000</b></td><td><b>必读权重</b></td><td>最重要的规则、路由、稳定内容；全量加载+wznr</td><td>全量加载</td></tr>
+</table>
+<p style="font-size:.85rem;color:#64748b">💡 必读内容三件套：必读权重 + 必读小抄 + 临时小抄。三档均为防压缩内容——压缩后重新全量加载。</p>
+
+<h3>简写规则</h3>
+<p>用表 <code>69b0077</code> · 元表 <code>6a03ceaa</code> · 组表 <code>69f549c6</code> · 地表 <code>6a8ba7de</code> · 权表 <code>6a90f29d</code></p>
+
+<h3>命中率纪律</h3>
+<p>rel 五档：5=就是我要的 / 4=有帮助 / 3=沾边 / 2=不相关 / 1=无关。<b>miss 是金子</b>——写入 <code>tmp-api/retrieval-hit-log.jsonl</code>。</p>
+
+<h3>已废弃通道</h3>
+<p style="color:#94a3b8">本地 auto-memory 双写 · HAP 无名记忆库（历史保留不删）</p>
+
+<h2>像素世界</h2>
+<p><b>64×64 格子 · Ronin 素材 · 回归像素风</b></p>
+
+<h3>核心规格</h3>
+<p>1 格 = 64×64 · 场景 48×48 格 · 角色占 1 格（占格不独占）· collision 碰撞 + BFS 寻路 · 地点树 区→单元→层</p>
+
+<h3>素材生产通道</h3>
+<table>
+<tr><th>通道</th><th>能力</th><th>计费</th></tr>
+<tr><td>MiniMax</td><td>文生图（无垫图）</td><td>按次</td></tr>
+<tr><td>FrameRonin</td><td>垫图 ✓（nano-banana-2）</td><td>代充按次</td></tr>
+<tr><td>pixel-snapper</td><td>网格对齐+色板</td><td>免费</td></tr>
+<tr><td>概率模板</td><td>换色/加特征</td><td>免费</td></tr>
+</table>
+
+<h3>标准工序</h3>
+<p>参考图/描述 → 生成 → 吸附网格 → 工艺（描边/对称）→ PS 定稿 → 入库</p>
+
+<h3>里程碑</h3>
+<table>
+<tr><th>阶段</th><th>范围</th><th>完成标志</th></tr>
+<tr><td>M1 当前</td><td>64 格核心 + Ronin NPC + 碰撞 + 素材管线 + 双端</td><td>角色走动、撞墙不走、手机走 PC 看</td></tr>
+<tr><td>M2</td><td>地皮编辑闭环 + 多 z 层</td><td>编辑重开仍在、草遮小腿</td></tr>
+<tr><td>M3</td><td>CLI + 打磨 + 部署</td><td>CLI 可指挥、域名可访问</td></tr>
+</table>
+
+<h2>排查速查</h2>
+<table>
+<tr><th>症状</th><th>处理</th></tr>
+<tr><td>PNG 彩虹噪点</td><td>解码器补滤镜处理</td></tr>
+<tr><td>中文 API 乱码</td><td>Write JSON → curl --data-binary</td></tr>
+<tr><td>GitHub 连不上</td><td>走镜像 ghfast.top</td></tr>
+<tr><td>平铺有井字感</td><td>错位+融合重跑</td></tr>
+<tr><td>新 exe 无法运行</td><td>用 Python/PowerShell 移植</td></tr>
+<tr><td>角色穿墙</td><td>三处校验都查 collision</td></tr>
+</table>
+
+<h2>决策记录</h2>
+<table>
+<tr><th>日期</th><th>拍板</th></tr>
+<tr><td>2026-10-11</td><td>睡眠机制：入睡→做梦→醒来，梦产物全可审计</td></tr>
+<tr><td>2026-10-11</td><td>情绪机制：遗忘三档+情绪索引</td></tr>
+<tr><td>2026-10-11</td><td>ttm.mjs 记忆三剑客</td></tr>
+<tr><td>2026-10-10</td><td>像素世界 2.0 立项，回归像素风</td></tr>
+<tr><td>2026-10-09</td><td>Godot 不采用，坚持 Canvas</td></tr>
+</table>
+
+</body>
+</html>

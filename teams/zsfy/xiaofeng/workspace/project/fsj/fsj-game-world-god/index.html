@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Game World · Agent 游戏世界</title>
+    <link rel="stylesheet" href="./css/world.css?v=1">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-title">
+            <span class="logo">GAME</span>
+            <span class="subtitle">Agent 游戏世界</span>
+        </div>
+        <div class="topbar-controls">
+            <label class="agent-label">当前 Agent</label>
+            <select id="agentSelect"></select>
+            <span id="wsBadge" class="ws-badge">WS 连接中…</span>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="world-pane">
+            <canvas id="world" width="960" height="540"></canvas>
+            <div id="world-hint" class="world-hint">方向键 / WASD 移动</div>
+        </section>
+        <aside class="mustread-pane">
+            <div class="pane-header">必读段 <span class="hint">（bdwznr · 入场必读）</span></div>
+            <div id="mustread-list" class="mustread-list"><div class="mr-loading">加载中…</div></div>
+        </aside>
+    </main>
+
+    <script type="module" src="./js/app.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录测试 · 独立诊断页</title>
+    <style>
+        body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background: #0d0d1a; color: #e8e8f2; padding: 24px; max-width: 720px; margin: 0 auto; }
+        h2 { margin: 0 0 16px; }
+        .card { background: #16162400; background: #161624; border: 1px solid #2a2a40; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+        label { display: block; font-size: 12px; color: #8b8ba3; margin: 10px 0 4px; }
+        input { width: 100%; padding: 8px 10px; font-size: 14px; border: 1px solid #2a2a40; border-radius: 6px; background: #0d0d1a; color: #e8e8f2; box-sizing: border-box; }
+        button { margin-top: 14px; padding: 10px 22px; font-size: 14px; background: #1677ff; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+        button:disabled { opacity: 0.5; }
+        #log { background: #0a0a14; border: 1px solid #2a2a40; border-radius: 8px; padding: 10px; height: 320px; overflow-y: auto; font-family: Consolas, monospace; font-size: 12px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
+        .ok { color: #2bd64f; } .err { color: #ff6b6b; } .info { color: #8b8ba3; }
+        .result { margin-top: 10px; padding: 10px; border-radius: 6px; background: #101020; border: 1px solid #2a2a40; font-size: 13px; display: none; }
+    </style>
+</head>
+<body>
+    <h2>🔐 登录测试（独立诊断页）</h2>
+    <div class="card">
+        <label>商家 shangjia rowid</label>
+        <input id="f-shangjia" value="f009cda3-cc49-400d-82cd-cbe79ee8892f">
+        <label>手机号（登录账号）</label>
+        <input id="f-phone" value="13311111111">
+        <label>密码</label>
+        <input id="f-pwd" value="888888">
+        <button id="f-btn">登 录</button>
+        <span id="f-status" style="margin-left:12px;font-size:12px;color:#8b8ba3;"></span>
+    </div>
+    <div class="card">
+        <b>调试日志（全程）</b>
+        <div id="log"></div>
+    </div>
+    <div class="card result" id="f-result"></div>
+
+    <!-- 只加载登录服务本体，绕开整个应用壳 -->
+    <script src="./js/services/login.js"></script>
+    <script>
+        var logBox = document.getElementById('log');
+        function log(msg, cls) {
+            var t = new Date().toTimeString().slice(0, 8);
+            var line = document.createElement('div');
+            line.className = cls || 'info';
+            line.textContent = '[' + t + '] ' + msg;
+            logBox.appendChild(line);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+        // 把 login.js 内部的 console.log 也接进来
+        (function () {
+            var orig = console.log;
+            console.log = function () {
+                var parts = Array.prototype.slice.call(arguments).map(String);
+                if (parts[0] && parts[0].indexOf('[登录调试]') === 0) log(parts.join(' '));
+                orig.apply(console, arguments);
+            };
+        })();
+
+        document.getElementById('f-btn').onclick = function () {
+            var btn = this;
+            var resBox = document.getElementById('f-result');
+            resBox.style.display = 'none';
+            btn.disabled = true;
+            document.getElementById('f-status').textContent = '登录中…';
+            log('—— 开始登录 ——');
+
+            LoginService.accountLogin(
+                document.getElementById('f-phone').value.trim(),
+                document.getElementById('f-pwd').value.trim(),
+                document.getElementById('f-shangjia').value.trim()
+            ).then(function (r) {
+                log('✅ 登录成功！', 'ok');
+                log('rowid=' + r.rowid + '，name=' + r.name + '，jifen=' + r.jifen + '，yue=' + r.yue, 'ok');
+                resBox.style.display = 'block';
+                resBox.innerHTML = '<b>✅ 登录成功</b><br>rowid: ' + r.rowid + '<br>name: ' + r.name +
+                    '<br><span style="color:#8b8ba3">（正式环境此结果会写入 localStorage 完成登录态）</span>';
+            }).catch(function (e) {
+                log('❌ 失败：' + e.message, 'err');
+                resBox.style.display = 'block';
+                resBox.innerHTML = '<b style="color:#ff6b6b">❌ ' + e.message + '</b>';
+            }).finally(function () {
+                btn.disabled = false;
+                document.getElementById('f-status').textContent = '';
+            });
+        };
+    </script>
+</body>
+</html>

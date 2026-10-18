@@ -1,0 +1,45 @@
+page {
+  background: #f5f6fa;
+}
+
+.container {
+  padding: 40rpx 32rpx 80rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.update-time {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.section {
+  margin-bottom: 36rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.section-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.section-content text {
+  display: block;
+  margin-bottom: 12rpx;
+}

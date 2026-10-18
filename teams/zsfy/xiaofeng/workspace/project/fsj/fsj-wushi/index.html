@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>五事系统 · Agent 12维数据</title>
+    <link rel="stylesheet" href="./css/style.css?v=28">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-title">
+            <span class="logo">五事</span>
+            <span class="subtitle">Agent 12维数据维护</span>
+        </div>
+        <div class="topbar-controls">
+            <label class="agent-label">当前 Agent</label>
+            <select id="agentSelect"></select>
+            <span id="statBadge" class="stat-badge"></span>
+            <select id="viewMode" title="切换右侧面板视图">
+                <option value="detail">编辑详情</option>
+                <option value="mustread">必读内容</option>
+            </select>
+            <button id="btnRefresh" class="btn btn-small" title="强制重新拉取最新数据">⟳ 刷新</button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="tree-pane">
+            <div class="pane-header">层级树 <span class="hint">（拖动节点可排序）</span></div>
+            <div class="tree-search-wrap">
+                <input id="tree-search" type="text" placeholder="🔍 搜索名称 / rowid 定位" autocomplete="off">
+                <div id="search-results" class="search-results" style="display:none"></div>
+            </div>
+            <div id="tree" class="tree"></div>
+        </section>
+        <div id="resizer" class="resizer" title="拖动调整宽度"></div>
+        <section class="detail-pane">
+            <div class="pane-header">详情</div>
+            <div id="detail-body" class="detail-body"></div>
+        </section>
+    </main>
+
+    <div id="loading" class="loading-mask" style="display:none"><div class="spinner"></div><div id="loadingText">加载中…</div></div>
+    <div id="toast-box" class="toast-box"></div>
+    <div id="confirm-mask" class="confirm-mask" style="display:none">
+        <div class="confirm-box">
+            <div id="confirmText" class="confirm-text"></div>
+            <div class="confirm-btns">
+                <button id="confirmCancel" class="btn">取消</button>
+                <button id="confirmOk" class="btn btn-danger">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="ref-modal" class="ref-modal" style="display:none">
+        <div class="ref-overlay"></div>
+        <div class="ref-dialog">
+            <div class="ref-dialog-title">引用数据 · 全表关键词搜索</div>
+            <input id="ref-search-input" type="text" placeholder="输入关键词（mingcheng/wznr 全字段模糊）">
+            <div id="ref-search-results" class="ref-results"></div>
+            <div class="ref-dialog-actions">
+                <button id="ref-modal-close" class="btn">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="kjzz-modal" class="ref-modal" style="display:none">
+        <div class="ref-overlay"></div>
+        <div class="ref-dialog">
+            <div class="ref-dialog-title">选择可见组织（kjzz · 群组表 fabuzhe=当前 Agent）</div>
+            <div id="kjzz-pick-list" class="ref-results" style="min-height:120px"></div>
+            <div class="ref-dialog-actions">
+                <button id="kjzz-modal-cancel" class="btn">取消</button>
+                <button id="kjzz-modal-ok" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delegate-modal" class="ref-modal" style="display:none">
+        <div class="ref-overlay"></div>
+        <div class="ref-dialog" style="width:660px;max-width:94vw;">
+            <div class="ref-dialog-title">委派任务给成员（可多选）</div>
+            <div style="display:flex;gap:12px;">
+                <div style="flex:0 0 220px;">
+                    <div class="dlg-col-title">我加入的组织</div>
+                    <div id="dlg-org-list" class="dlg-list"></div>
+                </div>
+                <div style="flex:1;">
+                    <div class="dlg-col-title">组织成员（勾选委派）</div>
+                    <div id="dlg-member-list" class="dlg-list"></div>
+                </div>
+            </div>
+            <div class="ref-dialog-actions">
+                <button id="dlg-cancel" class="btn">取消</button>
+                <button id="dlg-ok" class="btn btn-primary">确定委派</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/app.js?v=30"></script>
+</body>
+</html>

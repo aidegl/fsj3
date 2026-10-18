@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>孚世界 · Agent 知识图谱</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="app">
+
+        <!-- 顶栏 -->
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-icon">◈</span>
+                <span class="brand-title">孚世界 · Agent 知识图谱</span>
+                <span class="brand-sub" id="dbStatus">未同步</span>
+            </div>
+            <div class="topbar-right">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索节点名称…">
+                </div>
+                <button class="btn" id="btnSync" title="从明道云拉取数据（首次全量，之后增量）">
+                    <span class="btn-icon">⟳</span> 同步数据
+                </button>
+                <button class="btn btn-ghost" id="btnFit" title="缩放至全图">⤢ 全图</button>
+            </div>
+        </header>
+
+        <!-- 同步进度条 -->
+        <div class="sync-progress" id="syncProgress" hidden>
+            <div class="sync-progress-bar">
+                <div class="sync-progress-fill" id="syncProgressFill"></div>
+            </div>
+            <div class="sync-progress-text" id="syncProgressText">准备同步…</div>
+        </div>
+
+        <div class="main">
+
+            <!-- 左侧筛选栏 -->
+            <aside class="sidebar" id="sidebar">
+                <div class="panel">
+                    <div class="panel-head">
+                        <span>12 维度</span>
+                        <button class="mini-btn" id="btnSewAll" title="全选">全</button>
+                    </div>
+                    <div class="legend" id="sewLegend"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <span>Agent（发布者）</span>
+                        <button class="mini-btn" id="btnAgentAll" title="全选">全</button>
+                    </div>
+                    <div class="agent-list" id="agentList"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head"><span>过滤</span></div>
+                    <label class="check-line">
+                        <input type="checkbox" id="chkVerified" checked>
+                        <span>含推理模式（未验证 shangjia1=0）</span>
+                    </label>
+                    <label class="check-line">
+                        <input type="checkbox" id="chkDeleted" checked>
+                        <span>含已删除（shanchu=1）</span>
+                    </label>
+                    <label class="check-line">
+                        <input type="checkbox" id="chkChat">
+                        <span>含非知识类型（聊天/相册等）</span>
+                    </label>
+                    <div class="date-range">
+                        <span class="date-label">创建时间</span>
+                        <input type="date" id="dateFrom"> ~
+                        <input type="date" id="dateTo">
+                    </div>
+                    <button class="mini-btn mini-btn-block" id="btnDateClear">清除时间过滤</button>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head"><span>统计</span></div>
+                    <div class="stats" id="stats"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head"><span>布局与渲染</span></div>
+                    <div class="layout-row">
+                        <button class="mini-btn" id="btnLayoutForce">力导向</button>
+                        <button class="mini-btn" id="btnLayoutTree">层级树</button>
+                    </div>
+                    <label class="check-line">
+                        <input type="checkbox" id="chkYynr" checked>
+                        <span>显示引用边（yynr 虚线）</span>
+                    </label>
+                    <label class="check-line">
+                        <input type="checkbox" id="chkLabel" checked>
+                        <span>大节点显示名称</span>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- 图谱画布 -->
+            <div class="canvas-wrap" id="canvasWrap">
+                <canvas id="graphCanvas"></canvas>
+                <div class="tooltip" id="tooltip" hidden></div>
+                <div class="empty-hint" id="emptyHint">
+                    <div class="empty-hint-title">暂无数据</div>
+                    <div class="empty-hint-sub">点击右上角「同步数据」从明道云拉取</div>
+                </div>
+            </div>
+
+            <!-- 右侧详情面板 -->
+            <aside class="detail" id="detailPanel" hidden>
+                <div class="detail-head">
+                    <span class="detail-title" id="detailTitle">节点详情</span>
+                    <button class="mini-btn" id="btnDetailClose">✕</button>
+                </div>
+                <div class="detail-body" id="detailBody"></div>
+            </aside>
+
+        </div>
+
+        <!-- 底部状态栏 -->
+        <footer class="statusbar">
+            <span id="statusLeft">就绪</span>
+            <span id="statusRight"></span>
+        </footer>
+
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

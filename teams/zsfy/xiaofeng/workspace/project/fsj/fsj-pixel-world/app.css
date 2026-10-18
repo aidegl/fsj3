@@ -1,0 +1,76 @@
+/* 像素视界 - 全局样式 */
+/* rem 适配：750 设计稿基准，html font-size = 100px（1rem = 100px） */
+html { font-size: 100px; }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    /* 全局色系（沿老项目） */
+    --c-darkest: #030303;
+    --c-darker: #050505;
+    --c-mid: #090909;
+    --c-light: #121212;
+    /* 五行 UI 色（角色描边/主题点缀，独立于 110 色板） */
+    --wx-jin: #929292;
+    --wx-mu: #2bd64f;
+    --wx-shui: #00A2E8;
+    --wx-huo: #f35a5a;
+    --wx-tu: #d9931a;
+    /* 像素 UI 通用 */
+    --px-border: 0.03rem solid #030303;
+}
+
+body {
+    background: #0a0a12;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+}
+
+#app { width: 100vw; height: 100vh; }
+
+canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+}
+
+/* ===== 像素风弹层通用 ===== */
+.px-panel {
+    background: #fff;
+    border: 0.04rem solid #030303;
+    box-shadow: 0.06rem 0.06rem 0 rgba(3, 3, 3, 0.55);
+    border-radius: 0.06rem;
+}
+
+.px-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 0.03rem solid #030303;
+    border-radius: 0.06rem;
+    box-shadow: 0.04rem 0.04rem 0 rgba(3, 3, 3, 0.5);
+    color: #030303;
+    font-size: 0.26rem;
+    padding: 0.14rem 0.3rem;
+    cursor: pointer;
+}
+.px-btn:active { transform: translate(0.03rem, 0.03rem); box-shadow: 0.01rem 0.01rem 0 rgba(3,3,3,.5); }
+.px-btn.primary { background: #FFC229; }
+.px-btn.dark { background: #181818; color: #fff; }
+
+/* 加载态 */
+.px-loading {
+    position: fixed; inset: 0; z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    background: #0a0a12; color: #FFE6BB;
+    font-size: 0.3rem; letter-spacing: 0.05rem;
+}

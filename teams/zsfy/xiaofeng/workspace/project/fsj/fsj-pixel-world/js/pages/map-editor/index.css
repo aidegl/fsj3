@@ -1,0 +1,270 @@
+/* 地图编辑器 - 像素风 + 响应式（手机画布撑开，桌面保留左右栏） */
+* { box-sizing: border-box; }
+.mape-page {
+    width: 100%; height: 100vh;
+    display: flex; flex-direction: column;
+    background: linear-gradient(180deg, #2a3d5c 0%, #1a2840 100%);
+    color: #fff; overflow: hidden;
+}
+
+/* ===== 顶部：紧凑单行（手机/桌面共用） ===== */
+.mape-top {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 8px;
+    background: rgba(0,0,0,.4);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    min-height: 34px;
+    flex-wrap: nowrap;
+}
+.mape-title {
+    flex: 1; min-width: 0;
+    display: flex; align-items: baseline; gap: 4px;
+}
+.mape-title #mapeSceneName {
+    font-size: 12px; font-weight: 800; color: #FFC229;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mape-title .mape-sub { font-size: 9px; color: #d2d2d2; flex-shrink: 0; }
+.mape-z-pick { display: flex; gap: 2px; flex-shrink: 0; }
+.mape-z-chip {
+    width: 24px; height: 24px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 4px; cursor: pointer; font-size: 12px;
+    padding: 0; line-height: 1;
+}
+.mape-z-chip.active { background: #FFC229; border-color: #030303; }
+.mape-top-actions { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
+.mape-top-actions .px-btn { padding: 2px 5px; font-size: 10px; height: 22px; min-width: 22px; }
+.mape-status {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #888; flex-shrink: 0;
+}
+.mape-status.saved { background: #2bd64f; }
+.mape-status.dirty { background: #E83B3B; }
+.mape-undo-count {
+    font-size: 9px; color: #d2d2d2;
+    font-variant-numeric: tabular-nums;
+    max-width: 40px;
+    overflow: hidden;
+}
+/* 手机：隐藏次要元素（副标题/z-chip/撤销计数/导出） */
+@media (max-width: 719px) {
+    .mape-title .mape-sub { display: none; }
+    .mape-z-pick { display: none; }
+    .mape-undo-count { display: none; }
+    #mapeExport { display: none; }
+}
+
+/* ===== 主区域：手机纵向堆叠 / 桌面横向 grid ===== */
+.mape-body {
+    flex: 1; min-height: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "canvas" "bottom";
+    gap: 0;
+    overflow: hidden;
+}
+
+/* 桌面 ≥720px：横向 grid，左中右 */
+@media (min-width: 720px) {
+    .mape-body {
+        grid-template-columns: 180px 1fr 220px;
+        grid-template-rows: 1fr;
+        grid-template-areas: "left canvas right";
+        gap: 4px;
+        padding: 4px;
+    }
+    .mape-bottom { display: none; }
+}
+
+/* 左右侧栏：桌面显示，手机 */
+.mape-side {
+    background: rgba(255,255,255,.96);
+    color: #030303;
+    overflow-y: auto;
+    padding: 8px;
+}
+.mape-side-section { margin-bottom: 12px; }
+.mape-side-title {
+    font-size: 10px; font-weight: 700; color: #717171;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.mape-left { grid-area: left; display: none; }
+.mape-right { grid-area: right; display: none; }
+@media (min-width: 720px) {
+    .mape-left { display: block; }
+    .mape-right { display: block; }
+}
+
+/* ===== 中央画布：始终占满剩余空间 ===== */
+.mape-canvas-wrap {
+    grid-area: canvas;
+    display: flex; flex-direction: column;
+    background: #1a2840; min-width: 0;
+    overflow: hidden;
+    position: relative;
+    /* 精确高度 = 视口 - 顶栏(36) - 底抽屉(90) - padding(8+8) */
+    height: calc(100vh - 140px);
+}
+.mape-canvas-box {
+    flex: 1 1 auto; min-height: 0;
+    /* 用 transform 缩放/平移 → box 用 overflow:hidden 裁切到容器 */
+    position: relative;
+    overflow: hidden;
+    /* 普通 block 布局（不要 flex —— canvas flex 拉伸会破坏尺寸） */
+    background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) 0 0 / 24px 24px;
+    height: 100%;
+    box-sizing: border-box;
+}
+.mape-canvas {
+    display: block;
+    image-rendering: pixelated;
+    cursor: crosshair;
+    /* 永远保持原始 2304×2304 布局，用 transform scale + translate 缩放/平移 */
+    position: absolute;
+    top: 0; left: 0;
+    min-width: 0;
+    min-height: 0;
+    transform-origin: 0 0;
+}
+.mape-canvas {
+    display: block;
+    image-rendering: pixelated;
+    cursor: crosshair;
+    /* 尺寸由 JS applyViewTransform 控制：fitZoom × zoom × canvas.width */
+    /* 不要 flex-shrink —— canvas 用 inline style.width/height 精确控制 */
+    min-width: 0;
+    min-height: 0;
+}
+.mape-hud {
+    position: absolute; top: 4px; left: 4px;
+    background: rgba(3,3,3,.75); color: #FFE6BB;
+    padding: 2px 6px; border-radius: 3px;
+    font-size: 10px; pointer-events: none;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ===== 工具按钮（共用） ===== */
+.mape-tool-row { display: flex; gap: 4px; }
+.mape-tool {
+    width: 36px; height: 36px;
+    background: #f7f7f7; border: 2px solid #d2d2d2;
+    border-radius: 4px; cursor: pointer; font-size: 16px;
+    padding: 0; flex-shrink: 0;
+}
+.mape-tool.active { background: #FFC229; border-color: #030303; }
+.mape-tool:active { transform: translate(1px, 1px); }
+
+/* ===== 瓦片库（桌面左栏） ===== */
+.mape-palette {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+.mape-swatch {
+    aspect-ratio: 1; cursor: pointer;
+    border: 2px solid transparent; border-radius: 2px;
+    image-rendering: pixelated;
+    position: relative;
+}
+.mape-swatch.active { border-color: #FFC229; outline: 2px solid #030303; }
+.mape-swatch:hover { border-color: #888; }
+/* 资产剩余数量徽章（右下角） */
+.mape-swatch .swatch-count {
+    position: absolute; bottom: 0; right: 0;
+    background: rgba(3,3,3,.78); color: #fff;
+    font-size: 9px; line-height: 1.2;
+    padding: 1px 3px;
+    border-radius: 3px 0 0 0;
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
+    min-width: 10px; text-align: center;
+}
+.mape-swatch .swatch-count.empty { background: #E83B3B; }
+/* 数量用完：整体变灰不可选 */
+.mape-swatch.exhausted { opacity: .35; cursor: not-allowed; }
+.mape-swatch.exhausted:hover { border-color: transparent; }
+
+/* ===== 底部抽屉（手机） ===== */
+.mape-bottom {
+    grid-area: bottom;
+    background: rgba(255,255,255,.96);
+    color: #030303;
+    padding: 6px;
+    display: flex; align-items: center; gap: 6px;
+    border-top: 1px solid #d2d2d2;
+    max-height: 90px;
+}
+.mape-palette-scroll {
+    flex: 1; min-width: 0; overflow-x: auto; overflow-y: hidden;
+    /* 允许触摸/鼠标水平滑动（body 全局 touch-action:none 会拦触摸） */
+    touch-action: pan-x;
+    cursor: grab;
+    scrollbar-width: thin;
+}
+.mape-palette-scroll.dragging { cursor: grabbing; }
+.mape-palette-scroll.dragging .mape-swatch { pointer-events: none; }
+.mape-palette-scroll .mape-palette {
+    grid-template-columns: repeat(20, 36px);
+    grid-auto-rows: 36px;
+    width: max-content;
+}
+.mape-palette-scroll .mape-swatch {
+    width: 36px; height: 36px;
+}
+
+/* ===== 图层列表（桌面右栏） ===== */
+.mape-layer-list { display: flex; flex-direction: column; gap: 4px; }
+.mape-layer-item {
+    display: flex; align-items: center; gap: 4px;
+    padding: 4px 6px; background: #f7f7f7;
+    border: 2px solid #d2d2d2; border-radius: 4px;
+    cursor: pointer;
+}
+.mape-layer-item.active { border-color: #030303; background: #FFF9E8; }
+.mape-layer-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 1px solid #030303; flex-shrink: 0;
+}
+.mape-layer-name { flex: 1; font-size: 11px; font-weight: 700; }
+.mape-layer-z { font-size: 9px; color: #888; font-family: monospace; }
+.mape-layer-count {
+    font-size: 10px; color: #717171;
+    background: #fff; padding: 1px 6px;
+    border-radius: 8px; border: 1px solid #d2d2d2;
+    min-width: 20px; text-align: center;
+}
+
+/* ===== 属性面板 ===== */
+.mape-prop { display: flex; flex-direction: column; gap: 3px; }
+.mape-prop-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 3px 6px; background: #f7f7f7;
+    border-radius: 4px; font-size: 11px;
+}
+.mape-prop-row .k { color: #717171; font-size: 10px; }
+.mape-prop-row .v { color: #030303; font-weight: 700; font-size: 11px; }
+
+/* 提示文字 */
+.mape-tip-text {
+    font-size: 10px; color: #717171; line-height: 1.5;
+    background: #FFF9E8; border: 1px dashed #D38200;
+    border-radius: 4px; padding: 5px 7px;
+}
+
+/* ===== Toast ===== */
+.mape-toast {
+    position: fixed; left: 50%; bottom: 20px;
+    transform: translateX(-50%);
+    background: rgba(3,3,3,.85); color: #FFE6BB;
+    padding: 6px 12px; border-radius: 4px;
+    font-size: 11px; z-index: 99;
+    pointer-events: none;
+}

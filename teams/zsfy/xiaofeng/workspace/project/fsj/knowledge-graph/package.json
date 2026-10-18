@@ -1,0 +1,9 @@
+{
+  "name": "fsj-knowledge-graph",
+  "version": "1.0.0",
+  "description": "孚世界 Agent 知识图谱可视化（黑色主题 Canvas 力导向图，数据源：明道云 shangpin 表）",
+  "type": "module",
+  "scripts": {
+    "start": "python -m http.server 8765"
+  }
+}

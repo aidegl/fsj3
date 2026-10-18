@@ -1,0 +1,21 @@
+/* Game World · 全局样式（rem 适配 750 设计稿） */
+:root {
+    --bg: #0b0e14;
+    --pane: #10141c;
+    --border: #232a38;
+    --text: #e8ecf5;
+    --sub: #8a93a6;
+    --accent: #1677ff;
+    --gold: #e8d5a3;
+    --green: #5fe08a;
+    --red: #ff7a7a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: calc(100vw / 7.5); }
+body {
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg); color: var(--text);
+    height: 100vh; overflow: hidden;
+    display: flex; flex-direction: column;
+}
+a { color: var(--accent); text-decoration: none; }

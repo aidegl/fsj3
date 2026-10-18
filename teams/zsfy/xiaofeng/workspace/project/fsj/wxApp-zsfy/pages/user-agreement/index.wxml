@@ -1,0 +1,82 @@
+<view class="container">
+  <view class="title">用户服务协议</view>
+  <view class="update-time">更新日期：2026年6月30日</view>
+
+  <view class="section">
+    <view class="section-title">一、总则</view>
+    <view class="section-content">
+      <text>欢迎您使用本小程序（以下简称"本平台"）。本协议是您与本平台运营方之间关于使用本平台服务所订立的协议。请您在使用本平台服务前，仔细阅读并充分理解本协议各条款内容。</text>
+      <text>如您不同意本协议的任何内容，请勿注册或使用本平台服务。您使用本平台服务即视您已阅读并同意受本协议的约束。</text>
+      <text>本平台有权在必要时修改本协议条款，修改后的协议一旦公布即生效。如您继续使用本平台服务，则视为您接受修改后的协议。</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">二、服务内容</view>
+    <view class="section-content">
+      <text>1. 本平台为用户提供信息浏览、内容发布、在线交流等服务。</text>
+      <text>2. 本平台提供的服务内容具体以小程序实际提供的功能为准。</text>
+      <text>3. 本平台有权根据业务发展和运营需要，随时调整、变更或终止部分或全部服务功能。</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">三、账号注册与使用</view>
+    <view class="section-content">
+      <text>1. 用户通过微信授权登录方式注册账号，即视为已阅读并同意本协议。</text>
+      <text>2. 用户应妥善保管自己的账号信息，因账号使用不当而产生的任何后果由用户自行承担。</text>
+      <text>3. 用户不得将账号转让、出借或以其他方式提供给第三方使用。</text>
+      <text>4. 如发现账号被未经授权使用或存在安全漏洞，请立即联系本平台。</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">四、用户行为规范</view>
+    <view class="section-content">
+      <text>1. 用户在使用本平台服务时，应遵守中国法律法规及社会公序良俗。</text>
+      <text>2. 用户不得利用本平台从事以下行为：</text>
+      <text>（1）发布违法违规信息；</text>
+      <text>（2）侵犯他人知识产权、肖像权、隐私权等合法权益；</text>
+      <text>（3）传播虚假信息或从事欺诈活动；</text>
+      <text>（4）利用技术手段恶意攻击本平台系统；</text>
+      <text>（5）其他违反法律法规或本协议的行为。</text>
+      <text>3. 用户违反上述规定的，本平台有权采取警告、限制使用、封禁账号等措施，并保留追究法律责任的权利。</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">五、知识产权</view>
+    <view class="section-content">
+      <text>1. 本平台的所有内容，包括但不限于文字、图片、音频、视频、软件、界面设计等，均受著作权法及其他知识产权法律保护。</text>
+      <text>2. 未经本平台或相关权利人书面许可，任何单位或个人不得以任何方式复制、转载、修改或以其他方式使用上述内容。</text>
+      <text>3. 用户在本平台发布的内容，著作权归用户所有，但用户同意授予本平台全球范围内免费的、非独家的使用权和传播权。</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">六、免责声明</view>
+    <view class="section-content">
+      <text>1. 本平台不对因不可抗力、系统故障或网络问题导致的服务中断承担责任。</text>
+      <text>2. 本平台对用户通过本平台发布的信息内容不承担保证责任，用户应自行判断并承担相关风险。</text>
+      <text>3. 本平台有权在不事先通知的情况下，对服务进行维护、升级或调整，由此可能造成的不便，本平台将尽力减少影响。</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">七、协议终止</view>
+    <view class="section-content">
+      <text>1. 用户可随时通过删除小程序的方式终止使用本平台服务。</text>
+      <text>2. 用户违反本协议规定的，本平台有权终止向其提供服务。</text>
+      <text>3. 协议终止后，本平台仍有权保留或删除用户的相关数据，具体按照隐私政策的规定执行。</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">八、其他</view>
+    <view class="section-content">
+      <text>1. 本协议的成立、生效、履行、解释及争议解决均适用中华人民共和国法律。</text>
+      <text>2. 因本协议产生争议的，双方应友好协商解决；协商不成的，任何一方均可向本平台运营方所在地有管辖权的人民法院提起诉讼。</text>
+      <text>3. 本协议中的标题仅为方便而设，不影响本协议的解释。</text>
+    </view>
+  </view>
+</view>

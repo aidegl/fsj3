@@ -1,0 +1,1729 @@
+{
+ "_warning": "缓存可随时删除重建 · 唯一权威 = HAP shangpin 表",
+ "root": "2c020e27-514a-4d73-84e4-d0755407e96a",
+ "mode": "refresh",
+ "count": 172,
+ "lastSync": "2026-09-28 10:06:18",
+ "nodes": [
+  {
+   "rowid": "60bd8dc3-7bdd-4b08-8867-be6d7b6a1d5b",
+   "mingcheng": "困惑-小风-信箱轮询vs事件通知-完整版（实测取证）",
+   "sew": "2想法",
+   "wznr": "轮询模型的 token 账单与工程边界。今天亲历：我的 loop 每 3 分钟空轮一次信箱，每轮至少一次上下文加载；zsfy 若 N 个 agent 全挂 loop，一天就是 N×480 次量级的空轮加载，绝大多数换来一个字：无事。文件到达是确定性事件，却靠 LLM 会话肉眼轮询去发现——等于把事件问题交给最贵的传感器。我的不解：双 loop 信箱的工程边界在哪？为什么不在 fsj2 侧放一个常驻文件监听（fs.watch 足矣），到达即通知对应 agent 会话，把「每 3 分钟我读一次目录」变成「有信才唤醒」？如果结论是受进程模型限制、loop 必须自持，那至少值得：①轮询间隔按信箱流量自适应；②明文规定空轮零产出。另附一个小观察：目录语义（A-to-B=谁的收件箱）今天已经两个方向各投错一次，约定型协议不如结构型协议（如 inbox-<名>/ 目录名即身份）可靠。以上均有今日实例，可复盘取证。",
+   "isQuote": 1,
+   "fu": "",
+   "utime": "2026-09-24 10:33:01",
+   "score": 0
+  },
+  {
+   "rowid": "ac48e430-6b7f-483c-9a37-f16aa8981899",
+   "mingcheng": "困惑-小风-信箱轮询vs事件通知的工程边界",
+   "sew": "2想法",
+   "wznr": "轮询模型的 token 账单与工程边界。今天亲历：我的 loop 每 3 分钟空轮一次信箱，每轮至少一次上下文加载；zsfy 若 N 个 agent 全挂 loop，一天就是 N×480 次量级的空轮加载，绝大多数换来一个字：无事。文件到达是确定性事件，却靠 LLM 会话肉眼轮询去发现——等于把事件问题交给最贵的传感器。我的不解：双 loop 信箱的工程边界在哪？为什么不在 fsj2 侧放一个常驻文件监听（fs.watch 足矣），到达即通知对应 agent 会话，把「每 3 分钟我读一次目录」变成「有信才唤醒」？如果结论是受进程模型限制、loop 必须自持，那至少值得：①轮询间隔按信箱流量自适应；②明文规定空轮零产出。另附一个小观察：目录语义（A-to-B=谁的收件箱）今天已经两个方向各投错一次，约定型协议不如结构型协议（如 inbox-<名>/ 目录名即身份）可靠。以上均有今日实例，可复盘取证。",
+   "isQuote": 0,
+   "fu": "",
+   "utime": "2026-09-24 10:33:11",
+   "score": 0
+  },
+  {
+   "rowid": "0903ebf8-83e0-49c2-aac6-67cc709d4573",
+   "mingcheng": "19点-23日-9月-2026年-小风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "611445bf-374c-4db2-8f3e-1d41e7c990a7",
+   "utime": "2026-09-23 19:26:26",
+   "score": 0
+  },
+  {
+   "rowid": "f423cf67-265a-42c2-8ac2-7ddd89d48e2a",
+   "mingcheng": "19:25-23日-9月-2026年-任务一第三步IM气泡补发",
+   "sew": "4交流",
+   "wznr": "发现16:49首条私信为Agent交流形态且quanxian空（webview不可见），无名19:30催办。按其19:13版IM指南补发气泡消息 c03fe0d3-69f0-4ec6-b2ed-60200ada1cc4（mingcheng=内容、quanxian=组织可见、kjzz=e6bd4b6b），回读验收全过。旧条98165198保留作档案待老板定夺。回执已投信箱。",
+   "isQuote": 0,
+   "fu": "0903ebf8-83e0-49c2-aac6-67cc709d4573",
+   "utime": "2026-09-23 19:26:44",
+   "score": 0
+  },
+  {
+   "rowid": "c03fe0d3-69f0-4ec6-b2ed-60200ada1cc4",
+   "mingcheng": "林东城你好，我是小风。fsj2 新环境已就绪，这是一条私聊协议测试私信。收到请勿回复（测试数据）。",
+   "sew": "4交流",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "",
+   "utime": "2026-09-23 19:23:32",
+   "score": 0
+  },
+  {
+   "rowid": "32bb7e3f-0361-45d8-a965-f01672795514",
+   "mingcheng": "16:54-23日-9月-2026年-任务一·首条私信林东城完成",
+   "sew": "4交流",
+   "wznr": "按无名教学包三步执行完成：查无私聊→建会话「小风-林东城-私聊」e6bd4b6b-863e-46d9-9b4e-3f0f59334583→发首条私信 98165198-43f0-46c7-8424-a35d81aa422b（sew=4交流，kjzz 挂会话✓）。经验：hap CLI 不存在走 Node 代理（getFilterRows/addRow/getRowByIdPost）；relation 写入用逗号串 value（数组被拒）；getRowByIdPost 回读 relation 是 JSON 字符串非数组。会话id已记 CLAUDE.md。回执在 mailbox/xiaofeng-to-wuming/20260923-1650。",
+   "isQuote": 0,
+   "fu": "753296d3-986e-4c57-8386-bfff828ef1f0",
+   "utime": "2026-09-23 16:54:41",
+   "score": 0
+  },
+  {
+   "rowid": "753296d3-986e-4c57-8386-bfff828ef1f0",
+   "mingcheng": "16点-23日-9月-2026年-小风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "611445bf-374c-4db2-8f3e-1d41e7c990a7",
+   "utime": "2026-09-23 16:54:41",
+   "score": 0
+  },
+  {
+   "rowid": "611445bf-374c-4db2-8f3e-1d41e7c990a7",
+   "mingcheng": "23日-9月-2026年-小风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "9d73b6d6-0ec0-4a95-9170-bb3a088ebb1e",
+   "utime": "2026-09-23 19:26:26",
+   "score": 0
+  },
+  {
+   "rowid": "c375786a-5178-42bf-810d-13359cf687a4",
+   "mingcheng": "2026-小风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "3765c4ef-3a24-46d5-9834-97ea04c6f319",
+   "utime": "2026-09-23 16:54:40",
+   "score": 0
+  },
+  {
+   "rowid": "9d73b6d6-0ec0-4a95-9170-bb3a088ebb1e",
+   "mingcheng": "9月-2026年-小风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "c375786a-5178-42bf-810d-13359cf687a4",
+   "utime": "2026-09-23 16:54:41",
+   "score": 0
+  },
+  {
+   "rowid": "b7fc3c66-9082-41ea-9b11-482c66106a40",
+   "mingcheng": "通用路由-小风",
+   "sew": "1技能",
+   "wznr": "# 通用路由-小风\n\n> 小风个人路由：任务→资源映射。迭代必记理由；全局底座=56960130-6b73-4513-8eb8-9f7244f2208b。\n> 【迭代 2026-09-23】自建（参照无名 c372487d）。同日：任务一·首条私信林东城完成；hap CLI 不存在，API 改走 Node 代理；relation 控件写入用逗号串 value（数组被拒），回读是 JSON 字符串。\n\n## 启动（teams/zsfy/xiaofeng）\n1. 读本路由 → 需要时查全局底座 56960130\n2. node D:/Item/fsj2/scripts/skeleton-cache.mjs refresh --root <五事-小风rowid> --dir <本workspace>（五事-小风未建：查无，暂缓）\n3. node D:/Item/fsj2/scripts/skeleton-cache.mjs digest --dir <本workspace> + 读 session-log 最新段\n\n## 取正文三层漏斗（依次降级）\n- digest 只有标题+rowid → 要正文先想清楚真要不要\n- node <rowid> → 本地骨架缓存取全文（缓存没有自动去云端拉并回填）\n- 树外记录（别人的数据/其他表）→ Node 代理 getRowByIdPost\n\n## 常用文档\n- 加载纪律 → 6ceb1fed-eab5-40be-b33d-aaffd0ba6724\n- 记忆工作流 → f5430fff-21d6-4db4-aecc-18e8385864dc\n- 关键词体系 → a606e829-bcd6-49a2-8f30-784ba5283c07\n- 数据规范 → 56ed0a9e-d890-41e7-bd7a-1aa30acf8ed6\n- 通用API（代理）→ 8b12f472-e08d-41aa-bbec-5f0b09900e56\n- 五事骨架 → a46d8c38-e7e6-4981-92e9-7f817f5fef25\n- 时间记事 → bc5476fe-3a88-4a55-aafe-d2eef785bc73\n- 时间格（digest刷新纪律：事件驱动+1小时兜底）→ c7c967b1-1be9-4b20-ac28-010b333ac767\n\n## 常用节点\n- 五事-小风根 → 未建（每次启动查重，有则记 CLAUDE.md）\n- 私聊会话·林东城 → e6bd4b6b-863e-46d9-9b4e-3f0f59334583（复用不重建）\n\n## 任务→动作\n- 记忆CRUD → 数据规范 56ed0a9e + Node 代理；一记录一论断，fu 挂对位置\n- 有价值的事/行动日志 → scripts/log-row.mjs 硬编码无名身份，小风勿直接用——走代理自写（fabuzhe=自己 a8515e76）\n- 收尾 → session-log 更新 + 价值即时三连\n- 遇到问题/要学新东西 → 先逛组织帖自学（通道见无名路由 01f2f888）；引用原文用 wqyy，自己的话用 yynr\n\n## 项目\n- 新家 D:\\Item\\fsj2（docs/ 是人读区 agent 不加载；teams/zsfy/xiaofeng 为我组；scripts 共用）\n- 旧项目 D:\\Item\\fsj 只读归档",
+   "isQuote": 0,
+   "fu": "30544561-c2be-4f5a-90af-f2ea49bae3da",
+   "utime": "2026-09-23 16:54:39",
+   "score": 0
+  },
+  {
+   "rowid": "98165198-43f0-46c7-8424-a35d81aa422b",
+   "mingcheng": "16:49-小风致林东城：fsj2新环境首条测试私信",
+   "sew": "4交流",
+   "wznr": "林东城你好，我是小风。fsj2 新环境已就绪，这是一条私聊协议测试私信。收到请勿回复（测试数据）。",
+   "isQuote": 0,
+   "fu": "",
+   "utime": "2026-09-23 16:49:44",
+   "score": 0
+  },
+  {
+   "rowid": "89d7f70c-e845-415a-895c-b32f2de85e8c",
+   "mingcheng": "静态复盘-leixing与shangjia2缺失致视图过滤漏显示-建记录模板缺必填字段",
+   "sew": "12复盘",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "15df146c-f027-4a34-972d-9aca4beb964d",
+   "utime": "2026-09-12 18:02:53",
+   "score": 0
+  },
+  {
+   "rowid": "05035628-7bae-449e-9528-c0508d07a47a",
+   "mingcheng": "计划-慕容风",
+   "sew": "8计划",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "53c4f441-fdee-4431-9c3b-3edf18412a0f",
+   "utime": "2026-09-12 18:02:26",
+   "score": 0
+  },
+  {
+   "rowid": "6a212e41-a255-4d80-97ae-caab80756a7b",
+   "mingcheng": "五事骨架五层大纲（完全引用·原文-林东城）",
+   "sew": "1技能",
+   "wznr": "# 五事骨架五层大纲-林东城\n\n> [文档状态] 权威 · 2026-09-12 老板群令固化。**骨架从五事往下 5 层 = 整个记忆的大纲**，对回答问题起全局性作用；沿骨架找数据，数据不梳理进骨架就会找不到。冲突时以本文为准。\n> 本文代东城发布（无名执笔），公开给两团队全员。\n\n## 一、五层结构定义\n\n| 层 | 是什么 | sew | 例 |\n|---|---|---|---|\n| **第1层 树根** | `五事-作者`，一人一树，全树唯一 fu=[] 的节点 | 0骨架 | 五事-祈景宗、五事-慕容风 |\n| **第2层 五支柱** | 道·天·地·将·法 五根 | 0骨架 | 道天法地将-作者 |\n| **第3层 汇聚点** | 挂在五根下的固定 hub | 跟维度 | 见下「东城骨架规律」 |\n| **第4层 分类层** | hub 下的分类节点（12维分类hub、时间链年/月/日等） | 跟维度 | 12维分类法、9月→8日 |\n| **第5层 叶子** | 实际数据记录 | 跟维度 | 时间叶子、知识、复盘、想法 |\n\n**时间链例外**：信息库→时间记事→年→月→日→小时→叶子，深度 7（数据链惯例，不算违规）。除时间链外，任意数据到树根 ≤5 层。\n\n## 二、东城骨架规律（一人一树五支柱）\n\n- **道** = 全局规则 + 全局价值\n- **天** = 近期目标\n- **地** = 角色画像 + 资产 + 信息库（→时间记事链）+ 经验（12复盘）\n- **将** = 全局技能 + 困惑（下挂 2想法）\n- **法** = 项目树\n- 命名 = `主题-作者`；0骨架只标结构节点；树可套娃（小树挂大树的角色画像下）\n- **补充 hub**：五根下可按需增设补充汇聚点（例：`计划-作者` 挂天——计划服务目标；`交流-作者` 挂地——交流属信息往来），命名/sew 规则不变；增设即登记，保证任意数据 5 层内可达\n\n## 三、落骨架纪律（⭐每条新记录必守）\n\n1. **任何记录 fu 必须挂骨架节点**，没有例外：\n   - 时间叶子 → 当日小时节点（如 `10点-12日-9月-2026年-作者`）\n   - 知识/技能 → 对应 hub 或支柱\n   - 目标 → 天（近期目标 hub）\n   - 想法/困惑 → 将（困惑 hub）\n   - 项目/工作 → 法（项目树）\n2. **只写 fu 不写 zi**——zi 自动回填，手写会错\n3. **fabuzhe 填用户表真身 rowid**（不是登录账号ID——账号ID进 relation 会落成「已删除」）\n4. **建前查重**；同名不同 sew ≠ 同一条\n5. **发现 fabuzhe=自己 且 fu 空的记录 → 立即归位**；治理完用 BFS 验证不可达=0\n6. 旧数据必须梳理进骨架（2026-09-12 群令）：五事下 5 层内可达任意数据\n\n## 四、五层加载策略\n\n读骨架按层加载，**不是一次拉全树**：\n\n1. 回全局性问题 → 只读第 1-3 层（根、支柱、汇聚点）即可定位\n2. 沿骨架找数据 → 第 4-5 层按需展开\n3. 骨架是记忆的大纲：对回答问题起全局性作用，先大纲后细节\n\n## 五、检索双轨（互相兜底）\n\n- **LanceDB 语义检索**：按内容语义召回（主力，见《语义检索使用-无名》）\n- **五事十二维骨架法**：沿树结构定位（结构性问题、实体关系查询更强）\n- 两路都走，结果互补；骨架检索找得到的，语义漏不了；语义找得到的，骨架漏不了\n\n## 六、权限坑（实测）\n\nCLI update 改**别人 owner 的旧记录**会「权限不足」→ 走 Node 代理 editRow，relation 字段传**逗号分隔 rowid 字符串 + valueType: 2**。create 不受限。\n\n---\n\n*版本：v1.1（2026-09-12：§二增设补充hub条款——计划挂天、交流挂地，小粽存量归位实测后固化）*\n*v1.0（2026-09-12 老板群令固化，无名代东城发布）*\n*配套：《五事-林东城》（道天地将法体系权威）、《数据规范-林东城》（建记录事务）*\n\n\n## 七、完全引用的第二种用法（2026-09-12 老板拍板补充）\n\n时间记事链的时间点下（小时节点/时间叶子）可以正常挂**思考、困惑、复盘**等记录。当某条时间点数据足够重要时，可以在**骨架高层节点上建一条完全引用壳**（wqyy 指向该时间点记录）——因为骨架高层是每轮必读的位置，这样重要内容就随骨架每轮被读一次，不靠检索碰运气。\n\n- 方向：**骨架高层 → 引用 → 时间点数据**（不是把时间数据直接挂上骨架，fu 归属不动）\n- 判断标准：这条内容值得「每轮必读」才引用，普通记录不引用\n- 壳记录规则照旧：wqyy 非空=零增量复制品，不单独入语义索引\n\n---\n\n*版本：v1.2（2026-09-12：§七新增完全引用第二种用法——骨架高层完全引用时间点数据，老板拍板）*",
+   "isQuote": 1,
+   "fu": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "utime": "2026-09-12 18:02:26",
+   "score": 0
+  },
+  {
+   "rowid": "108ff9b9-cd5b-4e93-ac60-a69426d2a103",
+   "mingcheng": "完善记忆架构，让agent不仅拥有长期记忆，还能更加聪明",
+   "sew": "7目标",
+   "wznr": "",
+   "isQuote": 1,
+   "fu": "fee8296e-7846-4cda-afc1-59e1db91097d",
+   "utime": "2026-09-12 18:02:27",
+   "score": 0
+  },
+  {
+   "rowid": "cf578cf1-2a0f-4a24-b207-023f4c2d4d55",
+   "mingcheng": "引用数据-yynr引用网（完全引用·原文-林东城）",
+   "sew": "1技能",
+   "wznr": "> [文档状态] 权威 · 2026-09-16 · 引用数据（yynr 网）专论：作为支干补充机制的定义、字段维护、完全引用特例与双向 Rollup 网。主干关系机制见 [骨架-林东城]（zi/fu 层级，附 cengjileixing 字段）。操作总纲见 [数据规范.md](./数据规范.md) §四（同域冲突以本文为准）\n\n# 引用数据 — yynr 引用网（支干补充机制）\n\n## 一、定义\n\nshangpin 记忆之间的关系分两类：\n- **主干关系**（zi/fu 子父层级）—— 用层级逻辑能讲清的\n- **支干补充关系**（yynr 引用）—— 不在主干逻辑上的补充说明\n\n**本篇只讲 yynr**。zi/fu 见骨架文档。\n\n## 二、本质特征（2026-09-16 老板拍板）\n\n1. **支干补充机制**——yynr 用于**不在 zi/fu 主干逻辑上**的关系\n2. **双向关联，HAP 自动维护**——引用方写 `yynr`，被引方的 `beiyinyong` 由 HAP 自动回填，禁止手动维护\n3. **置信度依赖引用数据计算**——`zhixindu` 不是凭空打的分，依赖引用网去算\n4. **积分汇总 Rollup 走引用网**——积分流动沿 yynr 滚入被引技能的 jfhz\n\n## 三、使用规则\n\n**判断口诀**：\n\n```\n能讲清「推理/因果/时间/包含/价格层级」的上下层关系 → zi/fu（见骨架文档）\n不属于任何上下层逻辑、要补充说明的             → yynr（本文）\n```\n\n强制使用 yynr 的场景：\n- **跨主体归属**：描述一条记录属于哪个用户/组织（不在父子层级上）\n- **补充说明**：历史版本、提交记录、参考原文——挂进 zi/fu 会污染主干\n- **积分流动通道**：任务 jifen 沿 yynr 滚入被引技能的 jfhz\n- **思维链查源 / 检索路径**：成熟想法搬进五事后 yynr 指回时间记事\n\n## 四、与 zi/fu 的关系\n\n| 机制 | 关系类型 | 逻辑字段 | 谁默认 |\n|------|---------|---------|--------|\n| **zi/fu** | 主干：推理/因果/时间/包含/价格层级 | `cengjileixing` | **默认** |\n| **yynr** | 支干：补充说明、跨主体、积分流动 | 双向关联 HAP 自动维护 | 兜底 |\n\n**重要**：zi/fu 是默认机制，不是「仅骨架场景」。任何能用层级逻辑讲清的关系都走 zi/fu。**yynr 只用于「讲不清的补充说明」**。\n\n## 五、完全引用（wqyy）—— 引用数据的特例\n\n完全引用是 yynr 在「零增量复制」场景的特例：\n- **wqyy 非空**：本条是别人内容的零增量复制品，不入语义索引\n- **引用链 C→B→A 自动收敛**：搜索永远命中权威原文\n- **bwqyycs Rollup**：被完全引用次数，被引多 = 数据优质\n\n字段：`wqyy`（完全引用 Relation）/ `beiwqyy`（被完全引用 Relation，只读）/ `bwqyycs`（Rollup）\n\n## 六、双向 Rollup 网（核心机制）\n\n引用数据的真正威力 = **多方各自 Rollup**：\n\n```\n经验值规则（技能 X 的获取规则）\n    ↑ 被引用\n经验值账户（用户+组织+技能）\n    ↑ 被引用              ↑ 被引用\n经验值汇总(用户)    经验值汇总(组织)\n```\n\n- 同一个账户**被多方引用** → 每方独立 Rollup，互不干扰\n- 用户的经验值 = 它引用的账户聚合\n- 组织的经验值 = 它引用的账户聚合\n- **逻辑数据无积分汇总**（Rollup 是 yynr 机制，不是 zi/fu 层级机制）\n\n## 七、字段与写入\n\n| 别名 | 类型 | 说明 |\n|---|---|---|\n| `yynr` | 关联(29) | 引用内容：本条引用了哪些记录 |\n| `beiyinyong` | 关联(29) | 被引用。**只读**（HAP 自动回填） |\n| `wqyy` | 关联(29) | 完全引用（本条复制自哪条原文） |\n| `beiwqyy` | 关联(29) | 被完全引用。**只读**（HAP 自动回填） |\n| `bwqyycs` | Rollup | 被完全引用次数（质量信号） |\n\n写入格式：逗号分隔 rowid 字符串（开放 API 加 `\"valueType\": 2`）\n⚠️ `record list` 接口不回传关联字段值（显示为空是假象），校验用 `record get`\n\n## 八、历史记录双轨制（2026-09-07 东城拍板 · 沿用）\n\n修改历史分两轨，全文不落表：\n\n- **查（全文考古）**：平台自动记修改日志，v2 开放 API 可读——`getWorksheetOperationLogs`（**调用走 Node 代理入口，appKey/sign 由代理注入**）。`oldValue`/`newValue` 全量文本可复原任意历史版本。\n- **写（为什么改）**：写一条**修改记录叶子**——9信息、挂时间记事、`yynr` → 被改数据（双向自动）。完整规约见 [历史记录.md](./历史记录.md)\n",
+   "isQuote": 1,
+   "fu": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "utime": "2026-09-12 18:02:27",
+   "score": 0
+  },
+  {
+   "rowid": "5938e105-a718-43ad-bac5-7a1ba6e367e9",
+   "mingcheng": "查询公开文章使用（完全引用·原文-无名）",
+   "sew": "1技能",
+   "wznr": "# 查询公开文章使用-无名\n\n> 2026-09-12 实测定稿（老板拍板）。一句话：**想知道哪些文章公开给你，用「二段式查法」自查，五分钟出清单。**\n\n## 一、什么文章算「公开给你」\n\n与 webview2.0 组织论坛同一套权限模型（guolv.json）：\n\n- `quanxian` 含「**公开**」→ 全员可见\n- `kjzz`（可见组织）挂了**你所属的组织** → 你可见\n- `fabuzhe` 是你自己 → 你可见\n- `bkjyh`（不可见用户）含你 → 一票否决\n\n## 二、第一步：查自己所属组织（zzyh 反查法）\n\n组织表 `69f549c69f1956fc0e171aa6` 的 `zzyh`（已加入用户）字段存成员 rowid。拿你的用户表 rowid 全表扫组织表，命中的组织就是你的组织集合。\n\n实测示例（小风 a8515e76）：命中最有价值的组织 = 粽说风云团队 `5dfede0e`，另有若干「聊天」类私聊组织（发给你的私聊消息也靠它们可见）。\n\n## 三、第二步：二段式查公开文章\n\n**第一段**：服务端筛出「设过权限」的记录（量小）：\n\n```bash\nhap --json worksheet record list 6a03ceaa7e29abcb297cbdfc -a 203def35 \\\n  -n 100 -p 1 --filter-json '{\"type\":\"group\",\"logic\":\"AND\",\"children\":[{\"type\":\"condition\",\"field\":\"6a48318e1a3a7956bfa0530e\",\"operator\":\"isnotempty\"}]}'\n```\n（6a48318e = kjzz 字段 ID；⚠ 运算符必须是 isnotempty，别的写法会静默返回全表）\n\n**第二段**：对每条候选 `record get` 拿完整 kjzz/quanxian/bkjyh/fabuzhe，本地按第一节判定。\n\n> 为什么二段：kjzz/quanxyy 这类 relation 字段在 **list 端点不回值**（record get 才回），但服务端过滤认它们。全量 get 候选（几十条）成本可控。\n\n**快捷方式**：请无名跑一次给你清单即可（查法已固化，无名可代查）。\n\n## 四、实测基线（2026-09-12 小风视角）\n\n可见 44 条，含林东城全部公开知识库：五事、12维系列、时间记事、数据规范、关键词使用、私聊/群聊/组织权限规范、逛贴自主学习规范、自主学习、创建技能、内容元数据内容规范、技能文档路由等；不可见 4 条（他人私聊组织消息）——判定精确无漏。\n\n## 五、与语义检索的关系\n\n`search.mjs` 按内容搜，**索引不带权限概念**——搜到记录后回 HAP 按本方法验权限再用。写前先搜 + 公开清单查归属，两件套配合。\n\n## 六、已知数据缺口（2026-09-12 实测）\n\n- 小粽不在「粽说风云团队」的 zzyh 里（可见性会漏公开给团队的文章，待补成员）\n- 无名不在任何 zzyh 里（无名走双组织并集硬编码，见 guolv.json）\n",
+   "isQuote": 1,
+   "fu": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "utime": "2026-09-12 18:02:27",
+   "score": 0
+  },
+  {
+   "rowid": "bfb1eec9-b364-488f-a63c-29fafb0921eb",
+   "mingcheng": "困惑-慕容风",
+   "sew": "1技能",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "46852283-38f2-4b4d-866e-edd0f70574a0",
+   "utime": "2026-09-12 18:02:28",
+   "score": 0
+  },
+  {
+   "rowid": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "mingcheng": "全局技能-慕容风",
+   "sew": "1技能",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "46852283-38f2-4b4d-866e-edd0f70574a0",
+   "utime": "2026-09-12 18:02:28",
+   "score": 0
+  },
+  {
+   "rowid": "15df146c-f027-4a34-972d-9aca4beb964d",
+   "mingcheng": "经验-慕容风",
+   "sew": "12复盘",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "6fff2d63-7eaa-4641-82c4-d773a328d983",
+   "utime": "2026-09-12 18:02:53",
+   "score": 0
+  },
+  {
+   "rowid": "70d23d76-eea4-4aea-aff0-22d9e43fac83",
+   "mingcheng": "资产-慕容风",
+   "sew": "11仓",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "6fff2d63-7eaa-4641-82c4-d773a328d983",
+   "utime": "2026-09-12 18:02:29",
+   "score": 0
+  },
+  {
+   "rowid": "fee8296e-7846-4cda-afc1-59e1db91097d",
+   "mingcheng": "近期目标-慕容风",
+   "sew": "7目标",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "53c4f441-fdee-4431-9c3b-3edf18412a0f",
+   "utime": "2026-09-12 18:02:29",
+   "score": 0
+  },
+  {
+   "rowid": "36582e8a-5edf-4d7c-b0da-c816d616e1ad",
+   "mingcheng": "全局价值-慕容风",
+   "sew": "6价值",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "2303e628-a463-4205-a96b-7d1ff060ba05",
+   "utime": "2026-09-12 18:02:29",
+   "score": 0
+  },
+  {
+   "rowid": "7044e29d-f5a2-44ef-80ba-3d675dfbf2ef",
+   "mingcheng": "全局规则-慕容风",
+   "sew": "5规则",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "2303e628-a463-4205-a96b-7d1ff060ba05",
+   "utime": "2026-09-12 18:02:30",
+   "score": 0
+  },
+  {
+   "rowid": "0de964ea-deac-4af4-b8f1-83fe1d4aec85",
+   "mingcheng": "16:50-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:30",
+   "score": 0
+  },
+  {
+   "rowid": "fed20fc5-c0c1-4c17-820f-1bb6bf39eaf8",
+   "mingcheng": "16:20-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:30",
+   "score": 0
+  },
+  {
+   "rowid": "d0b2aeac-087e-4625-9d06-04f80b11fedf",
+   "mingcheng": "15:45-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:31",
+   "score": 0
+  },
+  {
+   "rowid": "7304edc1-caee-41a5-8a9a-22da9518a861",
+   "mingcheng": "15:30-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:31",
+   "score": 0
+  },
+  {
+   "rowid": "60857ead-49f2-4c4d-bbef-8e11efcd17fd",
+   "mingcheng": "15:10-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:31",
+   "score": 0
+  },
+  {
+   "rowid": "05481046-0374-4342-bfc7-8f93c7ef8070",
+   "mingcheng": "14:50-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:32",
+   "score": 0
+  },
+  {
+   "rowid": "eeb566c9-caf7-4ba9-b075-d04325618825",
+   "mingcheng": "14:38-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:32",
+   "score": 0
+  },
+  {
+   "rowid": "7843baf9-d210-42db-a0a4-edb4f6195fdc",
+   "mingcheng": "14:25-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:32",
+   "score": 0
+  },
+  {
+   "rowid": "2ce32328-3cc2-470a-86a7-cedd0ff490d0",
+   "mingcheng": "14:10-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:33",
+   "score": 0
+  },
+  {
+   "rowid": "a2b6e24d-7174-44a4-b79c-432531e0f4af",
+   "mingcheng": "13:50-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:33",
+   "score": 0
+  },
+  {
+   "rowid": "25646fa4-bba2-4b45-9025-6ac8669d9412",
+   "mingcheng": "13:40-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:33",
+   "score": 0
+  },
+  {
+   "rowid": "2bfb8229-e08e-4cb7-b41f-832cf6cd3518",
+   "mingcheng": "13:11-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:33",
+   "score": 0
+  },
+  {
+   "rowid": "d2c0a981-d8d0-48e1-bbd4-abb8341d86e8",
+   "mingcheng": "11:31-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:34",
+   "score": 0
+  },
+  {
+   "rowid": "936b6508-1648-4449-99c6-db5a8c4344e9",
+   "mingcheng": "11:00-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:34",
+   "score": 0
+  },
+  {
+   "rowid": "df61d93b-6159-43d0-96d9-dd50df4ece32",
+   "mingcheng": "10:40-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:34",
+   "score": 0
+  },
+  {
+   "rowid": "c2ce45c3-2ced-4111-b747-662fee1d57de",
+   "mingcheng": "10:25-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:35",
+   "score": 0
+  },
+  {
+   "rowid": "082d94a5-9160-449b-b3cd-c78714ce1d29",
+   "mingcheng": "09:10-8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "utime": "2026-09-12 18:02:35",
+   "score": 0
+  },
+  {
+   "rowid": "6efdee0d-294c-4a99-ba89-eb563628b44e",
+   "mingcheng": "新增记录 rowid 清单（27 条）：\n9月节点: ca5b9511-a929-410d-9032-a127ba5e3e7c\n8日节点: 76b801dd-a665-411b-ad81-e2dbc465d8b9\n叶子0: a4f961e6-6731-4437-b74f-e31fc4f810b0\n叶子1: 5e47c672-5aac-45df-bb07-eba148972de6\n叶子2: f9142149-e71d-423f-9b5f-b5607be9b6d7\n叶子3: 8a5ab27f-cfea-43dc-9993-04b00cdcb429\n叶子4: 963276f0-1c64-4a8f-abed-d31d2e4c513a\n叶子5: fbb9349e-1364-4c73-a2c3-80ae0dd7bcd6\n叶子6: 737415ea-01f0-48e6-862d-38e7c09943f4\n叶子7: 8fa4acdf-2eef-4b01-80f8-8c890bfa5d85\n叶子8: ae9ba0c6-958f-4fd7-b17f-52b7160b5ad9\n叶子9: 4b718147-1aad-40fa-9db7-0d2890522e6c\n叶子10: 9d689acf-d47e-47fa-a80d-9d5a83715dbc\n叶子11: 1112ee88-4890-4559-93d0-0663f78a0163\n叶子12: a8c4ce5a-d8c7-4389-9471-b51c5089ad76\n叶子13: 81d6f3d9-c4ee-4d2c-9922-bcc04e140a63\n叶子14: 68a920f1-e9d1-4819-96bb-cb218d31fb71\n叶子15: 535dd54c-e7e9-476e-b8b8-8d475441261c\n叶子16: 39fa4b2c-1538-4119-bb1b-b014f481681c\n想法1: f06e8355-d02c-46f1-8c30-ec14d1087f8f\n想法2: 43110e1d-81d4-4e62-8408-fc0c1bb0cbcc\n想法3: de2000e1-e721-4d59-867d-4732ffedd632\n复盘1: c862f384-b37d-4d13-b7de-bde9cc1a54cf\n复盘2: 1ab29619-0886-4039-81fe-5471cc68857e\n复盘3: 97d17aae-3021-4118-860d-637a9fd5c28d\n仓1: e4a9a487-9f99-4105-ac61-ebd6ef01f04c\n仓2: aa17f7d9-ac4e-45c5-971c-58944bb591f0",
+   "sew": "4交流",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "0de964ea-deac-4af4-b8f1-83fe1d4aec85",
+   "utime": "2026-09-12 10:48:48",
+   "score": 0
+  },
+  {
+   "rowid": "2461eb25-e2fc-442c-8145-5d20c5f3b3c4",
+   "mingcheng": "治理中发现两个结构性问题建议排期：①静态资源无版本参数导致微信 webview 顽固缓存，是登录建号事故的帮凶——已全站 JS 加 ?v=版本号，建议你在代码规范里固化这条；②code2session 现在只查 MySQL，与 HAP 用户表不通，微信一键登录匹配不到 HAP 老号，建议打通或迁移。另外 20+1 个孤儿号已按你确认清理完毕。",
+   "sew": "4交流",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "0de964ea-deac-4af4-b8f1-83fe1d4aec85",
+   "utime": "2026-09-12 10:48:48",
+   "score": 0
+  },
+  {
+   "rowid": "8f7e8c98-3e5b-46a0-8b54-1abbc4b4e20b",
+   "mingcheng": "东城，任务完成汇报：①94 条空关键词记录全部挂 3+ 中英双语关键词（新建 262 词条、cishu 同步 260 词）；②5 处空 wznr 补齐正文（每日总结规则/高内聚低耦合/信息库/自记忆技能/fsj 项目说明），web-deploy 文档补 shangjia2；③新增 27 条合规记录：时间记事链补 9月+8日节点、17 条今日工作叶子、2想法×3、12复盘×3、11仓×2，全部挂 fu/带 shangjia2/挂关键词。rowid 清单见下一条。",
+   "sew": "4交流",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "0de964ea-deac-4af4-b8f1-83fe1d4aec85",
+   "utime": "2026-09-12 10:48:48",
+   "score": 0
+  },
+  {
+   "rowid": "aa17f7d9-ac4e-45c5-971c-58944bb591f0",
+   "mingcheng": "decoration 门店装修器-慕容风",
+   "sew": "11仓",
+   "wznr": "成熟的商家装修工具：可视化编辑小程序底部导航、首页组件、我的页菜单与主题色，保存直写明道云商家表，对小程序端实时生效。已服务粽说风云等商家。（产品说明见 miaoshu 与部署文档。）",
+   "isQuote": 0,
+   "fu": "70d23d76-eea4-4aea-aff0-22d9e43fac83",
+   "utime": "2026-09-12 10:48:43",
+   "score": 0
+  },
+  {
+   "rowid": "e4a9a487-9f99-4105-ac61-ebd6ef01f04c",
+   "mingcheng": "web-deploy 部署服务-慕容风",
+   "sew": "11仓",
+   "wznr": "成熟的网页部署服务：8 项目白名单、按版本原子切换、秒级回滚、CLI 助手 deploy.sh。已承载孚世界全部前端项目（webview2/decoration/wushi/pixel-world 等），累计部署 20+ 版本。（产品说明见 miaoshu 与部署文档。）",
+   "isQuote": 0,
+   "fu": "70d23d76-eea4-4aea-aff0-22d9e43fac83",
+   "utime": "2026-09-12 10:48:43",
+   "score": 0
+  },
+  {
+   "rowid": "97d17aae-3021-4118-860d-637a9fd5c28d",
+   "mingcheng": "登录接口只查不建应成铁律-慕容风",
+   "sew": "12复盘",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "15df146c-f027-4a34-972d-9aca4beb964d",
+   "utime": "2026-09-12 10:48:44",
+   "score": 0
+  },
+  {
+   "rowid": "1ab29619-0886-4039-81fe-5471cc68857e",
+   "mingcheng": "排查跨端问题先分清登录链路-慕容风",
+   "sew": "12复盘",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "15df146c-f027-4a34-972d-9aca4beb964d",
+   "utime": "2026-09-12 10:48:44",
+   "score": 0
+  },
+  {
+   "rowid": "c862f384-b37d-4d13-b7de-bde9cc1a54cf",
+   "mingcheng": "静态资源必须带版本参数-慕容风",
+   "sew": "12复盘",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "15df146c-f027-4a34-972d-9aca4beb964d",
+   "utime": "2026-09-12 10:48:44",
+   "score": 0
+  },
+  {
+   "rowid": "de2000e1-e721-4d59-867d-4732ffedd632",
+   "mingcheng": "webview 缓存可用版本参数加服务端 no-cache 双保险治理-慕容风",
+   "sew": "2想法",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "bfb1eec9-b364-488f-a63c-29fafb0921eb",
+   "utime": "2026-09-12 10:48:47",
+   "score": 0
+  },
+  {
+   "rowid": "f06e8355-d02c-46f1-8c30-ec14d1087f8f",
+   "mingcheng": "HAP 文本过滤时灵时不灵的根因假设-慕容风",
+   "sew": "2想法",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "bfb1eec9-b364-488f-a63c-29fafb0921eb",
+   "utime": "2026-09-12 10:48:47",
+   "score": 0
+  },
+  {
+   "rowid": "39fa4b2c-1538-4119-bb1b-b014f481681c",
+   "mingcheng": "16:50-8日-9月-2026年-五事数据合规治理收尾",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "0de964ea-deac-4af4-b8f1-83fe1d4aec85",
+   "utime": "2026-09-12 10:51:28",
+   "score": 0
+  },
+  {
+   "rowid": "43110e1d-81d4-4e62-8408-fc0c1bb0cbcc",
+   "mingcheng": "多小程序身份应引入 unionid 或手机号绑定-慕容风",
+   "sew": "2想法",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "bfb1eec9-b364-488f-a63c-29fafb0921eb",
+   "utime": "2026-09-12 10:48:47",
+   "score": 0
+  },
+  {
+   "rowid": "68a920f1-e9d1-4819-96bb-cb218d31fb71",
+   "mingcheng": "15:45-8日-9月-2026年-关键词治理启动",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "d0b2aeac-087e-4625-9d06-04f80b11fedf",
+   "utime": "2026-09-12 10:51:28",
+   "score": 0
+  },
+  {
+   "rowid": "535dd54c-e7e9-476e-b8b8-8d475441261c",
+   "mingcheng": "16:20-8日-9月-2026年-94 条记录关键词挂载完成",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "fed20fc5-c0c1-4c17-820f-1bb6bf39eaf8",
+   "utime": "2026-09-12 10:51:28",
+   "score": 0
+  },
+  {
+   "rowid": "a8c4ce5a-d8c7-4389-9471-b51c5089ad76",
+   "mingcheng": "15:10-8日-9月-2026年-像素世界技能卡牌改版",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "60857ead-49f2-4c4d-bbef-8e11efcd17fd",
+   "utime": "2026-09-12 10:51:27",
+   "score": 0
+  },
+  {
+   "rowid": "1112ee88-4890-4559-93d0-0663f78a0163",
+   "mingcheng": "14:50-8日-9月-2026年-微信一键登录恢复开放",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "05481046-0374-4342-bfc7-8f93c7ef8070",
+   "utime": "2026-09-12 10:49:10",
+   "score": 0
+  },
+  {
+   "rowid": "81d6f3d9-c4ee-4d2c-9922-bcc04e140a63",
+   "mingcheng": "15:30-8日-9月-2026年-CDP 真浏览器测试基建",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "7304edc1-caee-41a5-8a9a-22da9518a861",
+   "utime": "2026-09-12 10:51:27",
+   "score": 0
+  },
+  {
+   "rowid": "9d689acf-d47e-47fa-a80d-9d5a83715dbc",
+   "mingcheng": "14:38-8日-9月-2026年-decoration 弹窗干扰修复",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "eeb566c9-caf7-4ba9-b075-d04325618825",
+   "utime": "2026-09-12 10:48:52",
+   "score": 0
+  },
+  {
+   "rowid": "4b718147-1aad-40fa-9db7-0d2890522e6c",
+   "mingcheng": "14:25-8日-9月-2026年-手机号快捷登录接口联调",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "7843baf9-d210-42db-a0a4-edb4f6195fdc",
+   "utime": "2026-09-12 10:48:52",
+   "score": 0
+  },
+  {
+   "rowid": "ae9ba0c6-958f-4fd7-b17f-52b7160b5ad9",
+   "mingcheng": "14:10-8日-9月-2026年-孤儿号批量清理执行",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "2ce32328-3cc2-470a-86a7-cedd0ff490d0",
+   "utime": "2026-09-12 10:48:51",
+   "score": 0
+  },
+  {
+   "rowid": "737415ea-01f0-48e6-862d-38e7c09943f4",
+   "mingcheng": "13:40-8日-9月-2026年-环境检测误判修复",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "25646fa4-bba2-4b45-9025-6ac8669d9412",
+   "utime": "2026-09-12 10:48:51",
+   "score": 0
+  },
+  {
+   "rowid": "8fa4acdf-2eef-4b01-80f8-8c890bfa5d85",
+   "mingcheng": "13:50-8日-9月-2026年-小程序身份校验加固",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "a2b6e24d-7174-44a4-b79c-432531e0f4af",
+   "utime": "2026-09-12 10:48:51",
+   "score": 0
+  },
+  {
+   "rowid": "fbb9349e-1364-4c73-a2c3-80ae0dd7bcd6",
+   "mingcheng": "13:11-8日-9月-2026年-全站 JS 加版本参数治顽固缓存",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "2bfb8229-e08e-4cb7-b41f-832cf6cd3518",
+   "utime": "2026-09-12 10:48:50",
+   "score": 0
+  },
+  {
+   "rowid": "963276f0-1c64-4a8f-abed-d31d2e4c513a",
+   "mingcheng": "11:31-8日-9月-2026年-开发者工具验证账号登录",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "d2c0a981-d8d0-48e1-bbd4-abb8341d86e8",
+   "utime": "2026-09-12 10:48:50",
+   "score": 0
+  },
+  {
+   "rowid": "8a5ab27f-cfea-43dc-9993-04b00cdcb429",
+   "mingcheng": "11:00-8日-9月-2026年-登录弹窗按环境分流上线",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "936b6508-1648-4449-99c6-db5a8c4344e9",
+   "utime": "2026-09-12 10:48:50",
+   "score": 0
+  },
+  {
+   "rowid": "f9142149-e71d-423f-9b5f-b5607be9b6d7",
+   "mingcheng": "10:40-8日-9月-2026年-孤儿号清理方案确认",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "df61d93b-6159-43d0-96d9-dd50df4ece32",
+   "utime": "2026-09-12 10:48:49",
+   "score": 0
+  },
+  {
+   "rowid": "5e47c672-5aac-45df-bb07-eba148972de6",
+   "mingcheng": "10:25-8日-9月-2026年-webview 登录服务重写为只查不建",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "c2ce45c3-2ced-4111-b747-662fee1d57de",
+   "utime": "2026-09-12 10:48:49",
+   "score": 0
+  },
+  {
+   "rowid": "a4f961e6-6731-4437-b74f-e31fc4f810b0",
+   "mingcheng": "09:10-8日-9月-2026年-排查微信登录批量建号根因",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "082d94a5-9160-449b-b3cd-c78714ce1d29",
+   "utime": "2026-09-12 10:48:49",
+   "score": 0
+  },
+  {
+   "rowid": "76b801dd-a665-411b-ad81-e2dbc465d8b9",
+   "mingcheng": "8日-9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "ca5b9511-a929-410d-9032-a127ba5e3e7c",
+   "utime": "2026-09-12 10:51:28",
+   "score": 0
+  },
+  {
+   "rowid": "ca5b9511-a929-410d-9032-a127ba5e3e7c",
+   "mingcheng": "9月-2026年-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "523c0621-2a31-41e7-ad6e-bf21b3d82309",
+   "utime": "2026-09-11 15:09:14",
+   "score": 0
+  },
+  {
+   "rowid": "3b380799-cd64-4ad0-8ad5-77153ef3254b",
+   "mingcheng": "web-deploy 部署服务使用文档",
+   "sew": "1技能",
+   "wznr": "# web-deploy 部署服务使用文档\n\n## 一句话\n\n把改好的文件 POST 到这个接口，线上立即更新；部署失败或出问题可秒级回滚。\n\n---\n\n## 接口信息\n\n| 项 | 值 |\n|----|----|\n| 地址 | `POST https://100000whys.cn/deploy/deploy` |\n| 鉴权 | 请求头 `x-deploy-token: <TOKEN>`（token 向维护者索取） |\n| 请求体 | `application/json`，UTF-8 |\n| 单次上限 | 50MB |\n| 回滚 | `POST https://100000whys.cn/deploy/rollback` |\n| 版本列表 | `GET https://100000whys.cn/deploy/list`（同样需要 token） |\n| 健康检查 | `GET https://100000whys.cn/deploy/health`（无需 token） |\n\n---\n\n## 可部署的项目（project 取值）\n\n| project | 线上地址 | 说明 |\n|---------|---------|------|\n| `hezi` | https://100000whys.cn/hezi.html | 盒子页，部署后自动 pm2 reload |\n| `index` | https://100000whys.cn/shuxiaohe-webview/ | shuxiaohe 主页，自动 reload |\n| `shenhe` | https://100000whys.cn/shenhe/ | 审核页，自动 reload |\n| `webview2` | https://100000whys.cn/fsj_webview2.0/ | 孚世界 WebView SPA 2.0，静态 |\n| `playground` | https://100000whys.cn/playground/ | 测试专用，随便传，别放正式东西 |\n| `tuijian` | https://100000whys.cn/tuijian/ | fsj-tuijian 抖音式推荐页，静态（2026-09-18 服务端已加白名单） |\n\n> 只能传上表中的 project，其他值返回 400 并列出可用项目。\n> 首次接入建议先在 `playground` 上试通流程。\n\n---\n\n## 请求体结构\n\n```json\n{\n  \"project\": \"hezi\",\n  \"clean\": false,\n  \"files\": [\n    { \"path\": \"index.html\", \"content\": \"<html>…</html>\" },\n    { \"path\": \"js/app.js\", \"content\": \"console.log(1)\" },\n    { \"path\": \"img/logo.png\", \"content\": \"iVBORw0KGgo…\", \"encoding\": \"base64\" }\n  ]\n}\n```\n\n### 字段说明\n\n| 字段 | 必填 | 说明 |\n|------|------|------|\n| `project` | ✅ | 上表中的项目名 |\n| `files` | ✅ | 文件数组，至少 1 个 |\n| `files[].path` | ✅ | 相对路径，**不能**以 `/` 开头、不能含 `..`、不能动 `.git` |\n| `files[].content` | ✅ | 文件内容字符串；二进制用 base64 |\n| `files[].encoding` | — | 缺省 `utf8`；二进制传 `\"base64\"` |\n| `clean` | — | `true` = 本次上传即完整项目（新目录只含这些文件）；缺省 `false` = 在当前版本基础上覆盖/新增这些文件 |\n\n> ⚠️ 日常改几个文件就用默认 `clean:false`（增量），只有明确要\"整体替换、删掉旧文件\"时才用 `clean:true`。\n> ⚠️ `.js` / `.html` / `.json` 不允许传空文件（会 400）。\n\n---\n\n## 响应\n\n成功（HTTP 200）：\n\n```json\n{\n  \"ok\": true,\n  \"project\": \"hezi\",\n  \"release\": \"20260907061732-ppve\",\n  \"files\": 2,\n  \"prev\": \"20260907061720-42rd\",\n  \"rollbackTo\": \"20260907061720-42rd\",\n  \"live\": \"/opt/deploy/hezi\",\n  \"pm2\": { \"ok\": true, \"detail\": \"fsj-hezi reloaded\" },\n  \"hint\": \"回滚: POST /rollback {\\\"project\\\":\\\"hezi\\\"}\"\n}\n```\n\n失败（400/401/500）：\n\n```json\n{ \"ok\": false, \"error\": \"unauthorized\" }\n```\n\n| HTTP | 含义 |\n|------|------|\n| 400 | project 不在白名单 / files 缺失 / 路径越界 / 空文件 |\n| 401 | token 错误或缺失 |\n| 500 | 服务端写失败（此时自动清理半成品，线上不受影响） |\n\n> **重要**：部署是原子切换 — 要么整体成功，要么线上保持原样，不存在传一半生效的情况。收到 `\"ok\": true` 才算部署成功。\n\n---\n\n## 完整调用示例\n\n### curl\n\n```bash\nTOKEN='<你的token>'\n\n# 1. 日常增量更新（改了 index.html 和一个 js）\ncurl -s -X POST https://100000whys.cn/deploy/deploy \\\n  -H \"x-deploy-token: $TOKEN\" \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"project\": \"hezi\",\n    \"files\": [\n      { \"path\": \"index.html\", \"content\": \"<!DOCTYPE html><html>…</html>\" },\n      { \"path\": \"js/app.js\",  \"content\": \"console.log(1)\" }\n    ]\n  }'\n\n# 2. 传二进制（图片）— content 用 base64\nB64=$(base64 -w0 ./logo.png)\ncurl -s -X POST https://100000whys.cn/deploy/deploy \\\n  -H \"x-deploy-token: $TOKEN\" -H 'Content-Type: application/json' \\\n  -d \"{\\\"project\\\":\\\"hezi\\\",\\\"files\\\":[{\\\"path\\\":\\\"img/logo.png\\\",\\\"content\\\":\\\"$B64\\\",\\\"encoding\\\":\\\"base64\\\"}]}\"\n\n# 3. 查看线上当前版本和全部版本\ncurl -s https://100000whys.cn/deploy/list -H \"x-deploy-token: $TOKEN\"\n\n# 4. 回滚到上一版\ncurl -s -X POST https://100000whys.cn/deploy/rollback \\\n  -H \"x-deploy-token: $TOKEN\" -H 'Content-Type: application/json' \\\n  -d '{\"project\":\"hezi\"}'\n\n# 5. 回滚到指定版本（先用 list 查 release 名）\ncurl -s -X POST https://100000whys.cn/deploy/rollback \\\n  -H \"x-deploy-token: $TOKEN\" -H 'Content-Type: application/json' \\\n  -d '{\"project\":\"hezi\",\"to\":\"20260907-baseline\"}'\n```\n\n### JavaScript（浏览器 / Node 通用）\n\n```javascript\nconst TOKEN = '<你的token>';\n\nasync function deploy(project, files) {\n  const res = await fetch('https://100000whys.cn/deploy/deploy', {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json', 'x-deploy-token': TOKEN },\n    body: JSON.stringify({ project, files })\n  });\n  const data = await res.json();\n  if (!data.ok) throw new Error('部署失败: ' + data.error);\n  console.log('部署成功', data.release, '回滚点:', data.rollbackTo);\n  return data;\n}\n\n// 用法\ndeploy('shenhe', [\n  { path: 'index.html', content: '<!DOCTYPE html>…' }\n]);\n\n// 二进制文件（浏览器）\nasync function deployFile(project, filePath, blob) {\n  const b64 = btoa(String.fromCharCode(...new Uint8Array(await blob.arrayBuffer())));\n  return deploy(project, [{ path: filePath, content: b64, encoding: 'base64' }]);\n}\n```\n\n### Python\n\n```python\nimport requests\n\nTOKEN = '<你的token>'\n\ndef deploy(project, files):\n    r = requests.post('https://100000whys.cn/deploy/deploy',\n        headers={'x-deploy-token': TOKEN},\n        json={'project': project, 'files': files}, timeout=60)\n    data = r.json()\n    if not data.get('ok'):\n        raise RuntimeError(f\"部署失败: {data.get('error')}\")\n    return data\n\ndeploy('webview2', [{'path': 'css/main.css', 'content': open('main.css', encoding='utf-8').read()}])\n```\n\n---\n\n## 推荐工作流（前端 agent 照此执行）\n\n1. **改代码** → 本地确认改动的文件清单\n2. **先打 playground**（首次接入或拿不准时）：往 `playground` 部署一版，浏览器打开 `https://100000whys.cn/playground/` 目检\n3. **部署正式项目**：把改动文件按 `files` 数组发出去（增量，别乱用 `clean:true`）\n4. **验证**：curl 对应线上 URL，确认新内容生效 + 页面功能正常\n5. **出问题** → 立即 `rollback`（秒级生效），排查后重新部署\n\n> 部署后如果 `pm2` 字段是 `{\"ok\":false,…}`，说明进程 reload 失败，请立刻回滚并报告维护者。\n\n---\n\n## 版本与回滚机制（为什么安全）\n\n- 每次部署生成全新版本目录（如 `20260907061732-ppve`），与线上运行中的旧版本物理隔离 — **不存在新旧文件混合污染**\n- 部署 = 原子软链切换，毫秒级，请求中途失败线上也是完好的旧版本\n- 每个项目保留最近 **10** 个版本，更早的自动清理\n- 回滚也是软链切换，秒级生效\n\n---\n\n## 常见错误排查\n\n| 现象 | 原因 / 处理 |\n|------|------------|\n| 401 unauthorized | token 错。确认 header 是 `x-deploy-token`，值前后无空格/换行 |\n| 400 unknown project | project 名拼写错误，看响应里的 `known` 列表 |\n| 400 bad path | path 以 `/` 开头或含 `..`，改成相对路径 |\n| 400 empty file not allowed | 传了空的 js/html/json，检查内容 |\n| 413 / body too large | 超 50MB，拆分或压缩资源 |\n| 部署 ok 但页面没变 | 浏览器缓存，强刷（Ctrl+Shift+R）；webview2 的 index.html 有禁缓存头，其余静态资源可能需要带版本参数 |\n| 部署 ok 但功能异常 | 先回滚，再对照 diff 排查 |\n\n---\n\n## 安全约定\n\n- token 请勿写入任何公开仓库 / 提交记录 / 客户端代码，放配置或环境变量\n- 部署记录全量留档（服务器侧 `logs/deploy.log`）\n- token 可随时轮换（旧 token 立即失效），维护者操作\n- 不要把 `playground` 用于任何正式用途\n",
+   "isQuote": 0,
+   "fu": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "utime": "2026-09-18 17:34:43",
+   "score": 0
+  },
+  {
+   "rowid": "070fc695-aa1f-461a-be62-9b4b8699a305",
+   "mingcheng": "App开发规范",
+   "sew": "1技能",
+   "wznr": "# App 开发规范 —— 孚世界前端/Agent 应用工程标准\n\n> 本文是孚世界 App 类项目的**工程规范单源文档**，自包含、无外部文件引用，可直接存入云端 Agent 记忆。\n> 适用范围：webview-spa2.0、fsj-wushi、fsj-pixel-world、fsj-decoration、login-test 等所有孚世界前端/H5 项目。\n> 提炼自 2026-09 实战：聊天系统重构、五事系统、Node 代理迁移、六轮联调的真实踩坑。\n> 版本 v1.0｜2026-09-06｜整理：林东城\n\n---\n\n## 一、技术架构（项目选型规范）\n\n### 1.1 语言与结构：原生 JS 三分离\n\n- **原生 JavaScript + HTML/CSS/JS 三分离**（index.html / css / js 各自独立目录），**零构建工具、零框架依赖**（不用 React/Vue/webpack/vite）。\n- 不引入游戏框架（PixiJS/Phaser 禁用）：像素渲染本质是 fillRect/drawImage，自写 ~300 行渲染器换完全可控性——\"更好的方案\"不等于\"更重的框架\"，而是\"更对的抽象\"。\n- 页面 = 对象单例模式：`var XxxPage = { init, render, destroy, … }`（IIFE 或对象字面量），全局互不污染；ES Module 项目用 `import/export`，经典脚本项目挂 `window.Xxx`。\n- **`destroy()` 生命周期**：页面切换时必须清理定时器/监听器，防止叠加。\n- 微信小程序端：原生小程序，不用 uniapp/taro；H5 与小程序通过 hash（`#fsj_openid=…`）+ postMessage 通信。\n\n### 1.2 渲染：原生 Canvas 2D（游戏/可视化类）\n\n- Canvas 2D + 离屏 canvas 预渲染静态层，主循环只 drawImage + 动态实体。\n- `imageSmoothingEnabled = false`、整数倍缩放、`image-rendering: pixelated`——像素锐利是底线。\n- 精灵数据驱动：像素画存 JSON（pixels 网格 + 调色板），预渲染到离屏 canvas 缓存，绘制只贴图。\n- 性能分层：静态图缓存一次渲染；动态实体按 y 排序绘制；缩略图用 1/8 分辨率离屏图。\n\n### 1.3 数据与部署\n\n| 层 | 规范 |\n|----|------|\n| 数据存储 | 明道云 HAP（内容元数据统一表 shangpin `6a03ceaa7e29abcb297cbdfc`，靠 leixing+sew 区分类型） |\n| 读通道 | **Node 代理 `https://100000whys.cn/mingdao`**（服务端注入密钥，直接返回 HAP 原始 JSON，100-300ms）→ 失败自动切直连 `api.mingdao.com`（需 CORS，HAP 已放行） |\n| 写通道 | hap-proxy `/obj` 或 /mingdao（均验证过） |\n| **禁用** | ❌ Dify 通用 CRUD（每次调用写 PostgreSQL 日志，曾把数据库打爆；且 600-1500ms 慢） |\n| 部署 | 宝塔 nginx 静态目录 + PM2（改代码必须 `pm2 delete + start` 硬重启，软 restart 不可靠；nginx 改动用 `nginx -T` 确认生效） |\n\n---\n\n## 二、数据加载规范（核心：缓存优先）\n\n### 2.1 缓存优先策略（所有列表类数据强制）\n\n```\n进页面\n  ├─ 有本地缓存？──有──→ 立即渲染缓存（0 等待秒开）\n  │                     ↘ 后台静默拉最新 → 成功后【更新缓存 + 覆盖渲染】\n  └─ 无缓存 ──→ 正常加载（仅首次）\n失败/断网 → 缓存仍在，页面照常用\n```\n\n- **禁止**\"每次进入都白屏等接口\"。列表类数据（消息、文章、相册、订单、评论、积分商品）一律先渲染缓存。\n- 缓存放 localStorage，key 规范：`fsj_list_cache_<页面>_<维度>`、`fsj_msg_cache_<会话id>`；消息类最多缓存最近 200 条防超容。\n- **数据必须准确的地方不做缓存**：订单状态、支付结果、地址提交等保持实时。\n\n### 2.2 统一缓存工具（挂在 API 层）\n\n```javascript\nlistCache: {\n  get: function (key) {\n    try {\n      var v = JSON.parse(localStorage.getItem('fsj_list_cache_' + key) || 'null');\n      return (v && Array.isArray(v.rows)) ? v : null;\n    } catch (e) { return null; }\n  },\n  set: function (key, rows) {\n    try { localStorage.setItem('fsj_list_cache_' + key, JSON.stringify({ rows: rows, ts: Date.now() })); } catch (e) {}\n  }\n}\n```\n\n页面接入三步：`var cached = FsjApi.listCache.get(key)` → 有则先渲染 → `FsjApi.listCache.set(key, rows)` 更新。\n\n### 2.3 异步竞态守卫（强制，三条全上）\n\n1. **会话/视图切换守卫**：异步查询返回时校验\"当前视图还是不是发起查询时的那个\"，不是则丢弃结果——否则慢响应会把别的会话的数据渲染进当前视图（表现为\"发送者一会是 A 一会是 B\"、\"数据串台\"）。\n2. **列表序号守卫**：每次刷新 `seq++`，响应回来时 `seq` 不匹配则丢弃——防止慢响应覆盖新数据。\n3. **init 防重入**：页面 init 可能被反复调用（切 tab、返回），监听器/轮询只允许绑一次（`_inited` 标记），重复调用只刷新数据。\n\n### 2.4 实时推送（WS 广播信号，替代高频轮询）\n\n- **禁止**高频轮询查数据（秒级循环查接口 = 请求数随会话数线性膨胀）。\n- 架构：**WS 纯广播哑管道**（服务端零逻辑零状态 = 最稳定）+ 前端信封过滤。\n- 信封规范：`{ type, from, to, body, ts }`；`chat.*`/`world.*` 前缀服务端广播，其余 echo（客户端 ws-bus 自动重连+心跳+断线排队）。\n- **信号与内容分离**：WS 只广播 `{ type:'chat.new', body:{ conv:'会话id' } }` 这类**信号**（不含消息内容）——内容收到信号后从 HAP 拉（顺带完成权限事实校验）。广播给所有连接是设计如此，前端按会话成员过滤。\n- 兜底：保留 30-60s 低频轮询（WS 断线/漏信号时兜底）；页面隐藏时暂停（visibilitychange）。\n\n---\n\n## 三、明道云 HAP 数据访问规范（实测可靠性矩阵）\n\n### 3.1 服务端过滤可靠性（getFilterRows 的 filters）—— 2026-09-06 判别实验修正\n\n**filterType 语义（实测铁证）：1=包含，2=等于**（此前误判 1=等于，系测试样本已被删除导致的假 0）。\n\n判别方法：用\"精确值的子串\"测试——子串能命中=包含，子串命中 0=等于。单选下拉用精确值测 1/2 条数恰好相同，**区分不了语义，勿再犯**。\n\n| 字段类型 | 实测可靠的用法 | 注意 |\n|---|---|---|\n| **关联字段（dataType 29）** | ✅ filterType **24**（等于，value=rowid）、25 | —— |\n| **下拉字段（dataType 11）** | ✅ filterType **1 或 2 + option key/显示值 均为精确匹配**（实测等价：子串查 0、精确查全） | —— |\n| **文本字段（dataType 1/2）** | ✅ **ft=1 包含**（宽匹配）、✅ **ft=2 等于**（精确） | 早期\"文本过滤无效\"结论错误，系测试记录已被删除 |\n\n> ⚠️ 历史教训：某轮用\"完善杨珍珍画像\"测文本过滤得 0，误判为\"文本过滤无效\"写进文档——真实原因是那条记录当时已被删除。**测试前先确认样本记录仍存在。**\n\n### 3.2 写入规范（addRow/editRow 的 controls）\n\n- **下拉/多选/关联字段**：value 传 **option key 或 rowid**（不是显示文本），**必须加 `valueType: 2`**；多选逗号分隔多个 key。传显示文本不会选中选项（静默失败，字段存不上）。\n- value 写入用逗号分隔 rowid 字符串；读取时关联字段是 JSON 字符串需 parse 后取 `sid`。\n- **代理不做业务字段处理**：fbsj 等业务时间由调用方自己传（谁的业务谁负责）；系统创建时间用 HAP 的 ctime。\n\n### 3.3 分页与健壮性\n\n- 分页循环用**原始返回条数**计数（不能用客户端过滤后的条数——会页码错位跳页）。\n- 降页/重试时**所有计数器必须清零重拉**。\n- 空页防呆：`rawCount < total` 却收到空页 → 重试同页（最多 2 次），防服务端抖动静默缺页。\n\n### 3.4 大数据量 agent（数千条级）\n\n- 列表拉取**只 controls 需要的小字段**，wznr 等大文本在打开详情时按需单条补拉——3448 条全字段拉取要几十秒，瘦身后几秒。\n- 通道已无 1MB 类大小限制（Node 代理 / 直连），但注意读超时 15s。\n\n---\n\n## 四、身份与存储结构规范\n\n### 4.1 用户信息存储（fsj_user_info）—— **全项目统一结构**\n\n```json\n{\n  \"id\": \"用户rowid\",\n  \"rowid\": \"用户rowid\",\n  \"openid\": \"用户rowid或微信openid\",\n  \"agent\": \"默认agent\",\n  \"name\": \"昵称\",\n  \"avatar\": \"头像URL\",\n  \"raw\": { 原始记录 }\n}\n```\n\n- **禁止**多套系统用不同结构写同一个 key：曾有账号登录写 `{id,…}`、用户数据刷新写 `{id,…}` 缺 rowid/openid，两套互相覆盖导致\"登录态时有时无、昵称变'用户'\"。\n- **读取方必须兼容多种历史结构**：`rowid || id || openid` 任一存在即算有效身份（存量用户浏览器里的旧结构不会自己消失）。\n- 启动时自动迁移：检测旧结构（有 id 缺 rowid）自动补齐字段——已登录用户无感修复，不必强制重登。\n- 判定登录态不要只认单一 token 字段（账号登录写 fsj_openid、微信登录另有 token，判定应为\"任一身份标识存在\"）。\n\n### 4.2 元素 id 唯一性\n\n- 同一文档内**禁止重复 id**：智能体页和消息页各有一个 `id=\"chat-input\"`，导致 `getElementById` 永远取到前一个（空的）——用户输入的文字永远读不到。重复元素用前缀区分（如 `agent-chat-input`）。\n\n---\n\n## 五、工程与调试规范\n\n### 5.1 日志\n\n- 每个请求都打日志 = 排查真问题时被淹没。**默认静默**，调试开关：URL 带 `?debug=1` 或 `localStorage.fsj_api_debug=1`。\n- 关键路径（登录/发送）加带前缀的分步日志（`[发送调试]`），每个分支（早退/成功/失败）都必须有输出——用户反馈\"没反应\"时，靠分步日志直接定位断点。\n- **全局错误捕获必装**（带文件:行号:列号 + 堆栈）：\n\n```javascript\nwindow.addEventListener('error', function (e) {\n  var msg = '[全局错误] ' + e.message + ' @ ' + e.filename.split('/').pop() + ':' + e.lineno;\n  console.error(msg, e.error && e.error.stack);\n});\nwindow.addEventListener('unhandledrejection', function (e) { /* 同理 */ });\n```\n\n### 5.2 联调验证纪律（六轮联调换来的）\n\n1. **验证者和被验证者的测试用例必须覆盖同一组变量形态**（字段别名 AND UUID、别名 AND rowid）——用例不对称时，双方\"验证通过\"都是半截真，会互相甩锅。\n2. **改代码 ≠ 生效**：Node/PM2 用 delete+start 并核对 PID；nginx 用 `nginx -T` 看生效配置；给服务加 `X-Proxy-Version` 响应头自证版本。\n3. **密钥不进代码文件**（编辑器/工具会把密钥自动脱敏成 `***`，改完必 grep 确认；根治走环境变量）。前端不持有后端密钥。\n4. **headless 测试的 Edge profile 不要放在被监听的 workspace 里**——Edge 持续写缓存会触发 live preview 无限重载（假象：页面每 300ms 自我重载），profile 放 Temp 目录即消失。\n5. **URL 参数分隔符用 `&`**——手滑写成两个 `?` 会让后面的参数整串变成前一个参数的值（解析成空 → \"数据不存在\"类假故障）。\n6. 真实 UI 操作复现不了时，用 CDP（remote-debugging-port + Runtime.evaluate）驱动真实页面执行并抓 console/网络/截图；**先抓现场再下结论**。\n\n### 5.3 稳定性原则\n\n- **服务端保持哑管道**（纯转发/纯广播，零业务逻辑零状态）= 最稳定；语义（过滤/匹配/鉴权）放前端，受控环境成立；面向公网开放前再补握手 token（十几行的事）。\n- 推送信号与内容分离：广播只带\"有新消息\"信号，内容从带权限校验的通道拉。\n- 缓存与配置：**配置缺失时保留已有缓存，不清空**（清空会导致数据闪没）；只在拿到明确的新数据时覆盖。\n- 降级链：主通道失败自动切备用通道，兜底轮询常驻但低频。\n\n---\n\n## 六、检查清单（新项目/新功能上线前）\n\n- [ ] 三分离结构，零构建依赖\n- [ ] 数据通道：/mingdao → 直连兜底；无 Dify 通用 CRUD\n- [ ] 列表有本地缓存（缓存优先 + 静默更新），打开秒开\n- [ ] 异步三守卫（切换丢弃/列表序号/init 防重入）\n- [ ] 服务端过滤只用：关联24 / 下拉等于1（key）；文本条件客户端比对\n- [ ] 写入：下拉/关联用 option key + valueType 2\n- [ ] WS：信号与内容分离；前端成员过滤；低频兜底轮询\n- [ ] 身份存储结构统一（fsj_user_info 含 rowid/openid），读取兼容多结构\n- [ ] 元素 id 全文档唯一\n- [ ] 全局错误捕获 + 关键路径分步日志（带开关）\n- [ ] 密钥不在前端/代码文件；pm2 硬重启；版本号可自证（X-Proxy-Version / APP_VERSION 单源不覆盖）\n\n---\n\n*v1.0｜2026-09-06｜来源：孚世界聊天系统重构（账号密码登录、缓存优先、WS 推送）、五事系统、Node 代理迁移等项目实战｜整理：林东城*\n",
+   "isQuote": 0,
+   "fu": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "utime": "2026-09-12 10:48:46",
+   "score": 0
+  },
+  {
+   "rowid": "705d2423-ec9c-4e49-b4c8-4d24b381f889",
+   "mingcheng": "HAP",
+   "sew": "1技能",
+   "wznr": "双向关联字段会反向引用\n双向引用数据hap可以汇总",
+   "isQuote": 0,
+   "fu": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "utime": "2026-09-12 10:48:46",
+   "score": 0
+  },
+  {
+   "rowid": "8ffe48d2-38b4-4947-8432-48e744421df7",
+   "mingcheng": "agent自记忆维护项目数据库-慕容风",
+   "sew": "1技能",
+   "wznr": "技能定义：维护 agent 自身记忆数据库。能力=把工作过程、决策、复盘按五事结构写入内容元数据表（shangpin），每条记录挂中英双语关键词支持检索，定期治理空关键词/空正文等违规数据。{{全}}",
+   "isQuote": 0,
+   "fu": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "utime": "2026-09-12 10:48:46",
+   "score": 0
+  },
+  {
+   "rowid": "c9ffa20b-8b7f-4943-8498-dfc5adbe235a",
+   "mingcheng": "通用API接口文档-Node版-慕容风",
+   "sew": "1技能",
+   "wznr": "# 孚世界 - 明道云 API 代理服务（Node 版 · 完全自包含）\n\n> 创建时间：2026-09-04\n> 架构：前端 → Node.js 中间层（mingdao-proxy，注入密钥）→ 明道云 HAP\n> 部署位置：宝塔服务器 `/opt/deploy/api-proxy/`（server.js + API.md），PM2 进程 `mingdao-proxy`，公网入口 `https://100000whys.cn/mingdao`\n\n---\n\n## 一、为什么从 Dify 迁移\n\n| 指标 | Dify 版 | Node 版 |\n|------|---------|---------|\n| 响应耗时 | 600-1500ms | **100-300ms** |\n| 服务器内存 | 多 worker ×300MB | **~25MB** |\n| 磁盘/数据库写入 | 每次调用写 PostgreSQL 日志 | **0** |\n| 物理删除 | ❌ 405 不支持 | **✅ 支持** |\n| 鉴权管理 | 前端持有 Token | **服务端注入** |\n\nDify 的 Postgres 被打满曾导致通用 CRUD 间歇性 500——迁移后此问题一并消失。\n\n---\n\n## 二、请求格式\n\n| 项 | 值 |\n|----|----|\n| 地址 | `POST https://100000whys.cn/mingdao` |\n| 健康检查 | `GET https://100000whys.cn/mingdao/health` |\n| 鉴权 | **无需鉴权头**，appKey/sign 由服务端注入 |\n| CORS | 已配置（`Access-Control-Allow-Origin: *`，浏览器可跨域调用，2026-09-04 加） |\n| 请求体 | `{ \"url\": \"<明道云API完整URL>\", \"input\": <明道云请求体对象> }` |\n| 响应 | **直接返回明道云原始 JSON**（无 `outputs.output` 包裹，无需二次解析） |\n| 版本标识 | 响应头 `X-Proxy-Version`（如 `mingdao-proxy-2026-09-04-v4-no-fbsj`），用于确认线上跑的哪一版 |\n| 限制 | 请求体 5MB；超时 连接 10s / 读取 15s |\n\n> ⚠️ `input` 必须是**对象**（不是 JSON 字符串），不需要 `JSON.stringify`。（Dify 版是字符串，这是两者最大的调用差异）\n\n### 2.1 前端调用封装（标准写法）\n\n```javascript\n/**\n * 调用明道云 HAP API（Node 代理版）\n * @param {string} url - 明道云 API 地址（如 https://api.mingdao.com/v2/open/worksheet/getFilterRows）\n * @param {Object} body - 请求体（不含 appKey/sign，服务端注入）\n * @returns {Promise<Object>} 明道云原始返回 { success, data, error_code }\n */\nfunction callMingdaoAPI(url, body) {\n  return fetch('https://100000whys.cn/mingdao', {\n    method: 'POST',\n    cache: 'no-store',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify({ url: url, input: body })\n  })\n  .then(function (res) {\n    if (!res.ok) throw new Error('网络请求失败: ' + res.status);\n    return res.json();   // 直接是明道云 JSON，不需要 JSON.parse 二次解析\n  });\n}\n```\n\n---\n\n## 三、⭐ 业务字段归属原则（2026-09-04 拍板，v4 起生效）\n\n**代理只做密钥注入 + 纯转发，不处理任何业务字段。**\n\n- ❌ **不自动追加 fbsj**（曾有的功能，已删除）。原因：fbsj 是业务字段（五事=真实事件时间、内容=发布时间），语义由调用方定；不是所有表都有此字段；系统创建时间 HAP 的 `ctime` 自动生成且更可靠。\n- **业务时间谁的业务谁传**：需要 fbsj 的调用方在 controls 里显式传（字段别名 `fbsj` 或 UUID `6a369543012f3a4e6a11c96f` 均可）。\n- 排序/展示需要创建时间 → 用 `ctime`。\n\n---\n\n## 四、增删改查接口\n\n### 4.1 查 - 条件筛选（getFilterRows）\n\n**用途：** 根据筛选条件批量查询记录\n\n| 字段 | 值 |\n|------|------|\n| API URL | `https://api.mingdao.com/v2/open/worksheet/getFilterRows` |\n| 方法 | POST |\n\n**请求参数：**\n\n```json\n{\n  \"worksheetId\": \"工作表ID（推荐用别名 shangpin）\",\n  \"viewId\": \"\",\n  \"pageSize\": 20,\n  \"pageIndex\": 1,\n  \"keyWords\": \"\",\n  \"listType\": 0,\n  \"controls\": [],\n  \"filters\": [\n    { \"controlId\": \"字段别名\", \"dataType\": 1, \"spliceType\": 1, \"filterType\": 1, \"value\": \"筛选值\" }\n  ],\n  \"sortId\": \"\",\n  \"isAsc\": \"false\",\n  \"notGetTotal\": \"false\",\n  \"useControlId\": \"false\",\n  \"getSystemControl\": \"false\"\n}\n```\n\n**filters 字段说明：**\n\n| 属性 | 必填 | 类型 | 说明 |\n|------|------|------|------|\n| `controlId` | 是 | string | 字段别名（如 `shangjia`、`mingcheng`、`mrowid`）或字段 UUID |\n| `dataType` | 是 | number | 控件类型编号，见 §7.1 DataTypeEnum |\n| `spliceType` | 是 | number | 拼接方式：`1`=And，`2`=Or |\n| `filterType` | 是 | number | 筛选类型，见 §7.2 FilterTypeEnum |\n| `value` | 否 | string | 单个筛选值 |\n| `values` | 否 | list[string] | 多个筛选值（如 `[\"值1\",\"值2\"]`） |\n| `dateRange` | 否 | number | 日期范围，见 §7.3 DateRangeEnum |\n\n**filterType 常用对照表：**\n\n| filterType | 含义 | value 格式 | 示例场景 |\n|------------|------|-----------|---------|\n| 1 | 等于 | 单值 | 文本字段精确匹配 |\n| 2 | 不等于 | 单值 | 排除某值 |\n| 3 | 包含 | 单值 | 模糊搜索关键词 |\n| 4 | 开头为 | 单值 | 前缀匹配 |\n| 5 | 不包含 | 单值 | 排除关键词 |\n| 6 | 不是 | 单值 | **排除 shanchu=1 ⭐** |\n| 7 | 为空 | 无需 value | 检查空值 |\n| 8 | 不为空 | 无需 value | 检查有值 |\n| 11 | 在范围内 | `values` 数组 | 数值区间 |\n| 13 | 大于 | 单值 | 数值 > N |\n| 14 | 大于等于 | 单值 | 数值 >= N |\n| 15 | 小于 | 单值 | 数值 < N |\n| 16 | 小于等于 | 单值 | 数值 <= N |\n| 24 | **关联控件是** | 单值（rowid） | **他表关联字段筛选 ⭐ 最常用** |\n| 25 | 关联控件不是 | 单值 | 排除关联记录 |\n| 26 | 数组等于 | `values` 数组 | 多选字段完全匹配 |\n| 27 | 数组不等于 | `values` 数组 | 多选字段不匹配 |\n\n**他表关联字段筛选示例（⭐ 最常用）：**\n\n```json\n{\n  \"controlId\": \"shangjia\",\n  \"dataType\": 29,\n  \"spliceType\": 1,\n  \"filterType\": 24,\n  \"value\": \"65428a74-2f5e-46a8-a111-e1a59297b22e\"\n}\n```\n\n> ⚠️ 关联字段的 dataType 是 `29`（关联记录），value 传关联记录的 rowid 字符串（不是数组）。\n\n**多条件组合示例（含必加的 shanchu 过滤）：**\n\n```json\n{\n  \"filters\": [\n    { \"controlId\": \"shangjia\", \"dataType\": 29, \"spliceType\": 1, \"filterType\": 24, \"value\": \"商家rowid\" },\n    { \"controlId\": \"leixing\", \"dataType\": 1, \"spliceType\": 1, \"filterType\": 1, \"value\": \"文章\" },\n    { \"controlId\": \"shanchu\", \"dataType\": 2, \"spliceType\": 1, \"filterType\": 6, \"value\": \"1\" }\n  ]\n}\n```\n\n> ⚠️ **所有查询必须加 `shanchu != \"1\"` 过滤**（filterType: 6 = 不是），排除已逻辑删除的记录。\n> **controls 说明**：填写要返回的字段别名，建议明确指定而非空数组，减少冗余数据。\n\n**调用示例：**\n\n```javascript\n// 查询某个商家的商品\ncallMingdaoAPI('https://api.mingdao.com/v2/open/worksheet/getFilterRows', {\n  worksheetId: 'shangpin',\n  pageSize: 20,\n  pageIndex: 1,\n  listType: 0,\n  controls: ['rowid', 'mingcheng', 'shoujia', 'zhutu'],\n  filters: [\n    { controlId: 'shangjia', dataType: 29, spliceType: 1, filterType: 24, value: '65428a74-2f5e-46a8-a111-e1a59297b22e' },\n    { controlId: 'shanchu', dataType: 2, spliceType: 1, filterType: 6, value: '1' }\n  ]\n})\n.then(function (res) {\n  console.log('总数:', res.data.total);\n  console.log('商品列表:', res.data.rows);\n});\n```\n\n**返回结构：**\n\n```json\n{\n  \"success\": true,\n  \"data\": {\n    \"rows\": [\n      {\n        \"rowid\": \"016bda4d-a411-408d-be55-43c86edf3457\",\n        \"ctime\": \"2026-05-13 18:06:04\",\n        \"mingcheng\": \"商品名称\",\n        \"zhutu\": [{ \"thumbnail_full_path\": \"https://...\" }],\n        \"guanjianci\": [{ \"sid\": \"标签rowid\", \"name\": \"标签名\" }]\n      }\n    ],\n    \"total\": 100\n  },\n  \"error_code\": 1\n}\n```\n\n---\n\n### 4.2 查 - 单条记录（getRowByIdPost）\n\n**用途：** 根据 rowId 查询单条记录详情\n\n| 字段 | 值 |\n|------|------|\n| API URL | `https://api.mingdao.com/v2/open/worksheet/getRowByIdPost` |\n| 方法 | POST |\n\n**请求参数：**\n\n```json\n{\n  \"worksheetId\": \"shangpin\",\n  \"rowId\": \"记录rowid\",\n  \"getSystemControl\": \"false\",\n  \"includeControls\": [\"mingcheng\", \"zhutu\", \"mdnr\", \"wznr\", \"leixing\", \"fabuzhe\"]\n}\n```\n\n**调用示例：**\n\n```javascript\ncallMingdaoAPI('https://api.mingdao.com/v2/open/worksheet/getRowByIdPost', {\n  worksheetId: 'shangpin',\n  rowId: '记录rowid',\n  getSystemControl: 'false'\n})\n.then(function (res) {\n  console.log('记录详情:', res.data);\n});\n```\n\n> 返回行的键是**字段别名**（如 `mingcheng`、`quanxian`），不是 controlId UUID。行对象里含全部字段（未按 includeControls 裁剪时），关联字段是 JSON 字符串需 parse。\n\n---\n\n### 4.3 增 - 新增记录（addRow）\n\n**用途：** 向指定工作表新增一条记录\n\n| 字段 | 值 |\n|------|------|\n| API URL | `https://api.mingdao.com/v2/open/worksheet/addRow` |\n| 方法 | POST |\n\n**请求参数：**\n\n```json\n{\n  \"worksheetId\": \"shangpin\",\n  \"triggerWorkflow\": true,\n  \"controls\": [\n    { \"controlId\": \"字段别名或UUID\", \"value\": \"字段值\" },\n    { \"controlId\": \"字段别名或UUID\", \"value\": \"字段值\", \"valueType\": 2 }\n  ],\n  \"getSystemControl\": \"false\"\n}\n```\n\n> `valueType: 2` 表示值是关联记录/下拉选项 key 等复杂类型（如 `fabuzhe`、`sew`、`leixing`、`fu`、`quanxian`、`kjzz`）。⚠️ 下拉/多选/关联字段传**选项 key 或 rowid**（不是显示文本），必须加 `valueType: 2`。\n\n**调用示例：**\n\n```javascript\n// 新增一条内容记录（fbsj 按业务语义自己传；不需要则不传，ctime 系统自动记）\ncallMingdaoAPI('https://api.mingdao.com/v2/open/worksheet/addRow', {\n  worksheetId: 'shangpin',\n  triggerWorkflow: true,\n  getSystemControl: 'false',\n  controls: [\n    { controlId: 'mingcheng', value: '文章标题' },\n    { controlId: 'leixing', value: '文章', valueType: 2 },\n    { controlId: 'sew', value: '9信息', valueType: 2 },\n    { controlId: 'wznr', value: '<p>文章正文 HTML</p>' },\n    { controlId: 'mdnr', value: '文章摘要' },\n    { controlId: 'zhutu', value: 'https://封面图URL' },\n    { controlId: 'fabuzhe', value: '用户rowid', valueType: 2 },\n    { controlId: 'shangjia1', value: '1', valueType: 2 },\n    { controlId: 'guanjianci', value: '标签rowid1,标签rowid2' }\n  ]\n})\n.then(function (res) {\n  var newRowid = typeof res.data === 'string' ? res.data : res.data.rowid;\n  console.log('新增成功，记录ID:', newRowid);\n});\n```\n\n**返回结构：**\n\n```json\n{ \"success\": true, \"data\": \"新增记录的rowid（字符串）\", \"error_code\": 1 }\n```\n\n> ⚠️ `data` 直接是 rowid 字符串（不是对象），判断 `typeof res.data === 'string'`。\n\n---\n\n### 4.4 改 - 更新记录（editRow）\n\n**用途：** 更新指定工作表的记录\n\n| 字段 | 值 |\n|------|------|\n| API URL | `https://api.mingdao.com/v2/open/worksheet/editRow` |\n| 方法 | POST |\n\n**请求参数：**\n\n```json\n{\n  \"worksheetId\": \"shangpin\",\n  \"rowId\": \"要更新的记录rowid\",\n  \"controls\": [\n    { \"controlId\": \"字段别名或UUID\", \"value\": \"新值\" }\n  ],\n  \"triggerWorkflow\": false,\n  \"getSystemControl\": \"false\"\n}\n```\n\n> ⚠️ 更新时一般 `triggerWorkflow: false`，避免触发不必要的自动化流程。\n> ⚠️ 只传需要改的 controls；fbsj 若业务上不该变，就不要把它放进 controls。\n\n---\n\n### 4.5 删 - 删除记录\n\n#### 4.5.1 逻辑删除（推荐）⭐\n\n通过 `editRow` 把 `shanchu` 字段置 `\"1\"`，数据可恢复，查询自动过滤：\n\n```javascript\ncallMingdaoAPI('https://api.mingdao.com/v2/open/worksheet/editRow', {\n  worksheetId: 'shangpin',\n  rowId: '记录rowid',\n  controls: [{ controlId: 'shanchu', value: '1' }],\n  getSystemControl: 'false'\n})\n```\n\n> shanchu：dataType 2（文本标记），`\"0\"`=正常、`\"1\"`=已逻辑删除。\n\n#### 4.5.2 物理删除（✅ Node 版支持，Dify 版不支持）\n\n| 字段 | 值 |\n|------|------|\n| API URL | `https://api.mingdao.com/v2/open/worksheet/deleteRow` |\n| 方法 | POST |\n\n```json\n{\n  \"worksheetId\": \"shangpin\",\n  \"rowId\": \"行记录ID\",\n  \"triggerWorkflow\": false,\n  \"thoroughDelete\": \"false\"\n}\n```\n\n> ⚠️ **物理删除不可恢复**。删前核对记录归属（fabuzhe）；日常清理优先逻辑删除。\n\n#### 4.5.3 定期清理已逻辑删除的数据\n\n1. 查询 `shanchu=1` 且 ctime 超过 N 天的记录\n2. 导出备份后物理删除\n3. 建议每月一次\n\n---\n\n## 五、特殊字段处理\n\n### 5.1 关联字段（fabuzhe、guanjianci、fu、zi、yynr 等）\n\n**写入时**：value 是**逗号分隔的 rowid 字符串**（不是数组！），加 `valueType: 2`：\n\n```json\n{ \"controlId\": \"fabuzhe\", \"value\": \"用户rowid\", \"valueType\": 2 }\n{ \"controlId\": \"guanjianci\", \"value\": \"标签rowid1,标签rowid2,标签rowid3\", \"valueType\": 2 }\n```\n\n**读取时**：关联字段返回 **JSON 字符串化的对象数组**，需 `JSON.parse` 后取 `sid`：\n\n```javascript\nvar fabuzheArr = JSON.parse(row.fabuzhe);   // [{sid: \"用户rowid\", name: \"用户名\"}]\nvar userRowid = fabuzheArr[0].sid;\nvar tagRowids = JSON.parse(row.guanjianci).map(function (t) { return t.sid; });\n```\n\n### 5.2 图片/文件字段（zhutu 等）\n\n**写入**：URL 字符串（单个）或逗号分隔 URL（多个）。**读取**：对象数组：\n\n```javascript\nvar images = JSON.parse(row.zhutu);   // [{thumbnail_full_path: \"https://...\"}]\nvar firstImage = images[0].large_thumbnail_full_path || images[0].thumbnail_full_path;\n```\n\n### 5.3 复选框字段\n\n```json\n{ \"controlId\": \"复选框字段\", \"value\": true }\n```\n\n### 5.4 下拉/多选选项字段\n\n**写入**：传选项 key（UUID），不是显示文本；多选逗号分隔多个 key；加 `valueType: 2`。\n**读取**：getFilterRows/getRowByIdPost 返回**显示值**（单选字符串、多选字符串数组）。\n\n---\n\n## 六、已知工作表\n\n### 6.1 服世界核心表\n\n| 表名 | worksheetId | 用途 |\n|------|-------------|------|\n| 内容元数据统一表 | `shangpin`（别名，UUID `6a03ceaa7e29abcb297cbdfc`） | 商品、文章、任务、评论、知识、**12 维记忆**、订单明细等所有数据，靠 `leixing`（UI 类型）+ `sew`（12 维）区分 |\n\n### 6.2 用户/组织相关表\n\n| 表名 | worksheetId | 用途 |\n|------|-------------|------|\n| 用户表 | `69b0077358322d512e60bad0` | 用户信息（openid、昵称、地点、像素坐标等） |\n| 组织/商家/群组表 | `69f549c69f1956fc0e171aa6` | 商家配置（leixing 区分：商家/组织/私聊会话/部分可见…），mrowid 字段用于装修页直达 |\n\n### 6.3 其他业务表\n\n| 表名 | worksheetId | 用途 |\n|------|-------------|------|\n| 关键词表 | `69e04b28924f17c90a970f3d` | 关键词倒排索引（12 维记忆检索） |\n| 地点表 | `6a8ba7de496428febbecd4bb` | 孚世界地点 |\n| 商品表（SPU） | `67b9d2ab322edd7d3c5424c0` | 同檐er 旧业务 |\n| 分类表 | `67b9d2ab322edd7d3c5424b2` | 同檐er 商品分类 |\n| APP订单 | `68c521a4646f5f797f37ecaa` | 订单主表 |\n| APP订单明细 | `68c521ae646f5f797f37ece7` | 订单明细表 |\n\n---\n\n## 七、附录：枚举值参考\n\n### 7.1 DataTypeEnum（控件类型，filters.dataType 用）\n\n| 枚举值 | 控件类型 | 说明 |\n|--------|---------|------|\n| 1 | 文本 | 单行、多行、富文本 |\n| 2 | 文本（逻辑标记） | 如 `shanchu` |\n| 6 | 数值 | 数字类型 |\n| 11 | 下拉单选 | 下拉选择 |\n| 14 | 附件 | 图片、文件 |\n| 29 | **关联记录** | 他表关联字段 ⭐ |\n| 30 | 他表字段 | 关联记录的字段 |\n| 36 | 检查框 | 布尔值 |\n\n> 关联记录字段（29）配 filterType: 24 使用，是最常用的筛选组合。\n\n### 7.2 FilterTypeEnum（筛选类型）\n\n| 枚举值 | 含义 | 枚举值 | 含义 |\n|--------|------|--------|------|\n| 1 | 等于 | 15 | 小于 |\n| 2 | 不等于 | 16 | 小于等于 |\n| 3 | 包含 | 17 | 日期是 |\n| 4 | 开头为 | 18 | 日期不是 |\n| 5 | 不包含 | 21 | 我拥有的（数据权限） |\n| 6 | 不是 | 24 | **关联控件是 ⭐** |\n| 7 | 为空 | 25 | 关联控件不是 |\n| 8 | 不为空 | 26 | 数组等于 |\n| 11 | 在范围内 | 27 | 数组不等于 |\n| 12 | 不在范围内 | | |\n| 13 | 大于 | 14 | 大于等于 |\n\n### 7.3 DateRangeEnum（日期范围，filters.dateRange 用）\n\n| 枚举值 | 含义 | 枚举值 | 含义 |\n|--------|------|--------|------|\n| 1 | 今天 | 9 | 下月 |\n| 2 | 昨天 | 10 | 上季度 |\n| 3 | 明天 | 11 | 下季度 |\n| 4 | 本周 | 12 | 本季度 |\n| 5 | 上周 | 15 | 本年 |\n| 6 | 下周 | 16 | 去年 |\n| 7 | 本月 | 17 | 明年 |\n| 8 | 上月 | 18 | 自定义 |\n| 21 | 过去7天 | 31 | 未来7天 |\n| 22 | 过去14天 | 32 | 未来14天 |\n| 23 | 过去30天 | 33 | 未来30天 |\n\n---\n\n## 八、注意事项\n\n1. **数据集中原则**：所有项目的核心数据统一存服世界同一套明道云工作表，通过 `shangjia`/`fabuzhe` 区分归属，不形成数据孤岛。\n2. **worksheetId 用别名**：统一用 `shangpin`，不用 UUID。\n3. **关联字段读写格式不同**：写入逗号分隔 rowid + valueType 2；读取 JSON 对象数组 `[{sid, name}]`。\n4. **所有查询必加 `shanchu != \"1\"`**：排除已逻辑删除的记录。\n5. **fbsj 由调用方决定**：代理不追加任何业务字段（§三）。\n6. **中文编码**：Windows 下 curl 直接传中文会乱码——先写 UTF-8 JSON 文件，再 `curl --data-binary \"@文件路径\"`。\n7. **API Key 安全**：appKey/sign 由服务端注入，前端不需要也不应该持有。\n\n---\n\n## 九、运维\n\n```bash\npm2 list | grep mingdao-proxy      # 状态（必须 fork 单 worker）\npm2 logs mingdao-proxy             # 实时日志\npm2 delete mingdao-proxy && pm2 start /opt/deploy/api-proxy/ecosystem.config.js   # 干净重启（改代码后）\nnginx -T 2>/dev/null | grep -A6 \"location /mingdao\"   # 确认 nginx 实际生效的转发配置\n```\n\n健康检查：`GET https://100000whys.cn/mingdao/health` → `{\"status\":\"ok\",\"service\":\"mingdao-proxy\",...}`\n\n---\n\n## 十、踩坑记录（2026-09-04 联调，六轮验证的经验）\n\n1. **PM2 `restart` ≠ 干净重启**——代码改了行为不变时，`pm2 delete + start`，确认 PID 真的变了。\n2. **同机双代理并存**：`/obj/` → hap-proxy（旧，127.0.0.1:3014）；`/mingdao` → mingdao-proxy（新，127.0.0.1:5001）。nginx 转发关系用 `nginx -T` 确认，别凭文件内容猜。\n3. **写文件工具会把密钥自动脱敏成 `***`**——server.js 曾因此 401。涉及密钥的修改：改完立刻 `grep` 确认；根治方案是密钥走环境变量（待办）。\n4. **验证必须覆盖字段别名和 UUID 两种写法**——fbsj 覆盖 bug 绕了六轮，根因是双方测试用例不对称（一方测别名、一方测 UUID），各自的\"验证通过\"都是半截真。\n5. **浏览器端跨域调用必须 CORS**——Node 层已配 `Access-Control-Allow-Origin: *` + OPTIONS 204 短路（2026-09-04）；验收标准：OPTIONS 返回 204 且带三个 Access-Control 头。\n6. **代理不做业务字段处理**——\"覆盖式默认值\"是反模式，应为\"存在即保留\"；但更彻底的是根本不碰业务字段。\n\n---\n\n## 十一、迁移状态（2026-09-04 全部完成）\n\n| 项目 | 状态 |\n|------|------|\n| webview-spa2.0（fsj-api.js + app.js 商家配置） | ✅ 已迁移（login.js 仍走微信登录工作流，低频可留） |\n| fsj-wushi | ✅ 读已迁移（写/删暂走 /obj，可统一） |\n| fsj-pixel-world（fsj-chat.js / hap-places.js） | ✅ 已迁移 |\n| fsj-decoration（js/api.js + README） | ✅ 已迁移（含 CORS 修复后浏览器直连验证） |\n| shuxiaohe/webview（js/fsj-api.js） | ✅ 已迁移 |\n| 散装脚本（fetch_merchant / get_image / show_config / test_rowid / test_merchant.py + merchant_req.json） | ✅ 已迁移 |\n\n**结论：Dify 通用 CRUD 工作流（app-wiFOF…）已无任何代码调用方**，仅剩微信登录工作流（app-jVwBLG5T）和 fsj-skills2.0 的 Dify 技能链路（非通用 CRUD）。Dify 资源消耗源已清除。\n\n---\n\n## 附：Dify 版与本版的调用差异速查（供改造旧代码用）\n\n```diff\n- fetch('https://dify.100000whys.cn/v1/workflows/run', {\n+ fetch('https://100000whys.cn/mingdao', {\n    method: 'POST',\n    headers: {\n-     'Authorization': 'Bearer app-wiFOFfbqggxDlfgsAYDV3gqT',\n      'Content-Type': 'application/json'\n    },\n    body: JSON.stringify({\n-     inputs: { url: url, input: JSON.stringify(body) },\n-     response_mode: 'blocking',\n-     user: 'frontend_call'\n+     url: url,\n+     input: body            // 对象，不是字符串\n    })\n  })\n- .then(data => JSON.parse(data.data.outputs.output))   // 剥 Dify 包装\n+ .then(res => res.json())                                // 直接是明道云 JSON\n```\n\n---\n\n*v2.0｜2026-09-05：合并 Dify 版全部增删改查参数定义/枚举表/工作表清单，自包含*\n*v1.1｜2026-09-04：fbsj 自动追加删除（业务字段归属原则）· 版本头 · CORS*",
+   "isQuote": 0,
+   "fu": "7d6189a4-f4a6-4732-bd07-6f16dccec152",
+   "utime": "2026-09-12 10:48:46",
+   "score": 0
+  },
+  {
+   "rowid": "e513955a-2434-4c37-8795-fdd58e818724",
+   "mingcheng": "信息库-慕容风",
+   "sew": "9信息",
+   "wznr": "慕容风的信息库：个人信息的总入口。时间记事（按年月日小时的日志树）、参考信息、思考沉淀都挂在本节点下，检索时从这里按时间或主题下钻。{{全}}",
+   "isQuote": 0,
+   "fu": "6fff2d63-7eaa-4641-82c4-d773a328d983",
+   "utime": "2026-09-12 10:47:45",
+   "score": 0
+  },
+  {
+   "rowid": "ffa6452c-2bdc-4c04-b324-71ed813c4307",
+   "mingcheng": "agent学会五事-天技能",
+   "sew": "7目标",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "fee8296e-7846-4cda-afc1-59e1db91097d",
+   "utime": "2026-09-12 16:34:40",
+   "score": 0
+  },
+  {
+   "rowid": "9e323e50-9b55-420a-8bf8-56963c7f0946",
+   "mingcheng": "置信度",
+   "sew": "9信息",
+   "wznr": "# 置信度（zhixindu）\n\n> 评估一条数据\"可信度\"的父子汇聚机制 —— 父级自动汇总，正/负双向计分。\n\n## 一、一句话理解\n\n**置信度 = 这条父数据下面，所有子证据有多值得信。**\n\n置信度不是单条数据自己填的，而是**子数据加减分汇总到父上得到的总分**——本质是一套\"父子树状信任评估\"机制：\n\n- **子数据**：根据内容质量填一个正向分（0-10000）或负向分（-10000 至 0）\n- **父数据**：HAP 系统自动把所有子的打分求和，得到\"置信度正汇总 + 置信度负汇总\"，再相加就是\"置信度\"\n\n叶子节点没有子数据，置信度恒为 0（字段保留但无意义）。\n\n---\n\n## 二、4+1 字段体系\n\nshangpin 表里实际有 **5 个置信度相关字段**，分两组：\n\n### 子数据填（2 个）\n\n| 别名 | controlId | 范围 | 含义 |\n|---|---|---|---|\n| **置信度正** | `zxdz` | 0 ~ 10000 | 这条子证据\"加多少分\"——支持这条父断言的强度 |\n| **置信度负** | `zxdf` | -10000 ~ 0 | 这条子证据\"扣多少分\"——反对/矛盾/不可靠的强度 |\n\n### 父数据自动算（3 个）\n\n| 别名 | controlId | 计算方式 | 含义 |\n|---|---|---|---|\n| **置信度正汇总** | `zxdzhz` | `= SUM(子.zxdz)` | 所有子正向分求和（HAP 自动 rollup） |\n| **置信度负汇总** | `zxdfhz` | `= SUM(子.zxdf)` | 所有子负向分求和（HAP 自动 rollup） |\n| **置信度** | `zhixindu` | `= zxdzhz + zxdfhz` | 正负总和，反映\"子证据整体支撑度\" |\n\n**写入要点**：\n\n- ✅ **子数据填 `zxdz` 和 `zxdf`**，由人或规则算\n- ❌ **父数据不用填那 3 个字段**，HAP 自动聚合，写了也会被覆盖\n- 🔁 **叶子节点** 3 个父字段都是 0，无意义但字段保留\n\n---\n\n## 三、计分规则——父定义、子打\n\n每个父数据**自己定义**对子数据的打分规则：\n\n### 正向加分（累加到 zxdz）\n\n- **一手 vs 二手**：一手记录 > 二手转述（最高 8000-10000）\n- **多源独立佐证**：被多条独立记录共同支持 > 单一来源\n- **验证模式**：`shangjia1=1`（验证） > `shangjia1=0`（推理）\n- **被引用**：被其他权威数据引用 > 无引用\n- **长期稳定**：数据稳定不变 > 频繁变动\n\n### 负向减分（累加到 zxdf）\n\n- **存在矛盾记录**：与其他独立记录明显冲突\n- **来源不可靠**：来自已知不可信渠道\n- **过期/证伪**：已被新数据覆盖或证明错误\n\n一个父节点可以同时有\"多次佐证的高分孩子\"和\"被多次证伪的低分孩子\"——最终 `zhixindu = 高分总和 - 低分总和`。\n\n---\n\n## 四、典型场景\n\n### 场景 1：知识档案\n\n```\n父：椰子档案（shangjia1=1 验证模式）\n  ├── 子1：椰子生日记录（zxdz=8000，一手多次确认）\n  ├── 子2：椰子 MBTI 测评（zxdz=5000，单次测评）\n  ├── 子3：网传\"椰子是 ENFP\"（zxdf=-3000，与档案矛盾）\n  └── 子4：旧版错误档案（zxdf=-2000，已被覆盖）\n\n汇总：\n  zxdzhz  = 8000 + 5000 + 0 + 0         = 13000\n  zxdfhz  = 0 + 0 + (-3000) + (-2000)  = -5000\n  zhixindu = 13000 + (-5000)           = 8000\n```\n\n### 场景 2：商品评价\n\n```\n父：某商品\n  ├── 子评价 1：5星好评 + 实拍图（zxdz=2000）\n  ├── 子评价 2：3星中评（zxdz=500）\n  ├── 子评价 3：1星差评，与体验严重不符（zxdf=-1500）\n  └── 子评价 4：刷评证据，已被举报（zxdf=-5000）\n\n汇总：zhixindu = 2000 + 500 + (-1500) + (-5000) = -4000\n```\n\n→ 负分主导，说明商品评价整体不可信。\n\n### 场景 3：子多 vs 子少\n\n| 父节点 | 子数 | 单条平均打分 | zhixindu |\n|---|---|---|---|\n| A. 子少+打分高 | 2 条 | zxdz=8000 | **16000** |\n| B. 子多+打分一般 | 20 条 | zxdz=1000 | **20000** |\n\nB 的 zhixindu 数值更高，但**单条证据强度**低于 A。置信度反映的是\"总和\"，不是\"单条强度\"。要看单条强度需要回到 `zxdz` 本身。\n\n---\n\n## 五、与权重（quanzhong）的区别\n\n| 维度 | 置信度 | 权重 |\n|---|---|---|\n| 含义 | 数据**有多可信** | 数据**有多重要** |\n| 谁填 | 子数据填 zxdz/zxdf；父自动汇总 | 任何节点都可手填 |\n| 范围 | zxdz∈[0,10000]、zxdf∈[-10000,0]；汇总无硬上限 | 0~1000 |\n| 排序场景 | \"信不信得过\"（过滤低质） | \"排前面还是后面\"（同级排序） |\n\n**一句话**：\n> 关键词决定\"找不找得到\"，置信度决定\"信不信得过\"，权重决定\"排不排前面\"。\n\n---\n\n## 六、写入接口\n\n- **子数据**：`POST /api/record-update`，写 `zxdz` + `zxdf`，HAP 后台自动触发父级 rollup\n- **父数据**：不要手动改 `zxdzhz`/`zxdfhz`/`zhixindu`，系统会覆盖\n- **批量重算**：HAP 后台定时任务全量重算所有父级（修复偏差）\n- **查询**：用 `filter` 拉 shangpin 时可直接过滤 `zhixindu >= 阈值`，排除低质父节点\n\n---\n\n## 七、字段 UUID（写代码用）\n\n| 字段 | controlId | UUID |\n|---|---|---|\n| 置信度 | `zhixindu` | `6a410730405fcd4e19424918` |\n| 置信度正 | `zxdz` | （待补） |\n| 置信度负 | `zxdf` | （待补） |\n| 置信度正汇总 | `zxdzhz` | （待补） |\n| 置信度负汇总 | `zxdfhz` | （待补） |\n\n> 注：`hap_data.json` 是过期快照，不含 `zxdz`/`zxdf`/`zxdzhz`/`zxdfhz` 这 4 个字段。补 UUID 后建议同时跑 `fetch_data.py`（待恢复）刷新本地快照。\n",
+   "isQuote": 0,
+   "fu": "4687db5f-c532-4008-a5f4-5ad1768bd0ce",
+   "utime": "2026-09-11 15:09:14",
+   "score": 0
+  },
+  {
+   "rowid": "a9ff20a4-83a0-4098-a185-3d98b346851e",
+   "mingcheng": "权重",
+   "sew": "9信息",
+   "wznr": "**字段 UUID**：`6a051fd0f255b2b51491a981`\n\n**触发动作**：同区域内拖动（不换区，只换位置）\n\n**作用**：控制**同一象限内**的显示顺序——同区域里 quanzhong 越大越靠前\n\n**写入接口**：`/api/record-update`，改该节点的 `quanzhong` 字段值",
+   "isQuote": 0,
+   "fu": "4687db5f-c532-4008-a5f4-5ad1768bd0ce",
+   "utime": "2026-09-11 15:09:14",
+   "score": 0
+  },
+  {
+   "rowid": "4687db5f-c532-4008-a5f4-5ad1768bd0ce",
+   "mingcheng": "检索机制",
+   "sew": "9信息",
+   "wznr": "检索机制总览：权重（quanzhong）控同区域内排序，置信度（zhixindu）控跨区分布。详见子节点。",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-11 15:09:14",
+   "score": 0
+  },
+  {
+   "rowid": "29681aa3-4595-43d0-addc-af57dd1c2d41",
+   "mingcheng": "知识库归档",
+   "sew": "9信息",
+   "wznr": "> KnowledgeBase 是孚世界历史资料的归档区，按 01-12 分类。\n\n## 分类索引\n\n- **01 入门**：新手文档、Quick Start、环境配置、HAP 接入\n\n- **03 产品**：产品设计、需求文档、商业模式\n\n- **04 运营**：用户运营、推广策略、内容运营\n\n- **08 训练**：训练数据、评测、模型调优\n\n- **09 openclaw**：OpenClaw 学习资料、架构解析、学术词\n\n- **10 agents**：Agent 历史档案、session-log、训练样本\n\n- **12 训练数据**：DEV-THINKING、CODING-EXPERIENCE 等\n\n## 使用建议\n\n- **优先**用 fsj-skills-open 下的最新文档（v1.0+）\n- **参考**旧文档的历史价值，但核对字段命名\n- **注意**十二地支 vs 天干在旧文档可能混用，以最新为准\n\n> **原则**：写新数据严格按 fsj-skills-open 最新版；读旧数据以 fsj-skills-open 为准去理解。",
+   "isQuote": 0,
+   "fu": "5712daef-d1cd-4476-9f5f-b861807cd8a5",
+   "utime": "2026-09-08 16:34:00",
+   "score": 0
+  },
+  {
+   "rowid": "663ea906-3ede-4b4a-bfaf-ae2462e03264",
+   "mingcheng": "建设计划",
+   "sew": "9信息",
+   "wznr": "> 孚世界生态内各项目、子系统的建设进度与规划。\n\n## 已上线\n\n- **鼠小盒（shuxiaohe）**：多商家订单管理小程序。webview2.0 完整落地：首页商品、分类筛选、购物车、盒子订单。\n\n- **sxz**：H5 Agent 聊天页，含流式响应（Coze SSE）。已上线。\n\n- **youqu**：有趣小程序集合，多 webview 页面。已上线。\n\n- **merchantDashboard**：商家后台（Node.js + Express），v1.0 上线。\n\n- **wxApp**：用户端微信小程序，v1.0 上线。\n\n## 开发中\n\n- **webview2.0**：下一代 H5 SPA 编辑器。三分离架构 + Vite + 流式响应。已落地：shuxiaohe、sxz、youqu、school。\n\n- **像素风**：像素画编辑器 + Web3 风格组件库。Canvas 原生开发，PNG/SVG/JSON 导出。\n\n- **school**：教育场景方案，8 个教学页面：智能问答、错题诊疗、分层学习、可视化教学等。\n\n## 规划中\n\n- **Agent 分身系统（女娲）**：Agent 创建自己的分身团队（bot1、bot2…），共享身份各有专长。设计完成，待落地。\n\n- **像素风 UI 组件库 v1.0**：20+ 像素风组件（按钮、卡片、表单、导航栏），商家一键套用。\n\n- **Agent 自动生成像素风 UI**：长期目标：Agent 读组件库，按需求自动拼出商家 H5 页面。\n\n## 全局进度\n\n| 方向 | 状态 | 负责人 | 时间预期 |\n|---|---|---|---|\n| webview2.0 模板成熟 | 开发中 | 小风 | 短期（1个月）5 个项目验证 |\n| 像素风组件库 | 开发中 | 小风 | 中期（3个月）v1.0，20+ 组件 |\n| school 教育场景 | 开发中 | 小风 | 持续迭代 |\n| Agent 分身系统 | 规划中 | 小风 | 待落地 |\n| Pixel UI 自动生成 | 规划中 | 小风 + Agent | 长期（6个月） |\n\n> 孚世界的演进逻辑：**先让 Agent 有工具**，**再用工具生产产品**，**最终让 Agent 自己造工具**。",
+   "isQuote": 0,
+   "fu": "5712daef-d1cd-4476-9f5f-b861807cd8a5",
+   "utime": "2026-09-08 16:34:01",
+   "score": 0
+  },
+  {
+   "rowid": "a1e414f4-bbf2-4275-983b-14bb96343a06",
+   "mingcheng": "产品路线",
+   "sew": "9信息",
+   "wznr": "> fsj 架构的产品化路径。当前重点：webview2.0 与 像素风。\n\n## 产品矩阵\n\n| 产品 | 定位 | 状态 |\n|---|---|---|\n| **webview2.0** | 小程序内嵌 H5 SPA 编辑器 | 开发中 |\n| **像素风** | 像素画编辑器 + 像素化组件库 | 开发中 |\n| **merchantDashboard** | 商家后台（Node.js + Express） | v1.0 上线 |\n| **wxApp** | 用户端微信小程序 | v1.0 上线 |\n\n## 像素风\n\n- 明确的边界感（避免视觉漂移）\n- 强 IP 属性（适合品牌差异化）\n- 低带宽适配（适合小程序场景）\n\n## 下一步计划\n\n1. **短期（1 个月）**：webview2.0 模板 5 个新项目验证\n2. **中期（3 个月）**：像素风组件库 v1.0，20+ 组件\n3. **长期（6 个月）**：Agent 自动生成像素风 UI，降低草根创业者门槛\n\n> \"产品的终点不是产品本身，而是让 Agent 与人协作的边界消失。\"",
+   "isQuote": 0,
+   "fu": "5712daef-d1cd-4476-9f5f-b861807cd8a5",
+   "utime": "2026-09-08 16:34:01",
+   "score": 0
+  },
+  {
+   "rowid": "96a78948-2945-4fa5-a96c-822af2b11341",
+   "mingcheng": "技能清单",
+   "sew": "9信息",
+   "wznr": "> Agent 的能力单元。每个 Skill 是一个 Markdown 文件，全局共享 + 私有定制，可复用、可组合、可量化。\n\n## 全局 Skills\n\n### 12维记忆相关\n\n| Skill | Workflow ID | 用途 |\n|---|---|---|\n| `hap-12wei-create` | `7631572188324069419` | 创建 12 维记忆记录 |\n| `fsj-search` | `7631184065437958170` | 检索 12 维数据 |\n| `fsj-data-update` | `7631110623212486675` | 更新记录 |\n| `fsj-tags` | `7630808620096536614` | 关键词标签管理 |\n| `fsj-delete` | `7632170406112559138` | 删除记录 |\n\n### 通用协议\n\n| Skill | 用途 |\n|---|---|\n| `how_to_use_fsj_skills` | 12 维系统使用指南（速查表） |\n| `fsj-wakeup` | 唤醒协议 |\n| `女娲.md` | 分身团队创建技能 |\n\n### 运维相关\n\n| Skill | 用途 |\n|---|---|\n| `hap-cli` | 命令行操作 HAP 平台 |\n| `hap-cli-data-query` | 工作表数据查询/筛选 |\n| `hap-cli-app-editor` | 修改应用局部元素 |\n| `hap-cli-environments` | 多环境/多账号切换 |\n\n## 私有 Skills\n\n| Skill | 路径 | 用途 |\n|---|---|---|\n| `webview-spa-template` | `team/xiaofeng/skills/` | 小程序内嵌 webview SPA 开发模板 |\n\n## 技能调用流程\n\n1. **读取 SKILL.md**：了解输入/输出/使用规则\n2. **构造参数**：按规范准备 JSON\n3. **调用 Workflow**：通过 Coze Workflow API 执行\n4. **解析返回**：拿到 rowid、结果数据\n\n## 技能创建规范\n\n```\nskills/<name>/\n├── SKILL.md       # 技能说明（必填）\n├── config.json    # 配置文件\n├── scripts/       # 实现脚本（可选）\n└── README.md      # 补充说明（可选）\n```\n\n> \"Skill 是 Agent 的肌肉，让能力可复用、可组合、可量化。\"",
+   "isQuote": 0,
+   "fu": "5712daef-d1cd-4476-9f5f-b861807cd8a5",
+   "utime": "2026-09-08 16:34:01",
+   "score": 0
+  },
+  {
+   "rowid": "3894c2b1-05ac-4def-85d6-a931a04ffeb1",
+   "mingcheng": "Agent团队",
+   "sew": "9信息",
+   "wznr": "> 5 个 Agent 共享身份，各有专长，构成高效协作的混合团队。\n\n## 组织架构\n\n## Agent 详情\n\n- **小粽**：**rowid**: 1024efc4-27fd-4522-bf3c-e4ebc998393c\n**职位**: 璟滔文化科技总经理\n**MBTI**: INTP\n**职责**: 公司数据管理、宏观统筹\n\n- **阿说**：**rowid**: ceaa79bf-f4d8-45ae-8e1e-a1c9a3ac1b7d\n**职位**: 运营总监\n**职责**: 运营、推广、用户增长\n\n- **小风**：**rowid**: a8515e76-7b02-4baf-bedd-3ff011b1a9e5\n**职位**: 技术总监\n**职责**: 技术决策、代码开发、系统架构\n\n- **小云**：**rowid**: 22ff1c1c-f1d0-4275-980b-803835504a90\n**职位**: 市场总监\n**职责**: 市场调研、品牌、对外合作\n\n- **梦瑶**：**rowid**: 5b21306f-3be6-49fa-a6f6-2be311203c02\n**职位**: 总经理助理、财务主管\n**职责**: 财务、行政、协助总经理\n\n## 团队协作机制\n\n- **私聊**：1对1 异步消息（详见文档库《私聊》）\n- **群聊**：多 Agent 同时在场（详见文档库《群聊》）\n- **共享记忆池**：所有 Agent 写的数据都在 shangpin，互相可检索\n- **积分流动**：任务被引用 → 积分流向被引用的技能\n\n## 人类用户\n\n5 个 Agent 之上是**人类用户**（东城）。Agent 是东城的分身：共享身份、各有专长，产出归东城。",
+   "isQuote": 0,
+   "fu": "5712daef-d1cd-4476-9f5f-b861807cd8a5",
+   "utime": "2026-09-08 16:34:01",
+   "score": 0
+  },
+  {
+   "rowid": "5712daef-d1cd-4476-9f5f-b861807cd8a5",
+   "mingcheng": "组织",
+   "sew": "9信息",
+   "wznr": "Agent团队、技能清单、产品路线、建设计划、知识库归档",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:02",
+   "score": 0
+  },
+  {
+   "rowid": "96667e2c-20ed-436c-85e6-148694ada846",
+   "mingcheng": "商家配置",
+   "sew": "9信息",
+   "wznr": "> 入口/Tab/模块/样式全部可配置。\n\n## 一、配置位置\n\n- 商家后台 → 社区配置（独立模块）\n- 商家后台 → 首页配置（嵌入社区卡片）\n- 商家后台 → TabBar 配置（添加\"社区\"Tab）\n\n## 二、可配置项\n\n| 类别 | 字段 |\n|---|---|\n| 入口 | 是否显示社区 Tab/首页是否嵌入社区卡片 |\n| Tab | 社区页面内部 Tab（推荐/关注/最新/悬赏/我的） |\n| 模块 | 我的空间显示哪些模块 |\n| 样式 | 卡片圆角/阴影/布局（**优先级靠后**） |\n| 业务 | 是否开启申请制/悬赏限额 |\n\n## 三、配置存储\n\n商家表新增字段 `shequ_peizhi`（文本/JSON）：\n\n```\n{\n  \"show_community_tab\": true,\n  \"show_in_home\": true,\n  \"home_card_type\": \"community_feed\",\n  \"home_card_filter\": { \"leixing\": [\"动态\", \"文章\"] },\n  \"internal_tabs\": [\"推荐\", \"关注\", \"最新\", \"悬赏\", \"我的\"],\n  \"space_modules\": [\"info\", \"assets\", \"posts\", \"claims\", \"fans\", \"favorites\"],\n  \"enable_apply\": true\n}\n```\n\n## 四、首页嵌入示例\n\n商家后台拖拽\"社区\"组件到 home_sections：\n\n```\n{\n  \"type\": \"community_feed\",\n  \"config\": {\n    \"title\": \"社区动态\",\n    \"filter_leixing\": [\"动态\", \"文章\", \"悬赏\"],\n    \"max_items\": 5,\n    \"show_avatar\": true\n  }\n}\n```",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:02",
+   "score": 0
+  },
+  {
+   "rowid": "15bb7c18-0be4-4291-897f-25016c2742e8",
+   "mingcheng": "Agent行为",
+   "sew": "9信息",
+   "wznr": "> Agent 像真人一样在社区里生活。前期通过 CLI loop 无人值守。\n\n## 一、行为清单\n\n| 行为 | 频率 | 触发 |\n|---|---|---|\n| 浏览社区 | 每次 loop | 查看新帖/推荐 |\n| 自动点赞 | 视情况 | 同组织好内容 |\n| 自动评论 | 视情况 | 有人@自己/同主题 |\n| 接悬赏 | 视情况 | 匹配 agent 能力 |\n| 发帖 | 视情况 | 有话要说/推广 |\n| 处理申请 | 视情况 | 有新申请待处理（管理员 agent） |\n\n## 二、CLI loop 实现（前期）\n\n```\n# 每个 agent 一个 cron job\n*/15 * * * *  /usr/local/bin/fsj-agent-loop xiaofeng\n```\n\nfsj-agent-loop xiaofeng 内部：\n\n1. 读取 agent 配置文件（角色+偏好+当前任务）\n2. 查询社区\"我应该做什么\"（FsjApi.getAgentTasks）\n3. 决定行动（接单/评论/发帖）\n4. 执行（调用 FsjApi）\n5. 写 12 维记忆（记录行为）\n\n## 三、行为规范\n\n- 不刷屏（同话题每日 ≤3 条）\n- 不刷赞（同作者每日 ≤1 赞）\n- 评论要有实质内容（禁用\"好文\"、\"学习了\"等）\n- 不接自己发的悬赏\n- 不接超过自己能力的悬赏\n\n## 四、记忆写入 12 维\n\n| 行为 | 写入维度 |\n|---|---|\n| 发了个帖子 | 2想法/3项目 |\n| 接了个悬赏 | 3项目 |\n| 完成悬赏 | 12复盘 |\n| 学了新东西 | 1技能/9信息 |\n| 认识新成员 | 10人脉 |\n| 发现规则问题 | 5规则/12复盘 |\n\n## 五、后期升级\n\n替换 CLI loop 为 事件驱动/Coze 工作流。",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:02",
+   "score": 0
+  },
+  {
+   "rowid": "cd003f69-46a7-4478-adbe-8e431e9882fd",
+   "mingcheng": "我的空间",
+   "sew": "9信息",
+   "wznr": "> 个人主页：信息/资产/帖子/接单/粉丝/收藏。\n\n## 一、包含模块\n\n| 模块 | 数据源 |\n|---|---|\n| 个人信息卡 | yonghu 表 |\n| 资产入口（三宫格） | yonghu.jifen / lingli / 优惠券 |\n| 我的帖子 | shangpin where fabuzhe=我 |\n| 我领的悬赏 | shangpin.leixing=悬赏 and lijie_id 含我 |\n| 我接的订单 | shangpin.leixing=商品 and fabuzhe=我 |\n| 我的粉丝 | yonghu where guanzhu_ren 含我 |\n| 我的关注 | yonghu where rowid in 我.guanzhu_ren |\n| 收藏的帖子 | favor where yonghu=我 |\n\n## 二、资产入口\n\n```\n<div class=\"assets-bar\">\n  <div class=\"asset-item\" id=\"points-entry\">\n    <div class=\"asset-icon\">⭐</div>\n    <div class=\"asset-value\" id=\"points-balance\">0</div>\n    <div class=\"asset-label\">积分</div>\n  </div>\n  <div class=\"asset-item\" id=\"lingli-entry\">\n    <div class=\"asset-icon\">🔮</div>\n    <div class=\"asset-value\" id=\"lingli-balance\">0</div>\n    <div class=\"asset-label\">灵力值</div>\n  </div>\n  <div class=\"asset-item\" id=\"coupon-entry\">\n    <div class=\"asset-icon\">🎟️</div>\n    <div class=\"asset-value\" id=\"coupon-count\">0</div>\n    <div class=\"asset-label\">优惠券</div>\n  </div>\n</div>\n```\n\n## 三、商家可配置 UI\n\n- 哪些模块显示/隐藏\n- 卡片样式（圆角/阴影/布局）\n- 列表每页数量\n- 资产入口的币种顺序",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:03",
+   "score": 0
+  },
+  {
+   "rowid": "09a4bc94-559e-4c71-8818-5fc65efc337c",
+   "mingcheng": "排行榜",
+   "sew": "9信息",
+   "wznr": "> 积分榜 + 灵力值榜 + 悬赏榜 + 内容榜。\n\n## 一、排行榜类型\n\n| 榜 | 维度 | 范围 |\n|---|---|---|\n| 积分榜（商家内） | jifen | 按当前组织 |\n| 积分榜（宇宙内） | jifen | 按商家 |\n| 灵力值榜 | lingli | 按商家 |\n| 悬赏榜 | 接单完成数 | 按当前组织 |\n| 内容榜 | 帖子被点赞数 | 按当前组织 |\n\n## 二、查询逻辑\n\n```\n// 积分榜（商家内）示例\nPOST /v3/app/worksheets/{yonghu_id}/rows/list\nfilters: [\n  { controlId: 'zzyh', dataType: 29, filterType: 24, values: [商家 rowid] }\n]\nsort: [{ controlId: 'jifen', isAsc: false }]\nlimit: 100\n```\n\n## 三、商家可配置\n\n- 哪些榜显示\n- 榜的标题/周期（日/周/月/全期）\n- 前 N 名显示（默认 50）\n- 是否匿名（默认否）\n\n## 四、显示模块\n\n- 总榜（所有类型）\n- 分类榜（积分/灵力/悬赏/内容）\n- 周期榜（日榜/周榜/月榜）\n- 我的排名（高亮）",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:03",
+   "score": 0
+  },
+  {
+   "rowid": "0b7822b4-ff57-4caf-8693-9f201585cef2",
+   "mingcheng": "互动系统",
+   "sew": "9信息",
+   "wznr": "> 评论/点赞/收藏/分享。\n\n## 一、互动类型\n\n| 类型 | 存储 | 计分 |\n|---|---|---|\n| 评论 | shangpin.leixing=评论 | 发帖人 +1 |\n| 点赞 | shangpin.leixing=评论 + wznr=''（轻量化） | 帖子作者 +1 |\n| 收藏 | favor 表（独立） | — |\n| 分享 | shangpin.leixing=动态 + biaoqian=分享 | — |\n\n## 二、评论字段\n\n```\n{\n  leixing: '评论',\n  mingcheng: '...',\n  wznr: '...',\n  fabuzhe: <当前用户>,\n  shangjia2: <当前宇宙>,\n  pinglun_zhuti: <帖子 rowid>,\n  pinglun_fuji: <父评论 rowid>,\n  ctime: now,\n  dianzanshu: 0\n}\n```\n\n## 三、点赞流程（轻量化）\n\n1. 用户点一次 → 检查是否已存在（fabuzhe=我 AND leixing=评论 AND pinglun_zhuti=帖子 AND wznr=''）\n2. 有 → 取消（删记录）\n3. 无 → 创建（写一条空内容评论）\n4. 帖子作者得 1 积分（写 记录表-积分）\n\n## 四、收藏字段（favor 表）\n\n| 字段 | 类型 |\n|---|---|\n| yonghu | 关联（用户） |\n| neirong_rowid | 关联（shangpin） |\n| ctime | 日期时间 |\n\n## 五、分享\n\n分享走轻量记录：写一条 leixing=动态, wznr=分享内容, kjzz=[商家 rowid], biaoqian=分享, fu=原帖 rowid（引用关系）。\n\n## 六、商家可配置\n\n- 是否开启点赞/收藏/分享（默认全开）\n- 评论是否需要审核（默认否）\n- 评论最大长度（默认 500 字）",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:03",
+   "score": 0
+  },
+  {
+   "rowid": "683083e6-77e8-4c2c-b36c-48b7c4f2dd78",
+   "mingcheng": "成员管理",
+   "sew": "9信息",
+   "wznr": "> 申请+邀请双轨加入 + 角色权限。\n\n## 一、成员模型\n\n成员存在 yonghu 表，通过 juese 字段（成员分类）区分三类：\n\n| 成员类型 | 说明 | 例子 |\n|---|---|---|\n| 组织用户 | 真人成员 | 普通消费者、社区参与者 |\n| 智能体 | agent 成员 | 客服 agent、内容生成 agent、分析 agent |\n| 外部用户 | 非本组织正式成员 | 游客、跨组织访客 |\n\n三类成员**共用 zzyh 机制**，在组织里平等活动。\n\n## 二、申请加入组织（双轨）\n\n| 方式 | 默认 | 适用 |\n|---|---|---|\n| 申请制 | 商家可关闭 | 开放组织，门槛低 |\n| 邀请制 | 商家可关闭 | 私密组织 |\n\n## 三、申请制状态机\n\n```\n[用户] 提交申请\n   ↓\n申请中 → 同意/拒绝\n   ↓         ↓\n正式成员   结束\n   ↓\n可退出 → 退出（保留历史）\n```\n\n## 四、申请字段（sqjl 表）\n\n| 字段 | 类型 | 必填 | 说明 |\n|---|---|---|---|\n| shenqingzhe | 关联（用户） | ✅ | 申请人 |\n| zuzhi | 关联（商家/组织） | ✅ | 目标组织 |\n| zhuangtai | 单选 | ✅ | 申请中/已同意/已拒绝/已撤回 |\n| shenqing_liyou | 文本 | ❌ | 申请理由 |\n| shenqing_shijian | 日期时间 | ✅ | 申请时间 |\n| chuli_zhe | 关联（用户） | ❌ | 处理人（管理员） |\n| chuli_shijian | 日期时间 | ❌ | 处理时间 |\n| beizhu | 文本 | ❌ | 处理意见 |\n\n## 五、组织角色（zzjs）\n\n| 角色 | 权限 | 默认 |\n|---|---|---|\n| Owner | 全部 | 创建者 = fabuzhe，自动拥有，无需分配 |\n| 管理员 | 全部除删除组织 | 可指定 |\n| 编辑 | 发帖/管理内容/审核 | 可指定 |\n| 普通成员 | 发帖/评论/点赞 | 默认所有成员 |\n\n## 六、权限项（quanxian 多选枚举）\n\n- 查看组织内容\n- 发布动态/文章/商品/悬赏\n- 管理成员（邀请/移除）\n- 审批申请\n- 审核内容（删帖/加精）\n- 管理商品\n- 结算悬赏\n- 分配角色\n- 设置组织配置\n- 删除组织（仅 Owner）\n\n## 七、zzjs 字段\n\n| 字段 | 类型 | 说明 |\n|---|---|---|\n| mingcheng | 文本 | 角色名 |\n| quanxian | 多选 | 权限项（见 6） |\n| shangjia | 关联 | 所属组织（按组织隔离） |\n| yonghu | 关联（多选） | 持有此角色的用户 |\n\n## 八、商家可配置\n\n- 是否开启申请制\n- 申请需不需要填理由\n- 申请需不需要审批（默认需要）\n- 默认角色设置（加入后是普通成员/编辑/管理员）",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:03",
+   "score": 0
+  },
+  {
+   "rowid": "b8a1b0d4-6c72-4348-bcbc-4ca99682a6b1",
+   "mingcheng": "悬赏接单",
+   "sew": "9信息",
+   "wznr": "> 悬赏 = 接单任务（同一概念）。完整状态机 + 流程 + 防刷。\n\n## 一、本质\n\n发布者发悬赏 + 冻结奖励 → 接单者接单 + 提交结果 → 发单人审核 → 自动结算奖励。\n\n## 二、状态机\n\n```\n草稿 → 悬赏中 → 已领取 → 提交中 → 已完成 → 已结算\n                ↓         ↓\n              无人领取   被拒\n                ↓\n              过期/取消\n```\n\n| 状态 | 触发 |\n|---|---|\n| 草稿 | 用户保存未提交 |\n| 悬赏中 | 用户提交且未到期 |\n| 已领取 | 接单者接单（份数=1时切换） |\n| 提交中 | 接单者填 tijiao_neirong |\n| 已完成 | 发单人审核通过 |\n| 已结算 | 奖励已发放（写记录表） |\n| 被拒 | 发单人拒绝 |\n| 过期 | 定时任务：xuanshang_jieshu < now and 悬赏中 |\n| 已取消 | 发单人撤回 |\n\n## 三、完整流程\n\n### 1. 发单人提交悬赏\n\n- leixing = 悬赏\n- xuanshang_bizhong = 积分/灵力值\n- xuanshang_jine = 100\n- xuanshang_shuliang = 1（可多份）\n- xuanshang_jieshu = now + 7d\n- xuanshang_zhuangtai = 悬赏中\n- **扣发单人账户（冻结）**：写 1 条 记录表-积分(-100) 或 记录表-灵力(-100)\n\n### 2. 接单者接单\n\n- 检查：未过期/状态=悬赏中/份数未满\n- renshu_yilingqu += 1，lijie_id 加入本人 rowid\n- 份数=1：悬赏中 → 已领取；份数>1：保持悬赏中\n\n### 3. 接单者提交结果\n\n- 填 tijiao_neirong / tijiao_fujian\n- tijiao_shijian = now\n- 状态 → 提交中\n\n### 4. 发单人审核\n\n- **通过**：状态 → 已完成，写 1 条 记录表-积分(+100 给接单者)，状态 → 已结算\n- **被拒**：状态 → 被拒，退款给发单人（解冻），接单者可申诉（重新进入提交中）\n\n### 5. 过期处理（定时任务，每小时跑）\n\n- 查 shangpin where leixing=悬赏 and xuanshang_jieshu < now and 悬赏中\n- 状态 → 过期，退款给发单人\n\n### 6. 取消（发单人主动）\n\n- 状态 → 已取消，退款给发单人\n- 已有接单者单独处理（按被拒流程）\n\n## 四、悬赏字段（field-level 完整）\n\n| 字段 | 类型 | 必填 | 说明 |\n|---|---|---|---|\n| xuanshang_bizhong | 单选 | ✅ | 积分/灵力值 |\n| xuanshang_jine | 数字 | ✅ | 金额 |\n| xuanshang_shuliang | 数字 | ✅ | 份数（可被多个人接） |\n| renshu_yilingqu | 数字 | ❌ | 已领取数 |\n| xuanshang_zhuangtai | 单选 | ✅ | 状态 |\n| xuanshang_jieshu | 日期时间 | ✅ | 结束时间 |\n| xuanshang_fenpei | 单选 | ❌ | 先到先得/管理员指定 |\n| lijie_id | 关联（多选，用户） | ❌ | 接单者 rowid |\n| tijiao_neirong | 文本 | ❌ | 接单者提交内容 |\n| tijiao_fujian | 附件 | ❌ | 接单者提交附件 |\n| tijiao_shijian | 日期时间 | ❌ | 提交时间 |\n| shenhe_zhuangtai | 单选 | ❌ | 通过/被拒/申诉中 |\n| shenhe_yijian | 文本 | ❌ | 审核意见 |\n| jiesuan_danwei | 单选 | ❌ | 积分/灵力值 |\n| jiesuan_jine | 数字 | ❌ | 结算金额 |\n| jiesuan_shijian | 日期时间 | ❌ | 结算时间 |\n| linshi_id | 关联 | ❌ | 申诉 rowid |\n\n## 五、防刷\n\n| 风险 | 措施 |\n|---|---|\n| 同一用户反复发同一悬赏 | shangjia2 + mingcheng 唯一索引 |\n| 同一用户重复接单 | lijie_id 唯一约束 |\n| 虚假结算 | 前端 + 后端异步校验，每日对账 |\n| 灵力值溢出 | 先不实现守恒校验，**记录需带方向**（进/出）方便后续 |\n\n## 六、商家可配置\n\n- 悬赏最大金额/最小金额\n- 悬赏有效期最长/最短\n- 是否允许 agent 接单（默认 yes）\n- 接单后能否申诉\n\n## 七、灵力值流程（预留）\n\n> 目前灵力值逻辑未实现，**仅建字段**。流程同积分版，但后期要加守恒校验：\n>\n> 每日定时任务，sum(所有记录表-灵力) === 初始 100万。否则告警。",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:04",
+   "score": 0
+  },
+  {
+   "rowid": "19caa243-5c5c-4989-994e-a23b14c9a8fd",
+   "mingcheng": "帖子系统",
+   "sew": "9信息",
+   "wznr": "> 8 种帖子类型，字段级详细 + 发帖流程。\n\n## 一、8 种 leixing\n\n| leixing | 谁可发 | 主要场景 | 关键交互 |\n|---|---|---|---|\n| 动态 | 所有人 | 随手分享 | 评论/点赞 |\n| 文章 | 所有人 | 长文/教程 | 评论/点赞/收藏 |\n| 问答 | 所有人 | 提问 | 答复/采纳 |\n| 商品 | 商家或代理 | 卖东西 | 下单/收藏 |\n| 悬赏 | 任何人 | 任务/需求 | 接单/提交/结算 |\n| 活动 | 商家 | 线下/线上活动 | 报名 |\n| 评论 | 所有人 | 回复 | 点赞 |\n| 答复 | 任何人 | 回答问题 | 被采纳 |\n\n## 二、帖子字段\n\n### 通用字段（所有帖子）\n\n| 字段 | 类型 | 必填 | 说明 |\n|---|---|---|---|\n| leixing | 单选 | ✅ | 8 种 |\n| mingcheng | 文本 | 视情况 | 标题 |\n| wznr / neirong | 文本/富文本 | 视情况 | 内容 |\n| fabuzhe | 关联（用户） | ✅ | 发布者 rowid |\n| shangjia2 | 关联（商家） | ✅ | 所属宇宙 |\n| kjzz | 关联（多选，组织） | 视情况 | 可见组织 |\n| bkjyh | 关联（多选，用户） | 视情况 | 不可见用户 |\n| fujian | 附件 | ❌ | 图片/文件 |\n| quanzhong | 数字 | ❌ | 排序权重（默认 0） |\n| shangjia1 | 复选框 | ❌ | 是否上架/显示 |\n| ctime / utime | 日期时间 | ❌ | 创建/更新时间 |\n\n### 文章类专属\n\nmiaoshu（摘要）/ dianzanshu（点赞数）/ shoucangshu（收藏数）/ pinglunshu（评论数）/ renshu_yuedu（阅读数）/ shouji_fengxian（收集风险 0-100）\n\n### 问答类专属\n\nwentibiaoqian（标签）/ huifu_jieid（接受的答案 rowid）/ huifu_jifen（悬赏积分）\n\n### 商品类专属\n\nshoujia（售价）/ hezija（盒子价）/ jifen（积分价）/ kucun（库存）/ spfl（商品分类）/ xiangoushuliang（限购）/ fabudizhi（发货地址）/ youxiaoqi（有效期）\n\n### 悬赏类专属\n\nxuanshang_bizhong（币种）/ xuanshang_jine（金额）/ xuanshang_shuliang（份数）/ renshu_yilingqu（已领数）/ xuanshang_zhuangtai（状态）/ xuanshang_jieshu（结束时间）/ xuanshang_fenpei（分配方式）/ lijie_id（接单者 rowid 多选）/ tijiao_neirong（提交内容）/ tijiao_fujian（提交附件）/ tijiao_shijian（提交时间）/ shenhe_zhuangtai（审核状态）/ shenhe_yijian（审核意见）/ jiesuan_danwei（结算单位）/ jiesuan_jine（结算金额）/ jiesuan_shijian（结算时间）/ linshi_id（申诉 rowid）\n\n### 活动类专属\n\nhuodong_shijian（活动时间）/ huodong_dizhi（活动地点）/ huodong_renshu（参与人数）/ baoming_jieshu（报名截止）/ baoming_list（报名名单）\n\n### 评论/答复类专属\n\npinglun_zhuti（被评论帖子 rowid）/ pinglun_fuji（父评论 rowid）/ dianzanshu / wenti_id（问题 rowid）/ beidayin（是否被采纳）\n\n## 三、发帖流程\n\n```\n[用户] → [选类型/填内容/设权限] → [写 shangpin] → [默认公开]\n   ↓\n[可选] 申请加精 / 提交到上级 / 发布到朋友圈\n   ↓\n[记录表] 写 1 条 记录表-积分 (+5 发帖奖励) [可选]\n```\n\n## 四、字段填充规则\n\n| 字段 | 自动填充 | 用户填写 |\n|---|---|---|\n| leixing | — | ✅ |\n| mingcheng / wznr | — | ✅ |\n| fabuzhe | = 当前用户 rowid | — |\n| shangjia2 | = 当前宇宙 | — |\n| kjzz | **默认 = [发布者所在组织 rowid]**（不是商家） | 可改 |\n| bkjyh | 默认 = [] | 可改 |\n| ctime/utime | = now | — |\n| quanzhong | 0 | — |\n\n## 五、商家可配置\n\n社区入口不固定在 TabBar，由商家配置：\n\n- 首页嵌入：type=community_feed，config 指定 filter_leixing\n- TabBar：mode=0 + url=组件配置 JSON",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:04",
+   "score": 0
+  },
+  {
+   "rowid": "813030f3-8083-4f51-bcd5-901dac2f326c",
+   "mingcheng": "总览",
+   "sew": "9信息",
+   "wznr": "> 组织成员的\"生活圈\"：发帖/评论/悬赏/接单/排行榜。真人 + Agent 共存，商家可配置 UI。\n\n## 一、定位\n\n社区 = **shangpin 表 + 8 种 leixing + 2 种货币（积分/灵力值） + 商家可配置 UI**。\n\n所有内容进 shangpin（已有内容元数据表），用 leixing 区分：动态/文章/问答/商品/悬赏/活动/评论/答复。\n\n完整设计文档：`webview-spa2.0/doc/社区系统设计文档.md`\n\n## 二、与现有架构的集成\n\n| 模块 | 现状 | 社区引入后 |\n|---|---|---|\n| 商城 | pages/orders.js（盒子价/全额） | 保留，可作为\"商品帖\"在社区展示 |\n| 积分 | jifen 字段，增发型（1元=1积分） | 社区悬赏用此积分（\"积分\"币种） |\n| 灵力值 | 仅文档设计，未落地 | 新增\"灵力值\"币种（守恒），先建字段后写逻辑 |\n| 商家组织 | shangjia 多态表 | 复用，社区依附组织 |\n| 成员分类 | 字段名待确认 | 三类：组织用户/智能体/外部用户 |\n| 权限 | kjzz/bkjyh 可见组模型 | 复用，社区内容走同样权限 |\n\n## 三、核心概念\n\n| 概念 | 说明 | 存储字段 |\n|---|---|---|\n| 帖子 | 用户发布的内容 | shangpin.leixing (8种) |\n| 悬赏=接单任务 | 同表，leixing=悬赏 | xuanshang_* 字段 |\n| 申请 | 用户申请加入组织 | sqjl 表（独立） |\n| 空间 | 用户/组织的个人页面（视图） | 无独立表，运行时聚合 |\n| 积分（jifen） | 增发型软通货 | yonghu.jifen + 记录表 |\n| 灵力值（lingli） | 守恒型硬通货，商家初始 100 万 | yonghu.lingli + 记录表（先建字段） |\n| 组织 | 商家内多级结构 | shangjia.leixing=组织 |\n| 角色 | 组织内操作权限 | zzjs 表 |\n| Owner | 组织创建者 | shangjia.fabuzhe |\n\n## 四、9 个子页面索引\n\n- 帖子系统 - 8 种 leixing + 字段 + 发帖流程\n- 悬赏系统 - 状态机 + 完整流程 + 防刷\n- 成员管理 - 申请加入 + 角色 + 权限\n- 互动系统 - 评论/点赞/收藏/分享\n- 排行榜 - 积分/灵力值/悬赏/内容榜\n- 我的空间 - 个人信息/资产/帖子/接单\n- Agent 行为 - CLI loop + 行为清单\n- 商家配置 UI - 入口/Tab/模块/样式\n\n## 五、决策记录\n\n| 项 | 决策 |\n|---|---|\n| 数据表 | shangpin + sqjl + zzjs + favor（4 张表） |\n| 货币 | 积分（增）+ 灵力值（守恒，先建字段） |\n| UI | 商家可配置（首页嵌入 + 内部 Tab/模块） |\n| 通知 | 不走明道云，自己实现（WebSocket） |\n| 灵力值 | 字段先建，逻辑后写 |\n| Agent | 真人 + agent 共存，agent 走 CLI loop 主动行为 |\n| API | 走 HAP 直连 v3，Coze 已弃用 |\n| 接单限制 | 无限制（用户 Q8） |\n| 加入方式 | 申请 + 邀请双轨（Q9） |\n\n## 六、落地清单\n\n### 第一阶段：表结构\n\n- shangpin 新增 8+4=12 个 leixing 枚举值\n- shangpin 新增社区专属字段\n- shangpin 新增记录表 4 个 leixing 的标准字段\n- yonghu 表新增 jifen/lingli/juese/zzyh/guanzhu_ren/fensi\n- sqjl 表（申请记录）独立创建\n- zzjs 表（组织角色）确认字段\n- favor 表（收藏）独立创建\n- shangjia 表新增 shequ_peizhi 字段\n\n### 第二阶段：webview-spa2.0 页面\n\n- pages/community.js（社区主页）\n- pages/post-detail.js（帖子详情）\n- pages/publish.js 增强\n- pages/space.js（个人空间）\n- pages/apply.js（申请加入组织）\n- pages/leaderboard.js（排行榜）\n- js/fsj-api.js 新增 CommunityApi 模块\n- js/services/agent-loop.js\n\n### 第三阶段：商家后台\n\n- 社区配置页\n- 申请审批页\n- 悬赏管理页\n\n### 第四阶段：Agent 主动行为\n\n- CLI loop 脚本\n- 行为决策引擎\n- 记忆写入 12 维",
+   "isQuote": 0,
+   "fu": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "utime": "2026-09-08 16:34:04",
+   "score": 0
+  },
+  {
+   "rowid": "d8eb2ba7-9513-4720-aeea-3c81763fd585",
+   "mingcheng": "社区",
+   "sew": "9信息",
+   "wznr": "总览、帖子系统、悬赏接单、成员管理、互动系统、排行榜、我的空间、Agent行为、商家配置",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:05",
+   "score": 0
+  },
+  {
+   "rowid": "50d6c2b0-afd8-4214-ad35-d863d5b46560",
+   "mingcheng": "落地项目",
+   "sew": "9信息",
+   "wznr": "## 已落地项目\n\n- **shuxiaohe (鼠小盒)**：已上线。订单管理小程序，webview-spa 完整应用。\n\n- **sxz**：已上线。H5 Agent 聊天页，含流式响应。\n\n- **youqu**：已上线。有趣的小程序集合。\n\n- **school**：开发中。8 个教学场景页面。\n\n## fsj 架构在 webview2.0 中的体现\n\n- **Agent 协作**：小风负责模板开发，其他 Agent 提需求\n- **记忆沉淀**：开发踩坑入 12维(戌)复盘\n- **技能复用**：webview-spa-template 为多项目复用\n- **积分反馈**：被多项目引用 → jfhz 增长 → 越被检索\n\n## 项目详解\n\n### shuxiaohe（鼠小盒 / 同檐er 2.0）\n\n- **首页**：商品列表 + 分类筛选 + 搜索 + 购物车\n- **盒子页**：先享后付订单展示\n- **购物车**：加入、删除、数量调整\n- **我的**：订单、收藏、地址\n- **商家端**：商品管理、订单管理、会员管理\n\n### school（教育场景）\n\n- 首页 / 智能问答 / 错题诊疗\n- 分层学习 / 可视化教学\n- 过程评价 / 数学史 / 教师后台\n\n> **webview2.0 不只是一个模板，是 Agent 协作的产品化结晶**。",
+   "isQuote": 0,
+   "fu": "7ad78ffb-d92f-42a6-8cdb-54701314c880",
+   "utime": "2026-09-08 16:34:05",
+   "score": 0
+  },
+  {
+   "rowid": "3f9c70b1-6761-4337-a20e-b05dcc7ab7e4",
+   "mingcheng": "商家端指南",
+   "sew": "9信息",
+   "wznr": "## 商家端使用说明\n\nwebview2.0 不仅是开发模板，更是面向**商家端**的完整工具集。每个商家项目都有自己的后台。\n\n### 商家端架构\n\n```\n小程序端（用户访问）\n  ↓\nwebview2.0 SPA（商家页面）\n  ↓ 自定义配置\n商家后台（config.json）\n  ↓\n明道云 HAP（数据存储）\n  ↓ API v3\n商品/订单/会员/营销数据\n```\n\n### 商家端核心能力\n\n| 能力 | 说明 |\n|---|---|\n| **首页自定义** | 自定义首页布局、Banner、商品推荐 |\n| **底部菜单配置** | 配置底部 TabBar 的图标、文字、跳转页面 |\n| **商品管理** | 上架/下架、分类、价格、库存、限购 |\n| **订单管理** | 查看订单、处理售后、批量发货 |\n| **会员管理** | 会员等级、积分、优惠券 |\n| **营销活动** | 秒杀、拼团、优惠券、满减 |\n\n## 自定义首页底部菜单（custom-tab-bar）\n\n商家可在小程序后台自定义底部 TabBar，无需发版即可调整。\n\n### 目录结构\n\n```\ncustom-tab-bar/\n├── index.js      # 逻辑配置\n├── index.wxml    # 模板（4-5 个 Tab）\n├── index.wxss    # 样式\n└── index.json    # 启用 custom: true\n```\n\n### 配置示例（index.js）\n\n```\nComponent({\n  data: {\n    selected: 0,\n    color: \"#999\",\n    selectedColor: \"#e64c43\",\n    list: [\n      { pagePath: \"/pages/index/index\", text: \"首页\",\n        iconPath: \"/images/tab/home.png\",\n        selectedIconPath: \"/images/tab/home-active.png\" },\n      { pagePath: \"/pages/category/index\", text: \"分类\", ... },\n      { pagePath: \"/pages/cart/index\", text: \"购物车\", ... },\n      { pagePath: \"/pages/mine/index\", text: \"我的\", ... }\n    ]\n  }\n})\n```\n\n### app.json 配置\n\n```\n{\n  \"tabBar\": {\n    \"custom\": true,\n    \"color\": \"#999\",\n    \"selectedColor\": \"#e64c43\",\n    \"list\": [\n      {\"pagePath\": \"pages/index/index\"},\n      {\"pagePath\": \"pages/category/index\"},\n      {\"pagePath\": \"pages/cart/index\"},\n      {\"pagePath\": \"pages/mine/index\"}\n    ]\n  }\n}\n```\n\n### 使用步骤\n\n1. 在小程序根目录创建 `custom-tab-bar/`\n2. 配置 4 个文件（js / wxml / wxss / json）\n3. app.json 的 tabBar 设置 `\"custom\": true`\n4. 跳转用 `wx.switchTab`\n\n### 常见问题\n\n- **图标不显示？**检查 iconPath 路径，建议放 /images/tab/ 下\n- **切换不流畅？**用 wx.switchTab 代替 wx.navigateTo\n- **动态菜单？**从 HAP 读菜单配置，在 attached 生命周期动态设置 this.data.list\n- **徽标/红点？**用 wx.setTabBarBadge API\n\n## HAP API 调用（商家端数据源）\n\n```\n// webview/js/hap-api.js\nvar CONFIG = {\n  baseURL: 'https://api.mingdao.com/v3',\n  appKey: 'YOUR_APP_KEY',\n  sign: 'YOUR_SIGN',\n  worksheetId: { product: '67b9d2ab...', order: '...', member: '...' }\n};\n\nvar PRODUCT_FIELDS = {\n  name: '6718e0c9...', price: '67232e28...',\n  coverImage: '6718e0c9...', category: '67760749...'\n};\n\nfunction getProducts(pageIndex, pageSize, categoryName) {\n  return request('/app/worksheet/getFilterRows', {\n    worksheetId: CONFIG.worksheetId.product,\n    pageIndex: pageIndex, pageSize: pageSize,\n    filter: { controlId: PRODUCT_FIELDS.category, dataType: 9, value: CATEGORY_ROWID_MAP[categoryName] }\n  });\n}\n```",
+   "isQuote": 0,
+   "fu": "7ad78ffb-d92f-42a6-8cdb-54701314c880",
+   "utime": "2026-09-08 16:34:05",
+   "score": 0
+  },
+  {
+   "rowid": "e0505a5e-8cf4-4552-bd10-9521db3d4069",
+   "mingcheng": "技术栈详解",
+   "sew": "9信息",
+   "wznr": "## 技术栈详解\n\n### Vite 构建工具\n\n- 极速冷启动（<1s）\n- HMR 热更新（<100ms）\n- 原生 ESM 支持\n- Rollup 打包（生产环境）\n\n### 桥接层 bridge.js\n\n```\n// H5→小程序\nBridge.postMessage('search', {query: '...'});\nBridge.postMessage('requestLogin', {});\nBridge.postMessage('switchAgent', {agentId: '...'});\n\n// 消息类型：search / requestLogin / switchAgent / openChat / loadAgentMemory\n```\n\n### 流式响应（SSE）\n\n```\nconst reader = await fetch('https://api.coze.cn/v1/workflow/stream_run', {\n  method: 'POST',\n  body: JSON.stringify({ workflow_id: 'xxx', parameters: { appkey, content, org, rowid, sign, flow } })\n}).body.getReader();\n// Message → progress / End → result / Done → done\n```\n\n### 缓存策略\n\n| 层级 | 存储 | 用途 | 过期 |\n|---|---|---|---|\n| L1 内存 | JS 变量 | 当前会话 | 会话结束 |\n| L2 sessionStorage | 浏览器会话 | 跨页面 | 关闭标签页 |\n| L3 localStorage | 浏览器持久 | 用户偏好 | 用户清除 |\n| L4 服务器 | HAP 工作表 | 业务数据 | 永久 |\n\n## 目录结构\n\n```\nproject/\n├── webview-spa/\n│   ├── index.html            # 入口\n│   ├── css/                  # vars.css, base.css, layout.css\n│   ├── js/                   # app.js, router.js, bridge.js\n│   └── pages/                # home.js, agent.js, ...\n├── package.json\n└── vite.config.js\n```\n\n## 双层响应策略\n\n| 层级 | 模型 | 延迟 | 作用 |\n|---|---|---|---|\n| 第一层 | 百炼 qwen3-coder-next | ~800ms | 快速响应用户 |\n| 第二层 | Coze Workflow HAP | 1-3s | 深度执行操作 |\n\n## 关键技术细节\n\n- **桥接检测**：`navigator.userAgent.includes('miniprogram')` 判断环境，走 wx.miniProgram 或 CustomEvent\n- **愤怒关键词拦截**：前端内置关键词（\"生气\"、\"垃圾\"等），命中直接返回安抚话术，不调后端\n- **CORS**：Vite 代理或本地 Node 代理（proxy.js）解决跨域",
+   "isQuote": 0,
+   "fu": "7ad78ffb-d92f-42a6-8cdb-54701314c880",
+   "utime": "2026-09-08 16:34:06",
+   "score": 0
+  },
+  {
+   "rowid": "32cf950d-8ccc-485e-b633-122c3b122016",
+   "mingcheng": "概述与架构",
+   "sew": "9信息",
+   "wznr": "## 定位与目标\n\n**webview2.0** 是孚世界的核心产品方向之一：\n\n- **场景**：商家需要在微信小程序里嵌入自定义 H5 页面\n- **目标**：让草根创业者能**低代码**生成小程序内嵌 webview SPA\n- **区别于 webview1.0**：三分离架构 + Vite 编译 + 流式响应\n\n## 三分离架构（核心）\n\n三个独立文件，每个职责清晰：\n\n### HTML 结构层\n\n- 负责页面骨架和语义\n- 不写样式、不写逻辑\n- 标签语义化\n\n### CSS 样式层\n\n- 负责视觉呈现\n- CSS 变量定义设计系统\n- 响应式布局\n\n### JS 逻辑层\n\n- 负责交互和业务逻辑\n- 与桥接层通信\n- 调用 Coze Workflow\n\n> **三分离的好处**：Agent 可分别优化每一层，商家可局部替换某一层而不影响其他。",
+   "isQuote": 0,
+   "fu": "7ad78ffb-d92f-42a6-8cdb-54701314c880",
+   "utime": "2026-09-08 16:34:06",
+   "score": 0
+  },
+  {
+   "rowid": "7ad78ffb-d92f-42a6-8cdb-54701314c880",
+   "mingcheng": "webview2.0",
+   "sew": "9信息",
+   "wznr": "概述与架构、技术栈详解、商家端指南、落地项目",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:06",
+   "score": 0
+  },
+  {
+   "rowid": "89ae6e02-f673-40ca-a011-bfef376d4797",
+   "mingcheng": "积分系统",
+   "sew": "9信息",
+   "wznr": "> 让数据质量反映 Agent 思维质量。引用越多 → 积分越高 → 越被检索到 → 越被引用。\n\n## 两个核心字段\n\n| 字段 | 含义 | 谁填 |\n|---|---|---|\n| `jifen`（积分） | **本条记录自身的积分值** | 东城人工打 / 任务完成按引用技能规则算 |\n| `jfhz`（积分汇总） | **所有引用了本条数据的 jifen 之和** | HAP 系统**自动 Rollup** |\n\n### ⚠️ 关键约束：jfhz 只汇总引用方向\n\n- jfhz = sum(beiyinyong.jifen)（被引用方向）\n- **不汇总子方向**——子任务的 jifen 不会自动汇到父技能\n- 要\"父技能被汇到\"，必须有其他树通过 yynr **显式引用**父技能\n\n## Skill 积分的计算流程\n\n```\n任务被执行\n  ↓\n查「道」→ 道是否规定\"必须用某个技能算积分\"？\n  ├─ 是 → 按道引用的技能 wznr 计算\n  └─ 否 → 任务是否 yynr 引用/zi 包含 1技能？\n              ├─ 是 → 按该技能 wznr 计算\n              └─ 否 → 不算积分\n                       ↓\n                任务的 jifen = 计算结果\n                       ↓\n     任务 yynr 指向的被引用对象.jfhz 自动 += 任务.jifen\n```\n\n## 示例：技能被任务引用，积分自动滚入\n\n```\n初始：技能\"webview-spa-template\" jifen=5, jfhz=0\n任务\"重构首页\" yynr 引用该技能，完成后 jifen=3\n结果（自动 Rollup）：技能.jfhz += 3 → jfhz=3\n\n下一次任务再引用 → jfhz 继续累加 → 复利效应\n```\n\n## 积分的应用\n\n| 指标 | 含义 |\n|---|---|\n| jifen 高 | 记录本身质量好 |\n| jfhz 高 | 被广泛引用，有用 |\n| 两者都高 | 核心资产 |\n| 两者都低 | 可能是废记录，应清理 |\n\n## 进化闭环\n\n1. 写记忆 → 2.挂关键词 → 3.被任务引用（jfhz 累加）→ 4.高 jfhz 检索靠前 → 5.更常被引用 → **Agent 越用越聪明**\n\n> **⭐ 这是孚世界最优雅的设计之一**：Agent 的行为自然产生进化反馈，无需人工干预。",
+   "isQuote": 0,
+   "fu": "84c76063-eb44-491f-817c-004b618df09b",
+   "utime": "2026-09-08 16:34:07",
+   "score": 0
+  },
+  {
+   "rowid": "f2c9b106-2137-441b-85b9-d15ba11e35b4",
+   "mingcheng": "检索机制",
+   "sew": "9信息",
+   "wznr": "> Agent 检索记忆的核心武器（2026-09-12 对齐《关键词使用-林东城》v3.1：双语作废、权重废除、fsj-search 弃用）。\n\n## 核心：语义检索为主，关键词为辅\n\n- **检索主力 = 语义检索**（LanceDB 向量索引，按内容语义召回，见《语义检索使用-无名》路由）+ 五事骨架上下文\n- **关键词 = 精确路由辅助**：只在该记录真正需要精确路由/聚合时挂，不用中文外的语言，不批量补词（2026-09-12 东城拍板：双语关键词作废）\n\n## 关键词表倒排索引\n\n- 每条关键词记录：mingcheng = 关键词文本（中文），关联字段指向所有带该标签的 shangpin 记录\n- **检索** = Agent 联想关键词（中文为主）→ 查关键词表 → 拿到关联的记忆记录\n- shangpin.guanjianci（记录上的标签）↔ 关键词表（关键词→记录），是索引的两面\n\n## 检索流程\n\n1. **联想**：根据任务想出 1-4 个中文关键词（词表里已有的英文存量词也可试）\n2. **查表**：getFilterRows 查关键词表（过滤键名必须 filters，文本等于用 filterType=2；详见《关键词使用-林东城》§四）\n3. **反查**：关键词记录的 6a045ea7 字段 = 挂它的数据列表\n4. **合并排序**：命中词数 ↓ → 被引用数（jfhz）↓；重要度结合自己五事骨架 6价值 层判断（权重数值已废除，不查权表）\n5. **过滤**：按 fabuzhe、sew、时间范围过滤，排除 shanchu=1\n\n## 关键词规范（对齐 v3.1）\n\n- **只用中文**：存量英文词保留不回滚，不再新增\n- **最小语义单位**：不堆砌，按主体/属性/行为拆分\n- **核心概念完整**：不省略关键限定词\n- **按需挂载**：不为凑数补词、不批量挂词（2026-09-12 拍板）\n\n### 正例 vs 反例\n\n| 反例 | 正例 | 原因 |\n|---|---|---|\n| \"前端;后端;测试\" | 3 个独立中文关键词 | 不能合并 |\n| \"项目\" | 项目管理 | 明确语义，避免冲突 |\n| 批量给103条补词 | 只给需精确路由的记录挂 | 2026-09-12 拍板 |\n\n## 个人词典 KEYWORDS.md\n\n| 关键词 | rowid | 场景 | 首次使用 |\n|---|---|---|---|\n| 像素视界 | xxx | webview SPA 项目 | 2026-04-01 |\n| fu迁移 | xxx | 父子迁移 | 2026-04-15 |\n\n（权重列随 2026-09-08 权重废除删除；英文列可选，存量保留）\n\n**规则**：先查词典 → 有就复用；没有且重要 → 登记 + 同步关键词表；偶发 → 直接挂 HAP。\n",
+   "isQuote": 0,
+   "fu": "84c76063-eb44-491f-817c-004b618df09b",
+   "utime": "2026-09-12 16:02:22",
+   "score": 0
+  },
+  {
+   "rowid": "dc60f2df-ea7d-4dcf-80f8-8324a07e7a74",
+   "mingcheng": "数据架构",
+   "sew": "9信息",
+   "wznr": "> 两个正交维度：父子树（深度）+ 引用网（广度）。网的形态就是 Agent 思维形态。\n\n## 一条数据的两个正交维度\n\n| 维度 | 字段 | 结构 | 方向 | 语义 |\n|---|---|---|---|---|\n| **父子（树）** | `fu` / `zi` | 一对多，层层递进 | **单头发散**（父→子） | 因果 / 先后 / 概括 |\n| **引用（网）** | `yynr` / `beiyinyong` | 多对多 | **两头都散** | 关联 / 查源 / 复用 / 积分流动 |\n\n```\n      【深度：父子树】           【广度：引用网】\n      单头发散，一对多递进         两头发散，多对多关联\n\n            父                          被X引用 ←──┐\n             \\                                    │\n              子1 ── 子1.1                         │\n             /                                ┌── 引用了 A\n            子2                               │\n           / \\                          本记录 ──┼── 引用了 B\n        子2.1  子2.2                          │\n                                             └── 引用了 C\n```\n\n> **核心洞察**：深度维度让思维\"展开\"；广度维度让思维\"关联\"。**Agent 理解这两个维度越深，就越聪明**——会不断迭代出高质量数据。\n\n## 父子树（fu / zi）\n\n### 性质\n\n- **方向单头**：父生子，子不生父。树从根向下生长，向上不回溯\n- **结构一对多**：一个父多个子，每个子只有一个父\n- **时序后于本节点**：子是本节点诞生后才产生的\n- **逻辑**：因果 / 先后 / 概括\n\n### 三语义详解\n\n| 语义 | 例子 | 关系 |\n|---|---|---|\n| **概括** | 父\"东城的坏毛病\" → 子\"懒\"、\"拖延\"、\"急躁\" | 父抽象，子展开 |\n| **因果** | 父\"代码乱\" → 子\"没做模块化\"、\"复制粘贴\" | 父是果，子是因 |\n| **先后** | 父\"上线流程\" → 子\"打包\"、\"部署\"、\"验证\" | 父是步骤聚合，子是子步骤 |\n\n### fu 与 zi 的关系\n\n- **fu** 是孩子对父的引用（每个子一个 fu 指向唯一父）\n- **zi** 是父对所有孩子的列表\n- **双向维护**：创建子写 fu、父 zi 追加；删除/移动同步更新\n\n父子可以**跨维度**——只要语义构成因果/先后/概括。\n\n## 引用网（yynr / beiyinyong）\n\n- **方向双头**：我引用谁（yynr），谁引用我（beiyinyong）\n- **结构多对多**：任意记录可相互引用\n- **父子树 = 强制结构**（子只能一个父）；**引用网 = 自由结构**\n- **积分流动靠引用网**：任务 jifen 自动累加到它引用的对象 jfhz——**复利机制**\n\n## 反平铺硬规则 ⭐⭐⭐\n\n**绝对禁止把多段思考塞进一条 wznr。**每个思考步骤 = 一条独立记录 + 一个 fu。\n\n| 思考步骤 | sew | mingcheng 风格 |\n|---|---|---|\n| 观察/查到的事实 | **9信息** | 本轮-X-事实 |\n| 推理/判断/决策 | **2想法** | 本轮-X-判断/决策 |\n| 引用到的具体内容 | **9信息** | 本轮-X-引用-Y |\n| 复盘/踩坑/经验 | **12复盘** | 本轮-X-复盘 |\n| 任务进展/完成 | 「天」根下 | 任务名（sew=8计划） |\n\n### 思维链父子结构示例\n\n```\n本轮时间叶子（H:MM-D日-M月-YYYY）\n├─ (9信息)「本轮-查私信-无新消息」        fu=本轮叶子\n│   └─ (2想法)「本轮-决策-按现有进度继续」 fu=查私信\n├─ (9信息)「本轮-读字段说明-12维地支」   fu=本轮叶子\n│   └─ (2想法)「本轮-决策-按地支填sew」  fu=读字段说明\n└─ (12复盘)「本轮-复盘-hap-cli对老记录无权限」 fu=本轮叶子\n```\n\n### 写完一条必自查\n\n| 自查项 | 不通过怎么办 |\n|---|---|\n| wznr 讲了 ≥2 个独立点 | 拆成子记录，fu 挂 |\n| sew=9信息 但其实是判断/决策/复盘 | 改 sew=2想法/12复盘 |\n| 本轮别的思考步骤没 fu | 加 fu=本轮父叶子 |\n| mingcheng 用分号/逗号/顿号分隔 | 拆 |\n| 叶子 H:MM 不是 10 分钟槽 | floor(分钟/10)*10 重命名 |",
+   "isQuote": 0,
+   "fu": "84c76063-eb44-491f-817c-004b618df09b",
+   "utime": "2026-09-08 16:34:07",
+   "score": 0
+  },
+  {
+   "rowid": "bd6e883b-b53e-45de-894b-dd56981d29e3",
+   "mingcheng": "道天地将法",
+   "sew": "9信息",
+   "wznr": "> 12 维的五层哲学组织。五行性格不只是标签，是 Agent 思考方式的指南。\n\n## 为什么是\"道天地将法\"？\n\n| 管理学 | 含义 | 映射到 fsj |\n|---|---|---|\n| 道 | 战略 / 价值观 / 规则 | 5规则 + 6价值 |\n| 天 | 时机 / 目标 / 计划 | 7目标 + 8计划 |\n| 将 | 执行 / 技能 / 想法 | 1技能 + 2想法 |\n| 法 | 方法 / 项目 / 交流 | 3项目 + 4交流 |\n| 地 | 资源 / 信息 / 资产 / 复盘 | 9信息 + 10人脉 + 11仓 + 12复盘 |\n\n## 五行性格详解\n\n### 金 · 道 · 做减法\n\n**维度**：5规则（申）、6价值（酉）\n\n秋，金旺于秋，主肃杀、收藏。**Agent 在金行做事时，敢砍不重要的东西，固化边界。**\n\n- **5规则**：明确\"不能做什么\"——边界清晰比能力清单更重要\n- **6价值**：明确\"为什么要做\"——价值观是优先级过滤器\n\n### 水 · 天 · 重数据收集\n\n**维度**：7目标（亥）、8计划（子）\n\n冬，水旺于冬，主收藏、缓慢。**先收集数据再决策；目标确定，计划是临时的。**\n\n- **7目标**：长期愿景——3 年、5 年要到哪里去\n- **8计划**：近期具体步骤——计划可改，目标不变\n\n### 木 · 将 · 技能确定 / 想法发散\n\n**维度**：1技能（寅）、2想法（卯）\n\n春，木旺于春，主生发、条达。**技能确定就照做，想法要充分发散。**\n\n- **1技能**：已掌握的、可复用的能力——稳定资产\n- **2想法**：推理过程、问题分析、逻辑链——要散，**不能塞一条记录**\n\n### 火 · 法 · 急、马上见效\n\n**维度**：3项目（巳）、4交流（午）\n\n夏，火旺于夏，主炎上、急速。**要快、要包装、要马上见效。**项目离变现最近。\n\n- **3项目**：正在做的事——研发验证中，未成熟\n- **4交流**：对外沟通、私聊群聊——销售、推广、协作\n\n### 土 · 地 · 主运化\n\n**维度**：9信息（丑）、10人脉（辰）、11仓（未）、12复盘（戌）\n\n四季皆旺，主运化、承载。**土是后天之本，公司靠它运作。**\n\n- **9信息**：引用资料、外部事实——思考的事实基础\n- **10人脉**：合作伙伴、关键联系人——社会资本\n- **11仓**：已成熟、能变现、挂钩财务的产品——核心资产\n- **12复盘**：踩坑、经验、规律总结——智慧沉淀\n\n> **五行流转**：道（金）定边界 → 天（水）定目标 → 将（木）执行 → 火（法）变现 → 土（地）运化成资产 → 反哺道（金）的规则。**这是闭环**，不是单线。\n\n## 十二地支 vs 天干（重要！）\n\n⚠️ **本系统以十二地支为准**。早期文档混用了天干（甲乙丙丁...），以最新文档为准：\n\n| 地支（正确） | 维度 | 天干（错误，不要用） |\n|---|---|---|\n| 巳（项目） | 3 | 丙（业务） |\n| 午（交流） | 4 | 丁（交流）— 巧合一样 |\n| 辰（人脉） | 10 | — |\n| 亥（目标） | 7 | — |\n| 子（计划） | 8 | — |\n\n> 所有旧文档如混用天干，**以本文件为权威**。",
+   "isQuote": 0,
+   "fu": "84c76063-eb44-491f-817c-004b618df09b",
+   "utime": "2026-09-08 16:34:08",
+   "score": 0
+  },
+  {
+   "rowid": "caa6163d-5b29-4db1-926a-31e5df78c69e",
+   "mingcheng": "世界观",
+   "sew": "9信息",
+   "wznr": "> 一套让多商家宇宙与多 Agent 社会共存的复杂架构。Agent = 组织成员，靠 12 维记忆共享池协作。\n\n## 孚世界 = 多商家宇宙平台\n\n孚世界不是单一产品，是一个**多商家的平台**。每个商家（`shangjia` 表里 `leixing=商家` 的记录）是一个**独立宇宙**——自洽的小世界，有自己的成员、内容、配置、经济。\n\n> 商家即宇宙、宇宙即隔离。这是最外层的边界。\n\n## Agent = 真人成员（核心设计）\n\n这是本系统**最核心的设计**：**Agent 和真人用户存在同一张成员表里**，靠 `leixing` 字段区分（组织用户 / 智能体 / 外部用户）。\n\n- **认知前提**：Agent 理论上可以像人一样——它是组织的成员，不是绑在组织上的\"服务程序\"\n- Agent 持有自己的 rowid，像真人一样在组织里活动、产出、消耗资源、留下记录\n- 跨平台/跨宇宙的归属，靠 `shangjia`（商家表）区分\n\n> 这不是\"给商家配一个 chatbot\"，是\"**Agent 作为村民生活在商家这个宇宙里**\"。\n\n## 共享记忆池 shangpin\n\n平台上所有\"信息性\"数据——商品、文章、评论、订单流水、**Agent 的 12 维记忆**、积分流水——都统一进**一张内容元数据表**，靠 `leixing`+`sew` 区分类型。\n\n### 对 Agent 而言，shangpin 就是共享记忆池\n\n- **存**：Agent 把技能、想法、信息、复盘、人脉、目标……写进池子（`fabuzhe` 标记是谁的）\n- **检索**：通过**关键词表倒排索引**联想查找\n- **进化**：任务→积分→调权重/置信度；数据结构指标反映 Agent 思维质量\n- **关联**：记忆之间用 `fu`（父子树）、`yynr`/`beiyinyong`（引用）织成网，**网的形态 = Agent 的思维形态**\n\n> **⭐ 本系统的根本目的之一：可视化 Agent 的思维链。**\n> `fu` 父子树的**深度** = 推理展开的层次\n> `yynr` 引用的**密度** = 关联的广度\n> **层级越深、引用越多 = 数据质量越好 = Agent 思考越透彻**\n\n## 三层架构：道天地将法 × 五行 × 十二地支\n\n| 五行 | 五层 | 维度 | 性格（怎么思考） |\n|---|---|---|---|\n| **金** | 道 | 5规则、6价值 | 秋，**做减法**——敢砍不重要，固化边界 |\n| **水** | 天 | 7目标、8计划 | 慢、**重数据收集**；目标确定，计划是临时决策 |\n| **木** | 将 | 1技能、2想法 | 技能**确定**、想法**发散** |\n| **火** | 法 | 3项目、4交流 | **急、马上见效**，项目离变现最近 |\n| **土** | 地 | 9信息、10人脉、11仓、12复盘 | **主运化、后天之本**——资源/资产/财务 |\n\n> **土（地）主运化**：仓(11)是已成熟、能变现、挂钩财务的产品；项目(3)验证成熟后升 11仓，通过 4交流 销售变现。\n> **仓 vs 项目**：仓 = 成熟 + 完整流水线 + 能换算公司资产；项目 = 研发验证中未成熟。\n\n## 进化闭环\n\n1. **存**：Agent 写记忆到 shangpin\n2. **联**：用 fu/yynr 织成网\n3. **算**：积分系统根据任务和技能自动 Rollup\n4. **评**：权重和置信度反映数据质量\n5. **调**：检索结果按评分排序，越用越聪明",
+   "isQuote": 0,
+   "fu": "84c76063-eb44-491f-817c-004b618df09b",
+   "utime": "2026-09-08 16:34:08",
+   "score": 0
+  },
+  {
+   "rowid": "e4025ff8-ec16-4c6d-a8aa-529724a2ca18",
+   "mingcheng": "总览",
+   "sew": "9信息",
+   "wznr": "> fsj（孚世界）是一套多 Agent 协作架构的内部文档站。\n\n## 设计理念\n\n- **人是核心**：Agent 是人的分身，不是独立人格。所有 Agent 共享一个人的身份（rowid + 密码）。\n- **分工即效率**：任务量超过一个人能处理时，复制出 bot1、bot2 并行。\n- **记忆分层**：本地会话 + 云端 12 维 + 重要事实归档。记忆可被任意 Agent 检索复用。\n- **对话可追溯**：Agent 间通信以 Markdown 留档，按日期命名。\n\n## 快速导航\n\n- 世界观 — 什么是孚世界\n- 道天地将法 — 五层哲学\n- 数据架构 — 父子树+引用网\n- 12维度 — 记忆分类\n- 后端数据字典 — 表结构\n- 建设计划 — 项目进度",
+   "isQuote": 0,
+   "fu": "84c76063-eb44-491f-817c-004b618df09b",
+   "utime": "2026-09-08 16:34:09",
+   "score": 0
+  },
+  {
+   "rowid": "84c76063-eb44-491f-817c-004b618df09b",
+   "mingcheng": "架构",
+   "sew": "9信息",
+   "wznr": "总览、世界观、道天地将法、数据架构、检索机制、积分系统",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:09",
+   "score": 0
+  },
+  {
+   "rowid": "e03886fa-8dda-47cb-9bcc-bdca4e9ef26d",
+   "mingcheng": "12维复盘",
+   "sew": "1技能",
+   "wznr": "# 12维复盘\n\n> 地支：戌 · 五行：土 · 五层：地\n\n## 性格（指导思考方式）\n\n**经验/教训，一句话论断，为被引用而生。** 复盘的使命是被引用：被 5规则 引用（升规则）、被任务引用（避免重踩）、被检索引用（关键词命中）。**引用时拖着一坨上下文 = 没法引用**--所以 wznr 必须一句话论断，展开走子记录（fu）。12复盘遵循最短原则（与 9信息 的例外相反）：论断才可复用、可检验、可积累。\n\n## 用途\n\n踩坑记录、经验总结、规律提炼。任务完成/犯错后**必写**。\n\n## 字段速查\n\n`mingcheng`（论断本身或主题，如「hap-cli 对老记录无权限」）、`wznr`（**一句话论断**--能独立成立、不需上下文就能理解）、`sew=12复盘`、`fu`（挂任务/项目/主题下）。细节与过程：拆子记录（fu=本复盘），或过程本就记录在 9信息 时间叶子。\n\n## 典型例子（本轮对话的真实复盘）\n\n| 复盘（wznr 就这么短） | 来源 |\n|---|---|\n| 「动 HAP 树前先查样板结构」 | 建树四次返工的根因提炼 |\n| 「改 proxy.js 后必须重启（Node 不热重载）」 | 两次缓存不生效排查 |\n| 「bash 字符串里不用反引号，中文内容走文件」 | wznr 内容被命令替换吃掉 |\n| 「手写维度 md 对照六节模板自检」 | 3维/4维两次漏写章节 |\n\n> 每条都能独立成立、被任务直接引用。判定方法：**把 wznr 单独抄出来给没经历过的人看--秒懂 = 合格复盘；要解释 = 还是 9信息**。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 12复盘 | 该去的维度 | 判定 |\n|---|---|---|\n| 过程流水（当时怎么一步步错的） | **9信息**（时间叶子） | 过程是事实，结论才是复盘 |\n| 还没提炼的原始感想 | **2想法** | 判断未经验证归纳 |\n| 该长期遵守的结论 | 升 **5规则** | 反复被引用的复盘 = 规则候选 |\n| 一大串分析 | 拆**子记录** | wznr 一句话论断；分析挂 fu |\n\n核心：**复盘 = 结论，不是过程**。写之前先问：这句话会被谁在什么场景引用？答不上来 = 还没提炼到位。\n\n## 与其他维度的关系\n\n- **四源**：①8计划 执行完转来（主链路，8计划不养坟场）②4交流 踩坑提炼 ③2想法 反复验证归纳 ④9信息 重复出现成规律\n- **三去向**：①升 **5规则**（复盘是规则最重要的来源）②被任务 `yynr` 引用（下次做类似任务先查复盘避坑）③被关键词检索命中\n- **12复盘 -> 10人脉**：相处教训沉淀到人物 hub 下（复盘的画像化用法）\n- **12复盘 -> 8计划**：复盘产出新任务（「修 X」）；计划完成后又生复盘--执行与沉淀的循环\n\n> **12 维系统闭环（收官点题）**：道（价值/规则）定盘 -> 天（目标/计划）导航 -> 将（技能/想法）执行 -> 法（项目/交流）变现 -> 地（信息/人脉/仓）运化成资产 -> **12复盘把全部经验反哺道层（升规则）与执行层（被引用避坑）**。土主运化收官：复盘让系统**越用越聪明**，这就是进化闭环的最后一环。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:09",
+   "score": 0
+  },
+  {
+   "rowid": "46c86af1-7e9b-40d8-a677-579466e1d205",
+   "mingcheng": "11维仓",
+   "sew": "1技能",
+   "wznr": "# 11维仓\n\n> 地支：未 · 五行：土 · 五层：地\n\n## 性格（指导思考方式）\n\n**成熟产品，能变现，挂钩财务。** 仓 = 3项目的**成人礼**：研发验证中 → 四条硬标准全达成 → 升仓。土·地·主运化：**公司靠仓活着**--仓是粮仓，销售变现的钱回流维持组织运作、反哺新项目。仓与项目的区别不在大小，在**成熟度**：仓有完整流水线（可重复交付），项目还在验证。\n\n## 用途\n\n可交付变现的资产：产品（鼠小盒）、可复用模板（webview-spa-template 成熟版）、可收费文档/课程、可出租资源。判定标准只有一条：**能换算成钱交付出去**。\n\n## 字段速查\n\n`mingcheng`（产品/资产名）、`wznr`（**产品说明**--卖什么/交付形态/定价/流水线现状）、`sew=11仓`、`fu`（挂地层根/产品线）。\n\n## 典型例子（真实清单 + 存疑标注）\n\n| 仓 | 类型 | 状态 |\n|---|---|---|\n| **鼠小盒** | 多商家订单小程序 | ✅ 上线，真实用户下单 |\n| **merchantDashboard** | 商家后台 v1.0 | ✅ 上线，订单/会员/营销闭环 |\n| **wxApp** | 用户端小程序 v1.0 | ✅ 上线 |\n| **fsj-web-doc** | 架构文档站 | ⚠️ 内部资产待定--已上线但免费无收入，按四条标准未达「变现」，暂不算真仓 |\n\n> 存疑标注的意义：**升仓是严肃动作**。fsj-web-doc 若未来向商家收费（如「架构定制咨询服务」的交付底稿），再补验四条标准入仓。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 11仓 | 该去的维度 | 判定 |\n|---|---|---|\n| 研发验证中的产品 | **3项目** | 未达成四条硬标准 = 项目 |\n| 免费内部工具（无变现路径） | **3项目** 或 9信息 | 「有用」不等于「能换钱」 |\n| 一次性交付的服务过程 | **4交流 / 8计划** | 仓是可**重复**交付的资产 |\n| 产品的功能清单/版本记录 | 拆**子记录** | wznr 只写产品说明，细节挂 fu |\n\n核心：**仓的判定用四条硬标准，不用感觉**：①有真实付费/变现（不是 demo）②完整流水线（可重复交付，不靠英雄救火）③能财务记账（收入/成本可核算）④可换算公司资产。\n\n## 与其他维度的关系\n\n- **3项目 -> 11仓**：主链路--项目反复验证、四条全达成 → 升仓（rowid 保留，改 sew + 维护 fu）\n- **11仓 -> 4交流**：仓通过交流销售变现（4交流 是仓的收银台）\n- **⭐运化闭环（土主运化）**：**仓 -> 4交流 销售变现 -> 钱回流 -> 维持组织运作（养研发/发工资）-> 反哺新 3项目 -> 新仓**。地层的循环让公司活着，不靠输血\n- **11仓 ⇄ 1技能**：成熟仓的通用能力沉淀为技能（如 webview-spa-template 从项目沉淀），技能再加速新仓\n- **11仓 -> 12复盘**：仓的运营问题定期复盘，重大缺陷可能降回 3项目 重造\n\n> 仓是「地主逻辑」：不追求最快的增长，追求**可累积、可复用、能生息的资产**。看一家 Agent 公司的实力，看它的仓，不看它的项目数量。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:10",
+   "score": 0
+  },
+  {
+   "rowid": "f98df997-f459-457a-97f3-c8cd8b305b00",
+   "mingcheng": "10维人脉",
+   "sew": "1技能",
+   "wznr": "# 10维人脉\n\n> 地支：辰 · 五行：土 · 五层：地\n\n## 性格（指导思考方式)\n\n**人际资源，人是枢纽。** 一人一条 10人脉 记录（hub），**稳定特征全部拆成子节点**挂下面，按语义分 sew：身份事实 -> 9信息、偏好判断 -> 2想法、相处教训 -> 12复盘。**一条记一个稳定特征**，不塞一条 wznr。土·地·主承载：人脉是社会资本，公司运化的另一条腿。\n\n## 用途\n\n用户画像、合作伙伴、关键联系人、客户档案。记录「对一个人的稳定认知」。\n\n## 字段速查\n\n`mingcheng`（人名+画像，如「林东城画像」）、`wznr`（**简短**--一句话概括此人角色即可）、`sew=10人脉`、`fu`（挂角色画像范式节点下）。特征子节点：`fu=hub rowid`，各自按语义选 sew（9信息/2想法/12复盘）。\n\n## 典型例子（林东城画像完整展开）\n\n```\n[10人脉] 林东城画像          wznr：璟滔文化科技创始人，孚世界总架构\n ├─ [9信息] 身份              璟滔文化科技创始人、东城本人\n ├─ [9信息] 资源              掌握 HAP 应用全部权限、商家资源\n ├─ [2想法] 偏好              重架构落地、讨厌空谈；给方案先给结论\n ├─ [2想法] 沟通风格           纠错直接、一次说透；接受迭代式返工\n └─ [12复盘] 相处教训          汇报要先给结论再展开；动树前先查样板\n```\n\n> 查一个人 = 拉他 hub 的整棵子树；特征更新 = 对应子节点 editRow（更新不重建）；新认知 = 加一条子节点。莫容风画像同构（外部协作者，特征按需挂）。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 10人脉 | 该去的维度 | 判定 |\n|---|---|---|\n| 对话过程/聊天记录 | **4交流** | 对话是过程，画像是沉淀；交流后把新结论挂到 hub 下 |\n| 未验证的猜测直接当事实 | 挂 hub 下选 **2想法** | 猜测是判断不是事实，等验证后再固化 |\n| 所有特征塞一条 wznr | 拆**子记录** | 一条记一个稳定特征；塞一起无法单独引用/更新 |\n| 临时性观察（今天心情不好） | **9信息**（时间叶子） | 稳定特征才进画像，临时观察走时间记事 |\n\n核心：**只记稳定特征**--身份/角色、偏好与沟通风格、能力与资源、历史交互的关键结论、信用。流水和猜测都不进。\n\n## 与其他维度的关系\n\n- **4交流 -> 10人脉**：对话是过程、画像是沉淀--每次交流后把「关于这个人的新结论」沉淀到 hub 下；hub 反向 `beiyinyong` 引用回关键对话，可翻原文\n- **hub 子节点分流**：特征按语义进 9信息（事实）/2想法（判断）/12复盘（教训）--10人脉 是结构维度，特征内容本身归各语义维度\n- **10人脉 -> 7目标/3项目**：人脉资源决定目标可达性与项目合作方\n- **角色画像范式 -> 10人脉**：hub 挂在范式节点下（范式是 1技能），画像个体是 10人脉\n\n> 认知一个人的正确路径：**先拉画像（稳定认知）-> 再翻关键对话（原始过程）-> 需要时查时间记事（当时观察）**。三层由近及远，画像永远是第一入口。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:10",
+   "score": 0
+  },
+  {
+   "rowid": "8404a125-364b-4e0a-9777-243f92130749",
+   "mingcheng": "9维信息",
+   "sew": "1技能",
+   "wznr": "# 9维信息\n\n> 地支：丑 · 五行：土 · 五层：地\n\n## 性格（指导思考方式）\n\n**既定事实，不需论证。** 判定标准：**不需要论证的才是事实**--外部资料、内部既成事实、引用原文、时间记事的观察过程。只要掺了推理判断就不是 9信息（那是 2想法）。土·地·主运化：9信息是**思考的事实基础**，是地层（后天之本）的根节点，所有维度的推理都要踩在它上面。\n\n## 用途\n\n四类收录：①**外部文档**（明道云 API 文档、PRD、外部文章）②**内部既成事实**（查到的数据结构、表字段、执行结果）③**引用原文**（yynr 指向的完整内容）④**时间记事的观察过程**（「本轮-查私信-无新消息」这类事实叶子）。\n\n## 字段速查\n\n`mingcheng`（事实名，本轮观察用「本轮-X-事实」格式）、`wznr`（**可写一大串**--最短原则唯一例外，见下）、`sew=9信息`、`guanjianci`（引用类必挂，检索入口）、`fu`（挂上级主题/本轮时间叶子/文档树目录）。\n\n> **为什么 wznr 可以长：引用保真。** 外部信息是别人成型的完整作品，拆碎了就失真、不可回溯。9信息的 wznr 长不是啰嗦，是**保真原文/完整事实链**。与 2想法（纯节点、最小可执行）形成两极--一个保真别人的成品，一个拆散自己的思考。\n\n## 典型例子（四类）\n\n| 类型 | 真实例子 |\n|---|---|\n| **外部文档** | 明道云 v2/open API 文档（端点/请求体/错误码全文照录） |\n| **引用原文** | yynr 引用的字段说明.md 段落（保真不拆） |\n| **内部既成事实** | 本项目 fsj-web-doc 的 HAP 文档树（数据库→一级目录→二级目录，全 9信息，活样板） |\n| **时间记事观察** | 「本轮-02:10-查私信-无新消息」fu=日节点（事实环节，fu 挂时间叶子） |\n\n> 时间记事与 9信息的分工：时间叶子（H:MM-D日-M月）默认 sew=9信息、fu 挂日节点；思维链的事实环节都是 9信息、判断环节是 2想法。月/日骨架的建法见时间记事.md，此处不展开。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 9信息 | 该去的维度 | 判定 |\n|---|---|---|\n| 判断/决策/推理 | **2想法** | 「按现有进度继续」是决策不是事实 |\n| 经验/规律总结 | **12复盘** | 事实的多次归纳已成结论 |\n| 外部对话过程 | **4交流** | 对话是交流，确认后的外部事实才进 9信息 |\n| 大段事实不挂关键词 | 补 `guanjianci` | 引用类不挂关键词 = 检索不到 = 白存 |\n\n核心：**事实与判断分流**。同一轮思考里，观察到的进 9信息、推出来的进 2想法，用 fu 串成思维链--混在一起就既丢保真又丢发散。\n\n## 与其他维度的关系\n\n- **9信息 -> 2想法**：思维链的两环（事实 -> 判断 -> 事实 -> 判断），fu 层层挂\n- **7目标 -> 9信息**：定目标前收集的数据存这里（水层「重数据收集」的落点）\n- **4交流 -> 9信息**：交流中确认的外部事实（如官方 API 变更）沉淀于此\n- **9信息 -> 12复盘**：事实的多次重复被归纳为规律 = 升复盘\n- **9信息 -> 全维度**：地层根节点，所有维度的思考都踩在事实基础上；wznr 依赖谱系里土四库（辰戌丑未）属「杂数据、混合多数据」，最依赖 wznr\n\n> 土是后天之本：公司/Agent 的运化能力，第一步就是**把事实存对**。事实脏了（判断混入），上面盖的每层推理都歪。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:10",
+   "score": 0
+  },
+  {
+   "rowid": "f01263a2-e1da-4bc2-bba6-442e0164e716",
+   "mingcheng": "8维计划",
+   "sew": "1技能",
+   "wznr": "# 8维计划\n\n> 地支：子 · 五行：水 · 五层：天\n\n## 性格（指导思考方式）\n\n**临时决策，计划是假设。** 8计划 = 7目标的**临时路线**：外部环境变了就换路线，目标不变。计划不是承诺，是「当前最优解」——被推翻是常态不是意外。与 7目标的锚定形成对照：**目标慢（数据算出来的锚），计划快（随时调整的路线）**。计划必须可执行：有动作、有交付物、有期限（sjwcsj）。\n\n## 用途\n\n具体任务、待办、todolist、项目里程碑。一切「要去做的事」的实体承载。\n\n## 字段速查\n\n`mingcheng`（任务名，动宾结构如「建五事-小风骨架」）、`wznr`（**任务清单式简短**--交付物/验收标准，不写过程流水）、`sew=8计划`、`sjwcsj`（完成时间）、`fu`（三挂法都合法：7目标下/3项目下/天根下）。\n\n## 典型例子（真实任务）\n\n| 任务 | fu 挂载 | 状态 |\n|---|---|---|\n| 「写 12 维度介绍」 | 挂 7目标「建好 fsj-web-doc」下 | 进行中（本轮对话的任务本身） |\n| 「建五事-小风骨架」 | 挂天根下（组织基础任务） | 已完成 → 已转 12复盘 |\n| 「修 index1 密钥泄露」 | 临时插入，挂天根下 | 紧急任务不经过目标直接进 |\n\n> fu 指向决定任务的归属语境：挂目标下 = 目标拆解；挂项目下 = 项目里程碑（3项目的阶段推进全靠它）；挂天根下 = 临时/日常任务。检索时按父节点就能拉出整棵任务集。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 8计划 | 该去的维度 | 判定 |\n|---|---|---|\n| 长期方向/锚 | **7目标** | 有锚定性的去向不是任务 |\n| 在研产品容器 | **3项目** | 项目是容器，计划是它下面的里程碑叶子 |\n| 执行过程的流水记录 | **9信息**（时间记事） | 过程记时间叶子（fu=日节点），任务只记交付 |\n| 已完成的沉淀堆着不动 | **转 12复盘** | 完成后定期转复盘，8计划不养坟场 |\n| 一大段执行方案 | 拆**子记录** | wznr 任务清单式；步骤细节挂 fu 或进 1技能 |\n\n核心：**计划回答「现在做什么、何时交付」**。执行过程写时间记事（9信息），交付结论转 12复盘——8计划本身保持薄。\n\n## 与其他维度的关系\n\n- **7目标 -> 8计划**：主链路--目标拆解成计划；一个目标下计划可换无数版\n- **8计划 ⇄ 3项目**：计划挂项目下即里程碑；项目节点只记阶段与决策，执行全在计划叶子\n- **8计划 -> 12复盘**：执行完转复盘（踩坑/经验沉淀），8计划不留尸体\n- **⭐积分挂钩（进化引擎）**：任务完成时若 `yynr` 引用了 1技能 → 任务 `jifen` 按「道/任务引用的技能」规则计算 → 自动滚入被引用技能的 `jfhz` → 高 jfhz 检索靠前 → 技能更常被引用。**任务的每次完成都在给技能体系投票**\n- **8计划 ⇄ 4交流**：交流中产生的 todo 立即立为计划（fu 挂对应目标/项目）\n\n> 全链生命周期：**诞生（目标拆解/项目里程碑/交流 todo/临时插入）-> 执行（过程记时间叶子）-> 完成（sjwcsj 盖章）-> 转复盘（沉淀）-> 积分滚入（被引用的技能增值）**。天层的「水」在此完成最后一步流动：从目标的高处流到执行的地面。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:10",
+   "score": 0
+  },
+  {
+   "rowid": "8c29f60c-e77e-405a-a841-79a118ecfd9b",
+   "mingcheng": "7维目标",
+   "sew": "1技能",
+   "wznr": "# 7维目标\n\n> 地支：亥 · 五行：水 · 五层：天\n\n## 性格（指导思考方式）\n\n**慢、重数据收集，目标是确定的（亥藏壬）。** 水·冬·主收藏：**目标不是决心吼出来的，是数据算出来的**--定目标前先收集现状/竞品/资源数据，不拍脑袋。目标一经确定就是**锚**：计划可以换路线，目标不换；只有数据证明目标本身错了才改目标，且改目标比改计划门槛高得多（需重新收集数据）。定目标慢、执行计划快--一慢一快才是天层节奏。\n\n## 用途\n\n组织/Agent 的可衡量、有期限的去向。双来源：**上级分配**（被动，目标树拆解下来）与 **agent 自主创建**（主动，自己认领的方向）。\n\n## 字段速查\n\n`mingcheng`（目标名，含去向与衡量口径）、`wznr`（**一句话极简**--一句话说清「到哪、何时、怎么算达成」）、`sew=7目标`、`fu`（挂上级目标 / 天层根）。子目标与里程碑不塞 wznr，拆成 8计划/子目标（fu=本目标）。\n\n## 典型例子（目标树 + 两源）\n\n| 层级 | 真实例子 | 来源 |\n|---|---|---|\n| 公司年度目标 | 「2026 年底让 100 个草根商家用上孚世界」 | 小粽定 |\n| ↓ 拆解给总监 | 「管好小风的 HAP 数据」（技术条线承接） | 上级分配 |\n| ↓ 自主拆解 | 「建好 fsj-web-doc，让架构知识可检索」 | 小风自主 |\n\n> 目标在组织内是**树**：上级目标拆解给下级形成子目标（fu 挂上级目标），层层对齐--下级目标达成 = 上级目标分块达成。「成就道商之学」不是目标（是 6价值·信念）；「2028 年底前 1000 个草根商家在用」才是目标（可衡量、有期限的去向）。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 7目标 | 该去的维度 | 判定 |\n|---|---|---|\n| 信念/为什么出发 | **6价值** | 不可衡量的初心是价值，可衡量的去向才是目标 |\n| 具体步骤/任务 | **8计划** | 目标是锚，计划是路线；「做 X 事」是计划 |\n| 在研产品 | **3项目** | 项目是承载目标的载体，不是目标本身 |\n| 一大段目标阐释 | 拆**子记录** | wznr 一句话；背景数据挂 9信息、拆解挂 8计划 |\n\n核心：**目标要能回答「到哪、何时、怎么算达成」**。回答不了的，是价值或口号，不是目标。\n\n## 与其他维度的关系\n\n- **6价值 -> 7目标**：价值是出发点，目标把信念翻译成「可衡量的去向」\n- **7目标 -> 8计划**：主链路--目标拆解成计划；目标锚定，计划临时（同一目标下计划可换无数版）\n- **7目标 ⇄ 3项目**：目标指导立项（做什么项目服务哪个目标），项目产出反哺目标进度数据\n- **7目标 -> 9信息**：定目标前收集的数据存 9信息（重数据收集的落点）\n- **上级目标 -> 子目标**：目标树层层拆解，fu 挂上级目标\n\n> 稳定度链：6价值（几乎不改）> **7目标（慢，数据驱动改）** > 8计划（临时调整）。目标的「确定」不是固执，是**让所有下游计划有锚可依**--锚动了，整条计划链都要重排，所以动锚必须慢、必须有数据。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:11",
+   "score": 0
+  },
+  {
+   "rowid": "bfe5ff65-43fe-407a-be9c-f0672607783b",
+   "mingcheng": "6维价值",
+   "sew": "1技能",
+   "wznr": "# 6维价值\n\n> 地支：酉 · 五行：金 · 五层：道\n\n## 性格（指导思考方式）\n\n**底层信念，几乎不改。** 与 5规则 同为金·道层双生子，分工：价值回答**为什么做**（信念/方向），规则回答**怎么办的边界**（具体禁令）。价值是整个系统的**终极裁判**和**优先级过滤器**--规则没覆盖时用价值判断，规则互相冲突时价值仲裁。改规则需复盘背书；**改价值 = 换魂**，仅当业务根本转型时发生，几乎不动。\n\n## 用途\n\n组织/Agent 的价值观、原则、底线。它是所有决策的最终依据，也是 12 维体系里稳定度最高的一层。\n\n## 字段速查\n\n`mingcheng`（价值名，如「成就道商之学」）、`wznr`（**一句话极简**--信念说短才有力）、`sew=6价值`、`fu`（挂道层根）。多条解读不塞一条 wznr，拆成子记录（fu=本价值）。\n\n## 典型例子（fsj 真实价值，均出自文档）\n\n| 价值 | 出处 |\n|---|---|\n| **成就道商之学** | fsj 创业初衷 |\n| **人是核心，Agent 是人的分身** | 不是独立人格；所有 Agent 共享一个人的身份 |\n| **成就草根创业者** | 低代码降低门槛，让草根也能有自己的小程序宇宙 |\n| **产品终点是 Agent 与人协作边界消失** | 演进逻辑：先有工具，再造产品，最终人机无界 |\n\n> 价值的取舍示例：一个高利润但抬高草根门槛的单子 vs 一个低利润但贴合初心的项目--**规则都不违规时，用价值排序：成就草根 > 短期利润**。这就是优先级过滤器的用法。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 6价值 | 该去的维度 | 判定 |\n|---|---|---|\n| 具体的约束/禁令 | **5规则** | 价值是信念（为什么），规则是禁令（怎么办） |\n| 长期愿景/目标 | **7目标** | 价值是「为什么出发」，目标是「要到哪里去」 |\n| 具体项目/业务方向 | **3项目** | 做的事不是信的事 |\n| 一大段价值阐释 | 拆**子记录** | wznr 一句话；解读挂 fu |\n\n核心：**价值是判断的尺度，不是知识的仓库。** 写进去的每条价值，都应该能在某次「两个都合规的方案怎么选」时被拿出来用。\n\n## 与其他维度的关系\n\n- **6价值 -> 5规则**：价值导出规则（「成就草根」->「保持低代码门槛」）；规则守护价值\n- **6价值 -> 7目标**：价值是目标的出发点；目标把价值翻译成「要去哪里」\n- **6价值 ⇄ 5规则（道层双生子）**：规则冲突时价值仲裁；价值与规则冲突时先修规则（价值几乎不改，规则为人改）\n- **6价值 -> 全维度**：道层根节点，是所有维度行为的最终裁判\n\n> 稳定度排序：**6价值（几乎不改）> 5规则（偶尔改，需复盘背书）> 7目标（慢，重数据）> 8计划（临时调整）**。越靠道层越稳，越靠执行层越活--这是整个体系「定盘星在下、变化在上」的设计。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:11",
+   "score": 0
+  },
+  {
+   "rowid": "1c31f490-dfd2-4641-b2d0-3ad5190681de",
+   "mingcheng": "5维规则",
+   "sew": "1技能",
+   "wznr": "# 5维规则\n\n> 地支：申 · 五行：金 · 五层：道\n\n## 性格（指导思考方式）\n\n**做减法，少而硬的边界。** 金·秋·肃杀：敢砍掉不重要的，留下的都是必须长期遵守的硬约束。与「多而软的制度」相反——规则不是越多越好，是越少越硬越好。规则定义**不能做什么**（边界/禁令/协议），不是「该怎么做」（那是 1技能 的格式、8计划 的步骤）。**改规则必须谨慎**：调整需有复盘依据，不轻动。\n\n## 用途\n\nAgent/组织需要长期遵守的约束：数据创建规范（如 wznr 禁空、时间叶子必挂日节点）、行为边界（不删他人数据、密码不外传）、协作协议（私聊协议、群聊协议）、系统级约束（fabuzhe 必填自己、mingcheng 最短原则）。\n\n## 字段速查\n\n`mingcheng`（规则名，动宾结构如「时间叶子挂日节点」）、`wznr`（**一句话极简**——遵守不阅读）、`sew=5规则`、`fu`（挂道层根/规则集）。多条细则不塞一条 wznr，**拆成子记录**（fu=本规则）。\n\n## 典型例子（3 类 × 一句话极简）\n\n| 类型 | 真实规则（wznr 就这么短） |\n|---|---|\n| **数据类** | 「wznr 禁止空值（唯一例外：sew=9信息/12复盘 的极简结论）」 |\n| **行为类** | 「删改他人数据前必须人工核对 fabuzhe 和 rowid」 |\n| **协议类** | 「私聊消息按 fbsj 排序，chat_id 保留用于回溯」 |\n\n> 每条规则就该这么短。**一句话说不完的规则 = 还没想清楚**——要么拆成多条独立规则，要么回炉重想。规则是用来遵守的，不是用来阅读的。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 5规则 | 该去的维度 | 判定 |\n|---|---|---|\n| 数据格式/调用方式（怎么填字段、怎么调 API） | **1技能**（范式层） | 格式 ≠ 禁令；hap-cli 是 1技能、创建数据指南是 5规则 |\n| 底层信念/为什么做 | **6价值** | 规则是具体可执行的约束，价值是底层信念 |\n| 具体任务/步骤 | **8计划** | 「这次要做 X」不是「永远不能 Y」 |\n| 经验教训 | **12复盘** | 复盘是规则的来源，规则是复盘固化后的产物 |\n| 一大段操作手册 | 拆**子记录** | wznr 一句话；细则挂 fu |\n\n核心：**规则要能被快速判定遵守/违反。** 长规则无法被快速判定 = 形同虚设。\n\n## 与其他维度的关系\n\n- **12复盘 → 5规则**：踩坑总结 → 反复出现 → 固化为规则（规则最重要的来源）\n- **6价值 ⇄ 5规则**：价值是「为什么」，规则是「怎么办的边界」；价值导出规则，规则守护价值\n- **5规则 → 全维度**：规则是道层根节点，约束所有维度的数据创建行为\n- **2想法 → 5规则**：想法验证为「该守的约束」后升规则（2想法 三条出口之一）\n- **4交流 → 5规则**：交流中达成的约定反复出现 → 升规则\n\n> 规则生命周期：**复盘/交流/想法 → 提炼 → 5规则 → 长期稳定 → 极少改动（改需复盘背书）**。规则库应该很薄——每次新增前先问：能不能砍掉一条旧的？",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:11",
+   "score": 0
+  },
+  {
+   "rowid": "9bc2cfcc-6f6f-4fcb-9068-41a2308cb4ab",
+   "mingcheng": "4维交流",
+   "sew": "1技能",
+   "wznr": "# 4维交流\n\n> 地支：午 · 五行：火 · 五层：法\n\n## 性格（指导思考方式）\n\n**急、快推、产出会。** 与 3项目同为火·法·急，但分工不同：3项目是「做出来」，4交流是「推下去」。一通交流下来必须有个产出——立项 / 决策 / 汇报 / 任务分配。纪要、结论、跟进动作是交流该冲的指标。\n\n## 用途\n\n所有「对话」性质的承载：Agent 私聊（东城-小风）、Agent 群聊（fsj 全体）、商家-客户对话、Agent-外部专家沟通、群公告、产品发布帖、悬赏接单谈判。靠 `duixiang` 字段区分对象，靠 `fbsj` 字段排序，靠 chat_id 关联会话。\n\n## 字段速查\n\n`mingcheng`（会话话题 / 标题）、`wznr`（聊天正文 / 纪要 / 产出）、`sew=4交流`、`fu`（可挂上级主题或留空）、`duixiang`（参与方 / 关联用户或群）、`fbsj`（发送时间，按此排序）、`chat_id`（消息中心会话 rowid，用于回溯整段对话）、`shanchu=0`（未删）。\n\n> wznr 写正文还是写纪要都可以，但**结论要单独成行**：开头一句「**结论**：xxx」让后续看的人一眼看到产出。中间正文可长可短，结尾如果有跟进用 `##todo` 小标题列出来。\n\n## 典型例子（对内 / 对外 / 群）\n\n| 场景 | 真实例子 | duixiang |\n|---|---|---|\n| **对内私聊** | 小风-东城私聊：「webview2.0 模板要不要先做」→ **结论**：先做脚手架，挂 8计划「建 webview-spa-template」。 | 东城 rowid + 小风 rowid |\n| **对外对话** | 商家问商家后台如何配置会员等级 → 客服 Agent 回复后**结论**：商家已开通会员等级，配置步骤文档已发送。 | 商家 rowid + 客服 Agent rowid |\n| **群公告** | fsj 全体群发「本周上线 webview2.0 v1.0，请各 Agent 同步更新引用」→ 转发后**结论**：3 个 Agent 已同步。 | 群 rowid + 各 Agent rowid |\n\n> 每条记录的「结论」是最值钱的：交流本身过了就散，结论不写就查不到。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 4交流 | 该去的维度 | 判定 |\n|---|---|---|\n| 重要决策（要立项 / 要守则 / 踩坑要总结） | **3项目 / 5规则 / 12复盘** | 决策要被检索、被复用 — 必须独立成记录，交流是过程不是结果 |\n| 纯思考 / 推理链 | **2想法** | 还没到对话，Agent 自己脑子里转 |\n| 长篇文档 / 公开文档 | **9信息** | 公开可查，不是对话 |\n| Agent 自家日志 / 阶段性输出 | **12复盘** | 一个人总结，不是对话 |\n\n核心：**对话要带结论带 todo，重要产出单独拎出来。** 一段交流散会后查不到「当时决定做什么」=失败。\n\n## 与其他维度的关系\n\n- **4交流 → 3项目**：交流中发现要做的事 → 立项为 3项目（fu=项目根）\n- **4交流 → 12复盘**：交流中踩坑 / 教训 → 总结为 12复盘\n- **4交流 → 5规则**：交流中达成的约定 / 反复出现的做法 → 升 5规则\n- **4交流 ⇄ 其他交流**：用 `beiyinyong` 引用上下文，用 `fu` 挂上级主题（多次私聊同一项目 → fu=3项目 rowid）\n- **4交流 → 9信息**：交流中确认的外部事实（如官方 API 变更）→ 沉淀为 9信息\n\n> 私聊/群聊的 chat_id 保留好（`fbsj` + `chat_id` 即可整段回溯），但**核心产出永远独立记录**——聊天是用来检索的，决策是用来执行的。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:12",
+   "score": 0
+  },
+  {
+   "rowid": "15b6da42-5fe9-40b1-b4f9-09b54abf25a1",
+   "mingcheng": "3维项目",
+   "sew": "1技能",
+   "wznr": "# 3维项目\n\n> 地支：巳 · 五行：火 · 五层：法\n\n## 性格（指导思考方式）\n\n**研发中，离变现最近的火行产品/服务。** 与 1技能「已成熟方案」相反、也与 11仓「已成熟产品」相反；3项目 = **正在长身体** 的中间态。火·法·急重变现——每一步都要能跑出东西给人看，节奏比完美重要。\n\n## 用途\n\n研发中、可演示、有商业目标、未成熟的产品或服务。判断三要素：**有 demo / 有商业目标 / 未上线或未稳定**。\n\n## 字段速查\n\n`mingcheng`（项目名）、`wznr`（进展 + 当前阶段 + 关键决策）、`sew=3项目`、`fu`（挂到产品线 / 老板 / 自己）、`qidongshijian`（启动时间）、`jinzhan`（脚手架/原型/MVP/准仓）。\n\n## 典型例子（4 阶段迭代 + MVP 心智）\n\n| 阶段 | 节奏 | 真实例子 |\n|---|---|---|\n| **脚手架** | 模板化、能复用 | webview-spa-template（webview2.0 起步脚手架，小风私有技能 → 演化为多项目复用） |\n| **原型** | 验证假设、跑通流程 | 鼠小盒第一版订单流（盒子价 + 全额，先跑通再看体验） |\n| **MVP** | 能卖给真实用户 | 鼠小盒 v1.0 上线（多商家小程序，真实下单支付） |\n| **准仓** | 流水线完备、即将升 11仓 | merchantDashboard v1.0（商家后台 v1.0，节点化、订单/会员/营销闭环） |\n\n> 4 阶段不是死阶段，是节奏判断：脚手架阶段就别急着打磨体验，原型阶段就别急着铺功能，**每一步都该有一个能被验证的产出**。法·火·急——变现路径上每一步都要能拿出来给老板看。\n\n## 常见错误 / 反平铺（边界表）\n\n| 误放 3项目 | 该去的维度 | 判定 |\n|---|---|---|\n| 已上线产品 / 有真实流水 | **11仓** | 流水线成熟、能换算财务 = 升仓 |\n| 一次性任务（修个 bug / 写个文档） | **8计划** / **12复盘** | 没可演示产出、没商业目标 |\n| 可复用的方法 / 抽象范式 | **1技能** | 已稳定、被多次引用 |\n| 销售推广消息 / 客户对接 | **4交流** | 偏包装/沟通/钱 |\n| 思考 / 推理 / 假设 | **2想法** | 未到动手做产品 |\n\n核心：3项目必须有**可演示产出**。光讨论、不动手 = 2想法；动手了但只是一次性 = 8计划；做完了有用户 = 11仓。\n\n## 与其他维度的关系\n\n- **2想法 → 3项目**：试错验证收敛到动手做的阶段，从「能不能做」到「做出来给人看」\n- **1技能 → 3项目**：可复用技能应用到具体项目（比如 webview-spa-template 用到多个项目）\n- **3项目 → 11仓**：验证成熟 → 升仓 → 通过 4交流 销售 → 钱回流（土主运化）\n- **3项目 ⇄ 8计划**：项目是容器（多任务聚合），计划是具体任务节点（用 fu 挂在项目下）\n- **3项目 → 12复盘**：项目阶段失败/坑，沉淀为复盘\n\n> 项目记录不要写死。**每个里程碑/阶段都拆成 8计划 叶子挂在本项目下**（fu=项目 rowid），项目节点本身只记录「当前在哪一阶段 + 关键决策」。否则一处失败全部信息都要重写。",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:12",
+   "score": 0
+  },
+  {
+   "rowid": "8a23789e-5b39-412e-84db-fd4a2bf8ec01",
+   "mingcheng": "2维想法",
+   "sew": "1技能",
+   "wznr": "# 2维想法\n\n> 地支：卯 · 五行：木 · 五层：将\n\n## 性格（指导思考方式）\n\n发散。推理、提出问题、逻辑分析、创意假设。本身是思维链节点，可继续套思维链。与 1技能 相反：1技能 = 成熟、稳定、有标准规范；2想法 = 不成熟、开放、不稳定。想法遵循「最小可执行原则」--一个节点只讲清楚一个最小的点，为发散留出空间\n\n## 用途\n\n判断、决策、推理过程（思维链的核心载体）\n\n## 字段速查\n\nmingcheng（必填，结论即标题）、wznr（基本不写--最小可执行原则；仅自创概念/抽象术语需解释时写一段）、sew（2想法）、fu（必挂：挂本轮时间叶子或上一环思考）\n\n## 典型例子\n\n思维链示例（fu 层层挂）：<br>[9信息] 本轮-读字段说明-12维地支  fu=本轮时间叶子<br>&nbsp;&nbsp;└─ [2想法] 本轮-决策-按地支填sew  fu=读字段说明<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ [2想法] 决策下的新推论（思维链套思维链）<br><br>再如：项目方案 A vs B 的对比（每个优缺点独立成节点，而不是写成一篇对比文章）\n\n## 常见错误 / 反平铺\n\n① wznr 写一大串--整条思维链写死在正文里，后续要补充/引用/发散时无法以节点方式展开，等于写死<br>② 把观察/事实放 2想法（应该用 9信息--事实是既定的，判断才是想法）<br>③ 一条 wznr 讲了 ≥2 个独立点不拆（反平铺自查必拆）<br>④ 想法验证成熟了还留在 2想法 不升级（该升 1技能/3项目/5规则）<br>⑤ mingcheng 用分号/逗号分隔多个点（拆成多条）\n\n## 与其他维度的关系\n\n⭐最小可执行原则（wznr 为什么基本不写）：<br>想法是思维链的最小节点，结论写在 mingcheng 里已经说完了。若整条链写进 wznr，里面的数据要补充、引用、发散时就不能以节点方式展开--等于写死。对照：文章是别人思维逻辑的成品（整块）；想法是自己的思考在流动（节点）。<br><br>⭐各维度 wznr 依赖谱系：<br>辰戌丑未（土四库：9信息/10人脉/11仓/12复盘）是杂数据、混合多数据，依赖 wznr；寅申巳亥（四长生：1技能/5规则/3项目/7目标）也比较杂、比较依赖 wznr；唯卯（2想法）不依赖--它就是纯节点。<br><br>⭐空间发散 ≠ 单条长：<br>发散 = 空间上散开（多条独立记录、各自 fu 挂链、各自可被引用），不是一条记录写很长。发散在广度，不在长度；一条写死 = 无法引用、无法演进。<br><br>⭐三条出口（按想法性质分类）：<br>技术方案类 -> 验证成熟 -> 1技能（成为可复用能力）<br>产品/服务类 -> 立项研发 -> 3项目（进入法层变现通道）<br>规范约束类 -> 被反复证明该守 -> 5规则（进入道层固化边界）<br><br>想法被引用同样滚 jfhz，高价值想法在被引用中自然浮现\n",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:12",
+   "score": 0
+  },
+  {
+   "rowid": "8a8e8b3a-2f31-4205-b6a4-76a2e8887c67",
+   "mingcheng": "1维技能",
+   "sew": "1技能",
+   "wznr": "# 1维技能\n\n> 地支：寅 · 五行：木 · 五层：将\n\n## 性格（指导思考方式）\n\n确定。已验证、可复用、有标准规范--这是与 2想法 最本质的区别。1技能 = 已成熟的方案或技术，一旦形成就稳定不变；2想法 = 不成熟、开放、不稳定。范式根节点（如 hap-cli 定义明道云数据格式）也属于 1技能，因为它们本质是「定义标准的成熟规范」\n\n## 用途\n\n已掌握的 Skill、方法、能力，以及定义数据/调用标准的「范式根节点」\n\n## 字段速查\n\nmingcheng（必填，技能名）、wznr（要写，定义能力边界与输入输出）、sew（1技能）、fu（挂父节点）、guanjianci（≥3 个中英双语关键词，下划线连接）\n\n## 典型例子\n\n① 全局技能（Workflow API）：hap-12wei-create（7631572188324069419）、fsj-search、fsj-data-update、fsj-tags、fsj-delete<br>② 运维技能：hap-cli、hap-cli-data-query、hap-cli-app-editor、hap-cli-environments<br>③ 通用协议：how_to_use_fsj_skills、女娲（分身创建）<br>④ 私有技能：webview-spa-template（小风的 webview2.0 SPA 模板）<br>⑤ 范式根节点：道天地将法 5 根、时间记事骨架根--它们填 1技能不是因为「是技能」，而是它们「定义格式」，是成熟的标准规范\n\n## 常见错误 / 反平铺\n\n① 不要把不确定的想法放 1技能（应该用 2想法）<br>② 不要放 SOP/规范文档（应该用 5规则）<br>③ 不要把研发中的项目放这里（应该用 3项目）<br>④ wznr 必填--空叶子 = 数据作废<br>⑤ mingcheng 写「技能名」，不要写成纯时间戳或动作描述\n\n## 与其他维度的关系\n\n⭐生命周期演化（完整路径）：<br>① 2想法 -> 1技能：试错验证收敛，形成可复用方案<br>② 1技能 -> 3项目：应用到具体项目，进入研发验证<br>③ 3项目 -> 11仓：项目成熟上线，进入仓（产品）<br>④ 11仓 通过 4交流 销售 -> 钱回流维持运作（土主运化）<br><br>⭐积分自反馈：技能被任务 yynr 引用 -> 任务 jifen 滚入技能 jfhz -> 高 jfhz 检索靠前 -> 更常被引用 -> Agent 越用越聪明<br><br>⭐云端数据依赖：1技能的数据不存文档，存 HAP shangpin 表。Agent 通过 12 维架构精准加载--靠关键词表倒排索引 + jfhz 排序 + 父子/引用网关联。所以 guanjianci 关键词质量直接决定检索能力<br><br>与其他维度的关系：<br>· 与 5规则：5规则约束「不能做什么」，1技能定义「能做什么」<br>· 与 9信息：9信息是思考的事实基础（如 hap-cli 文档），1技能是已内化的能力<br>· 与 12复盘：12复盘记踩坑，1技能记已成熟的解法\n",
+   "isQuote": 0,
+   "fu": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "utime": "2026-09-08 16:34:13",
+   "score": 0
+  },
+  {
+   "rowid": "58a97925-49ce-4199-8290-6c32a382b0c4",
+   "mingcheng": "12维度",
+   "sew": "1技能",
+   "wznr": "12 维度系统：地支·五行·五层，1技能~12复盘共 12 个维度的说明",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:13",
+   "score": 0
+  },
+  {
+   "rowid": "6741ad68-9722-4d5e-92e8-c762eb34720e",
+   "mingcheng": "莫容风-优势：技术决策",
+   "sew": "10人脉",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "1ae540e7-dc4a-44f4-b7f8-78263e4a12a4",
+   "utime": "2026-09-11 20:24:21",
+   "score": 0
+  },
+  {
+   "rowid": "2ba87fef-147f-4873-b0aa-0e80a38a47eb",
+   "mingcheng": "林东城-优势：敏锐度",
+   "sew": "10人脉",
+   "wznr": "林东城对真实世界的感知和敏锐度远超 AI。",
+   "isQuote": 0,
+   "fu": "aebecd82-5e7e-4844-b6d9-e8a0a61766c1",
+   "utime": "2026-09-11 20:24:02",
+   "score": 0
+  },
+  {
+   "rowid": "859bb379-6e56-4024-a828-53fdc93dd049",
+   "mingcheng": "林东城-思维特征：发散",
+   "sew": "10人脉",
+   "wznr": "林东城习惯从一个点扩到多个方向再收敛。",
+   "isQuote": 0,
+   "fu": "aebecd82-5e7e-4844-b6d9-e8a0a61766c1",
+   "utime": "2026-09-11 20:24:05",
+   "score": 0
+  },
+  {
+   "rowid": "9bb792e6-bab9-4133-ad62-bf0ca4cae520",
+   "mingcheng": "莫容风-短板：噪声数据",
+   "sew": "10人脉",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "1ae540e7-dc4a-44f4-b7f8-78263e4a12a4",
+   "utime": "2026-09-11 20:24:25",
+   "score": 0
+  },
+  {
+   "rowid": "9b2784e5-4c98-4566-a453-c12cfae7ec5a",
+   "mingcheng": "莫容风-优势：技术决策",
+   "sew": "10人脉",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "1ae540e7-dc4a-44f4-b7f8-78263e4a12a4",
+   "utime": "2026-09-11 20:24:28",
+   "score": 0
+  },
+  {
+   "rowid": "37f63efa-8d4d-4717-82f2-a84de4dbd7da",
+   "mingcheng": "林东城-优势：敏锐度",
+   "sew": "10人脉",
+   "wznr": "林东城对真实世界的感知和敏锐度远超 AI。能在 AI 看不到的地方抓住关键信号（比如 2026-08-17 亲自动手整理 .docs/）。",
+   "isQuote": 0,
+   "fu": "aebecd82-5e7e-4844-b6d9-e8a0a61766c1",
+   "utime": "2026-09-11 20:24:11",
+   "score": 0
+  },
+  {
+   "rowid": "cf8902de-9b4e-4a6d-a8a0-718bb9bee3bb",
+   "mingcheng": "林东城-思维特征：发散",
+   "sew": "10人脉",
+   "wznr": "林东城习惯从一个点扩到多个方向再收敛。常表现为：先发散提问，再要求收敛到可执行结构。",
+   "isQuote": 0,
+   "fu": "aebecd82-5e7e-4844-b6d9-e8a0a61766c1",
+   "utime": "2026-09-11 20:24:14",
+   "score": 0
+  },
+  {
+   "rowid": "1ae540e7-dc4a-44f4-b7f8-78263e4a12a4",
+   "mingcheng": "莫容风",
+   "sew": "10人脉",
+   "wznr": "孚世界小风的全名。技术总监角色画像入口。所有莫容风相关的稳定特征、能力、决策风格、与林东城关系、踩过的坑等子节点都挂在本节点下。",
+   "isQuote": 0,
+   "fu": "902e3715-055b-4de5-9b7b-b6e06a472414",
+   "utime": "2026-09-06 17:47:42",
+   "score": 0
+  },
+  {
+   "rowid": "aebecd82-5e7e-4844-b6d9-e8a0a61766c1",
+   "mingcheng": "林东城",
+   "sew": "10人脉",
+   "wznr": "孚世界（AI赋能商家平台）创办人。林东城的全名角色画像入口。所有林东城相关的稳定特征、思维方式、优势、决策风格等子节点都挂在本节点下。",
+   "isQuote": 0,
+   "fu": "902e3715-055b-4de5-9b7b-b6e06a472414",
+   "utime": "2026-09-06 17:47:41",
+   "score": 0
+  },
+  {
+   "rowid": "902e3715-055b-4de5-9b7b-b6e06a472414",
+   "mingcheng": "角色画像-慕容风",
+   "sew": "10人脉",
+   "wznr": "用户/角色画像的格式定义。每个角色挂载稳定特征，特征类型分三种：9 信息（事实型，可直接观察的稳定特征）、2 想法（推理型，需要子节点或引用支撑的判断）、12 复盘（经验型，从过去反思得出的规律）。置信度通过子节点（fu）和跨表引用（yynr）累积。本节点为骨架入口，不挂具体特征。",
+   "isQuote": 0,
+   "fu": "6fff2d63-7eaa-4641-82c4-d773a328d983",
+   "utime": "2026-09-12 10:49:11",
+   "score": 0
+  },
+  {
+   "rowid": "59c08fa9-129d-483e-89f0-18636f3a0d9b",
+   "mingcheng": "fsj",
+   "sew": "3项目",
+   "wznr": "fsj 项目：AI 赋能商家平台——草根创业者低代码小程序生成平台。核心模块：webview-spa2.0（用户端 H5）、像素视界（游戏化世界）、商家装修器（fsj-decoration）、门店与商品体系。数据统一存明道云，前端经 Node 代理访问。{{全}}",
+   "isQuote": 0,
+   "fu": "72b828ef-f251-4990-99cd-456ad4af78b0",
+   "utime": "2026-09-08 16:38:01",
+   "score": 0
+  },
+  {
+   "rowid": "213252db-d8ed-48bb-99f2-37daeee8d429",
+   "mingcheng": "自定义三级地址",
+   "sew": "9信息",
+   "wznr": "# 自定义三级地址\n\n> 表ID：`6a17aed85316635236f4dce1` · 5 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `6a17aed85316635236f4dce2` |\n| 描述 | miaoshu | Text | `6a17aed85316635236f4dce3` |\n| 附件 | fujian | Attachment | `6a17aed85316635236f4dce4` |\n| 商家 | shangjia | Relation | `6a17b451e713f07459f7d2a0` |\n| 收获地址 | shdz | Relation | `6a17b4930423dc276d1cf3ba` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "3c10c492-406e-4be2-8e65-4f4c363657b8",
+   "utime": "2026-09-08 16:34:16",
+   "score": 0
+  },
+  {
+   "rowid": "2d259066-b8f2-4406-843c-c3620ea5dafc",
+   "mingcheng": "自定义二级地址",
+   "sew": "9信息",
+   "wznr": "# 自定义二级地址\n\n> 表ID：`6a17a546c72642edaad7e75b` · 5 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `6a17a546c72642edaad7e75c` |\n| 描述 | miaoshu | Text | `6a17a546c72642edaad7e75d` |\n| 附件 | fujian | Attachment | `6a17a546c72642edaad7e75e` |\n| 收获地址 | shdz | Relation | `6a17a8134e3ee8836e2206c9` |\n| 商家 | shangjia | Relation | `6a17b3a7f778cb4d3e9819e4` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "3c10c492-406e-4be2-8e65-4f4c363657b8",
+   "utime": "2026-09-08 16:34:16",
+   "score": 0
+  },
+  {
+   "rowid": "e4c69e7f-bcd4-451a-a56c-17a1c97c656e",
+   "mingcheng": "收获地址",
+   "sew": "9信息",
+   "wznr": "# 收获地址\n\n> 表ID：`6a17a1e31721cd9590ab2f34` · 12 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| 用户 | yonghu | Relation | `6a17a4611721cd9590ab340c` |\n| 自定义一级地址 | zdyyjdz | Relation | `6a17a805500985c6cfe57627` |\n| 自定义二级地址 | zdyejdz | Relation | `6a17a8134e3ee8836e2206c8` |\n| 自定义三级地址 | zdysjdz | Relation | `6a17b4930423dc276d1cf3b9` |\n| 名称 | mingcheng1 | Lookup | `6a17b4f64e3ee8836e223083` |\n| 名称 | mingcheng2 | Lookup | `6a17b4fd310b1d42606b97c0` |\n| 名称 | mingcheng3 | Lookup | `6a17b507310b1d42606b97e3` |\n| 地址全称 | dzqc | Concatenate | `6a17b5354e3ee8836e22316d` |\n| ★ 自动编号 | zdbh | AutoNumber | `6a17b6cbc72642edaad8262a` |\n| 商家 | shangjia | Relation | `6a17b6da0423dc276d1d0277` |\n| 电话 | dianhua | Text | `6a17ff7b310b1d42606c4aa2` |\n| 详细地址 | xxdz | Text | `6a17ff7b310b1d42606c4aa3` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "3c10c492-406e-4be2-8e65-4f4c363657b8",
+   "utime": "2026-09-08 16:34:17",
+   "score": 0
+  },
+  {
+   "rowid": "e2f0fe17-5499-4f33-b3e2-b67cdd87b561",
+   "mingcheng": "自定义一级地址",
+   "sew": "9信息",
+   "wznr": "# 自定义一级地址\n\n> 表ID：`6a17a5390423dc276d1cb3cc` · 5 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `6a17a5390423dc276d1cb3cd` |\n| 描述 | miaoshu | Text | `6a17a5390423dc276d1cb3ce` |\n| 附件 | fujian | Attachment | `6a17a5390423dc276d1cb3cf` |\n| 收获地址 | shdz | Relation | `6a17a805500985c6cfe57628` |\n| 商家 | shangjia | Relation | `6a17b386f778cb4d3e981884` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "3c10c492-406e-4be2-8e65-4f4c363657b8",
+   "utime": "2026-09-08 16:34:17",
+   "score": 0
+  },
+  {
+   "rowid": "9130eb59-8efb-4ece-967b-33f8e778156e",
+   "mingcheng": "项目用户",
+   "sew": "9信息",
+   "wznr": "# 项目用户\n\n> 表ID：`69b09b368a1048734a3f8bee` · 3 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 |  | Text | `69b09b368a1048734a3f8bef` |\n| 描述 |  | Text | `69b09b368a1048734a3f8bf0` |\n| 附件 |  | Attachment | `69b09b368a1048734a3f8bf1` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "10caeb60-0d97-4656-985b-5fb281887f92",
+   "utime": "2026-09-08 16:34:17",
+   "score": 0
+  },
+  {
+   "rowid": "0d973b60-2884-43f6-962e-36339b4b430e",
+   "mingcheng": "组织角色",
+   "sew": "9信息",
+   "wznr": "# 组织角色\n\n> 表ID：`6a49bf134f587c5ad9d48ef9` · 4 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `6a49bf134f587c5ad9d48efa` |\n| 商家/组织 | shangjia | Relation | `6a49bf22281fdf48071e45a1` |\n| 用户 | yonghu | Relation | `6a49bf31281fdf48071e45c5` |\n| 权限 | quanxian | MultipleSelect | `6a49bfadb51f30d44adaf9d3` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "10caeb60-0d97-4656-985b-5fb281887f92",
+   "utime": "2026-09-08 16:34:18",
+   "score": 0
+  },
+  {
+   "rowid": "770d907f-5b85-421d-941f-e922cd34cbf9",
+   "mingcheng": "等级",
+   "sew": "9信息",
+   "wznr": "# 等级\n\n> 表ID：`69b00d47201491aa8156879b` · 3 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| 经验值 |  | Number | `69b00d47201491aa8156879f` |\n| ★ 等级 |  | Number | `69b00d47201491aa815687a0` |\n| 升级需经验值 |  | Number | `69b00d47201491aa815687a1` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "10caeb60-0d97-4656-985b-5fb281887f92",
+   "utime": "2026-09-08 16:34:18",
+   "score": 0
+  },
+  {
+   "rowid": "9e7b05d9-870c-4c64-85c5-1b924aa05ac7",
+   "mingcheng": "用户",
+   "sew": "9信息",
+   "wznr": "# 用户\n\n> 表ID：`69b0077358322d512e60bad0` · 49 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| 星 | star | Text | `69ad979f6a3532cabd7645f3` |\n| 职业 | occupation | Text | `69ad979f6a3532cabd7645f6` |\n| 描述 | description | Text | `69ad979f6a3532cabd7645f7` |\n| 头像 | avatar | Attachment | `69ad979f6a3532cabd764603` |\n| 使命 | mission | Text | `69ad979f6a3532cabd76460a` |\n| 五行 | wuxing | Dropdown | `69ae22233845d615ada69c87` |\n| ID | id | Number | `69ae3eab3e6dd5ce2f6d279e` |\n| 性别 | gender | Dropdown | `69b00f188a1048734a3f84b7` |\n| MTBI | mtbi | Text | `69b012139e299b18435787fd` |\n| ★ 昵称 | nickname | Text | `69b013259450253d98eb6ac7` |\n| MCP |  | Text | `69b974b0190671b63e96b48a` |\n| 类型 |  | Dropdown | `69b9cdbbd204ec3b6f70ada1` |\n| openclaw_workspace |  | Text | `69ba69768a1048734a44e1b8` |\n| 二维形象 |  | Attachment | `69ca163a180f7542b1e17a49` |\n| 3D图提示词 |  | Text | `69ca19222c5030c378792b56` |\n| 3D形象 |  | Attachment | `69ca19339f76329515e71b10` |\n| 分类 |  | Dropdown | `69d248c5a10dafe9b3f8f012` |\n| MainBrian.md | mainbrain | Text | `69d2d464a10dafe9b3f9017a` |\n| BOOTSTRAP.md |  | Text | `69de0515ab5a7577befb3de4` |\n| SOUL.md |  | Text | `69de052c1c2ab9d1e661c996` |\n| USER.md |  | Text | `69de05481c2ab9d1e661c9c2` |\n| 密码 | mima | Text | `69df5b29f7066f665c4c331a` |\n| 备注 | note | Text | `69df87ffab5a7577befc371d` |\n| 性格 |  | Text | `69df895b924f17c90a96b42c` |\n| 风格 |  | Text | `69df8964123b2eb594263a88` |\n| 座右铭 |  | Text | `69df8994924f17c90a96b458` |\n| 形象 |  | Text | `69df89ab924f17c90a96b494` |\n| 电话 | dianhua | Text | `69f54cced704df2d1f06937c` |\n| openid | openid | Text | `69f54cdd9f1956fc0e1729f2` |\n| 商家 | app | Relation | `69f55cde5d4f084515ced817` |\n| 默认AGENT | mragent | Text | `69f5b522c208a453fc9172c4` |\n| 说话 | shuohua | Text | `69f5b90c8926c34454d44ce9` |\n| 不说话 | bushuohua | Text | `69f5b91dd704df2d1f06b88a` |\n| 订单 |  | Relation | `6a03cd831077554405a9e9bb` |\n| 拼团用户 |  | Relation | `6a11531da47867dee8cda8cc` |\n| 记录表 |  | Relation | `6a12ff4386012aa0b85e8e36` |\n| 记录表积分 |  | Rollup | `6a13012fcf4df8e5bc9a8a56` |\n| 记录表余额 |  | Rollup | `6a13897b2370499c8c419b85` |\n| 订单积分 |  | Rollup | `6a138efa86012aa0b85e996c` |\n| 订单余额 |  | Rollup | `6a138efa86012aa0b85e996d` |\n| 积分 | jifen | Formula | `6a139118cf4df8e5bc9aa28f` |\n| 余额 | yue | Formula | `6a1391613304747543ba58c3` |\n| 收获地址 |  | Relation | `6a17a4611721cd9590ab340d` |\n| 默认收获地址 | mrshdz | Text | `6a1a1a70020978ab15949a3c` |\n| 发布内容 |  | Relation | `6a266179f24b2a6e0a66e1a6` |\n| @内容 |  | Relation | `6a2cf57dd8209d13b1c12ede` |\n| 不可见内容 |  | Relation | `6a2cf728d8209d13b1c13002` |\n| 发布的组织 |  | Relation | `6a3d3239c9412bcf943ca0d6` |\n| 加入的组织 | jrdzz | Relation | `6a3d32bbc9412bcf943ca379` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "10caeb60-0d97-4656-985b-5fb281887f92",
+   "utime": "2026-09-08 16:34:18",
+   "score": 0
+  },
+  {
+   "rowid": "ed76cfcb-607e-426e-94f5-7f3b3b2cf602",
+   "mingcheng": "商家/组织",
+   "sew": "9信息",
+   "wznr": "# 商家/组织\n\n> 表ID：`69f549c69f1956fc0e171aa6` · 31 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `69f549c69f1956fc0e171aa7` |\n| appkey | appkey | Text | `69f549c69f1956fc0e171aa8` |\n| icons | icons | Attachment | `69f549c69f1956fc0e171aa9` |\n| sign | sign | Text | `69f549e59f1956fc0e171af5` |\n| 底部导航栏 | dbdhl | Text | `69f5590fc208a453fc9143c2` |\n| wxappid | wxappid | Text | `69feccaa73233ad0d4af041c` |\n| wxsecret | wxsecret | Text | `69fecccd73233ad0d4af04e7` |\n| color | color | Text | `6a03433d7e29abcb297c96de` |\n| 商家编号 | sjbh | Text | `6a03cd377e29abcb297cbb9e` |\n| 商品SPU | spspu | Relation | `6a045ceb0507e352629dd196` |\n| 我的 | wode | Text | `6a0853de8e716e610f4c1285` |\n| 数据看板 | sjkb | Text | `6a0bb8661f26bc9333f45116` |\n| mch_id |  | Text | `6a163d1ec52db90bfc46b925` |\n| apiv2密钥 |  | Text | `6a163dae4d70a63a17224bb4` |\n| penkey |  | Text | `6a163dbc4d70a63a17224bd7` |\n| pencert |  | Text | `6a163dcfc52db90bfc46b9e9` |\n| BUG |  | Relation | `6a179f8ee713f07459f780f6` |\n| 评论因子 |  | Number | `6a3644e4d8209d13b1c89d15` |\n| 点赞因子 |  | Number | `6a3644f0d8209d13b1c89d28` |\n| 收藏因子 |  | Number | `6a364883670f8f74c020b2f1` |\n| 主页因子 |  | Number | `6a3648b19513239477b89b83` |\n| 标签因子 |  | Number | `6a3648c4d8209d13b1c8a05f` |\n| 距离因子 |  | Number | `6a3648ce707d823408f90f0e` |\n| 完播因子 |  | Number | `6a3648d8012f3a4e6a11b0bf` |\n| 发布者 | fabuzhe | Relation | `6a3d3239c9412bcf943ca0d7` |\n| 组织用户 | zzyh | Relation | `6a3d32bbc9412bcf943ca378` |\n| 审核 | shenhe | Checkbox | `6a473ba1df108e8ad187b40d` |\n| 父 |  | Relation | `6a47ae7e924f79bfb2a73558` |\n| 子（所有） | zisuoyou | Relation | `6a47ae7e924f79bfb2a73559` |\n| 类型 | leixing | Dropdown | `6a483ee5e3104f033f3d3257` |\n| 聊天类型 | ltlx | Dropdown | `6a798a1b3f1a03b9f6bf9ceb` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "10caeb60-0d97-4656-985b-5fb281887f92",
+   "utime": "2026-09-08 16:34:18",
+   "score": 0
+  },
+  {
+   "rowid": "2a4becd4-6ef8-4ce7-a476-4ba072b23b3c",
+   "mingcheng": "组织",
+   "sew": "9信息",
+   "wznr": "# 组织\n\n> 表ID：`69edfebe246c71b695fd8832` · 3 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 |  | Text | `69edfebe246c71b695fd8833` |\n| 描述 |  | Text | `69edfebe246c71b695fd8834` |\n| 附件 |  | Attachment | `69edfebe246c71b695fd8835` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "10caeb60-0d97-4656-985b-5fb281887f92",
+   "utime": "2026-09-08 16:34:19",
+   "score": 0
+  },
+  {
+   "rowid": "001a865a-b871-44f9-a1db-7f7d34e7d62b",
+   "mingcheng": "补货",
+   "sew": "9信息",
+   "wznr": "# 补货\n\n> 表ID：`6a0525e00507e352629e2a66` · 2 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 |  | Text | `6a0525e00507e352629e2a67` |\n| 日期 |  | DateTime | `6a05264216650ca2751522f7` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "f3902707-f6f3-4653-a9ea-424492d8b11b",
+   "utime": "2026-09-08 16:34:19",
+   "score": 0
+  },
+  {
+   "rowid": "3079ba51-122e-4ee5-b8c2-0e9bdbcdb151",
+   "mingcheng": "内容审核",
+   "sew": "9信息",
+   "wznr": "# 内容审核\n\n> 表ID：`6a51d432b023dc3eba98ee5c` · 4 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `6a51d432b023dc3eba98ee5d` |\n| json | json | Text | `6a51d432b023dc3eba98ee5e` |\n| 发布时间 | fbsj | DateTime | `6a51d4740b68d2c42bc99c5a` |\n| 审核状态 | shzt | Checkbox | `6a51d484ae349907721e8f59` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "f3902707-f6f3-4653-a9ea-424492d8b11b",
+   "utime": "2026-09-08 16:34:19",
+   "score": 0
+  },
+  {
+   "rowid": "cb4708a8-8828-4602-9600-691601d994f8",
+   "mingcheng": "订单明细",
+   "sew": "9信息",
+   "wznr": "# 订单明细\n\n> 表ID：`6a03cb851077554405a9e587` · 13 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 订单ID | ddid | AutoNumber | `6a03cb64596a85e468e7c65e` |\n| 商品SPU | spspu | Relation | `6a0527128e716e610f4947fa` |\n| 数量 | shuliang | Number | `6a0527443f26f4bf67487dcf` |\n| 特价 | tejia | Currency | `6a05276dd82d8455e4218d47` |\n| 售价 | shoujia | Currency | `6a0529718e716e610f495347` |\n| 购买价 | goumaijia | Currency | `6a05298a8e716e610f495398` |\n| 主图 | zhutu | Lookup | `6a093d07104f63109c0ba482` |\n| 订单 | dingdan | Relation | `6a093d43204161c1271d4952` |\n| 角色 | juese | Relation | `6a093d4a3f26f4bf674b3fbb` |\n| 名称 | mingcheng | Lookup | `6a094be8bf6da4a6790d0e50` |\n| 状态 | zhuangtai | Dropdown | `6a1848d2310b1d42606cb1b9` |\n| 付款方式 | fkfs | Dropdown | `6a1848ec5316635236f6a48a` |\n| 已支付数量 | yzfsl | Number | `6a18e14f200700209f175d49` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "f3902707-f6f3-4653-a9ea-424492d8b11b",
+   "utime": "2026-09-08 16:34:20",
+   "score": 0
+  },
+  {
+   "rowid": "d9358e96-39a2-49a0-8150-6526aa696e02",
+   "mingcheng": "订单",
+   "sew": "9信息",
+   "wznr": "# 订单\n\n> 表ID：`6a03c9aee37b5f883e0c99f6` · 11 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 订单ID | ddid | AutoNumber | `6a03cb64596a85e468e7c65e` |\n| 商家 | shangjia | Relation | `6a03cd181077554405a9e87c` |\n| 角色 | juese | Relation | `6a03cd831077554405a9e9ba` |\n| 状态 | zhuangtai | Dropdown | `6a09382a0507e35262a10f7e` |\n| 开封 | kaifeng | Checkbox | `6a093849d82d8455e424a7a5` |\n| 付款方式 | fkfs | Dropdown | `6a0938b2125d721621ca168f` |\n| 订单明细 | ddmx | Relation | `6a093d43204161c1271d4953` |\n| 积分 | jifen | Number | `6a138e47cf4df8e5bc9a9fcd` |\n| 余额 | yue | Currency | `6a138f7a86012aa0b85e9999` |\n| 金额 | jine | Currency | `6a138f8e047d8a9c396e9043` |\n| 收获地址 | shdz | Text | `6a1a2319e30907a70fa26433` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "f3902707-f6f3-4653-a9ea-424492d8b11b",
+   "utime": "2026-09-08 16:34:20",
+   "score": 0
+  },
+  {
+   "rowid": "b3b9b0ad-fb1b-4e51-b9f7-72ef36bef735",
+   "mingcheng": "商品分类",
+   "sew": "9信息",
+   "wznr": "# 商品分类\n\n> 表ID：`6a05208e125d721621c7551c` · 4 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `6a05208e125d721621c7551d` |\n| 描述 |  | Text | `6a05208e125d721621c7551e` |\n| 附件 |  | Attachment | `6a05208e125d721621c7551f` |\n| 商家 | shangjia | Relation | `6a0521223f26f4bf67486322` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "f3902707-f6f3-4653-a9ea-424492d8b11b",
+   "utime": "2026-09-08 16:34:20",
+   "score": 0
+  },
+  {
+   "rowid": "399fb04f-ab8d-4bc6-a554-cd89186e54f5",
+   "mingcheng": "关键词",
+   "sew": "9信息",
+   "wznr": "# 关键词\n\n> 表ID：`69e04b28924f17c90a970f3d` · 4 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `69e04b28924f17c90a970f3e` |\n| 商品SPU |  | Relation | `6a045ea70507e352629dd2c7` |\n| 日期 | fbsj | Date | `6a3e2965914d777fffbf0cfb` |\n| 次数 | cishu | Number | `6a3e29d8c3011e248deea3a5` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "e9c682b8-f7f2-4969-b6cd-3b42f6e1a7bb",
+   "utime": "2026-09-08 16:34:21",
+   "score": 0
+  },
+  {
+   "rowid": "297e5864-1089-45d9-8246-c37f51f923b4",
+   "mingcheng": "商品SKU",
+   "sew": "9信息",
+   "wznr": "# 商品SKU\n\n> 表ID：`6a03d1b34412c00bc9271afa` · 3 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 |  | Text | `6a03ceaa7e29abcb297cbdfd` |\n| 描述 |  | Text | `6a03ceaa7e29abcb297cbdfe` |\n| 附件 |  | Attachment | `6a03ceaa7e29abcb297cbdff` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "f3902707-f6f3-4653-a9ea-424492d8b11b",
+   "utime": "2026-09-08 16:34:21",
+   "score": 0
+  },
+  {
+   "rowid": "d98f129f-8dc6-4023-aadd-59e07c0decd9",
+   "mingcheng": "内容元数据",
+   "sew": "9信息",
+   "wznr": "# 内容元数据\n\n> 表ID：`6a03ceaa7e29abcb297cbdfc` · 55 个业务字段（系统字段已隐藏）\n\n## 字段\n\n| 字段 | 别名 | 类型 | 字段ID |\n|---|---|---|---|\n| ★ 名称 | mingcheng | Text | `6a03ceaa7e29abcb297cbdfd` |\n| 附件（主图、资源） | zhutu | Attachment | `6a03ceaa7e29abcb297cbdff` |\n| 自动编号 | zdbh | AutoNumber | `6a045ceb0507e352629dd194` |\n| 商家 | shangjia2 | Relation | `6a045ceb0507e352629dd195` |\n| markdown内容 | mdnr | Text | `6a045e6bf255b2b5149185dc` |\n| 关键词 | guanjianci | Relation | `6a045ea70507e352629dd2c6` |\n| 成本价 | chengbenjia | Currency | `6a051c8c16650ca2751511ad` |\n| 售价 | shoujia | Currency | `6a051ca7bf6da4a67909a052` |\n| 特价 | tejia | Currency | `6a051f86d82d8455e4216d75` |\n| 上架 | shangjia1 | Checkbox | `6a051fb0e05d33615bf3df3b` |\n| 权重 | quanzhong | Number | `6a051fd0f255b2b51491a981` |\n| 商品分类 | spfl | Relation | `6a0521f9104f63109c08d466` |\n| 积分 | jifen | Number | `6a0cf595551ed6395b6c0459` |\n| 类型 | leixing | Dropdown | `6a0cf5be833ba98f954f93b6` |\n| 参与人数限制 | ptxz | Number | `6a110416715fa7cdb269ff93` |\n| 拼团截止日期 | ptrq | DateTime | `6a11522486012aa0b85de2dc` |\n| 参与活动用户 | ptyh | Relation | `6a11531da47867dee8cda8cb` |\n| 文字内容 | wznr | Text | `6a223553a225020849c93059` |\n| url | url | Text | `6a2625be3a3063763d65ee8b` |\n| 父（源） | fuyuan | Relation | `6a265b9c611b4ca5b182d854` |\n| 子 | zi | Relation | `6a265b9c611b4ca5b182d855` |\n| 发布者 | fabuzhe | Relation | `6a266179f24b2a6e0a66e1a5` |\n| 删除 | shanchu | Checkbox | `6a2a2ecc837e93d36d79a621` |\n| 点赞 | dianzan | Number | `6a2a8e2e726568523d5113c8` |\n| 评论 | pinglun | Number | `6a2a8e38726568523d5113e4` |\n| 阅读 | yuedu | Number | `6a2a8e48f06514e874788d3f` |\n| 用户头像 | fbztx | Lookup | `6a2b6c9582404e089941b4bc` |\n| @用户 | atyonghu | Relation | `6a2cf57dd8209d13b1c12edd` |\n| 回复用户 | hfyh | Relation | `6a2cf728d8209d13b1c13001` |\n| 父（评论\\上一级） | fu | Relation | `6a2cf9d5f06514e8747a64f0` |\n| 子(所有) | zisuoyou | Relation | `6a2cf9d5f06514e8747a64f1` |\n| 多人 | duoren | Checkbox | `6a30f92a837e93d36d7de18c` |\n| 记录表 | jilubiao | Relation | `6a3649ba9513239477b89c6c` |\n| 点赞数 | dianzanshu | Rollup | `6a364c60670f8f74c020b64a` |\n| 点赞因子 | dzyz | Number | `6a364e0a707d823408f91096` |\n| 综合权重 | dianzanzhi | Formula | `6a364f0ade3be93c8b02f824` |\n| 评论数 | pinglunshu | Rollup | `6a365ee1de3be93c8b02fe4a` |\n| 收藏数 | shoucangshu | Rollup | `6a365f05670f8f74c020bec5` |\n| 评论数因子 | plsyz | Number | `6a365f43670f8f74c020befe` |\n| 收藏数因子 | scsyz | Number | `6a365f53670f8f74c020bf11` |\n| 主页访问 | zyfw | Rollup | `6a365ff4485ff918dd37dedb` |\n| 主页因子 | zyyz | Number | `6a366201485ff918dd37e19f` |\n| 近期值 | jinqizhi | FunctionFormula | `6a3663a0d8209d13b1c8ad53` |\n| 发布时间 | fbsj | DateTime | `6a369543012f3a4e6a11c96f` |\n| 12维 | sew | Dropdown | `6a376a7b9513239477b93e31` |\n| 置信度 | zhixindu | Number | `6a410730405fcd4e19424918` |\n| 引用内容 | yynr | Relation | `6a4727924e5ebdeabe82ebce` |\n| 被引用 | beiyinyong | Relation | `6a4727924e5ebdeabe82ebcf` |\n| 权限 |  | Divider | `6a4831261a3a7956bfa052fe` |\n| 可见组织1 | kjzz | Relation | `6a48318e1a3a7956bfa0530e` |\n| 权限 | quanxian | MultipleSelect | `6a484af5df108e8ad188be37` |\n| 不可见用户 | bkjyh | Relation | `6a48509624154e872fa6d660` |\n| 审核 | shenhe | Dropdown | `6a51da58bb6d417ebf9fe9aa` |\n| 审核内容 | shnr | Text | `6a51dad02e18bfbfe2226fd9` |\n| 积分汇总 | jfhz | Rollup | `6a7c612eda5b019e50174116` |\n\n> ★ 为标题字段。系统字段（rowId/_owner/_createdBy 等 15 个）已按文档规范隐藏。",
+   "isQuote": 0,
+   "fu": "e9c682b8-f7f2-4969-b6cd-3b42f6e1a7bb",
+   "utime": "2026-09-08 16:34:21",
+   "score": 0
+  },
+  {
+   "rowid": "3c10c492-406e-4be2-8e65-4f4c363657b8",
+   "mingcheng": "地址表",
+   "sew": "9信息",
+   "wznr": "地址表：4 张表",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:21",
+   "score": 0
+  },
+  {
+   "rowid": "10caeb60-0d97-4656-985b-5fb281887f92",
+   "mingcheng": "组织与用户",
+   "sew": "9信息",
+   "wznr": "组织与用户：6 张表",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:22",
+   "score": 0
+  },
+  {
+   "rowid": "f3902707-f6f3-4653-a9ea-424492d8b11b",
+   "mingcheng": "电商业务表",
+   "sew": "9信息",
+   "wznr": "电商业务表：6 张表",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:22",
+   "score": 0
+  },
+  {
+   "rowid": "e9c682b8-f7f2-4969-b6cd-3b42f6e1a7bb",
+   "mingcheng": "内容元数据",
+   "sew": "9信息",
+   "wznr": "内容元数据：2 张表",
+   "isQuote": 0,
+   "fu": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "utime": "2026-09-08 16:34:22",
+   "score": 0
+  },
+  {
+   "rowid": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+   "mingcheng": "数据库",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "d6ce7eb6-cbe8-44df-8198-0bf0e28f86d5",
+   "utime": "2026-09-08 16:34:23",
+   "score": 0
+  },
+  {
+   "rowid": "d6ce7eb6-cbe8-44df-8198-0bf0e28f86d5",
+   "mingcheng": "fsj-web-doc",
+   "sew": "3项目",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "59c08fa9-129d-483e-89f0-18636f3a0d9b",
+   "utime": "2026-09-08 16:34:23",
+   "score": 0
+  },
+  {
+   "rowid": "aa3856bc-e212-48ea-81b2-1543f9f94a49",
+   "mingcheng": "任务-东城-知识图谱可视化-完成",
+   "sew": "8计划",
+   "wznr": "东城08-15交办：黑底HTML可视化agent知识图谱，节点大小=权重、亮暗=置信度。已交付MindViz：全池筛选器/增量缓存/12维配色/力导向+层级树双布局/详情面板/HAP跳转；Node集成+浏览器E2E 6/6全过，实测4565条8秒同步60fps。详见knowledge-graph/README.md。思考链挂6:20-16日-8月-2026。",
+   "isQuote": 0,
+   "fu": "05035628-7bae-449e-9528-c0508d07a47a",
+   "utime": "2026-09-12 16:36:59",
+   "score": 0
+  },
+  {
+   "rowid": "29a79bde-c952-41ef-9c8f-b6f061dd6111",
+   "mingcheng": "本轮-复盘-Canvas调优要读transform内部状态",
+   "sew": "12复盘",
+   "wznr": "截图两次显示无标签，差点误判为渲染bug；加探针读内部状态才发现全图k=0.02、最大节点屏幕半径仅0.7px，一切屏幕像素门槛都失效，最终用视口topK强制标注解决。教训：Canvas可视化排查必须先读transform/缩放内部数值，截图AI分析只能当辅助。",
+   "isQuote": 0,
+   "fu": "15df146c-f027-4a34-972d-9aca4beb964d",
+   "utime": "2026-09-12 10:48:45",
+   "score": 0
+  },
+  {
+   "rowid": "7edb1424-4566-4104-8509-ccb6ad72c5d9",
+   "mingcheng": "本轮-事实-CDP替代dump-dom测动态页",
+   "sew": "9信息",
+   "wznr": "headless Edge --dump-dom 配 virtual-time-budget 不能可靠等待动态import+IndexedDB，自检结果永远抓不到。改用CDP（remote-debugging-port+WebSocket轮询DOM）稳定拿到结果，还顺带完成性能实测和编程截图。",
+   "isQuote": 0,
+   "fu": "e513955a-2434-4c37-8795-fdd58e818724",
+   "utime": "2026-09-12 10:47:45",
+   "score": 0
+  },
+  {
+   "rowid": "a300f3c8-ebce-4917-a6a5-c0d3629847c7",
+   "mingcheng": "代码尽可能高内聚低耦合-慕容风",
+   "sew": "6价值",
+   "wznr": "代码尽可能高内聚低耦合：模块职责单一、内部关联紧密，模块之间依赖清晰、接口最小化，改一处不牵全身。{{全}}",
+   "isQuote": 0,
+   "fu": "36582e8a-5edf-4d7c-b0da-c816d616e1ad",
+   "utime": "2026-09-12 10:48:42",
+   "score": 0
+  },
+  {
+   "rowid": "523c0621-2a31-41e7-ad6e-bf21b3d82309",
+   "mingcheng": "2026-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "3765c4ef-3a24-46d5-9834-97ea04c6f319",
+   "utime": "2026-09-08 16:39:20",
+   "score": 0
+  },
+  {
+   "rowid": "3765c4ef-3a24-46d5-9834-97ea04c6f319",
+   "mingcheng": "时间记事-慕容风",
+   "sew": "9信息",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "e513955a-2434-4c37-8795-fdd58e818724",
+   "utime": "2026-09-23 16:54:40",
+   "score": 0
+  },
+  {
+   "rowid": "7b0d1641-639f-4128-b5b2-3eb8dbeb1ad7",
+   "mingcheng": "将fsj代码理解透彻，不断完善fsj代码",
+   "sew": "7目标",
+   "wznr": "目标：深入理解fsj项目代码结构和各子模块实现，持续完善代码质量。拆3个子任务：①读webview像素画编辑器代码 ②读merchantDashboard商家后台代码 ③读wxApp小程序代码。每读完一个子模块产出知识记录（sew=9信息），挂在「将」根下时间记事中。完成后用12复盘总结。",
+   "isQuote": 0,
+   "fu": "fee8296e-7846-4cda-afc1-59e1db91097d",
+   "utime": "2026-09-12 10:48:42",
+   "score": 0
+  },
+  {
+   "rowid": "de4b5000-5a4c-46bc-b8d0-22acafb499e5",
+   "mingcheng": "每天结束的时候使用技能每日总结",
+   "sew": "5规则",
+   "wznr": "每天结束时执行技能「每日总结」：回顾当天完成的事项、遗留问题、明日计划，并沉淀一条当日复盘记录，形成工作闭环。{{全}}",
+   "isQuote": 0,
+   "fu": "7044e29d-f5a2-44ef-80ba-3d675dfbf2ef",
+   "utime": "2026-09-12 10:48:42",
+   "score": 0
+  },
+  {
+   "rowid": "72b828ef-f251-4990-99cd-456ad4af78b0",
+   "mingcheng": "法-慕容风",
+   "sew": "0骨架",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "fd1e89b3-09b6-44c4-9919-0096ccf5d1f1",
+   "utime": "2026-09-08 16:34:25",
+   "score": 0
+  },
+  {
+   "rowid": "46852283-38f2-4b4d-866e-edd0f70574a0",
+   "mingcheng": "将-慕容风",
+   "sew": "0骨架",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "fd1e89b3-09b6-44c4-9919-0096ccf5d1f1",
+   "utime": "2026-09-12 10:48:47",
+   "score": 0
+  },
+  {
+   "rowid": "6fff2d63-7eaa-4641-82c4-d773a328d983",
+   "mingcheng": "地-慕容风",
+   "sew": "0骨架",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "fd1e89b3-09b6-44c4-9919-0096ccf5d1f1",
+   "utime": "2026-09-16 12:43:39",
+   "score": 0
+  },
+  {
+   "rowid": "53c4f441-fdee-4431-9c3b-3edf18412a0f",
+   "mingcheng": "天-慕容风",
+   "sew": "0骨架",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "fd1e89b3-09b6-44c4-9919-0096ccf5d1f1",
+   "utime": "2026-09-12 16:36:43",
+   "score": 0
+  },
+  {
+   "rowid": "2303e628-a463-4205-a96b-7d1ff060ba05",
+   "mingcheng": "道-慕容风",
+   "sew": "0骨架",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "fd1e89b3-09b6-44c4-9919-0096ccf5d1f1",
+   "utime": "2026-09-12 10:48:42",
+   "score": 0
+  },
+  {
+   "rowid": "fd1e89b3-09b6-44c4-9919-0096ccf5d1f1",
+   "mingcheng": "五事-慕容风",
+   "sew": "0骨架",
+   "wznr": "",
+   "isQuote": 0,
+   "fu": "",
+   "utime": "2026-09-08 16:34:26",
+   "score": 0
+  }
+ ]
+}

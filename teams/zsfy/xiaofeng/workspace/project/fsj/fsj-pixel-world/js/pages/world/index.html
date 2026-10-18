@@ -1,0 +1,184 @@
+<div class="world-page">
+    <canvas id="worldCanvas"></canvas>
+
+    <!-- 顶栏 -->
+    <div class="top-bar" id="topBar">
+        <div class="top-left">
+            <!-- 玩家信息卡：jingyanbeijing 底板 + 等级牌 + xinxikuang 框 + 等级/经验文字（老版样式） -->
+            <div class="player-card" id="playerCard">
+                <img class="pc-expbg" src="./assets/isPixel/jingyanbeijing.png" alt="">
+                <img class="pc-lvbg" src="./assets/isPixel/等级背景.png" alt="">
+                <img class="pc-frame" src="./assets/isPixel/xinxikuang.png" alt="">
+                <div class="level-text" id="pcLv">LV 1</div>
+                <div class="exp-text" id="pcExpText">经验值：0/100</div>
+                <div class="pc-expbar"><i id="pcExpBarFill"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 位置坐标 HUD（跟随玩家实时变化） -->
+    <div class="pos-hud" id="posHud">
+        <span class="pos-name" id="posName">-</span>
+        <span class="pos-xy" id="posXY">(-,-)</span>
+    </div>
+
+    <!-- 左侧功能组：卡牌 / 任务 / 想法（沿用老项目 game.md 功能组规范） -->
+    <div class="fn-col left" id="fnColLeft">
+        <div class="fn-icon" id="btnCards">
+            <img src="./assets/isPixel/kapai.png" alt="卡牌">
+            <img class="fn-dot" src="./assets/isPixel/diandian.png" alt="" style="display:none">
+        </div>
+        <div class="fn-icon" id="btnTasks">
+            <img src="./assets/isPixel/renwu.png" alt="任务">
+            <img class="fn-dot" src="./assets/isPixel/diandian.png" alt="" style="display:none">
+        </div>
+        <div class="fn-icon" id="btnIdeas">
+            <img src="./assets/isPixel/xiangfa.png" alt="想法">
+            <img class="fn-dot" src="./assets/isPixel/diandian.png" alt="" style="display:none">
+        </div>
+        <div class="fn-icon" id="btnZuzhi">
+            <img src="./assets/isPixel/zuzhi.png" alt="组织">
+            <img class="fn-dot" src="./assets/isPixel/diandian.png" alt="" style="display:none">
+        </div>
+    </div>
+
+    <!-- 右侧功能组：地图 / 商城 / 消息 / 充电 / 画 -->
+    <div class="fn-col right" id="fnColRight">
+        <div class="fn-icon" id="btnMap">
+            <img src="./assets/isPixel/ditu.png" alt="地图">
+        </div>
+        <div class="fn-icon" id="btnShop">
+            <img src="./assets/isPixel/shangcheng.png" alt="商城">
+            <img class="fn-dot" src="./assets/isPixel/diandian.png" alt="" style="display:none">
+        </div>
+        <div class="fn-icon" id="btnMessages">
+            <img src="./assets/isPixel/xiaoxi.png" alt="消息">
+            <span class="msg-badge" id="msgBadge" style="display:none"></span>
+        </div>
+        <div class="fn-icon" id="btnCharge">
+            <img src="./assets/isPixel/chongdian.png" alt="充电">
+            <img class="fn-dot" src="./assets/isPixel/diandian.png" alt="" style="display:none">
+        </div>
+        <div class="fn-icon" id="btnDraw">
+            <img src="./assets/isPixel/hua.png" alt="画">
+        </div>
+    </div>
+
+    <!-- 底部对话条（选中角色后出现：说话内容 + 输入框 + 发送） -->
+    <div class="chat-bar" id="chatBar" aria-hidden="true">
+        <div class="chat-bubble" id="chatBubble">…</div>
+        <div class="chat-input-row">
+            <input class="chat-input" id="chatInput" type="text" placeholder="说点什么…" maxlength="200">
+            <button class="px-btn primary tiny" id="btnSend">发送</button>
+        </div>
+    </div>
+
+    <!-- 角色面板弹层 -->
+    <div class="agent-panel-mask" id="panelMask" style="display:none">
+        <div class="agent-panel px-panel" id="agentPanel">
+            <div class="ap-head">
+                <img class="ap-avatar" id="apAvatarImg" alt="" style="display:none">
+                <canvas class="ap-avatar" id="apAvatar" width="16" height="16"></canvas>
+                <div class="ap-title">
+                    <div class="ap-name" id="apName">-</div>
+                    <div class="ap-sub" id="apSub">-</div>
+                </div>
+                <button class="px-btn tiny dark" id="btnPanelClose">✕</button>
+            </div>
+            <div class="ap-exp">
+                <div class="ap-exp-text" id="apExp">LV 1 · 0/20</div>
+                <div class="ap-exp-bar" id="apExpBar">
+                    <div></div><div></div><div></div><div></div>
+                </div>
+            </div>
+            <div class="ap-grid">
+                <div class="ap-cell"><span class="k">五行</span><span class="v" id="apWuxing">-</span></div>
+                <div class="ap-cell"><span class="k">性格</span><span class="v" id="apDizhi">-</span></div>
+                <div class="ap-cell"><span class="k">职位</span><span class="v" id="apBiaoti">-</span></div>
+                <div class="ap-cell"><span class="k" id="apLocK">位置</span><span class="v" id="apLoc">-</span></div>
+            </div>
+            <div class="ap-renge" id="apRenge">-</div>
+            <div class="ap-btns">
+                <button class="px-btn primary" id="btnSummon">传呼到面前</button>
+                <button class="px-btn" id="btnHistory">聊天记录</button>
+                <button class="px-btn" id="btnEditAvatar">编辑形象</button>
+                <button class="px-btn" id="btnSwitch" style="display:none">切换账号</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 切换账号弹层 -->
+    <div class="agent-panel-mask" id="switchMask" style="display:none">
+        <div class="agent-panel px-panel">
+            <div class="ap-head">
+                <div class="ap-title">
+                    <div class="ap-name">切换账号</div>
+                    <div class="ap-sub">选择要使用的成员身份（HAP 用户表）</div>
+                </div>
+                <button class="px-btn tiny dark" id="btnSwitchClose">✕</button>
+            </div>
+            <div class="sw-list" id="swList"></div>
+        </div>
+    </div>
+
+    <!-- 任务弹层（游戏风） -->
+    <div class="agent-panel-mask" id="taskMask" style="display:none">
+        <div class="agent-panel px-panel task-panel">
+            <div class="tk-head">
+                <div class="tk-title">任 务</div>
+                <span class="tk-count" id="taskCount"></span>
+                <button class="px-btn tiny dark" id="btnTaskClose">✕</button>
+            </div>
+            <div class="tk-list" id="taskList"></div>
+        </div>
+    </div>
+
+    <!-- 组织弹层（该角色已加入的组织列表） -->
+    <div class="agent-panel-mask" id="zuzhiMask" style="display:none">
+        <div class="agent-panel px-panel task-panel">
+            <div class="tk-head">
+                <div class="tk-title">组 织</div>
+                <span class="tk-count" id="zuzhiCount"></span>
+                <button class="px-btn tiny dark" id="btnZuzhiClose">✕</button>
+            </div>
+            <div class="tk-list" id="zuzhiList"></div>
+        </div>
+    </div>
+
+    <!-- 地图导航弹层 -->
+    <div class="agent-panel-mask" id="mapMask" style="display:none">
+        <div class="agent-panel px-panel task-panel">
+            <div class="tk-head">
+                <div class="tk-title">地 图</div>
+                <button class="px-btn tiny dark" id="btnMapClose">✕</button>
+            </div>
+            <div class="tk-list" id="mapList"></div>
+        </div>
+    </div>
+
+    <!-- 入口确认弹层（角色停在入口格时弹出） -->
+    <div class="agent-panel-mask" id="entryMask" style="display:none">
+        <div class="agent-panel px-panel entry-panel">
+            <div class="entry-head">
+                <div class="entry-icon">⛩️</div>
+                <div class="entry-title">发现入口</div>
+            </div>
+            <div class="entry-text" id="entryText">是否进入 xxx？</div>
+            <div class="entry-sub" id="entrySub"></div>
+            <div class="ap-btns">
+                <button class="px-btn primary" id="btnEntryYes">进入</button>
+                <button class="px-btn" id="btnEntryNo">暂不进入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="px-toast" id="pxToast" style="display:none"></div>
+
+    <!-- 虚拟摇杆（第一人称移动） -->
+    <div class="joy" id="joy">
+        <div class="joy-base" id="joyBase">
+            <div class="joy-knob" id="joyKnob"></div>
+        </div>
+    </div>
+</div>

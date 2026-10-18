@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>小程序</title>
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 搜索栏 -->
+    <div class="search-bar">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="搜索商品" />
+        <span class="search-clear" id="search-clear" style="display:none;"></span>
+      </div>
+    </div>
+
+    <!-- 分类导航 -->
+    <div class="category-nav" id="category-nav">
+      <div class="category-item active" data-index="0">全部</div>
+      <div class="category-item" data-index="1">饮品</div>
+      <div class="category-item" data-index="2">零食</div>
+      <div class="category-item" data-index="3">主食</div>
+      <div class="category-item" data-index="4">日用品</div>
+    </div>
+
+    <!-- 商品列表 -->
+    <div class="product-list" id="product-list">
+      <!-- 加载状态 -->
+      <div class="loading-state" id="loading-state">
+        <div class="loading-spinner"></div>
+        <p>加载中...</p>
+      </div>
+      <!-- 空状态 -->
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <p>暂无商品</p>
+      </div>
+      <!-- 商品网格由 JS 动态渲染 -->
+    </div>
+
+    <!-- 底部购物车栏 -->
+    <div class="cart-bar" id="cart-bar" style="display:none;">
+      <span class="cart-text" id="cart-text">共 0 件商品</span>
+      <div class="cart-btn" id="cart-btn">去结算</div>
+    </div>
+
+    <!-- 下单弹窗 -->
+    <div class="checkout-modal" id="checkout-modal" style="display:none;">
+      <div class="checkout-overlay" id="checkout-overlay"></div>
+      <div class="checkout-panel">
+        <div class="checkout-header">
+          <span>确认订单</span>
+          <span class="checkout-close" id="checkout-close">×</span>
+        </div>
+        <div class="checkout-body" id="checkout-body">
+          <!-- 地址栏 -->
+          <div class="checkout-address" id="checkout-address">
+            <div class="address-left">
+              <span class="address-pin">📍</span>
+              <div class="address-info">
+                <div class="address-room" id="address-room">301</div>
+                <div class="address-detail" id="address-detail">重庆建筑科技职业学院 · a栋 · 301</div>
+              </div>
+            </div>
+            <span class="address-arrow">›</span>
+          </div>
+
+          <!-- 商品清单 -->
+          <div class="checkout-goods">
+            <div class="goods-header">
+              <span class="goods-title">商品清单</span>
+              <span class="goods-count" id="goods-count">共0件</span>
+            </div>
+            <div class="goods-list" id="goods-list">
+              <!-- JS 渲染 -->
+            </div>
+          </div>
+
+          <!-- 支付方式 -->
+          <div class="checkout-pay">
+            <div class="pay-title">选择支付方式</div>
+
+            <!-- 盒子价先享后付 -->
+            <div class="pay-card pay-card-box active" id="pay-card-box" onclick="CheckoutPage.selectPayMode('box')">
+              <div class="pay-card-left">
+                <div class="pay-icon-box">📦</div>
+                <div class="pay-card-info">
+                  <div class="pay-card-name">
+                    <span>盒子价先享后付</span>
+                    <span class="pay-recommend">推荐</span>
+                  </div>
+                  <div class="pay-card-desc">专属低价 · 可用余额支付 · 需满足起送门槛 · 未开封可退</div>
+                </div>
+              </div>
+              <div class="pay-radio checked" id="pay-radio-box">✓</div>
+            </div>
+
+            <!-- 盒子价详情 -->
+            <div class="pay-tips" id="pay-tips-box">
+              <div class="tip-row" id="tip-balance-row">
+                <span class="tip-label">可用余额</span>
+                <span class="tip-value balance" id="tip-balance">¥0.00</span>
+              </div>
+              <div class="tip-row">
+                <span class="tip-label">起送门槛</span>
+                <span class="tip-value" id="tip-min-amount">¥10</span>
+              </div>
+              <div class="tip-row" id="tip-box-total-row">
+                <span class="tip-label">盒子价合计</span>
+                <span class="tip-value" id="tip-box-total">¥0</span>
+              </div>
+              <div class="tip-warning" id="tip-warning" style="display:none;">
+                ⚠️ 未满足起送门槛，还需添加 ¥<span id="tip-gap">0</span> 商品
+              </div>
+              <div class="tip-notice">
+                💡 本项结算仅按商品盒子价计算，不抵扣余额，不参与满减，不使用优惠券
+              </div>
+            </div>
+
+            <!-- 余额支付 -->
+            <div class="pay-card pay-card-balance" id="pay-card-balance" onclick="CheckoutPage.selectPayMode('balance')">
+              <div class="pay-card-left">
+                <div class="pay-icon-balance">💰</div>
+                <div class="pay-card-info">
+                  <div class="pay-card-name">
+                    <span>余额支付</span>
+                  </div>
+                  <div class="pay-card-desc" id="pay-balance-desc">优先使用余额，余额不足时自动走微信支付</div>
+                </div>
+              </div>
+              <div class="pay-radio" id="pay-radio-balance"></div>
+            </div>
+
+            <!-- 余额支付详情 -->
+            <div class="pay-tips" id="pay-tips-balance" style="display:none;">
+              <div class="tip-row">
+                <span class="tip-label">可用余额</span>
+                <span class="tip-value balance" id="tip-balance-val">¥0.00</span>
+              </div>
+              <div class="tip-row" id="tip-deduct-row">
+                <span class="tip-label">本次使用</span>
+                <span class="tip-value" id="tip-deduct-val">¥0.00</span>
+              </div>
+              <div class="tip-row" id="tip-wechat-row" style="display:none;">
+                <span class="tip-label">需微信支付</span>
+                <span class="tip-value wechat" id="tip-wechat-val">¥0.00</span>
+              </div>
+            </div>
+
+            <!-- 微信支付 -->
+            <div class="pay-card pay-card-wechat" id="pay-card-wechat" onclick="CheckoutPage.selectPayMode('wechat')">
+              <div class="pay-card-left">
+                <div class="pay-icon-wechat">💳</div>
+                <div class="pay-card-info">
+                  <div class="pay-card-name">微信支付</div>
+                  <div class="pay-card-desc">不走余额，直接使用微信支付全额</div>
+                </div>
+              </div>
+              <div class="pay-radio" id="pay-radio-wechat"></div>
+            </div>
+
+            <!-- 微信支付详情 -->
+            <div class="pay-tips" id="pay-tips-wechat" style="display:none;">
+              <div class="tip-row">
+                <span class="tip-label">微信支付金额</span>
+                <span class="tip-value" id="tip-wechat-total">¥0</span>
+              </div>
+              <div class="tip-notice">
+                💡 纯微信支付，不使用余额抵扣
+              </div>
+            </div>
+          </div>
+
+          <!-- 价格明细 -->
+          <div class="checkout-price">
+            <div class="price-title">价格明细</div>
+            <div class="price-row">
+              <span class="price-label">商品全额总计</span>
+              <span class="price-value" id="price-full">¥0</span>
+            </div>
+            <div class="price-row" id="price-box-row">
+              <span class="price-label">盒子价总计</span>
+              <span class="price-value discount" id="price-box">¥0</span>
+            </div>
+          </div>
+
+          <!-- 占位，防止底部栏遮挡 -->
+          <div style="height: 80px;"></div>
+        </div>
+
+        <!-- 底部结算栏 -->
+        <div class="checkout-footer">
+          <div class="footer-left">
+            <div class="footer-total-label">
+              <span>合计：</span>
+              <span class="footer-total-amount" id="footer-amount">¥0</span>
+            </div>
+            <div class="footer-tip" id="footer-tip">0元下单，开封后支付</div>
+            <div class="footer-save" id="footer-save" style="display:none;">
+              已省 ¥<span id="footer-saved">0</span><span id="footer-balance-used"></span>
+            </div>
+          </div>
+          <div class="footer-btn" id="footer-btn">0元下单</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 地址选择弹窗 -->
+  <div class="address-modal" id="address-modal" style="display:none;">
+    <div class="address-overlay" id="address-overlay"></div>
+    <div class="address-panel">
+      <div class="address-header">
+        <span>选择收货地址</span>
+        <span class="address-close" id="address-close">×</span>
+      </div>
+      <div class="address-list" id="address-list">
+        <div class="address-loading" id="address-loading">加载中...</div>
+        <div class="address-empty" id="address-empty" style="display:none;">暂无收货地址</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 调试面板 -->
+  <div id="debug-fab" onclick="toggleDebugPanel()" style="position:fixed;bottom:12px;right:12px;width:36px;height:36px;background:rgba(0,0,0,0.6);color:#0f0;border:1px solid #0f0;border-radius:50%;font-size:14px;cursor:pointer;z-index:99998;display:none;align-items:center;justify-content:center;">🐛</div>
+  <div id="debug-overlay" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.85);color:#0f0;padding:8px;max-height:180px;overflow:auto;font-size:11px;font-family:monospace;z-index:99999;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+      <span>调试日志</span>
+      <div>
+        <button id="debug-copy-btn" onclick="copyDebugLog()" style="background:#0a0;color:#0f0;border:1px solid #0f0;padding:2px 8px;font-size:10px;cursor:pointer;margin-right:4px;">复制</button>
+        <button id="debug-hide-btn" onclick="toggleDebugPanel()" style="background:#a00;color:#fff;border:1px solid #f00;padding:2px 8px;font-size:10px;cursor:pointer;">隐藏</button>
+      </div>
+    </div>
+    <pre id="debug-log-content" style="margin:0;white-space:pre-wrap;word-break:break-all;"></pre>
+  </div>
+
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+  <script src="js/fsj-api.js?v=20260611a"></script>
+  <script src="js/home.js"></script>
+  <script>
+    // 页面内调试面板
+    (function() {
+      window.DEBUG_LOG = [];
+      window.logDebug = function(msg) {
+        var el = document.getElementById('debug-log-content');
+        var ts = new Date().toLocaleTimeString();
+        window.DEBUG_LOG.push('[' + ts + '] ' + msg);
+        if (el) {
+          el.textContent = window.DEBUG_LOG.join('\n');
+          el.scrollTop = el.scrollHeight;
+        }
+        console.log('[H5 Debug]', msg);
+      };
+      window.copyDebugLog = function() {
+        var text = window.DEBUG_LOG.join('\n');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            var btn = document.getElementById('debug-copy-btn');
+            btn.textContent = '已复制';
+            setTimeout(function() { btn.textContent = '复制'; }, 1500);
+          }).catch(function() {
+            window.logDebug('复制失败，尝试备用方法');
+            copyFallback(text);
+          });
+        } else {
+          copyFallback(text);
+        }
+      };
+      function copyFallback(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          var btn = document.getElementById('debug-copy-btn');
+          btn.textContent = '已复制';
+          setTimeout(function() { btn.textContent = '复制'; }, 1500);
+        } catch (e) {
+          window.logDebug('复制失败: ' + e.message);
+        }
+        document.body.removeChild(ta);
+      }
+      window.toggleDebugPanel = function() {
+        var panel = document.getElementById('debug-overlay');
+        var fab = document.getElementById('debug-fab');
+        var logEl = document.getElementById('debug-log-content');
+        if (panel.style.display === 'none') {
+          panel.style.display = 'block';
+          fab.style.display = 'none';
+          if (logEl) logEl.scrollTop = logEl.scrollHeight;
+        } else {
+          panel.style.display = 'none';
+          fab.style.display = 'flex';
+        }
+      };
+    })();
+  </script>
+</body>
+</html>

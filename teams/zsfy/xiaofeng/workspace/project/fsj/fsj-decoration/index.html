@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>门店装修 - fsj-decoration</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/admin.css"?v=1.0.2>
+  <link rel="stylesheet" href="css/phone.css"?v=1.0.2>
+  <script>
+    // 防缓存：给本地 CSS/JS 加版本参数（不重定向页面本身，保留 URL 上的商家参数）
+    (function () {
+      var v = new URLSearchParams(window.location.search).get('v') || Date.now().toString();
+      document.querySelectorAll('link[href^="css/"], script[src^="js/"]').forEach(function (elTag) {
+        var url = elTag.href || elTag.src;
+        if (url.indexOf('?') === -1) {
+          if (elTag.href) elTag.href = url + '?v=' + v;
+          else elTag.src = url + '?v=' + v;
+        }
+      });
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============ 顶部栏 ============ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo"><i class="fa fa-paint-brush"></i></span>
+      <h1 class="topbar-title">门店装修</h1>
+      <span class="topbar-merchant" id="merchantName">加载中...</span>
+      <span class="save-status" id="saveStatus"></span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" id="btnReload" title="放弃修改，重新从商家表加载">
+        <i class="fa fa-refresh"></i> 重置
+      </button>
+      <button class="btn btn-primary" id="btnSave" disabled>
+        <i class="fa fa-save"></i> 保存配置
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ 商家选择（无 mRowid 参数时显示） ============ -->
+  <div class="merchant-picker" id="merchantPicker" style="display:none;">
+    <div class="merchant-picker-card">
+      <h2><i class="fa fa-store"></i> 选择要装修的商家</h2>
+      <p class="merchant-picker-tip">通过 URL 参数 <code>?mRowid=商家mrowid字段值</code> 可直接进入指定商家</p>
+      <div class="merchant-picker-list" id="merchantList">
+        <div class="merchant-picker-loading">加载商家列表中...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 错误提示 ============ -->
+  <div class="load-error" id="loadError" style="display:none;"></div>
+
+  <!-- ============ 三栏主区 ============ -->
+  <div class="workspace" id="workspace" style="display:none;">
+
+    <!-- 左栏：页面结构 + 组件库 -->
+    <aside class="sidebar">
+      <div class="sidebar-tabs">
+        <button class="sidebar-tab active" data-tab="structure"><i class="fa fa-sitemap"></i> 页面结构</button>
+        <button class="sidebar-tab" data-tab="library"><i class="fa fa-cubes"></i> 组件库</button>
+      </div>
+
+      <!-- 结构树 -->
+      <div class="sidebar-pane" id="paneStructure">
+        <div class="tree-group" id="treeGlobal">
+          <div class="tree-group-title"><i class="fa fa-globe"></i> 全局设置</div>
+          <div class="tree-item" data-sel="global">
+            <span class="tree-item-icon"><i class="fa fa-paint-brush"></i></span>
+            <span class="tree-item-name">主题与外观</span>
+          </div>
+        </div>
+        <div class="tree-group">
+          <div class="tree-group-title">
+            <i class="fa fa-navicon"></i> 底部导航 TabBar
+            <span class="tree-group-count" id="tabCount"></span>
+          </div>
+          <div id="treeTabs"></div>
+          <button class="tree-add-btn" id="btnAddTab"><i class="fa fa-plus"></i> 添加导航项</button>
+        </div>
+        <div class="tree-group">
+          <div class="tree-group-title">
+            <i class="fa fa-home"></i> 首页组件区块
+            <span class="tree-group-count" id="sectionCount"></span>
+          </div>
+          <div id="treeSections"></div>
+          <div class="tree-empty-tip" id="sectionsEmpty" style="display:none;">
+            还没有组件，去「组件库」添加
+          </div>
+        </div>
+        <div class="tree-group">
+          <div class="tree-group-title">
+            <i class="fa fa-user"></i> 我的页面菜单
+            <span class="tree-group-count" id="wodeCount"></span>
+          </div>
+          <div id="treeWode"></div>
+          <button class="tree-add-btn" id="btnAddWode"><i class="fa fa-plus"></i> 添加菜单项</button>
+        </div>
+      </div>
+
+      <!-- 组件库 -->
+      <div class="sidebar-pane" id="paneLibrary" style="display:none;">
+        <div class="library-tip">点击组件添加到首页区块列表末尾<br><span class="library-tip-sub">区块顺序即小程序首页从上到下的渲染顺序</span></div>
+        <div class="library-grid" id="libraryGrid"></div>
+      </div>
+    </aside>
+
+    <!-- 中栏：手机预览 -->
+    <main class="preview-area">
+      <div class="preview-toolbar">
+        <span class="preview-toolbar-label"><i class="fa fa-mobile"></i> 实时预览</span>
+        <div class="preview-view-switch">
+          <button class="view-switch-btn active" data-view="home">首页</button>
+          <button class="view-switch-btn" data-view="profile">我的</button>
+        </div>
+        <span class="preview-hint">点击预览中的区块可编辑属性</span>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-status-bar">
+            <span class="phone-time" id="phoneTime">9:41</span>
+            <span class="phone-status-icons"><i class="fa fa-signal"></i><i class="fa fa-wifi"></i><i class="fa fa-battery-three-quarters"></i></span>
+          </div>
+          <div class="phone-navbar" id="phoneNavbar">
+            <span class="phone-navbar-title" id="phoneNavbarTitle">商家名称</span>
+          </div>
+          <div class="phone-screen" id="phoneScreen">
+            <!-- 首页视图 -->
+            <div class="phone-page" id="phonePageHome"></div>
+            <!-- 我的视图 -->
+            <div class="phone-page" id="phonePageProfile" style="display:none;"></div>
+          </div>
+          <div class="phone-tabbar" id="phoneTabbar"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 右栏：属性面板 -->
+    <aside class="inspector">
+      <div class="inspector-header">
+        <span class="inspector-title" id="inspectorTitle">属性</span>
+        <span class="inspector-subtitle" id="inspectorSubtitle"></span>
+      </div>
+      <div class="inspector-body" id="inspectorBody">
+        <div class="inspector-empty">
+          <i class="fa fa-hand-o-up"></i>
+          <p>从左侧选择一个元素，<br>或在预览中点击区块</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ============ 弹窗 ============ -->
+  <div class="modal-mask" id="modalMask" style="display:none;">
+    <div class="modal" id="modalBox">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer" id="modalFooter"></div>
+    </div>
+  </div>
+
+  <!-- ============ Toast ============ -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/api.js?v=1.0.2"></script>
+  <script src="js/schema.js?v=1.0.2"></script>
+  <script src="js/store.js?v=1.0.2"></script>
+  <script src="js/preview.js?v=1.0.2"></script>
+  <script src="js/panel.js?v=1.0.2"></script>
+  <script src="js/main.js?v=1.0.2"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/webview/index",
+    "pages/login/index",
+    "pages/pay/index",
+    "pages/choose-image/index",
+    "pages/user-agreement/index",
+    "pages/privacy-policy/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "xxx",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f6fa"
+  },
+  "sitemapLocation": "sitemap.json"
+}

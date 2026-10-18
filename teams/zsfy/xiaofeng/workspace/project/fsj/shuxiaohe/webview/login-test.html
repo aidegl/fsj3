@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟登录 - 同檐er 2.0</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; margin-bottom: 20px; color: #333; }
+    .info { background: #f0f7ff; border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 13px; color: #555; line-height: 1.6; }
+    .info code { background: #e8e8e8; padding: 1px 4px; border-radius: 3px; font-size: 12px; word-break: break-all; }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 10px;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn-primary { background: #4a90d9; color: #fff; }
+    .btn-primary:hover { background: #3a7bc8; }
+    .btn-success { background: #52c41a; color: #fff; }
+    .btn-success:hover { background: #45a816; }
+    .btn-warning { background: #faad14; color: #fff; }
+    .btn-warning:hover { background: #d99a0f; }
+    .status { text-align: center; font-size: 13px; color: #999; margin-top: 12px; }
+    .status.ok { color: #52c41a; }
+    .status.err { color: #ff4d4f; }
+    .url-box { background: #f6f6f6; border-radius: 6px; padding: 10px; font-size: 11px; word-break: break-all; margin-top: 12px; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>模拟登录测试</h2>
+    <div class="info">
+      <strong>用户 rowid:</strong><br><code id="user-rowid">93b69f77-c65f-4ac5-895a-9ba0b7682d77</code><br>
+      <strong>商家 rowid:</strong><br><code id="shangjia-rowid">65428a74-2f5e-46a8-a111-e1a59297b22e</code><br>
+      <strong>OpenID:</strong><br><code id="openid">test_openid_93b69f77</code><br>
+      <strong>模拟余额:</strong> 100.00 元 <em style="color:#999;font-size:11px;">（从后端API获取，不通过URL传递）</em>
+    </div>
+
+    <button class="btn btn-primary" onclick="doLogin()">1. 仅设置 localStorage</button>
+    <button class="btn btn-success" onclick="doLoginAndGo()">2. URL参数 + 登录并跳转</button>
+    <button class="btn btn-warning" onclick="clearLogin()">清除登录状态</button>
+
+    <div class="url-box" id="url-preview"></div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    var USER_ROWID = '93b69f77-c65f-4ac5-895a-9ba0b7682d77';
+    var SHANGJIA_ROWID = '65428a74-2f5e-46a8-a111-e1a59297b22e';
+    var BALANCE = 100.00;
+    var OPENID = 'test_openid_' + USER_ROWID.substring(0, 8);
+
+    function setStatus(msg, type) {
+      var el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = 'status ' + (type || '');
+    }
+
+    function buildUrl() {
+      return 'index.html?shangjia=' + SHANGJIA_ROWID
+        + '#fsj_openid=' + OPENID
+        + '&fsj_user=' + USER_ROWID
+        + '&fsj_shangjia=' + SHANGJIA_ROWID;
+    }
+
+    function doLogin() {
+      localStorage.setItem('fsj_token', USER_ROWID);
+      localStorage.setItem('fsj_openid', OPENID);
+      localStorage.setItem('fsj_user_info', JSON.stringify({ id: USER_ROWID, balance: BALANCE }));
+      localStorage.setItem('fsj_user_balance', String(BALANCE));
+      localStorage.setItem('fsj_shangjia_rowid', SHANGJIA_ROWID);
+      setStatus('localStorage 已设置! 余额=' + BALANCE + ' (localStorage缓存，跳过API查询)', 'ok');
+    }
+
+    function doLoginAndGo() {
+      doLogin();
+      var url = buildUrl();
+      document.getElementById('url-preview').textContent = '跳转: ' + url;
+      setStatus('正在跳转...', 'ok');
+      setTimeout(function () {
+        window.location.href = url;
+      }, 800);
+    }
+
+    function clearLogin() {
+      localStorage.removeItem('fsj_token');
+      localStorage.removeItem('fsj_openid');
+      localStorage.removeItem('fsj_user_info');
+      localStorage.removeItem('fsj_user_balance');
+      localStorage.removeItem('fsj_shangjia_rowid');
+      setStatus('已清除', '');
+    }
+
+    // 显示完整 URL
+    document.getElementById('url-preview').textContent = '完整URL: ' + buildUrl();
+
+    // 检查当前状态
+    (function () {
+      var token = localStorage.getItem('fsj_token');
+      if (token) {
+        setStatus('当前已登录: ' + token.substring(0, 8) + '...', 'ok');
+      }
+    })();
+  </script>
+</body>
+</html>

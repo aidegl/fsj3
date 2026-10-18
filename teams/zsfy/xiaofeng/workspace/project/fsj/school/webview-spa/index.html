@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>小学四年级数学智能IP</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+  <link rel="stylesheet" href="css/vars.css">
+  <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ===== 首页 ===== -->
+    <div class="page" id="page-home">
+      <header class="top-bar home-topbar">
+        <div class="top-bar-left">
+          <a class="back-to-main-btn" href="https://100000whys.cn/fsj_webview/">‹ 返回</a>
+          <span class="mode-toggle" id="mode-toggle">学生 ▾</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">小学四年级数学</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="top-icon" id="btn-notification">
+            🔔
+            <span class="badge badge-top" id="notif-badge">3</span>
+          </span>
+        </div>
+      </header>
+      <main class="page-content home-content" id="home-content">
+        <!-- 横幅 -->
+        <div class="home-banner" id="home-banner">
+          <div class="banner-text">
+            <div class="banner-title">智能IP迎宾区</div>
+            <div class="banner-subtitle">AI伴学 · 快乐成长</div>
+          </div>
+          <div class="banner-robot" id="banner-robot"></div>
+        </div>
+        <!-- 九宫格功能入口 -->
+        <div class="func-grid" id="func-grid"></div>
+      </main>
+    </div>
+
+    <!-- ===== 智能问答 ===== -->
+    <div class="page" id="page-chat">
+      <header class="top-bar chat-topbar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="chat-back-btn">‹</span>
+          <span class="page-title">拍照识题</span>
+        </div>
+      </header>
+      <main class="page-content chat-content" id="chat-content">
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-area" id="chat-input-area">
+          <div class="chat-input-wrapper">
+            <input type="text" class="chat-input" id="chat-input" placeholder="输入你的问题..." />
+            <div class="chat-actions">
+              <span class="chat-action-btn" id="chat-camera-btn">📷</span>
+              <span class="chat-action-btn" id="chat-voice-btn">🎤</span>
+              <div class="chat-send-btn" id="chat-send-btn">发送</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== 错题诊疗 ===== -->
+    <div class="page" id="page-analysis">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="analysis-back-btn">‹</span>
+          <span class="page-title">错题诊疗</span>
+        </div>
+      </header>
+      <main class="page-content analysis-content" id="analysis-content">
+        <!-- 拍照上传区 -->
+        <div class="analysis-upload-section" id="analysis-upload-section">
+          <div class="analysis-upload-btn" id="analysis-upload-btn">
+            <span class="upload-icon">📷</span>
+            <span>拍照识题</span>
+          </div>
+          <input type="file" id="analysis-file-input" accept="image/*" capture="environment" style="display:none" />
+          <div class="analysis-preview" id="analysis-preview"></div>
+        </div>
+        <!-- 视频讲解区 -->
+        <div class="analysis-video-section" id="analysis-video-section" style="display:none">
+          <div class="video-player" id="analysis-video-player">
+            <div class="video-placeholder">
+              <span>▶</span>
+              <div class="video-title">错题讲解视频</div>
+            </div>
+          </div>
+        </div>
+        <!-- 分析卡片 -->
+        <div class="analysis-cards" id="analysis-cards" style="display:none">
+          <div class="analysis-card">
+            <div class="analysis-card-header">
+              <span class="card-tag tag-yellow">概念不清</span>
+              <span class="card-tag tag-blue">审题偏差</span>
+              <span class="card-tag tag-red">计算失误</span>
+            </div>
+            <div class="analysis-card-body" id="analysis-result">
+              <div class="analysis-diagram">
+                <div class="diagram-triangle"></div>
+                <div class="diagram-text">
+                  错因一位检三思，演算过程错漏<br/>
+                  缺少审题和一个关键步骤
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-card-title">变式练习推送</div>
+            <div class="analysis-card-body" id="analysis-practice"></div>
+          </div>
+          <div class="analysis-actions">
+            <button class="analysis-btn primary" id="analysis-practice-btn">巩固练习</button>
+            <button class="analysis-btn secondary" id="analysis-collect-btn">收藏错题</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== 分层学习 ===== -->
+    <div class="page" id="page-learning">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="learning-back-btn">‹</span>
+          <span class="page-title">分层学习</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="level-tabs" id="level-tabs">
+            <span class="level-tab active" data-level="basic">基础</span>
+            <span class="level-tab" data-level="improve">提升</span>
+            <span class="level-tab" data-level="extend">拓展</span>
+          </span>
+        </div>
+      </header>
+      <main class="page-content learning-content" id="learning-content">
+        <!-- 左侧学习资源 -->
+        <div class="learning-sidebar">
+          <div class="sidebar-item active">基础题</div>
+          <div class="sidebar-item">提升题</div>
+          <div class="sidebar-item">拓展题</div>
+        </div>
+        <!-- 中间进度区 -->
+        <div class="learning-main">
+          <div class="learning-progress-title">答对进阶 答错巩固</div>
+          <div class="learning-progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width:60%">
+              <span class="progress-icon">▶</span>
+            </div>
+          </div>
+          <div class="learning-bars" id="learning-bars">
+            <div class="learning-bar"><div class="bar-fill" style="width:70%"></div></div>
+            <div class="learning-bar"><div class="bar-fill" style="width:85%"></div></div>
+            <div class="learning-bar"><div class="bar-fill" style="width:50%"></div></div>
+            <div class="learning-bar"><div class="bar-fill" style="width:65%"></div></div>
+          </div>
+        </div>
+        <!-- 右侧星激励区 -->
+        <div class="learning-stars">
+          <div class="stars-title">⭐ 星激励区</div>
+          <div class="stars-grid" id="stars-grid">
+            <span class="star">⭐</span><span class="star">⭐</span>
+            <span class="star">⭐</span><span class="star">⭐</span>
+            <span class="star">⭐</span><span class="star">⭐</span>
+            <span class="star empty">☆</span><span class="star empty">☆</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== 可视化教学 ===== -->
+    <div class="page" id="page-visual">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="visual-back-btn">‹</span>
+          <span class="page-title">可视化教学</span>
+        </div>
+      </header>
+      <main class="page-content visual-content" id="visual-content">
+        <!-- 左侧工具栏 -->
+        <div class="visual-toolbar" id="visual-toolbar">
+          <div class="tool-btn active" data-tool="compass">
+            <span></span>
+            <small>圆规</small>
+          </div>
+          <div class="tool-btn" data-tool="draw">
+            <span></span>
+            <small>画图</small>
+          </div>
+          <div class="tool-btn" data-tool="transform">
+            <span>🔄</span>
+            <small>平移/旋转</small>
+          </div>
+          <div class="tool-btn" data-tool="symmetry">
+            <span>🔷</span>
+            <small>轴对称</small>
+          </div>
+        </div>
+        <!-- 中间画布 -->
+        <div class="visual-canvas" id="visual-canvas">
+          <canvas id="draw-canvas" width="300" height="400"></canvas>
+          <div class="canvas-plus" id="canvas-plus">+</div>
+        </div>
+        <!-- 右侧参数面板 -->
+        <div class="visual-params" id="visual-params">
+          <div class="param-section">
+            <div class="param-title">参数调节</div>
+            <div class="param-row">
+              <label>X</label>
+              <input type="range" min="0" max="100" value="50" />
+              <span>10</span>
+            </div>
+            <div class="param-row">
+              <label>Y</label>
+              <input type="range" min="0" max="100" value="50" />
+              <span>10</span>
+            </div>
+            <div class="param-row">
+              <label>Z</label>
+              <input type="range" min="0" max="100" value="50" />
+              <span>10</span>
+            </div>
+          </div>
+          <div class="param-section">
+            <div class="param-title">直观</div>
+            <div class="visual-legend">
+              <span class="legend-item"><span class="legend-dot blue"></span>直观</span>
+              <span class="legend-item"><span class="legend-dot orange"></span>聚焦</span>
+              <span class="legend-item"><span class="legend-dot cyan"></span>整体</span>
+              <span class="legend-item"><span class="legend-dot red"></span>参考</span>
+            </div>
+          </div>
+          <div class="param-section">
+            <div class="param-title">动画</div>
+            <div class="anim-buttons">
+              <span class="anim-btn">🏠</span>
+              <span class="anim-btn">🎵</span>
+              <span class="anim-btn">⬆</span>
+              <span class="anim-btn"></span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== 过程评价 ===== -->
+    <div class="page" id="page-evaluation">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="eval-back-btn">‹</span>
+        </div>
+        <div class="top-bar-right">
+          <div class="eval-tab-bar" id="eval-tab-bar">
+            <span class="eval-tab active" data-tab="report">📊 学习报告</span>
+            <span class="eval-tab" data-tab="knowledge">📋 知识掌握度</span>
+            <span class="eval-tab" data-tab="thinking">🧠 思维能力</span>
+            <span class="eval-tab" data-tab="attitude">📖 学习态度</span>
+          </div>
+        </div>
+      </header>
+      <main class="page-content eval-content" id="eval-content">
+        <div class="eval-main">
+          <div class="eval-card">
+            <div class="eval-card-title">能力雷达</div>
+            <div class="radar-chart" id="radar-chart">
+              <canvas id="radar-canvas" width="200" height="200"></canvas>
+            </div>
+          </div>
+          <div class="eval-row">
+            <div class="eval-card half">
+              <div class="eval-card-title">知识弱点</div>
+              <div class="weakness-bars" id="weakness-bars">
+                <div class="weakness-bar"><div class="bar blue" style="width:80%"></div><div class="bar green" style="width:60%"></div></div>
+                <div class="weakness-bar"><div class="bar blue" style="width:70%"></div><div class="bar green" style="width:90%"></div></div>
+                <div class="weakness-bar"><div class="bar blue" style="width:50%"></div><div class="bar yellow" style="width:40%"></div></div>
+              </div>
+            </div>
+            <div class="eval-card half">
+              <div class="eval-card-title">大班评价</div>
+              <div class="class-eval">
+                <div class="stars-row">⭐⭐⭐⭐⭐</div>
+                <div class="medal">🏅</div>
+                <div class="eval-badges">
+                  <span class="eval-badge blue">优秀</span>
+                  <span class="eval-badge green">良好</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="eval-card">
+            <div class="eval-card-title">班级学情统计</div>
+            <div class="class-stats" id="class-stats">
+              <canvas id="class-stats-canvas" width="300" height="120"></canvas>
+            </div>
+          </div>
+          <div class="eval-card">
+            <div class="eval-card-title">共性薄弱点</div>
+            <div class="weakness-chart" id="weakness-chart">
+              <canvas id="weakness-chart-canvas" width="300" height="100"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== 数学史 ===== -->
+    <div class="page" id="page-history">
+      <header class="top-bar history-topbar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="history-back-btn">‹</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">卡通小智讲故事</span>
+        </div>
+      </header>
+      <main class="page-content history-content" id="history-content">
+        <div class="story-card" id="story-card">
+          <div class="story-character">🧑‍🎓</div>
+          <div class="story-body">
+            <div class="story-section">
+              <div class="story-section-title">数学小故事</div>
+              <div class="story-section-text" id="story-text">
+                祖冲之计算圆周率、算筹，祖冲之计算，圆周率，全国圆周，传做一九章科学术竹，祖洫之计算圆周率。
+              </div>
+            </div>
+            <div class="story-section">
+              <div class="story-section-title">数学家事迹</div>
+              <div class="story-section-text" id="story-bio">
+                刘徽注《九章术》，他分
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story-actions">
+          <button class="story-btn" id="story-next-btn">下一个故事</button>
+          <button class="story-btn collect" id="story-collect-btn">收藏</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== 教师后台 ===== -->
+    <div class="page" id="page-teacher">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="teacher-back-btn">‹</span>
+        </div>
+        <div class="top-bar-right">
+          <div class="teacher-tab-bar" id="teacher-tab-bar">
+            <span class="teacher-tab active" data-tab="manage">班级管理</span>
+            <span class="teacher-tab" data-tab="homework">作业布置</span>
+            <span class="teacher-tab" data-tab="stats">学情统计</span>
+            <span class="teacher-tab" data-tab="resources">资源库</span>
+          </div>
+        </div>
+      </header>
+      <main class="page-content teacher-content" id="teacher-content">
+        <div class="teacher-main">
+          <div class="teacher-card">
+            <div class="teacher-card-title">全班数据报表</div>
+            <div class="teacher-chart" id="teacher-chart">
+              <canvas id="teacher-chart-canvas" width="300" height="120"></canvas>
+            </div>
+          </div>
+          <div class="teacher-row">
+            <div class="teacher-card half">
+              <div class="teacher-card-title">薄弱知识点分析</div>
+              <div class="teacher-bar-chart" id="teacher-bar-chart">
+                <canvas id="teacher-bar-canvas" width="140" height="100"></canvas>
+              </div>
+            </div>
+            <div class="teacher-card half">
+              <div class="teacher-card-title">薄弱知识点分析</div>
+              <div class="teacher-donut" id="teacher-donut">
+                <canvas id="teacher-donut-canvas" width="100" height="100"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="teacher-card">
+            <div class="teacher-card-title">快速出题/推送资源区</div>
+            <div class="teacher-calendar" id="teacher-calendar"></div>
+            <button class="teacher-action-btn" id="teacher-action-btn">一键式操作</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== 消息 ===== -->
+    <div class="page" id="page-message">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="message-back-btn">‹</span>
+          <span class="page-title">消息</span>
+        </div>
+      </header>
+      <main class="page-content message-content" id="message-content">
+        <div class="message-list" id="message-list"></div>
+      </main>
+    </div>
+
+    <!-- ===== 我的 ===== -->
+    <div class="page" id="page-profile">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="back-btn" id="profile-back-btn">‹</span>
+          <span class="page-title">我的</span>
+        </div>
+      </header>
+      <main class="page-content profile-content" id="profile-content">
+        <div class="profile-header" id="profile-header"></div>
+        <div class="profile-stats" id="profile-stats"></div>
+        <div class="profile-menu" id="profile-menu"></div>
+      </main>
+    </div>
+
+  </div>
+
+  <!-- 加载遮罩 -->
+  <div class="loading-overlay" id="loading-overlay" style="display:none">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">加载中...</div>
+  </div>
+
+  <script src="js/bridge.js"></script>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>

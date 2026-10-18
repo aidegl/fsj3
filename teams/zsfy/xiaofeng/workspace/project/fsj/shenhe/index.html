@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>校园课表成绩查询助手</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+  <div class="px-6 pt-12 pb-8">
+    <!-- 顶部标题 -->
+    <div class="text-center mb-10">
+      <div class="flex items-center justify-center gap-2 mb-3">
+        <span class="text-4xl">📚</span>
+        <span class="text-4xl font-bold text-gray-800">同檀</span>
+      </div>
+      <p class="text-base text-gray-500">校园课表成绩查询助手</p>
+    </div>
+
+    <!-- 查询表单 -->
+    <div class="bg-white rounded-3xl shadow-lg p-6 mb-6">
+      <!-- 学号输入 -->
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-gray-700 mb-3">学号</label>
+        <div class="bg-gray-50 rounded-xl px-4 py-3">
+          <input id="student-id" type="text" placeholder="请输入学号" maxlength="20"
+                 class="w-full bg-transparent text-base text-gray-800 outline-none" />
+        </div>
+      </div>
+
+      <!-- 查询类型 -->
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-gray-700 mb-3">查询类型</label>
+        <div class="flex gap-4">
+          <button id="btn-schedule" onclick="selectType('schedule')"
+                  class="flex-1 h-12 rounded-xl text-base font-medium transition-all
+                         bg-blue-50 text-blue-500 border-2 border-blue-500">课表</button>
+          <button id="btn-grade" onclick="selectType('grade')"
+                  class="flex-1 h-12 rounded-xl text-base font-medium transition-all
+                         bg-gray-100 text-gray-500 border-2 border-transparent">成绩</button>
+        </div>
+      </div>
+
+      <!-- 查询按钮 -->
+      <button onclick="doQuery()"
+              class="w-full h-14 rounded-xl text-base font-semibold text-white
+                     bg-gradient-to-r from-blue-500 to-teal-400 active:opacity-80">
+        立即查询
+      </button>
+    </div>
+
+    <!-- 查询结果 -->
+    <div id="result" class="hidden bg-white rounded-3xl shadow-lg p-6 mb-6">
+      <h3 id="result-title" class="text-lg font-semibold text-gray-800 mb-4"></h3>
+      <div id="result-body"></div>
+    </div>
+
+    <!-- 底部说明 -->
+    <p class="text-center text-xs text-gray-400 mt-8">同檀 — 为您提供便捷的校园信息服务</p>
+  </div>
+
+  <script>
+    var queryType = 'schedule';
+
+    function selectType(type) {
+      queryType = type;
+      var btnS = document.getElementById('btn-schedule');
+      var btnG = document.getElementById('btn-grade');
+      if (type === 'schedule') {
+        btnS.className = 'flex-1 h-12 rounded-xl text-base font-medium transition-all bg-blue-50 text-blue-500 border-2 border-blue-500';
+        btnG.className = 'flex-1 h-12 rounded-xl text-base font-medium transition-all bg-gray-100 text-gray-500 border-2 border-transparent';
+      } else {
+        btnG.className = 'flex-1 h-12 rounded-xl text-base font-medium transition-all bg-blue-50 text-blue-500 border-2 border-blue-500';
+        btnS.className = 'flex-1 h-12 rounded-xl text-base font-medium transition-all bg-gray-100 text-gray-500 border-2 border-transparent';
+      }
+    }
+
+    // 模拟课表数据
+    var mockSchedule = [
+      { day: '周一', courses: ['高等数学', '大学英语', '线性代数'] },
+      { day: '周二', courses: ['数据结构', '计算机网络', '操作系统'] },
+      { day: '周三', courses: ['概率论', '程序设计', '离散数学'] },
+      { day: '周四', courses: ['大学英语', '高等数学', '体育'] },
+      { day: '周五', courses: ['编译原理', '数据库系统', '算法设计'] }
+    ];
+
+    // 模拟成绩数据
+    var mockGrade = [
+      { name: '高等数学', score: '92', credit: '5.0' },
+      { name: '大学英语', score: '88', credit: '3.0' },
+      { name: '数据结构', score: '95', credit: '4.0' },
+      { name: '计算机网络', score: '85', credit: '3.0' },
+      { name: '线性代数', score: '90', credit: '3.0' },
+      { name: '操作系统', score: '87', credit: '3.5' }
+    ];
+
+    function doQuery() {
+      var sid = document.getElementById('student-id').value.trim();
+      if (!sid) {
+        alert('请输入学号');
+        return;
+      }
+
+      var resultDiv = document.getElementById('result');
+      var titleEl = document.getElementById('result-title');
+      var bodyEl = document.getElementById('result-body');
+      resultDiv.classList.remove('hidden');
+
+      if (queryType === 'schedule') {
+        titleEl.textContent = '课表信息';
+        var html = '';
+        mockSchedule.forEach(function(day) {
+          html += '<div class="mb-4 last:mb-0">';
+          html += '<div class="text-sm font-semibold text-blue-500 mb-2">' + day.day + '</div>';
+          html += '<div class="flex flex-wrap gap-2">';
+          day.courses.forEach(function(c) {
+            html += '<span class="bg-gray-100 rounded-lg px-3 py-2 text-sm text-gray-700">' + c + '</span>';
+          });
+          html += '</div></div>';
+        });
+        bodyEl.innerHTML = html;
+      } else {
+        titleEl.textContent = '成绩信息';
+        var html = '';
+        mockGrade.forEach(function(g) {
+          html += '<div class="bg-gray-50 rounded-xl p-4 mb-3 last:mb-0">';
+          html += '<div class="text-base font-medium text-gray-800 mb-2">' + g.name + '</div>';
+          html += '<div class="flex gap-8">';
+          html += '<span class="text-sm text-gray-500">成绩：<span class="text-gray-800 font-medium">' + g.score + '</span></span>';
+          html += '<span class="text-sm text-gray-500">学分：<span class="text-gray-800 font-medium">' + g.credit + '</span></span>';
+          html += '</div></div>';
+        });
+        bodyEl.innerHTML = html;
+      }
+    }
+  </script>
+</body>
+</html>

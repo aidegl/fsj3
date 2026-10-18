@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>目标管理系统 — 孚世界</title>
+  <link rel="stylesheet" href="css/style.css?v=64">
+</head>
+<body>
+  <!-- 顶部工具栏 -->
+  <header id="toolbar">
+    <h1>📋 目标管理</h1>
+    <div class="toolbar-actions">
+      <label for="agent-select" class="toolbar-label">Agent</label>
+      <select id="agent-select" class="agent-select">
+        <option value="all">全部</option>
+        <option value="2ab12bea-8db1-4b78-a955-3505d547fba7" selected>林东城</option>
+        <option value="a8515e76-7b02-4baf-bedd-3ff011b1a9e5">小风</option>
+        <option value="1024efc4-27fd-4522-bf3c-e4ebc998393c">小粽</option>
+        <option value="ceaa79bf-f4d8-45ae-8e1e-a1c9a3ac1b7d">阿说</option>
+        <option value="5b21306f-3be6-49fa-a6f6-2be311203c02">梦瑶</option>
+        <option value="22ff1c1c-f1d0-4275-980b-803835504a90">小云</option>
+        <option value="79e763bf-2a45-4377-9d1e-3fdf1d65da99">椰果</option>
+      </select>
+      <button id="btn-add-target" class="btn btn-primary" title="新增目标">+ 目标</button>
+      <button id="btn-add-plan" class="btn" title="新增计划">+ 计划</button>
+      <button id="btn-sync" class="btn btn-success" title="从 HAP 拉取最新并应用差异">🔄 同步</button>
+      <button id="btn-refresh" class="btn btn-ghost" title="完全重新拉取 HAP">⟳</button>
+      <span id="loading-indicator" class="loading hidden">加载中…</span>
+      <span id="status-text" class="status hidden"></span>
+    </div>
+  </header>
+
+  <!-- diff 状态栏（导入后显示） -->
+  <div id="diff-banner" class="diff-banner hidden" style="display:none">
+    <span><strong>差异预览</strong></span>
+    <span class="diff-count diff-new" id="diff-new-count">新增 0</span>
+    <span class="diff-count diff-mod" id="diff-mod-count">修改 0</span>
+    <span class="diff-count diff-del" id="diff-del-count">删除 0</span>
+    <span class="spacer"></span>
+    <button class="btn btn-small" id="btn-view-diff">查看详情</button>
+    <button class="btn btn-small btn-danger" id="btn-clear-diff">取消导入</button>
+  </div>
+
+  <!-- 三栏式主区：左 树 | 中 看板 | 右 详情+编辑 -->
+  <main id="main" class="three-cols">
+    <!-- 左：层级树 -->
+    <section id="tree-section">
+      <header class="section-header">
+        <h2>层级树</h2>
+        <div class="section-actions">
+          <button id="btn-expand-all" class="btn btn-small">展开</button>
+          <button id="btn-collapse-all" class="btn btn-small">折叠</button>
+        </div>
+      </header>
+      <div id="tree-container" class="scroll-y">
+        <div class="empty-state">加载中…</div>
+      </div>
+    </section>
+
+    <!-- 列宽拖动条（左树 | 中看板）-->
+    <div class="col-resizer" id="resizer-tree" title="拖动调整宽度"></div>
+
+    <!-- 中：5 区域看板（待思考在最下面） -->
+    <section id="kanban-section">
+      <header class="section-header">
+        <h2>最小可执行计划</h2>
+        <div class="section-actions">
+          <span class="legend">
+            <span class="dot dot-r1"></span>Q1
+            <span class="dot dot-r2"></span>Q2
+            <span class="dot dot-r3"></span>Q3
+            <span class="dot dot-r4"></span>Q4
+            <span class="dot dot-r5"></span>待思考
+          </span>
+        </div>
+      </header>
+      <div id="kanban-container" class="kanban-zones">
+        <div class="kanban-zone" data-zone="1">
+          <h3 class="zone-title">紧急 + 重要 <span class="zone-count">0</span></h3>
+          <div class="zone-body" data-zone-body="1"></div>
+        </div>
+        <div class="kanban-zone" data-zone="2">
+          <h3 class="zone-title">重要不紧急 <span class="zone-count">0</span></h3>
+          <div class="zone-body" data-zone-body="2"></div>
+        </div>
+        <div class="kanban-zone" data-zone="3">
+          <h3 class="zone-title">紧急不重要 <span class="zone-count">0</span></h3>
+          <div class="zone-body" data-zone-body="3"></div>
+        </div>
+        <div class="kanban-zone" data-zone="4">
+          <h3 class="zone-title">不紧急不重要 <span class="zone-count">0</span></h3>
+          <div class="zone-body" data-zone-body="4"></div>
+        </div>
+        <div class="kanban-zone zone-pending" data-zone="5">
+          <h3 class="zone-title">待思考（zhixindu &lt; 2000） <span class="zone-count">0</span></h3>
+          <div class="zone-body" data-zone-body="5"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 列宽拖动条（中看板 | 右详情）-->
+    <div class="col-resizer" id="resizer-detail" title="拖动调整宽度"></div>
+
+    <!-- 右：详情 + 内联编辑（始终显示） -->
+    <aside id="detail-panel">
+      <header class="section-header">
+        <h2>详情 / 编辑</h2>
+      </header>
+      <div id="detail-body" class="scroll-y">
+        <div class="empty-state">← 点选节点查看详情<br><br>或新建/编辑</div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- 通用 Modal（保留给将来的"重命名目标"二次确认） -->
+  <div id="modal-backdrop" class="modal-backdrop hidden">
+    <div class="modal">
+      <header class="modal-header">
+        <h3 id="modal-title">编辑</h3>
+        <button class="modal-close" id="modal-close">×</button>
+      </header>
+      <div class="modal-body" id="modal-body"></div>
+      <footer class="modal-footer" id="modal-footer"></footer>
+    </div>
+  </div>
+
+  <!-- Toast 容器 -->
+  <div id="toast-container"></div>
+
+  <script src="js/field-ids.js?v=64"></script>
+  <script src="js/api.js?v=64"></script>
+  <script src="js/filter.js?v=64"></script>
+  <script src="js/sync.js?v=64"></script>
+  <script src="js/ui.js?v=64"></script>
+  <script src="js/tree.js?v=64"></script>
+  <script src="js/kanban.js?v=64"></script>
+  <script src="js/app.js?v=64"></script>
+</body>
+</html>

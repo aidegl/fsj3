@@ -1,0 +1,73 @@
+/* 像素形象编辑器（Tab 切换三角度 + 单大画布） */
+.editor-page {
+    height: 100%; display: flex; flex-direction: column;
+    background: #2a2a35; overflow-y: auto;
+}
+.ed-top {
+    margin: 0.1rem 0.1rem 0; padding: 0.1rem 0.14rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 0.12rem;
+    flex-shrink: 0;
+}
+.px-btn.tiny { font-size: 0.22rem; padding: 0.08rem 0.16rem; }
+.ed-title { font-size: 0.26rem; font-weight: 700; color: #030303; flex: 1; text-align: center; }
+
+/* 三面 Tab */
+.ed-tabs { display: flex; gap: 0.08rem; padding: 0.14rem 0.16rem 0; flex-shrink: 0; }
+.ed-tab {
+    flex: 1; background: rgba(255,255,255,0.12); border: 0.03rem solid rgba(255,255,255,0.35);
+    border-radius: 0.06rem; color: #fff; font-size: 0.24rem; padding: 0.12rem 0; cursor: pointer;
+}
+.ed-tab.active { background: #FFC229; color: #030303; border-color: #030303; font-weight: 700; }
+
+/* 单个大画布 */
+.ed-canvas-wrap { display: flex; justify-content: center; padding: 0.14rem 0.16rem 0.06rem; flex-shrink: 0; }
+#edCanvas {
+    width: min(100%, 350px); aspect-ratio: 1;
+    background: #fff;
+    border: 0.04rem solid #030303; border-radius: 0.06rem;
+    box-shadow: 0.05rem 0.05rem 0 rgba(3,3,3,.5);
+    touch-action: none; cursor: crosshair;
+    image-rendering: pixelated;
+}
+
+.ed-tools { display: flex; gap: 0.08rem; padding: 0.12rem 0.16rem; flex-shrink: 0; }
+.ed-tool {
+    flex: 1; background: #fff; border: 0.03rem solid #030303; border-radius: 0.06rem;
+    box-shadow: 0.03rem 0.03rem 0 rgba(3,3,3,.4);
+    font-size: 0.2rem; padding: 0.12rem 0; color: #030303; cursor: pointer;
+}
+.ed-tool.active { background: #FFC229; }
+.ed-tool:active { transform: translate(0.02rem, 0.02rem); box-shadow: 0.01rem 0.01rem 0 rgba(3,3,3,.4); }
+
+.ed-palette-wrap { padding: 0 0.16rem; flex-shrink: 0; }
+.ed-palette {
+    display: grid; grid-template-columns: repeat(10, 1fr); gap: 0.04rem;
+    background: #181818; border: 0.03rem solid #030303; border-radius: 0.06rem;
+    padding: 0.08rem;
+}
+.ed-swatch {
+    aspect-ratio: 1; border: 0.02rem solid rgba(255,255,255,.25); border-radius: 0.03rem;
+    cursor: pointer;
+}
+.ed-swatch.active { border: 0.03rem solid #fff; box-shadow: 0 0 0 0.03rem #FFC229; }
+.ed-swatch.transparent {
+    background-image:
+        linear-gradient(45deg, #999 25%, transparent 25%, transparent 75%, #999 75%),
+        linear-gradient(45deg, #999 25%, #ddd 25%, #ddd 75%, #999 75%);
+    background-size: 40% 40%; background-position: 0 0, 55% 55%;
+}
+
+.ed-foot {
+    display: flex; align-items: center; gap: 0.12rem;
+    padding: 0.14rem 0.16rem 0.4rem; flex-shrink: 0;
+}
+.ed-tip { font-size: 0.18rem; color: #9e9e9e; flex: 1; text-align: right; }
+
+/* Toast */
+.ed-toast {
+    position: fixed; left: 50%; bottom: 18%; transform: translateX(-50%) translateY(20px);
+    z-index: 99; background: rgba(3,3,3,.88); color: #FFE6BB;
+    padding: 0.16rem 0.32rem; border-radius: 0.08rem; font-size: 0.24rem;
+    opacity: 0; pointer-events: none; transition: all .25s;
+}
+.ed-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }

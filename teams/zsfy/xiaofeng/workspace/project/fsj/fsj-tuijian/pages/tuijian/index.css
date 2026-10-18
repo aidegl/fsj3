@@ -1,0 +1,51 @@
+/* 推荐页样式 */
+.tuijian-page {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.card-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    will-change: transform;
+}
+
+.action-bar-slot {
+    position: absolute;
+    right: 0.12rem;
+    bottom: 1.5rem;
+    z-index: 10;
+    width: 0.85rem;
+}
+
+.author-bar-slot {
+    position: absolute;
+    left: 0.2rem;
+    right: 0.95rem;
+    bottom: 0.45rem;
+    z-index: 10;
+}
+
+/* 滑动状态类（由 JS 切换） */
+.tuijian-page.swiping .card-container {
+    transition: none !important;
+}
+
+.card-container.swipe-up {
+    transition: transform 300ms ease-out;
+    transform: translateY(-100%);
+}
+
+.card-container.swipe-down {
+    transition: transform 300ms ease-out;
+    transform: translateY(100%);
+}
+
+.card-container.swipe-back {
+    transition: transform 300ms ease-out;
+    transform: translateY(0);
+}

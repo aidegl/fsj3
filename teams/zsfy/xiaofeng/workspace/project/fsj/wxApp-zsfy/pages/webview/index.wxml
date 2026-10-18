@@ -1,0 +1,1 @@
+<web-view wx:key="{{webviewKey}}" src="{{url}}" bindmessage="onMessage" bindload="onWebviewLoad"></web-view>

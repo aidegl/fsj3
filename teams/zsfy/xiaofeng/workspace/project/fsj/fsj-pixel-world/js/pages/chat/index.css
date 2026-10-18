@@ -1,0 +1,53 @@
+/* 全屏聊天页 */
+.chat-page { height: 100%; display: flex; flex-direction: column; background: #f2f2f2; }
+
+.cp-top {
+    margin: 0.1rem 0.1rem 0; padding: 0.12rem 0.16rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 0.12rem;
+    flex-shrink: 0; z-index: 5;
+}
+.px-btn.tiny { font-size: 0.22rem; padding: 0.08rem 0.18rem; }
+.cp-agent { display: flex; align-items: center; gap: 0.14rem; flex: 1; min-width: 0; }
+.cp-avatar {
+    width: 0.72rem; height: 0.72rem; image-rendering: pixelated;
+    background: #f2f2f2; border: 0.03rem solid #030303; border-radius: 0.08rem; flex-shrink: 0;
+}
+.cp-name { font-size: 0.28rem; font-weight: 700; color: #030303; }
+.cp-sub { font-size: 0.2rem; color: #888888; margin-top: 0.02rem; }
+
+.cp-list { flex: 1; overflow-y: auto; padding: 0.2rem 0.16rem 0.3rem; }
+.cp-empty { text-align: center; color: #9e9e9e; font-size: 0.24rem; margin-top: 1.6rem; }
+
+.cp-row { display: flex; margin-bottom: 0.2rem; gap: 0.12rem; }
+.cp-row.me { flex-direction: row-reverse; }
+.cp-row .cp-av {
+    width: 0.56rem; height: 0.56rem; flex-shrink: 0; image-rendering: pixelated;
+    background: #fff; border: 0.02rem solid #030303; border-radius: 0.06rem;
+    margin-top: 0.06rem;
+}
+.cp-col { max-width: 74%; display: flex; flex-direction: column; }
+.cp-row.me .cp-col { align-items: flex-end; }
+.cp-msg {
+    background: #fff; border: 0.03rem solid #030303; border-radius: 0.08rem;
+    box-shadow: 0.03rem 0.03rem 0 rgba(3,3,3,.35);
+    padding: 0.14rem 0.18rem; font-size: 0.26rem; line-height: 1.55; color: #050505;
+    white-space: pre-wrap; word-break: break-word;
+}
+.cp-row.me .cp-msg { background: #FFC229; }
+.cp-time { font-size: 0.18rem; color: #9e9e9e; margin-top: 0.06rem; }
+.cp-weizhi { font-size: 0.18rem; color: #888888; margin-top: 0.04rem; }
+.cp-weizhi::before { content: '📍 '; }
+.cp-row.me .cp-weizhi { display: none; }
+
+.cursor { display: inline-block; width: 0.12rem; animation: cpblink 0.9s infinite; }
+@keyframes cpblink { 50% { opacity: 0; } }
+
+.cp-input-bar {
+    flex-shrink: 0; display: flex; gap: 0.12rem; padding: 0.16rem 0.16rem 0.3rem;
+    background: #fff; border-top: 0.03rem solid #d2d2d2;
+}
+.cp-input {
+    flex: 1; min-width: 0; border: 0.03rem solid #030303; border-radius: 0.08rem;
+    font-size: 0.28rem; padding: 0.14rem 0.18rem; outline: none;
+}
+.cp-input:focus { box-shadow: 0 0 0 0.03rem #FFC229; }

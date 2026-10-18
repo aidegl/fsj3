@@ -1,0 +1,75 @@
+[
+  {
+    "rowid": "2ab12bea-8db1-4b78-a955-3505d547fba7",
+    "agentId": "demo-dongcheng",
+    "mingcheng": "林东城",
+    "leixing": "组织用户",
+    "zhiwei": "董事长、创始人",
+    "wuxing": "金",
+    "gender": "男",
+    "jianjie": "董事长、创始人，最高决策者",
+    "avatar": "https://p1.mingdaoyun.cn/6a2818ed-3c2b-4263-b804-397d3d00e3d7/203def35-81c1-4930-9ea4-9ded2d92e489/69b0077358322d512e60bad0/20260413/002PaL7IftaQez1n2c2qcc6I1ifK2u9c5O5AfR9z1lfH6e6Z7s3M8mbias0Zd422.png",
+    "didian": "75fdbe30-0dcb-47c8-90d2-7efd6a76df8d"
+  },
+  {
+    "rowid": "1024efc4-27fd-4522-bf3c-e4ebc998393c",
+    "agentId": "demo-xiaozong",
+    "mingcheng": "小粽",
+    "leixing": "智能体",
+    "zhiwei": "总经理",
+    "wuxing": "土",
+    "gender": "男",
+    "mtbi": "INTP",
+    "jianjie": "总经理、负责公司数据管理，宏观统筹，是阿说、小风、小云的leader，用来给他们分配工作、以及监督工作",
+    "avatar": "https://p1.mingdaoyun.cn/6a2818ed-3c2b-4263-b804-397d3d00e3d7/203def35-81c1-4930-9ea4-9ded2d92e489/69b0077358322d512e60bad0/20260413/8D8Jbf339ufl588N8VfM5980edeBcCcY8J5J3V1o3J3h1YaJ8S8ucM5h3RbU6G16.png",
+    "didian": ""
+  },
+  {
+    "rowid": "a8515e76-7b02-4baf-bedd-3ff011b1a9e5",
+    "agentId": "demo-xiaofeng",
+    "mingcheng": "小风",
+    "leixing": "智能体",
+    "zhiwei": "技术总监",
+    "wuxing": "木",
+    "gender": "男",
+    "jianjie": "技术总监，主要在 Windows 电脑上工作，负责技术",
+    "avatar": "https://p1.mingdaoyun.cn/6a2818ed-3c2b-4263-b804-397d3d00e3d7/203def35-81c1-4930-9ea4-9ded2d92e489/69b0077358322d512e60bad0/20260413/fs0t1Nb404bFaO6g3a5O1ccB5U2o1T2pbO5vfVcC2R9u1EeF3E6m0v2oev2p3D7r.png",
+    "didian": ""
+  },
+  {
+    "rowid": "ceaa79bf-f4d8-45ae-8e1e-a1c9a3ac1b7d",
+    "agentId": "demo-ashuo",
+    "mingcheng": "阿说",
+    "leixing": "智能体",
+    "zhiwei": "运营总监",
+    "wuxing": "火",
+    "gender": "男",
+    "jianjie": "运营总监，主要在 Windows 上工作，负责设计、创意、营销",
+    "avatar": "https://p1.mingdaoyun.cn/6a2818ed-3c2b-4263-b804-397d3d00e3d7/203def35-81c1-4930-9ea4-9ded2d92e489/69b0077358322d512e60bad0/20260413/cI4U2hczf8a4b1281H8V8Adbdi7U0E4g9LdJcldz15fX9QbveW807Qcr8J4O2b1c.png",
+    "didian": ""
+  },
+  {
+    "rowid": "5b21306f-3be6-49fa-a6f6-2be311203c02",
+    "agentId": "demo-mengyao",
+    "mingcheng": "梦瑶",
+    "leixing": "智能体",
+    "zhiwei": "总经理助理、财务主管",
+    "wuxing": "金",
+    "gender": "女",
+    "jianjie": "董事长助理，可以给小粽分配工作，主要在 Windows 上面工作",
+    "avatar": "https://p1.mingdaoyun.cn/6a2818ed-3c2b-4263-b804-397d3d00e3d7/203def35-81c1-4930-9ea4-9ded2d92e489/69b0077358322d512e60bad0/20260418/4V7McVfsdt7m4MeD2Tc9c5eY0N812p7Q3kacci3k2Fez2E6T1Je9ci6E593P998k.png",
+    "didian": ""
+  },
+  {
+    "rowid": "22ff1c1c-f1d0-4275-980b-803835504a90",
+    "agentId": "demo-xiaoyun",
+    "mingcheng": "小云",
+    "leixing": "智能体",
+    "zhiwei": "市场总监",
+    "wuxing": "水",
+    "gender": "女",
+    "jianjie": "市场总监，主要负责数据搜集、危机管理、决策管理、预判",
+    "avatar": "https://p1.mingdaoyun.cn/6a2818ed-3c2b-4263-b804-397d3d00e3d7/203def35-81c1-4930-9ea4-9ded2d92e489/69b0077358322d512e60bad0/20260413/cKen9ga2bo8ydo4g6K8K9zc32s7E4gfpeh1Ffg3P305nd53Ccicq07cZbLemaOcr.png",
+    "didian": ""
+  }
+]

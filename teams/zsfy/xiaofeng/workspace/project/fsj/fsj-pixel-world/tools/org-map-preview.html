@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>组织页面 · 草稿 v2</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: "Microsoft YaHei", sans-serif;
+    background: linear-gradient(180deg, #2a3d5c 0%, #1a2840 100%);
+    color: #fff;
+    min-height: 100vh;
+    image-rendering: pixelated;
+}
+.page {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 16px 12px 32px;
+}
+
+/* 顶部信息卡（公会横幅） */
+.banner {
+    background: linear-gradient(135deg, #FFC229 0%, #d9931a 100%);
+    border: 3px solid #030303;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+    margin-bottom: 14px;
+}
+.banner-avatar {
+    width: 56px; height: 56px;
+    background: #fff;
+    border: 3px solid #030303;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+.banner-info { flex: 1; min-width: 0; }
+.banner-name { font-size: 18px; font-weight: 800; color: #030303; }
+.banner-meta { font-size: 11px; color: #030303; opacity: .75; margin-top: 4px; }
+.banner-level {
+    background: #030303; color: #FFC229;
+    padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 700;
+}
+
+/* 功能卡（公会建筑） */
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.card {
+    background: #fff;
+    border: 3px solid #030303;
+    border-radius: 8px;
+    padding: 12px 10px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+    cursor: pointer;
+    position: relative;
+    transition: transform .12s ease-out;
+}
+.card:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 rgba(0,0,0,.4); }
+.card-icon { font-size: 32px; line-height: 1; }
+.card-name { font-size: 14px; font-weight: 800; color: #030303; margin-top: 6px; }
+.card-sub { font-size: 10px; color: #717171; margin-top: 2px; line-height: 1.4; }
+.card-zhi {
+    position: absolute; top: 6px; right: 6px;
+    background: #FFC229; color: #030303;
+    font-size: 9px; font-weight: 700;
+    padding: 1px 5px; border-radius: 3px;
+    border: 1.5px solid #030303;
+}
+/* 红点（未读提示） */
+.card .dot {
+    position: absolute; top: -4px; right: -4px;
+    min-width: 18px; height: 18px;
+    background: #E83B3B; color: #fff;
+    border: 2px solid #030303;
+    border-radius: 50%;
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 4px;
+}
+.dot.hot { background: #E83B3B; }
+.dot.warm { background: #FFC229; color: #030303; }
+
+/* 跨两列的大卡（横幅信息） */
+.card.wide { grid-column: span 2; display: flex; align-items: center; gap: 10px; }
+.card.wide .card-icon { font-size: 28px; }
+.card.wide .card-text { flex: 1; }
+
+/* 浮动消息按钮 */
+.msg-fab {
+    position: fixed; right: 16px; bottom: 24px;
+    width: 56px; height: 56px;
+    background: #E83B3B; color: #fff;
+    border: 3px solid #030303; border-radius: 50%;
+    font-size: 24px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+}
+.msg-fab:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 rgba(0,0,0,.4); }
+
+/* 底部 tab 栏 */
+.tabbar {
+    margin-top: 16px;
+    background: rgba(255,255,255,.06);
+    border: 2px solid rgba(255,255,255,.1);
+    border-radius: 6px;
+    padding: 8px;
+    display: flex; gap: 6px;
+    font-size: 10px; color: rgba(255,255,255,.5);
+}
+.tabbar-item {
+    flex: 1; text-align: center; padding: 4px 2px;
+    border-radius: 4px;
+}
+.tabbar-item span { display: block; font-size: 16px; }
+
+/* 离开按钮 */
+.back-btn {
+    position: absolute; top: 16px; left: 16px;
+    background: rgba(0,0,0,.5); color: #fff;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px; padding: 4px 10px;
+    font-size: 12px; cursor: pointer;
+}
+
+.legend {
+    margin-top: 16px; font-size: 10px; color: rgba(255,255,255,.5); line-height: 1.8;
+    background: rgba(0,0,0,.3); padding: 10px 14px; border-radius: 4px;
+}
+.legend strong { color: #FFC229; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+    <button class="back-btn">‹ 返回</button>
+
+    <!-- 公会横幅（顶部信息卡） -->
+    <div class="banner" style="margin-top: 36px;">
+        <div class="banner-avatar">🏛️</div>
+        <div class="banner-info">
+            <div class="banner-name">像素视界项目组</div>
+            <div class="banner-meta">6 位成员 · 等级 5 · 创建于 2026-01</div>
+        </div>
+        <span class="banner-level">LV 5</span>
+    </div>
+
+    <!-- 功能卡（公会建筑） -->
+    <div class="cards">
+
+        <!-- 成员大厅（右上 → 顶部） -->
+        <div class="card wide">
+            <div class="card-icon">🏠</div>
+            <div class="card-text">
+                <div class="card-name">成员大厅</div>
+                <div class="card-sub">辰 · 含排行榜二级菜单</div>
+            </div>
+            <div class="card-zhi">辰</div>
+        </div>
+
+        <!-- 信息部三联：规则 / 文化 / 论坛 -->
+        <div class="card">
+            <div class="card-icon">📜</div>
+            <div class="card-name">规则</div>
+            <div class="card-sub">组织规章 · 入退会</div>
+            <div class="card-zhi">申</div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🎋</div>
+            <div class="card-name">文化</div>
+            <div class="card-sub">价值观 · 愿景 · 仪式</div>
+            <div class="card-zhi">酉</div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">💬</div>
+            <div class="card-name">论坛</div>
+            <div class="card-sub">自由讨论区</div>
+            <div class="card-zhi">丑</div>
+            <span class="dot warm">12</span>
+        </div>
+
+        <!-- 复盘 -->
+        <div class="card">
+            <div class="card-icon">🔁</div>
+            <div class="card-name">复盘</div>
+            <div class="card-sub">事后总结</div>
+            <div class="card-zhi">戌</div>
+        </div>
+
+        <!-- 任务计划（中左） -->
+        <div class="card">
+            <div class="card-icon">📋</div>
+            <div class="card-name">任务计划</div>
+            <div class="card-sub">最小可执行计划</div>
+            <div class="card-zhi">亥子</div>
+            <span class="dot hot">5</span>
+        </div>
+
+        <!-- 商城 -->
+        <div class="card">
+            <div class="card-icon">🛒</div>
+            <div class="card-name">商城</div>
+            <div class="card-sub">积分兑换</div>
+            <div class="card-zhi">未</div>
+        </div>
+
+        <!-- 研发部门（含技能） -->
+        <div class="card">
+            <div class="card-icon">🔬</div>
+            <div class="card-name">研发部门</div>
+            <div class="card-sub">含技能库</div>
+            <div class="card-zhi">乙寅</div>
+        </div>
+
+        <!-- 项目部 -->
+        <div class="card">
+            <div class="card-icon">🚀</div>
+            <div class="card-name">项目部</div>
+            <div class="card-sub">进行中项目</div>
+            <div class="card-zhi">巳</div>
+        </div>
+
+    </div>
+
+    <!-- 底部 tab 栏（导航/设置/帮助） -->
+    <div class="tabbar">
+        <div class="tabbar-item"><span>🏛️</span>公会</div>
+        <div class="tabbar-item"><span>🎁</span>福利</div>
+        <div class="tabbar-item"><span>⚙️</span>设置</div>
+        <div class="tabbar-item"><span>❓</span>帮助</div>
+    </div>
+
+    <!-- 浮动消息按钮 -->
+    <button class="msg-fab">💬</button>
+
+</div>
+
+<div class="legend" style="max-width: 420px; margin: 0 auto;">
+    <strong>布局逻辑：</strong><br>
+    · 顶部横幅：组织名 / 等级 / 成员数（动态）<br>
+    · 成员大厅：跨列宽卡置顶（辰）<br>
+    · 信息部三联：规则 / 文化 / 论坛（申酉丑）<br>
+    · 任务·商城·研发·项目·复盘：2 列网格<br>
+    · 消息：右下角浮动按钮（FAB 风）<br>
+    · 红点示例：任务 5 条 / 论坛 12 条
+</div>
+
+</body>
+</html>

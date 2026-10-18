@@ -1,0 +1,46 @@
+/* Game World · HD 世界页 */
+:root { --bg:#060810; --pane:#10141c; --border:#232a38; --text:#e8ecf5; --sub:#8a93a6; --accent:#1677ff; --gold:#e8d5a3; }
+.gw-page { width: 100%; height: 100vh; position: relative; overflow: hidden; background: var(--bg); }
+#gwCanvas { display: block; width: 100%; height: 100%; touch-action: none; }
+
+/* 顶栏 */
+.gw-topbar { position: absolute; top: .2rem; left: .2rem; right: .2rem; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; pointer-events: none; }
+.gw-player-card { background: rgba(0,0,0,.7); border: .02rem solid rgba(255,255,255,.1); border-radius: .16rem; padding: .14rem .24rem; pointer-events: auto; min-width: 2rem; }
+.gw-level { font-size: .32rem; font-weight: 700; color: var(--gold); }
+.gw-exp { font-size: .2rem; color: var(--sub); margin-top: .04rem; }
+.gw-expbar { width: 1.8rem; height: .08rem; background: #1a2233; border-radius: .04rem; margin-top: .06rem; overflow: hidden; }
+.gw-expbar i { display: block; height: 100%; background: var(--gold); border-radius: .04rem; transition: width .3s; }
+.gw-ws { font-size: .2rem; color: #5fe08a; pointer-events: auto; }
+
+/* 位置 HUD */
+.gw-pos-hud { position: absolute; bottom: 1.6rem; left: .2rem; z-index: 10; font-size: .2rem; color: #55607a; pointer-events: none; }
+.gw-pos-hud span { margin-right: .16rem; }
+
+/* 功能列 */
+.gw-fn-col { position: absolute; top: 1.4rem; z-index: 10; display: flex; flex-direction: column; gap: .18rem; }
+.gw-fn-col.left { left: .2rem; }
+.gw-fn-col.right { right: .2rem; }
+.gw-fn-icon {
+    width: .96rem; height: .96rem; border-radius: .2rem;
+    background: rgba(0,0,0,.6); border: .02rem solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .48rem; cursor: pointer; user-select: none; transition: background .15s;
+}
+.gw-fn-icon:active { background: rgba(255,255,255,.15); }
+
+/* 底部计划流面板 */
+.gw-flow-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 12;
+    background: rgba(0,0,0,.8); border-top: .02rem solid rgba(255,255,255,.08);
+    padding: .16rem .2rem; display: flex; align-items: center; gap: .2rem;
+}
+.gw-flow-title { font-size: .26rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+.gw-flow-steps { display: flex; align-items: center; gap: .12rem; flex: 1; }
+.gw-step { display: flex; align-items: center; gap: .08rem; }
+.gw-step-icon { width: .2rem; height: .2rem; border-radius: 50%; }
+.gw-step-label { font-size: .22rem; }
+
+/* 手机窄屏 */
+@media (max-width: 640px) {
+    .gw-fn-col { flex-direction: row; top: auto; bottom: 1rem; }
+}

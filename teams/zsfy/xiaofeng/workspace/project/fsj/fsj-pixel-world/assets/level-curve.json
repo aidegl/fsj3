@@ -1,0 +1,161 @@
+{
+  "miaoshu": "等级经验曲线（来源：HAP 等级表 69b00d47201491aa8156879b，2026-09-01 拉取）",
+  "maxLevel": 30,
+  "levels": [
+    {
+      "level": 1,
+      "exp": 0,
+      "value": 10
+    },
+    {
+      "level": 2,
+      "exp": 10,
+      "value": 20
+    },
+    {
+      "level": 3,
+      "exp": 30,
+      "value": 60
+    },
+    {
+      "level": 4,
+      "exp": 90,
+      "value": 120
+    },
+    {
+      "level": 5,
+      "exp": 210,
+      "value": 180
+    },
+    {
+      "level": 6,
+      "exp": 390,
+      "value": 240
+    },
+    {
+      "level": 7,
+      "exp": 630,
+      "value": 250
+    },
+    {
+      "level": 8,
+      "exp": 880,
+      "value": 280
+    },
+    {
+      "level": 9,
+      "exp": 1160,
+      "value": 280
+    },
+    {
+      "level": 10,
+      "exp": 1440,
+      "value": 360
+    },
+    {
+      "level": 11,
+      "exp": 1800,
+      "value": 460
+    },
+    {
+      "level": 12,
+      "exp": 2260,
+      "value": 560
+    },
+    {
+      "level": 13,
+      "exp": 2820,
+      "value": 700
+    },
+    {
+      "level": 14,
+      "exp": 3520,
+      "value": 880
+    },
+    {
+      "level": 15,
+      "exp": 4400,
+      "value": 1100
+    },
+    {
+      "level": 16,
+      "exp": 5500,
+      "value": 1380
+    },
+    {
+      "level": 17,
+      "exp": 6880,
+      "value": 1720
+    },
+    {
+      "level": 18,
+      "exp": 8600,
+      "value": 2140
+    },
+    {
+      "level": 19,
+      "exp": 10740,
+      "value": 2700
+    },
+    {
+      "level": 20,
+      "exp": 13440,
+      "value": 3360
+    },
+    {
+      "level": 21,
+      "exp": 16800,
+      "value": 4200
+    },
+    {
+      "level": 22,
+      "exp": 21000,
+      "value": 5240
+    },
+    {
+      "level": 23,
+      "exp": 26240,
+      "value": 6560
+    },
+    {
+      "level": 24,
+      "exp": 32800,
+      "value": 8200
+    },
+    {
+      "level": 25,
+      "exp": 41000,
+      "value": 10260
+    },
+    {
+      "level": 26,
+      "exp": 51260,
+      "value": 12820
+    },
+    {
+      "level": 27,
+      "exp": 64080,
+      "value": 13920
+    },
+    {
+      "level": 28,
+      "exp": 78000,
+      "value": 15200
+    },
+    {
+      "level": 29,
+      "exp": 93200,
+      "value": 18600
+    },
+    {
+      "level": 30,
+      "exp": 111800,
+      "value": 16200
+    },
+    {
+      "level": 31,
+      "exp": 9007199254740990,
+      "value": 9007199254740990
+    }
+  ]
+}

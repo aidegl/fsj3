@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+app/build/
+/captures
+.externalNativeBuild
+.cxx
+
+# Live2D 原始素材与 SDK（已拷贝进 app 资产的除外；新机器构建需重新获取）
+/CubismSdkForJava-5-r.5/
+/unitychan_ja/
+/tmp-sdk/

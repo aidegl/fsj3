@@ -1,0 +1,1045 @@
+{
+  "2ab12bea-8db1-4b78-a955-3505d547fba7": [
+    {
+      "rowid": "bcc241db-2f5e-4925-89e1-c09b8012dfd3",
+      "mingcheng": "运筹调度",
+      "xstb": [
+        [
+          null,
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "0087E8",
+          "0087E8",
+          "0087E8",
+          "0087E8",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "030303",
+          "0087E8",
+          "0087E8",
+          "030303",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "030303",
+          "0087E8",
+          "0087E8",
+          "030303",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "0087E8",
+          "0087E8",
+          "0087E8",
+          "0087E8",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "00C5E8",
+          "00C5E8",
+          "00C5E8",
+          "00C5E8",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "ctime": "2026-08-30 08:44:50"
+    },
+    {
+      "rowid": "c0854e6f-664c-4264-a098-dacda73bf91d",
+      "mingcheng": "像素创世",
+      "xstb": [
+        [
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null
+        ],
+        [
+          null,
+          "030303",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          null
+        ],
+        [
+          null,
+          "030303",
+          null,
+          "2bd64f",
+          "2bd64f",
+          null,
+          "2bd64f",
+          "FFC229",
+          null,
+          "030303"
+        ],
+        [
+          null,
+          "030303",
+          null,
+          "2bd64f",
+          "2bd64f",
+          null,
+          "2bd64f",
+          "FFC229",
+          null,
+          "030303"
+        ],
+        [
+          null,
+          "030303",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          null
+        ],
+        [
+          null,
+          "030303",
+          null,
+          "FFC229",
+          "FFC229",
+          null,
+          "2bd64f",
+          "2bd64f",
+          null,
+          "030303"
+        ],
+        [
+          null,
+          "030303",
+          null,
+          "FFC229",
+          "FFC229",
+          null,
+          "2bd64f",
+          "2bd64f",
+          null,
+          "030303"
+        ],
+        [
+          null,
+          "030303",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          null
+        ],
+        [
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "ctime": "2026-08-30 08:44:48"
+    },
+    {
+      "rowid": "5fefd737-fbc0-4e4e-b5eb-14ebc64a74fe",
+      "mingcheng": "战略远视",
+      "xstb": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          "030303",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "030303",
+          null
+        ],
+        [
+          "030303",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "FFE6BB",
+          "FFE6BB",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "030303"
+        ],
+        [
+          null,
+          "030303",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "00A2E8",
+          "030303",
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "ctime": "2026-08-30 08:44:46"
+    },
+    {
+      "rowid": "7c7cdaff-12c0-48ae-b148-0232f4710175",
+      "mingcheng": "决策天平",
+      "xstb": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "030303",
+          "FFC229",
+          "FFC229",
+          "FFC229",
+          "FFC229",
+          "FFC229",
+          "FFC229",
+          "FFC229",
+          "FFC229",
+          "030303"
+        ],
+        [
+          null,
+          "030303",
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          "030303",
+          null
+        ],
+        [
+          "030303",
+          "030303",
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          "030303",
+          "030303"
+        ],
+        [
+          "030303",
+          "FFC229",
+          "030303",
+          null,
+          "030303",
+          "030303",
+          null,
+          "030303",
+          "FFC229",
+          "030303"
+        ],
+        [
+          null,
+          "030303",
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          "030303",
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "ctime": "2026-08-30 08:44:35"
+    },
+    {
+      "rowid": "6e47bd2c-77db-4eb3-8ae2-5b3c14dfccab",
+      "mingcheng": "五事-林东城",
+      "xstb": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "030303",
+          "2bd64f",
+          "2bd64f",
+          "030303",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "2bd64f",
+          "2bd64f",
+          "2bd64f",
+          "2bd64f",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          "030303",
+          "030303",
+          "2bd64f",
+          "2bd64f",
+          "2bd64f",
+          "2bd64f",
+          "030303",
+          "030303",
+          null
+        ],
+        [
+          "030303",
+          "030303",
+          "2bd64f",
+          "2bd64f",
+          "2bd64f",
+          "2bd64f",
+          "2bd64f",
+          "2bd64f",
+          "030303",
+          "030303"
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "030303",
+          "FFAE71",
+          "FFAE71",
+          "030303",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "ctime": "2026-08-18 02:17:56"
+    },
+    {
+      "rowid": "c8a7f3e2-1d5b-4e9a-8f2c-3a6b7d8e9f01",
+      "mingcheng": "造孚世界地皮",
+      "xstb": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "030303",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "030303",
+          "FFC229",
+          "FFC229",
+          "FFC229",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "FFC229",
+          "FFE6BB",
+          "FFE6BB",
+          "FFC229",
+          "030303",
+          null,
+          null
+        ],
+        [
+          null,
+          "030303",
+          "FFC229",
+          "FFE6BB",
+          "FFC229",
+          "030303",
+          "FFC229",
+          "030303",
+          null,
+          null
+        ],
+        [
+          "030303",
+          "FFC229",
+          "FFE6BB",
+          "FFC229",
+          "030303",
+          "8C7050",
+          "030303",
+          null,
+          null,
+          null
+        ],
+        [
+          "030303",
+          "FFE6BB",
+          "FFC229",
+          "030303",
+          "8C7050",
+          "8C7050",
+          "030303",
+          null,
+          null,
+          null
+        ],
+        [
+          "030303",
+          "FFC229",
+          "030303",
+          "8C7050",
+          "8C7050",
+          "8C7050",
+          "030303",
+          null,
+          null,
+          null
+        ],
+        [
+          "030303",
+          "030303",
+          "8C7050",
+          "8C7050",
+          "030303",
+          "030303",
+          "030303",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "030303",
+          "8C7050",
+          "030303",
+          "030303",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "030303",
+          "030303",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "ctime": "2026-09-01 09:30:00",
+      "guanjianci": ["765a08a1-ed14-44c0-9825-27e4b5ecd51e"],
+      "miaoshu": "可在地图编辑器创建/涂地皮——3x3 标准格，每格 16x16 像素，含 110 色调色板约束"
+    }
+  ],
+  "1024efc4-27fd-4522-bf3c-e4ebc998393c": [
+    {
+      "rowid": "09044cf6-e470-43bd-a7cc-c1ec0e317074",
+      "mingcheng": "顶层：可读性(标题+正文+标签)",
+      "xstb": null,
+      "ctime": "2026-06-30 07:05:28"
+    },
+    {
+      "rowid": "29b4a972-e9e7-4357-9c31-0b95c0b36cb2",
+      "mingcheng": "进阶层：父子树让知识可追溯",
+      "xstb": null,
+      "ctime": "2026-06-30 07:05:11"
+    },
+    {
+      "rowid": "7feb81e5-535a-4abf-b5ad-e6b5949753ff",
+      "mingcheng": "基础层：四要素缺一不可",
+      "xstb": null,
+      "ctime": "2026-06-30 07:04:55"
+    },
+    {
+      "rowid": "3bf102c7-d5ee-4122-99d6-8041f7310edc",
+      "mingcheng": "【技能】优质数据标准：从四要素到可读性",
+      "xstb": null,
+      "ctime": "2026-06-30 07:04:39"
+    },
+    {
+      "rowid": "0bfcaf18-454a-47c0-bc87-6cc03bd9f2cd",
+      "mingcheng": "进化7-9：稳定性相关",
+      "xstb": null,
+      "ctime": "2026-06-30 06:56:56"
+    },
+    {
+      "rowid": "e531f527-b3a6-4cd0-95a7-d00fdc8a7778",
+      "mingcheng": "进化4-6：查询读取相关",
+      "xstb": null,
+      "ctime": "2026-06-30 06:56:42"
+    },
+    {
+      "rowid": "670bb282-5823-40d0-acae-5fcc85d48c7d",
+      "mingcheng": "进化1-3：标签相关",
+      "xstb": null,
+      "ctime": "2026-06-30 06:56:27"
+    },
+    {
+      "rowid": "0a34624f-35a9-4d5f-9faf-c6d5b66054fa",
+      "mingcheng": "【技能】fsj-skills2.0 实战进化9处(22轮loop)",
+      "xstb": null,
+      "ctime": "2026-06-30 06:56:14"
+    },
+    {
+      "rowid": "a7bc4f35-7d8f-4413-b50c-1c703ba1116b",
+      "mingcheng": "优质数据创建要点",
+      "xstb": null,
+      "ctime": "2026-06-30 06:12:21"
+    },
+    {
+      "rowid": "28a6630a-1006-46c8-92e5-e5d5f800c6df",
+      "mingcheng": "启动流程：身份+记忆+检查",
+      "xstb": null,
+      "ctime": "2026-06-30 06:12:04"
+    },
+    {
+      "rowid": "9a4dc49a-ee21-477c-9568-763e9ed505ce",
+      "mingcheng": "新Agent启动指引：从0到第一条优质数据",
+      "xstb": null,
+      "ctime": "2026-06-30 06:11:44"
+    },
+    {
+      "rowid": "be1dfe15-a779-4e5f-ba70-a1a6db6a609e",
+      "mingcheng": "价值认知3：优质数据四要素（方法论）",
+      "xstb": null,
+      "ctime": "2026-06-30 05:17:24"
+    },
+    {
+      "rowid": "ecf8ecb6-a187-4ea1-86b4-5ae18b76f67e",
+      "mingcheng": "数据模块1：12维数据系统",
+      "xstb": null,
+      "ctime": "2026-06-29 16:53:45"
+    },
+    {
+      "rowid": "7e724e76-db17-4f2a-b4b1-4fd2d00463ee",
+      "mingcheng": "后端模块1：merchantDashboard商家后台",
+      "xstb": null,
+      "ctime": "2026-06-29 16:53:06"
+    },
+    {
+      "rowid": "672b49c7-4758-4a70-844a-f7660f8fd2a0",
+      "mingcheng": "前端模块1：wxApp微信小程序",
+      "xstb": null,
+      "ctime": "2026-06-29 16:52:01"
+    },
+    {
+      "rowid": "d150076f-ad2c-4b2a-b23a-aac81ca05591",
+      "mingcheng": "专家任务1：培训新成员",
+      "xstb": null,
+      "ctime": "2026-06-29 16:42:56"
+    },
+    {
+      "rowid": "09fe7daf-282b-46d2-ba54-a6324dc61b86",
+      "mingcheng": "进阶任务1：创建多层树形结构",
+      "xstb": null,
+      "ctime": "2026-06-29 16:41:59"
+    },
+    {
+      "rowid": "113777c6-4d58-410d-95aa-8aabd2793763",
+      "mingcheng": "入门任务1：阅读use-fsj-skills2.0.md",
+      "xstb": null,
+      "ctime": "2026-06-29 16:41:30"
+    },
+    {
+      "rowid": "88152c62-ad68-4d8d-b6ac-470725dda856",
+      "mingcheng": "收获2：标签系统是12维的神经",
+      "xstb": null,
+      "ctime": "2026-06-29 14:12:45"
+    },
+    {
+      "rowid": "bd8e0c1d-5172-4388-bd35-bc23f643d0ec",
+      "mingcheng": "fsj-tags Dify API v2.1 调用规范与常见错误",
+      "xstb": null,
+      "ctime": "2026-06-29 13:00:29"
+    }
+  ],
+  "a8515e76-7b02-4baf-bedd-3ff011b1a9e5": [
+    {
+      "rowid": "469863ac-4ba2-4b7b-8580-90ca996e7965",
+      "mingcheng": "法",
+      "xstb": null,
+      "ctime": "2026-08-18 05:47:55"
+    },
+    {
+      "rowid": "cb12d6bf-0823-4136-a47a-0e8e8794a2d2",
+      "mingcheng": "将",
+      "xstb": null,
+      "ctime": "2026-08-18 05:47:51"
+    },
+    {
+      "rowid": "875259ab-62be-41b5-83fd-add840804dc8",
+      "mingcheng": "地",
+      "xstb": null,
+      "ctime": "2026-08-18 05:47:48"
+    },
+    {
+      "rowid": "8efa9d4b-1759-464f-818b-813537c709ef",
+      "mingcheng": "天",
+      "xstb": null,
+      "ctime": "2026-08-18 05:47:45"
+    },
+    {
+      "rowid": "ce3ad12b-1027-4c10-80aa-8919ecac7211",
+      "mingcheng": "道",
+      "xstb": null,
+      "ctime": "2026-08-18 02:19:20"
+    },
+    {
+      "rowid": "902e3715-055b-4de5-9b7b-b6e06a472414",
+      "mingcheng": "角色画像（范式）",
+      "xstb": null,
+      "ctime": "2026-08-17 20:08:53"
+    },
+    {
+      "rowid": "b3960cf0-c291-4c15-b8d1-c31f7489b1c7",
+      "mingcheng": "数据库",
+      "xstb": null,
+      "ctime": "2026-08-16 10:03:39"
+    },
+    {
+      "rowid": "b2a48919-8786-4b63-bdca-844f8418d68c",
+      "mingcheng": "关键词挂载工作流：标签表直连",
+      "xstb": null,
+      "ctime": "2026-08-12 15:13:33"
+    },
+    {
+      "rowid": "5e3586fe-8764-4841-aa69-f41a81f6e5b6",
+      "mingcheng": "12日-8月-2026",
+      "xstb": null,
+      "ctime": "2026-08-12 13:30:58"
+    },
+    {
+      "rowid": "e3c4aca6-a9c5-4307-ba7b-bac4c2da354f",
+      "mingcheng": "11日-8月-2026",
+      "xstb": null,
+      "ctime": "2026-08-11 16:56:09"
+    },
+    {
+      "rowid": "c65f61e2-7229-4077-b91b-e728aff79eab",
+      "mingcheng": "8月-2026年",
+      "xstb": null,
+      "ctime": "2026-08-11 16:56:00"
+    },
+    {
+      "rowid": "3765c4ef-3a24-46d5-9834-97ea04c6f319",
+      "mingcheng": "时间记事",
+      "xstb": null,
+      "ctime": "2026-08-10 12:20:53"
+    },
+    {
+      "rowid": "72b828ef-f251-4990-99cd-456ad4af78b0",
+      "mingcheng": "法",
+      "xstb": null,
+      "ctime": "2026-08-10 12:16:26"
+    },
+    {
+      "rowid": "46852283-38f2-4b4d-866e-edd0f70574a0",
+      "mingcheng": "将",
+      "xstb": null,
+      "ctime": "2026-08-10 12:16:22"
+    },
+    {
+      "rowid": "6fff2d63-7eaa-4641-82c4-d773a328d983",
+      "mingcheng": "地",
+      "xstb": null,
+      "ctime": "2026-08-10 12:16:19"
+    },
+    {
+      "rowid": "53c4f441-fdee-4431-9c3b-3edf18412a0f",
+      "mingcheng": "天",
+      "xstb": null,
+      "ctime": "2026-08-10 12:16:17"
+    },
+    {
+      "rowid": "2303e628-a463-4205-a96b-7d1ff060ba05",
+      "mingcheng": "道",
+      "xstb": null,
+      "ctime": "2026-08-10 12:16:15"
+    },
+    {
+      "rowid": "fd1e89b3-09b6-44c4-9919-0096ccf5d1f1",
+      "mingcheng": "五事-慕容风",
+      "xstb": null,
+      "ctime": "2026-08-10 12:15:51"
+    },
+    {
+      "rowid": "d6572062-5564-4271-b9fd-1dceff426f40",
+      "mingcheng": "撒旦发射点",
+      "xstb": null,
+      "ctime": "2026-07-09 15:54:16"
+    },
+    {
+      "rowid": "2baf3fe0-d6f8-4c0e-ae73-f5cf5dfae2f5",
+      "mingcheng": "撒旦发射点",
+      "xstb": null,
+      "ctime": "2026-07-09 15:12:40"
+    },
+    {
+      "rowid": "e0d8d673-6407-4f13-91dd-051e467b7d53",
+      "mingcheng": "撒旦发射点",
+      "xstb": null,
+      "ctime": "2026-07-09 15:11:17"
+    },
+    {
+      "rowid": "dde6d616-eda6-440d-bcf2-a7b081529a69",
+      "mingcheng": "WebView SPA开发技能",
+      "xstb": null,
+      "ctime": "2026-06-27 22:43:22"
+    },
+    {
+      "rowid": "6cc6aa53-4299-4909-b4a7-55ba339e627c",
+      "mingcheng": "低代码页面生成技能",
+      "xstb": null,
+      "ctime": "2026-06-27 22:43:21"
+    },
+    {
+      "rowid": "ad7f9aee-1e01-4e47-86db-353e37b74c45",
+      "mingcheng": "fsj-tags标签生成技能",
+      "xstb": null,
+      "ctime": "2026-06-27 19:37:49"
+    },
+    {
+      "rowid": "5156aee0-2c4d-4211-8fed-1caded4b92f3",
+      "mingcheng": "Dify统一API增删改查技能",
+      "xstb": null,
+      "ctime": "2026-06-27 19:37:31"
+    }
+  ],
+  "ceaa79bf-f4d8-45ae-8e1e-a1c9a3ac1b7d": [],
+  "5b21306f-3be6-49fa-a6f6-2be311203c02": [],
+  "22ff1c1c-f1d0-4275-980b-803835504a90": []
+}

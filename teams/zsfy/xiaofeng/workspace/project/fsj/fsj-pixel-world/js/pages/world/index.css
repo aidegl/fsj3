@@ -1,0 +1,346 @@
+/* 世界页样式 */
+.world-page { width: 100%; height: 100%; position: relative; overflow: hidden; }
+#worldCanvas { position: absolute; top: 0; left: 0; }
+
+/* ===== 顶栏 ===== */
+.top-bar {
+    position: absolute; top: 0.1rem; left: 0.1rem; right: 0.1rem;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    pointer-events: none; z-index: 20;
+}
+.top-bar > * { pointer-events: auto; }
+.top-left { display: flex; align-items: center; gap: 0.12rem; }
+
+/* ===== 玩家信息卡（jingyanbeijing 底板 + 等级牌 + xinxikuang 框 + 头像 + 名字 + 所在地） ===== */
+.player-card {
+    position: relative; width: 5.25rem; height: 1.625rem; flex-shrink: 0;
+    margin: 0.25rem 0 0 calc(0.25rem - 0.0625rem);   /* 老规范 xy=(4,4) 单位的整体偏移；左移 1 像素位 */
+    cursor: pointer;
+}
+/* 三层素材同矩形完美叠放（1像素=1像素位，无裁切） */
+.pc-expbg, .pc-lvbg, .pc-frame {
+    position: absolute; left: 0; top: 0;
+    width: 100%; height: 100%;
+    image-rendering: pixelated;
+}
+.pc-expbg { z-index: 0; }
+.pc-lvbg { z-index: 1; }
+.pc-frame { z-index: 2; }
+/* 等级/经验文字：老项目规格 (5,5) 35x9 白字6单位居中；(10,16) 宽72 深色居中 */
+.level-text {
+    position: absolute; top: 0.3125rem; left: 0.3125rem;
+    width: 2.3125rem; height: 0.5625rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.375rem; font-weight: bold; color: #ffffff;
+    transform: translate(-0.5rem, -0.25rem);   /* 左 50px→0.5rem、上 1 像素位（rem 自适应缩放） */
+    z-index: 3;
+}
+.exp-text {
+    position: absolute; top: 1rem; left: 0;
+    width: 100%; font-size: 0.375rem; color: #030303;
+    text-align: center; z-index: 3;
+    transform: translateY(calc(-0.25rem - 0.03rem));   /* 经验值文字 上移 4 像素位 + 3px→0.03rem */
+}
+/* 经验进度槽：素材 84 像素位，左右各收 6 像素位 → 槽宽 72 像素位（4.5rem），按比例填充 */
+.pc-expbar {
+    position: absolute; left: 0.375rem; right: 0.375rem; bottom: 0.1875rem;
+    width: auto; height: 0.125rem;   /* 高 2 像素位（3-1）*/
+    background: rgba(3,3,3,.14);
+    z-index: 3; overflow: hidden;
+}
+.pc-expbar i {
+    display: block; height: 100%; width: 0%;
+    background: #FFC229;
+    transition: width .3s ease-out;
+}
+
+/* ===== 位置坐标 HUD（顶部右侧，右边缘固定，左侧自然拉长） ===== */
+.pos-hud {
+    position: absolute; top: 0.4rem; right: 0.3rem;
+    z-index: 20; display: flex; align-items: center; gap: 0.14rem;
+    background: rgba(3,3,3,.62); border: 0.02rem solid rgba(255,255,255,.3);
+    border-radius: 0.06rem; padding: 0.08rem 0.2rem;
+    pointer-events: none;
+    /* 宽度包裹内容（无 max-width）：右边缘锚定，左侧随内容自然拉长 */
+    white-space: nowrap;
+}
+.pos-hud .pos-name {
+    font-size: 0.22rem; font-weight: 700; color: #FFC229;
+    flex-shrink: 0;   /* 不收缩，地名按完整文字宽度撑开 */
+}
+.pos-hud .pos-xy {
+    flex-shrink: 0; font-size: 0.19rem; color: #ffffff; opacity: .9;
+    font-variant-numeric: tabular-nums;
+}
+.px-btn.tiny { font-size: 0.22rem; padding: 0.08rem 0.18rem; }
+
+/* ===== 功能组（左右两列，沿用老项目 game.md 规范） ===== */
+.fn-col {
+    position: absolute; z-index: 20;
+    display: flex; flex-direction: column; gap: 0.12rem;
+}
+.fn-col.left { top: 2.22rem; left: calc(0.1rem + 0.0625rem); align-items: flex-start; }  /* 往下 2 像素位（2单位 = 0.125rem） */
+.fn-col.left .fn-icon { justify-content: flex-start; }
+.fn-col.left #btnCards { left: 0.0625rem; }   /* 卡牌 右移 1 像素位 */
+/* 右列：与左列行对齐（商城=技能行、消息=任务行、充电=想法行），全 rem 相对定位 */
+.fn-col.right {
+    top: 0; right: calc(0.1rem + 0.125rem); height: 100%;  /* 左移 2 像素位 */
+    align-items: flex-end; gap: 0;
+}
+.fn-col.right .fn-icon { position: absolute; right: 0; align-items: flex-end; justify-content: flex-end; }
+.fn-col.right #btnMap { top: 0.735rem; right: 0.0625rem; }   /* 地图 左移 1 像素位 */
+.fn-col.right #btnShop { top: 2.095rem; }     /* = 技能行 */
+.fn-col.right #btnMessages { top: 3.455rem; } /* = 任务行 */
+.fn-col.right #btnCharge { top: 4.815rem; }   /* = 想法行 */
+.fn-col.right #btnDraw { top: 6.175rem; }
+.fn-icon {
+    position: relative; min-width: 1.24rem; height: 1.24rem;
+    display: flex; align-items: center; justify-content: flex-end; cursor: pointer;
+}
+.fn-icon:active { opacity: .7; }
+/* 图标本体：无白底，按原始尺寸渲染（JS 设定：原始宽/16 rem），每像素 = 屏幕/120，与角色一致 */
+.fn-icon > img:first-child {
+    width: 1rem; height: 1rem; image-rendering: pixelated;
+}
+.fn-dot {
+    position: absolute; top: -0.04rem; right: -0.04rem;
+    width: 45%; height: 45%; image-rendering: pixelated;
+}
+.msg-badge {
+    position: absolute; top: 0.02rem; right: 0.02rem;
+    min-width: 0.26rem; height: 0.26rem; padding: 0 0.06rem;
+    background: #E83B3B; color: #fff; border: 0.02rem solid #030303;
+    border-radius: 0.13rem; font-size: 0.18rem;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* ===== 底部对话条 ===== */
+.chat-bar {
+    position: absolute; left: 0.08rem; right: 0.08rem; bottom: 0.14rem;
+    background: #fff; border: 0.04rem solid #030303; border-radius: 0.08rem;
+    box-shadow: 0.05rem 0.05rem 0 rgba(3,3,3,.55);
+    padding: 0.12rem; z-index: 45;
+    transform: translateY(120%); opacity: 0;
+    transition: transform .28s ease-out, opacity .28s ease-out;
+}
+.chat-bar.show { transform: translateY(0); opacity: 1; }
+
+.chat-bubble {
+    margin-top: 0.12rem; background: #f7f7f7;
+    border: 0.02rem solid #d2d2d2; border-radius: 0.08rem;
+    padding: 0.14rem 0.16rem; font-size: 0.24rem; line-height: 1.55; color: #050505;
+    max-height: 2.4rem; overflow-y: auto;
+}
+.chat-bubble .cursor { display: inline-block; width: 0.12rem; animation: blink 0.9s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* 会话消息（我=黄底右侧 / 角色=白底左侧） */
+.cb-sys { text-align: center; font-size: 0.18rem; color: #888888; padding: 0.1rem 0; }
+.cb-msg { display: flex; margin-top: 0.1rem; }
+.cb-msg:first-child { margin-top: 0; }
+.cb-msg .cb-text {
+    max-width: 80%; padding: 0.1rem 0.14rem;
+    border: 0.02rem solid #030303; border-radius: 0.08rem;
+    font-size: 0.22rem; line-height: 1.5; color: #050505;
+    background: #ffffff; word-break: break-word; white-space: pre-wrap;
+}
+.cb-msg.agent .cb-text { background: #f2f2f2; }
+.cb-msg.me { justify-content: flex-end; }
+.cb-msg.me .cb-text { background: #FFC229; }
+.cb-msg.pending .cb-text { opacity: .55; }
+.cb-msg.failed .cb-text { background: #ffd6d6; border-color: #E83B3B; }
+
+.chat-input-row { display: flex; gap: 0.1rem; margin-top: 0.12rem; }
+.chat-input {
+    flex: 1; border: 0.03rem solid #030303; border-radius: 0.06rem;
+    font-size: 0.26rem; padding: 0.12rem 0.16rem; outline: none; background: #fff;
+    min-width: 0;
+}
+.chat-input:focus { box-shadow: 0 0 0 0.03rem #FFC229; }
+
+/* ===== 角色面板 ===== */
+.agent-panel-mask {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(3,3,3,.6);
+    display: flex; align-items: center; justify-content: center;
+}
+.agent-panel {
+    width: 6.4rem; max-width: 92vw; padding: 0.24rem;
+    animation: pop .22s ease-out;
+}
+@keyframes pop { from { transform: scale(.92); opacity: 0; } }
+.ap-head { display: flex; align-items: center; gap: 0.18rem; }
+.ap-avatar {
+    width: 1.08rem; height: 1.08rem; image-rendering: pixelated;
+    background: #f2f2f2; border: 0.03rem solid #030303; border-radius: 0.08rem;
+    flex-shrink: 0;
+}
+.ap-title { flex: 1; min-width: 0; }
+.ap-name { font-size: 0.36rem; font-weight: 700; color: #030303; }
+.ap-sub { font-size: 0.22rem; color: #717171; margin-top: 0.04rem; }
+.ap-exp { margin-top: 0.2rem; }
+.ap-exp-text { font-size: 0.2rem; color: #050505; margin-bottom: 0.06rem; }
+.ap-exp-bar {
+    display: flex; height: 0.14rem; width: 100%;
+    border: 0.02rem solid #030303; border-radius: 0.05rem; overflow: hidden; background: #f2f2f2;
+}
+.ap-exp-bar div { flex: 1; }
+.ap-exp-bar div:nth-child(1) { background: #FFC229; }
+.ap-exp-bar div:nth-child(2) { background: #D38200; }
+.ap-exp-bar div:nth-child(3) { background: #A05B00; }
+.ap-exp-bar div:nth-child(4) { background: #8C4C00; }
+.ap-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.12rem; margin-top: 0.2rem;
+}
+.ap-cell {
+    background: #f7f7f7; border: 0.02rem solid #d2d2d2; border-radius: 0.06rem;
+    padding: 0.1rem 0.14rem; font-size: 0.22rem;
+    display: flex; justify-content: space-between; gap: 0.1rem;
+}
+.ap-cell .k { color: #888888; flex-shrink: 0; }
+.ap-cell .v { color: #030303; font-weight: 600; text-align: right;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ap-renge {
+    margin-top: 0.16rem; font-size: 0.2rem; color: #545454; line-height: 1.5;
+    background: #FFF9E8; border: 0.02rem dashed #D38200; border-radius: 0.06rem;
+    padding: 0.12rem 0.14rem;
+}
+.ap-btns { display: flex; gap: 0.12rem; margin-top: 0.2rem; }
+.ap-btns .px-btn { flex: 1; }
+
+/* ===== 切换账号 ===== */
+.sw-list { margin-top: 0.2rem; display: flex; flex-direction: column; gap: 0.12rem; max-height: 7rem; overflow-y: auto; }
+.sw-item {
+    display: flex; align-items: center; gap: 0.16rem;
+    background: #f7f7f7; border: 0.02rem solid #d2d2d2; border-radius: 0.08rem;
+    padding: 0.12rem 0.14rem; cursor: pointer; text-align: left; width: 100%;
+    font-family: inherit;
+}
+.sw-item:active { background: #FFF9E8; }
+.sw-item.current { border-color: #D38200; background: #FFF9E8; }
+.sw-avatar {
+    width: 0.64rem; height: 0.64rem; flex-shrink: 0;
+    image-rendering: pixelated; background: #f2f2f2;
+    border: 0.02rem solid #030303; border-radius: 0.06rem;
+}
+.sw-meta { flex: 1; min-width: 0; }
+.sw-name { font-size: 0.26rem; font-weight: 600; color: #030303; }
+.sw-sub { font-size: 0.19rem; color: #717171; margin-top: 0.03rem;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sw-tag {
+    flex-shrink: 0; font-size: 0.18rem; color: #D38200;
+    border: 0.02rem solid #D38200; border-radius: 0.06rem; padding: 0.02rem 0.1rem;
+}
+/* HAP 头像图片（非像素图，裁切填充方框） */
+img.pc-avatar, img.ap-avatar, img.sw-avatar { object-fit: cover; }
+
+/* ===== 任务弹层（最小可执行计划） ===== */
+.task-panel { width: 6.6rem; max-width: 94vw; }
+.tk-head {
+    display: flex; align-items: center; justify-content: center; position: relative;
+    margin: -0.24rem -0.24rem 0.16rem;
+    background: #FFC229; border-bottom: 0.03rem solid #030303;
+    padding: 0.14rem 0.6rem 0.12rem;
+}
+.tk-title {
+    font-size: 0.3rem; font-weight: 800; color: #030303; letter-spacing: 0.1rem;
+    text-shadow: 0.02rem 0.02rem 0 #fff;
+}
+.tk-count { margin-left: 0.12rem; font-size: 0.18rem; color: #030303; opacity: .75; }
+#btnTaskClose { position: absolute; right: 0.14rem; top: 50%; transform: translateY(-50%); }
+.tk-list { display: flex; flex-direction: column; gap: 0.14rem; max-height: 7.6rem; overflow-y: auto; }
+.tk-empty { text-align: center; padding: 0.4rem 0.2rem; font-size: 0.2rem; color: #888888; line-height: 1.6; }
+.tk-item {
+    background: #f7f7f7; border: 0.02rem solid #d2d2d2; border-radius: 0.08rem;
+    padding: 0.12rem 0.14rem; cursor: pointer;
+}
+.tk-item:active { background: #FFF9E8; }
+.tk-row1 { display: flex; align-items: center; gap: 0.1rem; }
+.tk-type {
+    flex-shrink: 0; font-size: 0.16rem; padding: 0.01rem 0.08rem;
+    border: 0.02rem solid #00A2E8; color: #00A2E8; border-radius: 0.05rem;
+}
+.tk-type.plan { border-color: #D38200; color: #D38200; }
+.tk-type.zz { border-color: #2bd64f; color: #2bd64f; }
+.tk-name { flex: 1; min-width: 0; font-size: 0.22rem; font-weight: 700; color: #030303;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tk-dot { flex-shrink: 0; width: 0.14rem; height: 0.14rem; border-radius: 50%;
+    border: 0.02rem solid #030303; }
+.tk-desc {
+    margin-top: 0.06rem; font-size: 0.18rem; color: #717171; line-height: 1.45;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ===== 地图导航弹层 ===== */
+#mapList { display: flex; flex-direction: column; gap: 0.14rem; max-height: 7.6rem; overflow-y: auto; }
+#mapList .map-item {
+    display: flex; align-items: center; gap: 0.14rem;
+    background: #f7f7f7; border: 0.02rem solid #d2d2d2; border-radius: 0.08rem;
+    padding: 0.14rem 0.16rem; cursor: pointer;
+}
+#mapList .map-item:active { background: #FFF9E8; }
+#mapList .map-item.current { border-color: #00A2E8; background: #E8F7FF; }
+/* 返回区：橙底高对比，明显是「上一层」动作 */
+#mapList .map-item.back {
+    border-color: #D38200; background: #FFF9E8;
+    border-style: dashed;
+}
+.map-item .mi-icon {
+    width: 0.68rem; height: 0.68rem; flex-shrink: 0;
+    image-rendering: pixelated; border: 0.02rem solid #030303; border-radius: 0.06rem;
+    object-fit: cover;
+}
+.map-item .mi-col { flex: 1; min-width: 0; }
+.map-item .mi-name { font-size: 0.24rem; font-weight: 700; color: #030303;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.map-item .mi-sub { font-size: 0.18rem; color: #717171; margin-top: 0.03rem;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.map-item .mi-tag {
+    flex-shrink: 0; font-size: 0.17rem; padding: 0.02rem 0.1rem;
+    border: 0.02rem solid #00A2E8; color: #00A2E8; border-radius: 0.05rem;
+}
+.map-item .mi-tag.cur { border-color: #D38200; color: #D38200; }
+/* 区/单元/层 tag 配色按类型微调，让色块和标签一致 */
+.map-item:not(.current):not(.back) .mi-tag.map-zone { border-color: #D38200; color: #D38200; }
+.map-item:not(.current):not(.back) .mi-tag.map-unit { border-color: #0088C2; color: #0088C2; }
+.map-item:not(.current):not(.back) .mi-tag.map-layer { border-color: #A05B00; color: #A05B00; }
+
+/* ===== 入口确认弹层 ===== */
+.entry-panel { width: 5.4rem; max-width: 88vw; text-align: center; padding: 0.28rem 0.24rem 0.24rem; }
+.entry-head { display: flex; flex-direction: column; align-items: center; gap: 0.08rem; }
+.entry-icon { font-size: 0.72rem; line-height: 1; filter: drop-shadow(0.04rem 0.04rem 0 rgba(3,3,3,.35)); }
+.entry-title { font-size: 0.26rem; font-weight: 800; color: #D38200; letter-spacing: 0.04rem; }
+.entry-text { margin-top: 0.18rem; font-size: 0.26rem; font-weight: 700; color: #030303; }
+.entry-sub { margin-top: 0.06rem; font-size: 0.18rem; color: #717171; line-height: 1.5; min-height: 0.3rem; }
+.entry-panel .ap-btns { margin-top: 0.22rem; }
+
+/* ===== 虚拟摇杆（仅场景模式显示） ===== */
+.joy {
+    display: none;
+    position: absolute; left: 0.3rem; bottom: 0.4rem; z-index: 40;
+    width: 2rem; height: 2rem; touch-action: none;
+}
+.joy-base {
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.14);
+    border: 0.03rem solid rgba(255,255,255,0.45);
+    border-radius: 50%;
+}
+.joy-knob {
+    position: absolute; left: 50%; top: 50%;
+    width: 0.8rem; height: 0.8rem;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.85);
+    border: 0.03rem solid rgba(3,3,3,0.7);
+    border-radius: 50%;
+    box-shadow: 0.02rem 0.02rem 0 rgba(3,3,3,0.4);
+    pointer-events: none;
+}
+
+/* ===== Toast ===== */
+.px-toast {
+    position: fixed; left: 50%; bottom: 18%; transform: translateX(-50%);
+    z-index: 99; background: rgba(3,3,3,.85); color: #FFE6BB;
+    padding: 0.16rem 0.32rem; border-radius: 0.08rem; font-size: 0.24rem;
+    pointer-events: none; max-width: 80vw; text-align: center;
+}

@@ -1,0 +1,103 @@
+/* 技能页（游戏风：卡牌 + 拖拽排序 + 卡牌套卡牌层级导航） */
+.skills-page {
+    height: 100%; overflow-y: auto;
+    background: linear-gradient(180deg, #10101e 0%, #1c1c2c 100%);
+    display: flex; flex-direction: column;
+}
+.sk-top {
+    margin: 0.1rem 0.1rem 0.16rem; padding: 0.12rem 0.16rem;
+    display: flex; align-items: center; gap: 0.14rem;
+    flex-shrink: 0;
+}
+.px-btn.tiny { font-size: 0.22rem; padding: 0.08rem 0.16rem; }
+.sk-title {
+    font-size: 0.3rem; font-weight: 800; color: #030303; letter-spacing: 0.1rem;
+    background: #FFC229; border: 0.03rem solid #030303; border-radius: 0.06rem;
+    padding: 0.05rem 0.2rem;
+    box-shadow: 0.03rem 0.03rem 0 rgba(3,3,3,.6);
+}
+.sk-hint { margin-left: auto; font-size: 0.18rem; color: #9e9e9e; }
+
+/* 层级路径栏（非根层显示）：‹ 返回 + 面包屑 */
+.sk-crumbbar {
+    margin: 0 0.1rem 0.16rem; padding: 0.1rem 0.14rem;
+    display: flex; align-items: center; gap: 0.12rem;
+    flex-shrink: 0;
+}
+.sk-crumb {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0.06rem;
+    flex: 1; min-width: 0;
+}
+.sk-crumb-item {
+    background: none; border: none; padding: 0;
+    font-size: 0.19rem; color: #9e9e9e; max-width: 2.2rem;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+button.sk-crumb-item.link { color: #00C5E8; cursor: pointer; text-decoration: underline; }
+.sk-crumb-item.cur { color: #fff; font-weight: 700; }
+.sk-crumb-sep { color: #666; font-size: 0.18rem; }
+
+/* 卡牌网格：一排 3 个（根层/子层同一套样式） */
+.sk-grid {
+    flex: 1; display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.14rem; padding: 0 0.16rem 0.3rem;
+    align-content: start;
+}
+.sk-empty {
+    grid-column: 1 / -1; text-align: center;
+    padding: 1rem 0.3rem; font-size: 0.22rem; color: #9e9e9e; line-height: 1.6;
+}
+.sk-card {
+    position: relative; min-width: 0; /* 解除 min-content 约束：长名字不再撑宽列（1fr 恒等宽） */
+    background: #fff; border: 0.03rem solid #030303; border-radius: 0.1rem;
+    box-shadow: 0.05rem 0.05rem 0 rgba(3,3,3,.55);
+    padding: 0.16rem 0.1rem 0.14rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;
+    gap: 0.08rem; text-align: center;
+    aspect-ratio: 3 / 4; /* 竖版：宽比高短 */
+    cursor: grab; touch-action: none; user-select: none; /* none=拖拽排序必需，勿改 */
+}
+.sk-card.r0 { border-color: #888888; }
+.sk-card.r1 { border-color: #00A2E8; box-shadow: 0.05rem 0.05rem 0 rgba(0,122,199,.45); }
+.sk-card.r2 { border-color: #8C4CE8; box-shadow: 0.05rem 0.05rem 0 rgba(125,61,209,.5); }
+.sk-card.dragging {
+    cursor: grabbing; opacity: .85;
+    box-shadow: 0.1rem 0.12rem 0 rgba(3,3,3,.5);
+    z-index: 10;
+    pointer-events: none; /* 拖拽中不参与命中，让 elementFromPoint/矩形检测能找到别的卡 */
+}
+.sk-glyph {
+    width: 0.86rem; height: 0.86rem; flex-shrink: 0;
+    image-rendering: pixelated;
+    background: #f2f2f2; border: 0.02rem solid #030303; border-radius: 0.08rem;
+}
+.sk-info { width: 100%; min-width: 0; }
+.sk-name { font-size: 0.21rem; font-weight: 700; color: #030303;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sk-meta { display: flex; align-items: center; justify-content: center; gap: 0.08rem; margin-top: 0.02rem; }
+.sk-lv { font-size: 0.17rem; color: #545454; }
+.sk-rarity { font-size: 0.16rem; padding: 0 0.06rem; border-radius: 0.04rem; }
+.r0 .sk-rarity { color: #888888; border: 0.02rem solid #888888; }
+.r1 .sk-rarity { color: #00A2E8; border: 0.02rem solid #00A2E8; }
+.r2 .sk-rarity { color: #8C4CE8; border: 0.02rem solid #8C4CE8; }
+.sk-bar {
+    margin-top: 0.06rem; width: 100%; height: 0.12rem;
+    border: 0.02rem solid #030303; border-radius: 0.04rem;
+    background: #f2f2f2; overflow: hidden;
+}
+.sk-bar i {
+    display: block; height: 100%;
+    background: linear-gradient(90deg, #00C5E8, #00A2E8, #0087E8);
+}
+
+/* 卡片右上角子数据数量徽标（>0 可钻入下一层卡牌） */
+.sk-badge {
+    position: absolute; top: -0.1rem; right: -0.1rem;
+    min-width: 0.28rem; height: 0.28rem; line-height: 0.28rem;
+    padding: 0 0.07rem; box-sizing: border-box;
+    background: #E83B3B; color: #fff;
+    border: 0.025rem solid #030303; border-radius: 0.14rem;
+    font-size: 0.16rem; font-weight: 800; text-align: center;
+    box-shadow: 0.02rem 0.02rem 0 rgba(3,3,3,.5);
+    z-index: 2;
+}

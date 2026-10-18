@@ -1,0 +1,25 @@
+{
+  "$comment": "12 维颜色规范（林东城 2026-09-03 拍板，严格按此执行）+ sew dropdown key（2026-09-03 从 HAP shangpin 表 6a376a7b9513239477b93e31 字段实测读取）。任何 12 维 UI 都引用本文件，不得另造颜色。",
+  "table": "shangpin (6a03ceaa7e29abcb297cbdfc)",
+  "sewFieldId": "6a376a7b9513239477b93e31",
+  "dimensions": [
+    { "dim": 0,  "name": "骨架", "sew": "0骨架", "color": "#ffffff", "text": "#000000", "border": "1px solid #000000", "sewKey": "0骨架", "icon": "🦴", "note": "骨架节点专用（2026-09-03 新增）；sewKey 暂用显示值代替（HAP v3 支持按显示值写入），从字段配置读到真实 option key 后替换" },
+    { "dim": 1,  "name": "技能", "sew": "1技能", "color": "#28894a", "sewKey": "8b61e3e5-438e-4114-8651-4a2199099f4b" },
+    { "dim": 2,  "name": "想法", "sew": "2想法", "color": "#00c345", "sewKey": "3b908884-cd15-46d5-b947-e9c41cabb94d" },
+    { "dim": 3,  "name": "项目", "sew": "3项目", "color": "#f52222", "sewKey": "a624fe06-6138-447f-b317-7da67f38035e" },
+    { "dim": 4,  "name": "交流", "sew": "4交流", "color": "#ff9300", "sewKey": "222d8af1-022b-45d1-ab8c-3e1b78b8d479" },
+    { "dim": 5,  "name": "规则", "sew": "5规则", "color": "#515151", "sewKey": "886116ff-b7ce-46ff-a14c-cc9923ad0fac" },
+    { "dim": 6,  "name": "价值", "sew": "6价值", "color": "#9e9e9e", "sewKey": "978458ef-2780-472b-92fc-c401826dab43" },
+    { "dim": 7,  "name": "目标", "sew": "7目标", "color": "#1677ff", "sewKey": "2f48a1fc-cf2f-4194-b93f-5800b24cdfe7" },
+    { "dim": 8,  "name": "计划", "sew": "8计划", "color": "#08c9c9", "sewKey": "d0334a50-375b-426d-8898-af1973ade663" },
+    { "dim": 9,  "name": "信息", "sew": "9信息", "color": "#0c3a76", "sewKey": "c668915d-6cbe-4f33-8fb8-50ba5e22df31" },
+    { "dim": 10, "name": "人脉", "sew": "10人脉", "color": "#06431a", "sewKey": "b55dc371-7854-42b9-af28-b5c26883479f" },
+    { "dim": 11, "name": "仓",   "sew": "11仓",  "color": "#871010", "sewKey": "3eaf442f-e480-4ff9-928a-79964250ae1a" },
+    { "dim": 12, "name": "复盘", "sew": "12复盘", "color": "#151515", "sewKey": "ff9a098c-ae72-4767-b29a-4975040851dc" }
+  ],
+  "usage": {
+    "treeNode": "左侧色条 + 图标底色（浅色底 + 维度色文字）",
+    "detailPanel": "sew 下拉选中项文字色 + 维度徽标",
+    "note": "深色维度（5规则/12复盘/11仓/9信息/10人脉）在浅底上做色条与文字；图标底色用同色 10% 透明度"
+  }
+}

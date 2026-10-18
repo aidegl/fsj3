@@ -1,0 +1,4 @@
+<!-- pages/choose-image/index.wxml -->
+<view class="container">
+  <text class="tip">正在选择图片...</text>
+</view>

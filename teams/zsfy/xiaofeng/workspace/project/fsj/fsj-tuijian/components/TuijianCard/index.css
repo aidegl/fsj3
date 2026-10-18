@@ -1,0 +1,224 @@
+/* 推荐卡片 */
+.card-video,
+.card-image,
+.card-text,
+.card-svg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+}
+
+.card-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+}
+
+/* 视频 loading 遮罩（视频元数据加载完成前显示） */
+.card-video .video-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.card-video .video-loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner {
+    width: 0.6rem;
+    height: 0.6rem;
+    border: 0.05rem solid rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 双击飞出的爱心 */
+.flying-heart {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: #fe2c55;
+    font-size: 1.6rem;
+    z-index: 5;
+    pointer-events: none;
+    animation: heartFly 0.8s ease-out forwards;
+    filter: drop-shadow(0 0.04rem 0.12rem rgba(0, 0, 0, 0.4));
+}
+
+@keyframes heartFly {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-15deg);
+        opacity: 0;
+    }
+    25% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(-50%, -60%) scale(1) rotate(-3deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -130%) scale(0.9) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+/* 暂停时中央大播放图标 */
+.play-pause-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    text-shadow: 0 0.03rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+
+.play-pause-icon.show {
+    opacity: 1;
+}
+
+.card-double-tap-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* 图片卡片：顶部轻压暗 + 底部渐变，保证文字可读（抖音同款） */
+.card-image::after,
+.card-video::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2.4rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-image::before,
+.card-video::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1.4rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.image-list {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.image-list img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    scroll-snap-align: start;
+}
+
+/* SVG 卡片（智能体思维图示）：viewBox 自适应 contain，底部压暗保证作者栏可读 */
+.card-svg::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2.4rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-svg .svg-stage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d0d17;
+}
+
+.card-svg .svg-stage svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 纯文字卡片：渐变高级感背景 */
+.card-text {
+    padding: 1rem 0.5rem 2rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: linear-gradient(160deg, #1f1f2e 0%, #121212 60%, #1a1225 100%);
+    display: flex;
+    align-items: center;
+}
+
+.text-content {
+    max-width: 6.2rem;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.text-content h2 {
+    font-size: 0.56rem;
+    font-weight: 800;
+    margin-bottom: 0.44rem;
+    line-height: 1.35;
+    letter-spacing: 0.01rem;
+}
+
+.text-content h2::after {
+    content: '';
+    display: block;
+    width: 0.64rem;
+    height: 0.06rem;
+    margin-top: 0.3rem;
+    background: #fe2c55;
+    border-radius: 0.03rem;
+}
+
+.text-content p {
+    font-size: 0.36rem;
+    line-height: 1.85;
+    margin-bottom: 0.3rem;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.text-content p:last-child {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}

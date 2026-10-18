@@ -1,0 +1,47 @@
+<div class="world-page">
+    <canvas id="worldCanvas"></canvas>
+
+    <div class="top-bar" id="topBar">
+        <div class="top-left">
+            <div class="player-card" id="playerCard">
+                <div class="level-text" id="pcLv">LV 1</div>
+                <div class="exp-text" id="pcExpText">经验值：0</div>
+                <div class="pc-expbar"><i id="pcExpBarFill"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pos-hud" id="posHud">
+        <span class="pos-name" id="posName">-</span>
+        <span class="pos-xy" id="posXY">(-,-)</span>
+    </div>
+
+    <div class="fn-col left" id="fnColLeft">
+        <div class="fn-icon" id="btnCards" title="卡牌">🃏</div>
+        <div class="fn-icon" id="btnTasks" title="任务">📋</div>
+        <div class="fn-icon" id="btnIdeas" title="想法">💡</div>
+        <div class="fn-icon" id="btnZuzhi" title="组织">🏛</div>
+    </div>
+
+    <div class="fn-col right" id="fnColRight">
+        <div class="fn-icon" id="btnMap" title="地图">🗺</div>
+        <div class="fn-icon" id="btnShop" title="商城">🛒</div>
+        <div class="fn-icon" id="btnMessages" title="消息">💬</div>
+        <div class="fn-icon" id="btnCharge" title="充电">⚡</div>
+        <div class="fn-icon" id="btnDraw" title="画">🎨</div>
+    </div>
+
+    <div class="chat-bar" id="chatBar" aria-hidden="true">
+        <div class="chat-bubble" id="chatBubble">…</div>
+        <div class="chat-input-row">
+            <input class="chat-input" id="chatInput" type="text" placeholder="说点什么…" maxlength="200">
+            <button class="gw-btn primary tiny" id="btnSend">发送</button>
+        </div>
+    </div>
+
+    <div class="joy" id="joy">
+        <div class="joy-base" id="joyBase">
+            <div class="joy-knob" id="joyKnob"></div>
+        </div>
+    </div>
+</div>

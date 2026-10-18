@@ -1,0 +1,30 @@
+<!--pages/login/index.wxml-->
+<view class="login-container">
+  <view class="login-content">
+    <view class="wechat-icon-wrap">
+      <image class="wechat-icon" src="../../images/weichat.png" mode="aspectFit"></image>
+    </view>
+    <view class="login-bottom">
+      <!-- 协议复选框 -->
+      <view class="agreement-checkbox" bindtap="toggleAgreement">
+        <view class="checkbox {{agreed ? 'checked' : ''}}">
+          <text wx:if="{{agreed}}" class="check-icon">✓</text>
+        </view>
+        <view class="agreement-text">
+          <text>我已阅读并同意</text>
+          <text class="link" catchtap="openUserAgreement">《用户协议》</text>
+          <text>和</text>
+          <text class="link" catchtap="openPrivacyPolicy">《隐私政策》</text>
+        </view>
+      </view>
+      <!-- 登录按钮：未勾选协议时置灰禁用 -->
+      <view class="login-btn {{agreed ? '' : 'disabled'}}" bindtap="handleLogin">
+        <text>微信一键登录</text>
+      </view>
+      <!-- 暂不登录按钮 -->
+      <view class="skip-login-btn" bindtap="handleSkipLogin">
+        <text>暂不登录，先逛逛</text>
+      </view>
+    </view>
+  </view>
+</view>

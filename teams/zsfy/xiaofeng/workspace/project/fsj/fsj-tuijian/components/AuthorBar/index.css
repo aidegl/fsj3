@@ -1,0 +1,132 @@
+/* 底部作者栏（对标抖音原版精修） */
+.author-bar {
+    padding: 0.1rem 0;
+    color: #fff;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.author-avatar {
+    width: 0.72rem;
+    height: 0.72rem;
+    border-radius: 50%;
+    border: 0.025rem solid #fff;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #333;
+    box-shadow: 0 0.02rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+/* 头像下方关注小红标（抖音样式：头像叠关注+） */
+.author-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.author-meta {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.author-name-row {
+    display: flex;
+    align-items: center;
+    gap: 0.08rem;
+    font-size: 0.32rem;
+    font-weight: 700;
+    margin-bottom: 0.07rem;
+    text-shadow: 0 0.02rem 0.06rem rgba(0, 0, 0, 0.8);
+    min-width: 0;
+}
+
+.author-name {
+    flex: 0 1 auto; /* 不伸展：徽章紧跟名字；可收缩：长名字截断 */
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.author-name-row .fa-check-circle {
+    color: #20d5ec;
+    font-size: 0.26rem;
+}
+
+.author-desc {
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.4;
+    text-shadow: 0 0.02rem 0.06rem rgba(0, 0, 0, 0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.follow-btn {
+    flex-shrink: 0;
+    background: #fe2c55;
+    color: #fff;
+    border: none;
+    min-width: 0.88rem;
+    padding: 0.1rem 0;
+    font-size: 0.26rem;
+    font-weight: 600;
+    border-radius: 0.08rem;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.follow-btn:active {
+    transform: scale(0.94);
+    opacity: 0.85;
+}
+
+.follow-btn.followed {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    border: 0.02rem solid rgba(255, 255, 255, 0.5);
+}
+
+.item-title {
+    font-size: 0.32rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-shadow: 0 0.02rem 0.06rem rgba(0, 0, 0, 0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 音乐行（抖音式：标题下方🎵 + 音乐名滚动） */
+.music-row {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    margin-top: 0.12rem;
+    font-size: 0.24rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0.02rem 0.06rem rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+.music-row i {
+    font-size: 0.24rem;
+    flex-shrink: 0;
+}
+
+.music-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 3.6rem;
+}

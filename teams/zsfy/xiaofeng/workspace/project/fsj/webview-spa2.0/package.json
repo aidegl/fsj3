@@ -1,0 +1,14 @@
+{
+  "name": "webview-spa-2",
+  "private": true,
+  "version": "2.0.7",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
+

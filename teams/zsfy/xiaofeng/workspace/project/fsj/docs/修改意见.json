@@ -1,0 +1,97 @@
+[
+  {
+    "id": "rmv6096n5odj",
+    "panelId": "s-search",
+    "path": "#s-search h3:nth-of-type(2)",
+    "type": "修改",
+    "orig": "智能检索（f:）",
+    "comment": "五个检索策略才是这个样式，不然你很乱成绩分类不清楚",
+    "suggest": "",
+    "status": "已改",
+    "appliedNote": "已按意见把五式各立独立小节（向量/全局关键词/内容关键词/智能/rowid），标题升级大字+标签牌",
+    "ts": "2026/10/13 09:31:28"
+  },
+  {
+    "id": "rmv60wgper5r",
+    "panelId": "s-search",
+    "type": "修改",
+    "orig": "keywords 不认 rowid（k 注意事项）",
+    "comment": "keywords的内容不应该在全局关键词检索的位置嘛",
+    "suggest": "",
+    "status": "已改",
+    "appliedNote": "keywords 内容已移入全局关键词检索小节（警告框紧跟 k 标题），孤儿标题与重复警告框已清理",
+    "ts": "2026/10/13 09:49:34"
+  },
+  {
+    "id": "rmv61nohdlio",
+    "panelId": "s-hapdb",
+    "path": "#s-hapdb",
+    "type": "修改",
+    "orig": "HAP数据表",
+    "comment": "这个的子目录下面把用表、组表、地点、关键词这个通过HAP-CLI获取一下字段并参考内容元素据把字段写",
+    "suggest": "",
+    "status": "已改",
+    "appliedNote": "已新增 用表/组表/地表/关表 四个字段说明书子目录（hap-cli 本机未装，用开放接口实测枚举字段；权表待补）；子目录名已全部改全称",
+    "ts": "2026/10/13 10:10:44"
+  },
+  {
+    "id": "rmv6hypdyguy",
+    "panelId": "sidebar",
+    "path": "sidebar:s-sleep",
+    "type": "目录改名",
+    "orig": "做梦 · 睡眠巩固机制",
+    "comment": "目录改名",
+    "suggest": "做梦 与EMO",
+    "status": "已改",
+    "appliedNote": "目录名已定为「做梦 · emo」（口头指示优先，与建议「做梦 与EMO」同义）",
+    "ts": "2026/10/13 17:47:12"
+  },
+  {
+    "id": "rmv6hz1592oe",
+    "panelId": "sidebar",
+    "path": "sidebar:s-abbr",
+    "type": "目录改名",
+    "orig": "简写 · 规则",
+    "comment": "目录改名",
+    "suggest": "简写",
+    "status": "已改",
+    "appliedNote": "与 rmv6hzhhcml3 合并处理，最终名「常用术语简写」",
+    "ts": "2026/10/13 17:47:27"
+  },
+  {
+    "id": "rmv6hzhhcml3",
+    "panelId": "sidebar",
+    "path": "sidebar:s-abbr",
+    "type": "目录改名",
+    "orig": "简写",
+    "comment": "目录改名",
+    "suggest": "常用术语简写",
+    "status": "已改",
+    "appliedNote": "目录名已定为「常用术语简写」",
+    "ts": "2026/10/13 17:47:48"
+  },
+  {
+    "id": "rmv6hzx6llij",
+    "panelId": "s-abbr",
+    "path": "#s-abbr h2:nth-of-type(1)",
+    "type": "修改",
+    "orig": "简写 · 规则提高工作效率",
+    "comment": "标题改为常用术语简写",
+    "suggest": "",
+    "status": "已改",
+    "appliedNote": "h2 标题已改为「常用术语简写」（保留提高工作效率标签牌）",
+    "ts": "2026/10/13 17:48:09"
+  },
+  {
+    "id": "rmv6io2jyr2b",
+    "panelId": "s-hapdb-meta",
+    "path": "#s-hapdb-meta table:nth-of-type(3) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(3)",
+    "type": "修改",
+    "orig": "★★",
+    "comment": "这个地方是五颗星",
+    "suggest": "",
+    "status": "已改",
+    "appliedNote": "yynr（引用内容）使用频率已改为 ★★★★★",
+    "ts": "2026/10/13 18:06:55"
+  }
+]

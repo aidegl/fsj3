@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>公司培训</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .page { display: none; }
+    .page.active { display: block; }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+
+  <!-- 首页：列表 -->
+  <div id="page-list" class="page active">
+    <div class="px-4 pt-8 pb-8 max-w-lg mx-auto">
+      <!-- 顶部标题 -->
+      <div class="text-center mb-8">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="text-4xl">🏢</span>
+          <span class="text-3xl font-bold text-gray-800">公司培训</span>
+        </div>
+        <p class="text-sm text-gray-500">公司规则 · 员工守则 · 培训学习</p>
+      </div>
+
+      <!-- Tab 切换 -->
+      <div class="flex bg-white rounded-2xl shadow-sm p-1 mb-6">
+        <button onclick="switchTab('rules')" id="tab-rules"
+                class="flex-1 h-10 rounded-xl text-sm font-medium transition-all bg-blue-500 text-white">公司规则</button>
+        <button onclick="switchTab('handbook')" id="tab-handbook"
+                class="flex-1 h-10 rounded-xl text-sm font-medium transition-all text-gray-500">员工守则</button>
+        <button onclick="switchTab('training')" id="tab-training"
+                class="flex-1 h-10 rounded-xl text-sm font-medium transition-all text-gray-500">培训</button>
+      </div>
+
+      <!-- 公司规则列表 -->
+      <div id="panel-rules" class="space-y-3"></div>
+
+      <!-- 员工守则列表 -->
+      <div id="panel-handbook" class="space-y-3 hidden"></div>
+
+      <!-- 培训列表 -->
+      <div id="panel-training" class="space-y-3 hidden"></div>
+
+      <p class="text-center text-xs text-gray-400 mt-8">公司培训 — 持续学习，共同成长</p>
+    </div>
+  </div>
+
+  <!-- 详情页 -->
+  <div id="page-detail" class="page">
+    <div class="px-4 pt-8 pb-8 max-w-lg mx-auto">
+      <!-- 顶部返回 -->
+      <div class="flex items-center gap-2 mb-6">
+        <button onclick="goBack()" class="w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-sm text-gray-600 text-lg">‹</button>
+        <h2 id="detail-title" class="text-lg font-semibold text-gray-800"></h2>
+      </div>
+
+      <!-- 详情内容 -->
+      <div id="detail-wrapper" class="relative">
+        <div id="detail-body" class="bg-white rounded-2xl shadow-sm p-5 blur-[6px] select-none pointer-events-none"></div>
+        <!-- 登录遮罩 -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center bg-white/60">
+          <span class="text-5xl mb-4">🔐</span>
+          <div class="text-base font-semibold text-gray-800 mb-2">请先登录</div>
+          <p class="text-sm text-gray-500 mb-6">登录后查看完整内容</p>
+          <button onclick="goLogin()"
+                  class="h-12 px-10 rounded-xl text-sm font-semibold text-white
+                         bg-gradient-to-r from-blue-500 to-teal-400 active:opacity-80">
+            去登录
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========== 数据定义 ==========
+
+    var dataRules = [
+      {
+        icon: '📋', title: '考勤制度',
+        content: [
+          '上班时间：工作日 9:00 - 18:00，午休 12:00 - 13:30',
+          '迟到超过 30 分钟需向主管报备，月累计迟到 3 次以上扣除当月全勤奖',
+          '请假需提前 1 天在系统提交申请，紧急情况须电话通知主管',
+          '外出办事需在系统登记外出事由及预计返回时间',
+          '加班需提前申请，经主管批准后方可计入加班时长'
+        ]
+      },
+      {
+        icon: '💼', title: '办公规范',
+        content: [
+          '保持办公区域整洁，下班时关闭电脑及电源',
+          '会议室使用后恢复桌椅原位，清理垃圾',
+          '公司网络仅用于工作用途，禁止访问非法网站',
+          '爱护公共设施，损坏照价赔偿',
+          '办公用品按需领用，不得私自带离公司'
+        ]
+      },
+      {
+        icon: '🔒', title: '信息安全',
+        content: [
+          '严禁泄露公司商业机密、客户资料及技术核心代码',
+          '办公电脑须设置密码锁屏，离开工位超过 5 分钟应锁屏',
+          '未经授权不得将公司内部资料传输至外部平台',
+          '发现信息安全漏洞应及时上报 IT 部门',
+          '离职时须交还所有公司设备和账号权限'
+        ]
+      },
+      {
+        icon: '💰', title: '薪酬福利',
+        content: [
+          '每月 15 日发放上月工资，遇节假日顺延',
+          '入职满一年后享有带薪年假 5 天，逐年递增',
+          '公司为员工缴纳五险一金',
+          '节日福利：春节、中秋、端午等传统节日发放节日礼品或礼金',
+          '年度体检：公司每年组织一次免费健康体检'
+        ]
+      }
+    ];
+
+    var dataHandbook = [
+      {
+        icon: '⭐', title: '基本准则',
+        content: [
+          '遵守法律法规，恪守职业道德',
+          '尊重同事，团结协作，营造积极向上的工作氛围',
+          '服从工作安排，按时完成工作任务',
+          '持续学习，提升专业技能和服务水平',
+          '维护公司形象，不得在公开场合发表损害公司声誉的言论'
+        ]
+      },
+      {
+        icon: '💬', title: '沟通礼仪',
+        content: [
+          '工作沟通使用企业微信或邮件，重要事项须留痕',
+          '会议发言简明扼要，尊重他人发言权',
+          '对待客户热情耐心，不得推诿敷衍',
+          '禁止在工作场所大声喧哗或使用不文明用语',
+          '跨部门沟通应通过正式渠道，避免私下传达重要信息'
+        ]
+      },
+      {
+        icon: '👔', title: '着装要求',
+        content: [
+          '日常办公穿着整洁得体，不得穿拖鞋、背心上班',
+          '接待客户或参加正式活动须着正装',
+          '公司统一发放的工作服须按规定穿着',
+          '特殊岗位（如前台、销售）须按岗位要求着装'
+        ]
+      },
+      {
+        icon: '🏆', title: '奖惩制度',
+        content: [
+          '年度优秀员工可获得奖金及荣誉证书',
+          '对公司有重大贡献者可获晋升或特别奖励',
+          '违反公司制度者视情节轻重给予警告、记过或辞退处理',
+          '鼓励员工提出合理化建议，被采纳者可获表彰奖励',
+          '严重违纪行为（如贪污、泄密）将移交司法机关处理'
+        ]
+      }
+    ];
+
+    var dataTraining = [
+      {
+        icon: '🌱', title: '新员工入职培训',
+        desc: '帮助新员工快速融入公司，了解文化和制度',
+        courses: [
+          { name: '公司文化与制度介绍', hours: '2学时', desc: '了解公司发展历程、组织架构、规章制度' },
+          { name: '岗位职责与工作流程', hours: '3学时', desc: '熟悉岗位工作内容、流程规范及协作方式' },
+          { name: '安全培训', hours: '1学时', desc: '办公安全、信息安全、应急预案' }
+        ]
+      },
+      {
+        icon: '🛠️', title: '专业技能培训',
+        desc: '提升员工专业能力和业务水平',
+        courses: [
+          { name: '产品知识培训', hours: '每月一次', desc: '深入了解公司产品线、功能特点及竞品分析' },
+          { name: '技术分享会', hours: '每周一次', desc: '团队内部技术交流，分享新技术和最佳实践' },
+          { name: '客户服务技巧', hours: '季度培训', desc: '提升客户沟通能力和问题解决技巧' }
+        ]
+      },
+      {
+        icon: '📈', title: '管理能力培训',
+        desc: '培养管理人才，提升团队领导力',
+        courses: [
+          { name: '团队管理', hours: '管理层必修', desc: '团队建设、目标管理、绩效考核方法' },
+          { name: '项目管理', hours: '项目负责人必修', desc: '项目规划、进度控制、风险管理' },
+          { name: '沟通与决策', hours: '管理层必修', desc: '高效沟通技巧、冲突管理、决策分析' }
+        ]
+      },
+      {
+        icon: '🎯', title: '专项培训',
+        desc: '针对特定岗位或项目的定制培训',
+        courses: [
+          { name: '新员工导师制', hours: '3个月', desc: '一对一导师辅导，帮助新员工快速成长' },
+          { name: '领导力提升计划', hours: '季度课程', desc: '中高层管理者的领导力专项训练' }
+        ]
+      }
+    ];
+
+    // ========== 首页逻辑 ==========
+
+    var currentTab = 'rules';
+
+    function switchTab(tab) {
+      currentTab = tab;
+
+      // 隐藏所有面板
+      document.getElementById('panel-rules').classList.add('hidden');
+      document.getElementById('panel-handbook').classList.add('hidden');
+      document.getElementById('panel-training').classList.add('hidden');
+
+      // 重置 Tab 样式
+      ['rules', 'handbook', 'training'].forEach(function(t) {
+        var btn = document.getElementById('tab-' + t);
+        btn.className = 'flex-1 h-10 rounded-xl text-sm font-medium transition-all text-gray-500';
+      });
+
+      // 显示选中面板
+      document.getElementById('panel-' + tab).classList.remove('hidden');
+      document.getElementById('tab-' + tab).className = 'flex-1 h-10 rounded-xl text-sm font-medium transition-all bg-blue-500 text-white';
+    }
+
+    // 渲染列表项
+    function renderList(data, panelId, hasDesc) {
+      var panel = document.getElementById(panelId);
+      panel.innerHTML = data.map(function(item, i) {
+        var descHtml = hasDesc ? '<p class="text-xs text-gray-400 mt-1">' + item.desc + '</p>' : '';
+        var countHtml = hasDesc
+          ? '<span class="text-xs text-gray-400">' + item.courses.length + ' 门课程</span>'
+          : '<span class="text-xs text-gray-400">' + item.content.length + ' 条</span>';
+        return '<div onclick="openDetail(\'' + panelId + '\', ' + i + ')" class="bg-white rounded-2xl shadow-sm p-4 flex items-center justify-between active:bg-gray-50 cursor-pointer">' +
+          '<div class="flex items-center gap-3 flex-1 min-w-0">' +
+            '<span class="text-2xl flex-shrink-0">' + item.icon + '</span>' +
+            '<div class="min-w-0">' +
+              '<div class="text-sm font-medium text-gray-800 truncate">' + item.title + '</div>' +
+              descHtml +
+            '</div>' +
+          '</div>' +
+          '<div class="flex items-center gap-2 flex-shrink-0">' +
+            countHtml +
+            '<span class="text-gray-300">›</span>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    // ========== 详情页逻辑 ==========
+
+    function openDetail(panelId, index) {
+      var data;
+      if (panelId === 'panel-rules') data = dataRules;
+      else if (panelId === 'panel-handbook') data = dataHandbook;
+      else data = dataTraining;
+
+      var item = data[index];
+      document.getElementById('detail-title').textContent = item.title;
+
+      var bodyEl = document.getElementById('detail-body');
+
+      if (item.courses) {
+        // 培训类型：渲染课程列表
+        bodyEl.innerHTML = '<p class="text-sm text-gray-500 mb-5">' + item.desc + '</p>' +
+          '<div class="space-y-3">' +
+            item.courses.map(function(c) {
+              return '<div class="bg-gray-50 rounded-xl p-4">' +
+                '<div class="flex justify-between items-center mb-2">' +
+                  '<span class="text-sm font-medium text-gray-800">' + c.name + '</span>' +
+                  '<span class="text-xs text-blue-400 bg-blue-50 px-2 py-1 rounded-lg">' + c.hours + '</span>' +
+                '</div>' +
+                '<p class="text-xs text-gray-500">' + c.desc + '</p>' +
+              '</div>';
+            }).join('') +
+          '</div>';
+      } else {
+        // 规则/守则类型：渲染条目列表
+        var colorClass = panelId === 'panel-rules' ? 'text-blue-500' : 'text-green-500';
+        bodyEl.innerHTML = '<div class="space-y-4">' +
+          item.content.map(function(text, i) {
+            return '<div class="flex gap-3 items-start">' +
+              '<span class="' + colorClass + ' font-bold text-sm flex-shrink-0 mt-0.5">' + (i + 1) + '</span>' +
+              '<p class="text-sm text-gray-600 leading-relaxed flex-1">' + text + '</p>' +
+            '</div>';
+          }).join('') +
+        '</div>';
+      }
+
+      // 切换页面
+      document.getElementById('page-list').classList.remove('active');
+      document.getElementById('page-detail').classList.add('active');
+    }
+
+    function goBack() {
+      document.getElementById('page-detail').classList.remove('active');
+      document.getElementById('page-list').classList.add('active');
+    }
+
+    function goLogin() {
+      alert('跳转到登录页');
+    }
+
+    // ========== 初始化 ==========
+    (function() {
+      renderList(dataRules, 'panel-rules', false);
+      renderList(dataHandbook, 'panel-handbook', false);
+      renderList(dataTraining, 'panel-training', true);
+    })();
+  </script>
+</body>
+</html>

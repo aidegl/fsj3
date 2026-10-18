@@ -1,0 +1,65 @@
+.world-page { width: 100%; height: 100vh; position: relative; overflow: hidden; background: #060810; }
+#worldCanvas { display: block; width: 100%; height: 100%; touch-action: none; }
+
+/* ===== 玩家信息卡（左上角） ===== */
+.top-bar { position: absolute; top: 0; left: 0; right: 0; z-index: 10; padding: .2rem .2rem 0; display: flex; justify-content: flex-start; pointer-events: none; }
+.player-card { background: rgba(0,0,0,.65); border: .02rem solid rgba(255,255,255,.1); border-radius: .16rem; padding: .14rem .24rem; pointer-events: auto; min-width: 2.6rem; }
+.level-text { font-size: .34rem; font-weight: 700; color: #e8d5a3; }
+.exp-text { font-size: .2rem; color: #8a93a6; margin-top: .04rem; }
+.pc-expbar { width: 2rem; height: .06rem; background: #1a2233; border-radius: .03rem; margin-top: .06rem; overflow: hidden; }
+.pc-expbar i { display: block; height: 100%; background: #e8d5a3; border-radius: .03rem; transition: width .3s; }
+
+/* ===== 位置 HUD ===== */
+.pos-hud { position: absolute; bottom: 1.6rem; left: .2rem; z-index: 10; font-size: .2rem; color: #55607a; pointer-events: none; }
+.pos-hud span { margin-right: .16rem; }
+
+/* ===== 功能列 ===== */
+.fn-col { position: absolute; top: 1.4rem; z-index: 10; display: flex; flex-direction: column; gap: .18rem; }
+.fn-col.left { left: .2rem; }
+.fn-col.right { right: .2rem; }
+.fn-icon {
+    width: .96rem; height: .96rem; border-radius: .2rem;
+    background: rgba(0,0,0,.6); border: .02rem solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .48rem; cursor: pointer; pointer-events: auto; user-select: none;
+    transition: background .15s;
+}
+.fn-icon:active { background: rgba(255,255,255,.15); }
+
+/* ===== 底部对话条 ===== */
+.chat-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 12;
+    background: rgba(0,0,0,.8); border-top: .02rem solid rgba(255,255,255,.08);
+    padding: .16rem .2rem; display: none; flex-direction: column; gap: .12rem;
+}
+.chat-bar.active { display: flex; }
+.chat-bubble { font-size: .24rem; color: #e8ecf5; line-height: 1.4; max-height: 1rem; overflow-y: auto; }
+.chat-input-row { display: flex; gap: .12rem; align-items: center; }
+.chat-input {
+    flex: 1; height: .64rem; border: .02rem solid rgba(255,255,255,.1); border-radius: .12rem;
+    background: rgba(0,0,0,.3); color: #e8ecf5; font-size: .26rem; padding: 0 .2rem; outline: none;
+}
+.chat-input:focus { border-color: #1677ff; }
+.gw-btn {
+    border: .02rem solid rgba(255,255,255,.1); background: rgba(255,255,255,.05);
+    color: #e8ecf5; font-size: .24rem; border-radius: .12rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; user-select: none;
+}
+.gw-btn.primary { background: #1677ff; border-color: #1677ff; color: #fff; }
+.gw-btn.tiny { padding: .12rem .28rem; font-size: .22rem; }
+
+/* ===== 左下角方向摇杆（常驻） ===== */
+.joy { position: absolute; bottom: 1rem; left: 1rem; z-index: 14; }
+.joy-base {
+    width: 2.4rem; height: 2.4rem; border-radius: 50%;
+    background: rgba(255,255,255,.05); border: .04rem solid rgba(255,255,255,.1);
+    position: relative; touch-action: none; user-select: none;
+}
+.joy-knob {
+    position: absolute; left: 50%; top: 50%;
+    width: 1.1rem; height: 1.1rem; border-radius: 50%;
+    background: rgba(232,213,163,.3); border: .04rem solid rgba(232,213,163,.6);
+    transform: translate(-50%,-50%); transition: transform .1s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .3rem; color: rgba(232,213,163,.8);
+}

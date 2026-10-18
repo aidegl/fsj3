@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="product-card">
+    <text class="label">商品</text>
+    <text class="name">{{body}}</text>
+  </view>
+
+  <view class="amount-card">
+    <text class="amount-label">支付金额</text>
+    <text class="amount-value">¥{{yuanAmount}}</text>
+  </view>
+
+  <button class="pay-btn" bindtap="handlePay" disabled="{{loading}}">
+    {{loading ? '正在下单...' : '确认支付 ¥' + yuanAmount}}
+  </button>
+</view>

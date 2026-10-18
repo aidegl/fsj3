@@ -1,0 +1,112 @@
+<div class="mape-page">
+    <!-- 顶部单行紧凑（手机/桌面共用） -->
+    <div class="mape-top">
+        <button class="px-btn tiny" id="mapeBack">‹</button>
+        <div class="mape-title">
+            <span id="mapeSceneName">地图编辑器</span>
+            <span class="mape-sub" id="mapeSceneSub">—</span>
+        </div>
+        <div class="mape-z-pick">
+            <button class="mape-z-chip active" data-z="-100" title="地皮">🟫</button>
+            <button class="mape-z-chip" data-z="50" title="装饰物">🌿</button>
+        </div>
+        <div class="mape-top-actions">
+            <span class="mape-status" id="mapeStatus" title="保存状态">●</span>
+            <button class="px-btn tiny" id="mapeZoomReset" title="重置视图（100%）">⌂</button>
+            <button class="px-btn tiny" id="mapeExport" title="导出 JSON">↗</button>
+            <button class="px-btn tiny" id="mapeUndo" title="撤销 (Ctrl+Z)" disabled>↩</button>
+            <span class="mape-undo-count" id="mapeUndoCount" title="撤销栈深度">0</span>
+            <button class="px-btn primary tiny" id="mapeSave">保存</button>
+        </div>
+    </div>
+
+    <!-- 主体：画布 + 底部工具（手机）/ 左侧工具+右侧属性（桌面） -->
+    <div class="mape-body">
+
+        <!-- 左侧：工具 + 瓦片（桌面 ≥720px 显示；手机）隐藏） -->
+        <div class="mape-side mape-left">
+            <div class="mape-side-section">
+                <div class="mape-side-title">工具</div>
+                <div class="mape-tool-row">
+                    <button class="mape-tool active" data-tool="pen" title="画笔">✏️</button>
+                    <button class="mape-tool" data-tool="eraser" title="橡皮">🧽</button>
+                    <button class="mape-tool" data-tool="picker" title="吸色">💧</button>
+                    <button class="mape-tool" data-tool="wall" title="标墙">🧱</button>
+                    <button class="mape-tool" data-tool="pan" title="抓手（拖动画布）">✋</button>
+                </div>
+            </div>
+            <div class="mape-side-section">
+                <div class="mape-side-title">瓦片</div>
+                <div class="mape-palette" id="mapePalette"></div>
+            </div>
+        </div>
+
+        <!-- 中央画布（始终占满剩余空间） -->
+        <div class="mape-canvas-wrap">
+            <div class="mape-canvas-box">
+                <canvas id="mapeCanvas" class="mape-canvas"></canvas>
+                <div class="mape-hud" id="mapeHud">—</div>
+            </div>
+        </div>
+
+        <!-- 右侧：图层 + 属性 + 撤销（桌面显示；手机）隐藏） -->
+        <div class="mape-side mape-right">
+            <div class="mape-side-section">
+                <div class="mape-side-title">图层</div>
+                <div class="mape-layer-list" id="mapeLayerList">
+                    <div class="mape-layer-item active" data-layer="ground">
+                        <span class="mape-layer-dot" style="background:#D38200"></span>
+                        <span class="mape-layer-name">地皮</span>
+                        <span class="mape-layer-z">z=-100</span>
+                        <span class="mape-layer-count" id="mapeGroundCount">0</span>
+                    </div>
+                    <div class="mape-layer-item" data-layer="decor">
+                        <span class="mape-layer-dot" style="background:#2bd64f"></span>
+                        <span class="mape-layer-name">装饰物</span>
+                        <span class="mape-layer-z">自定</span>
+                        <span class="mape-layer-count" id="mapeDecorCount">—</span>
+                    </div>
+                    <div class="mape-layer-item" data-layer="collision">
+                        <span class="mape-layer-dot" style="background:#E83B3B"></span>
+                        <span class="mape-layer-name">碰撞墙</span>
+                        <span class="mape-layer-z">—</span>
+                        <span class="mape-layer-count" id="mapeCollCount">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mape-side-section">
+                <div class="mape-side-title">当前格子</div>
+                <div class="mape-prop">
+                    <div class="mape-prop-row"><span class="k">坐标</span><span class="v" id="mapePropPos">—</span></div>
+                    <div class="mape-prop-row"><span class="k">图层</span><span class="v" id="mapePropLayer">地皮</span></div>
+                    <div class="mape-prop-row"><span class="k">瓦片</span><span class="v" id="mapePropTile">—</span></div>
+                    <div class="mape-prop-row"><span class="k">碰撞</span><span class="v" id="mapePropColl">—</span></div>
+                </div>
+            </div>
+            <div class="mape-side-section">
+                <div class="mape-side-title">说明</div>
+                <div class="mape-tip-text">
+                    涂/擦/吸/标墙 · Ctrl+Z 撤销 · G 切网格 · 保存写 localStorage 草稿
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部抽屉：手机端工具+瓦片（桌面隐藏） -->
+        <div class="mape-bottom">
+            <div class="mape-tool-row">
+                <button class="mape-tool active" data-tool="pen" title="画笔">✏️</button>
+                <button class="mape-tool" data-tool="eraser" title="橡皮">🧽</button>
+                <button class="mape-tool" data-tool="picker" title="吸色">💧</button>
+                <button class="mape-tool" data-tool="wall" title="标墙">🧱</button>
+                <button class="mape-tool" data-tool="pan" title="抓手（拖动画布）">✋</button>
+            </div>
+            <div class="mape-palette-scroll">
+                <div class="mape-palette" id="mapePaletteBottom"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast -->
+    <div class="mape-toast" id="mapeToast" style="display:none"></div>
+</div>

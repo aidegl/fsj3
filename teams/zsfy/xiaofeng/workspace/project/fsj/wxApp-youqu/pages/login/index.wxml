@@ -1,0 +1,19 @@
+<!--pages/login/index.wxml-->
+<view class="login-container">
+  <view class="login-content">
+    <view class="wechat-icon-wrap">
+      <image class="wechat-icon" src="../../images/weichat.png" mode="aspectFit"></image>
+    </view>
+    <view class="login-bottom">
+      <view class="tip-text">
+        <text>登录即代表同意</text>
+        <text class="link">《用户协议》</text>
+        <text>和</text>
+        <text class="link">《隐私政策》</text>
+      </view>
+      <view class="login-btn" bindtap="handleLogin">
+        <text>微信一键登录</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- 禁用缓存 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title></title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="js/vendor/vditor/index.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/components-login.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <script>window.APP_VERSION = '2.2.23';</script>
+  <script>
+    // 给本地 CSS/JS 加上 URL 版本号，防止微信 webview 缓存静态资源
+    (function() {
+      var v = '';
+      var params = window.location.search.substring(1).split('&');
+      for (var i = 0; i < params.length; i++) {
+        var kv = params[i].split('=');
+        if (kv[0] === 'v') v = '?' + encodeURIComponent(kv[1] || '');
+      }
+      if (!v) v = '?v=' + encodeURIComponent(window.APP_VERSION || '2.2.2');
+      var tags = document.querySelectorAll('link[rel="stylesheet"][href^="css/"], script[src^="js/"]');
+      for (var i = 0; i < tags.length; i++) {
+        var el = tags[i];
+        var url = el.href || el.src;
+        if (url.indexOf('?') === -1) {
+          if (el.href) el.href = url + v;
+          else el.src = url + v;
+        }
+      }
+    })();
+  </script>
+  <!-- 微信 JS-SDK：提供 wx.miniProgram 通信能力 -->
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+</head>
+<body>
+  <!-- 调试面板：显示关键状态，方便在微信开发者工具中排查问题 -->
+  <div id="debug-overlay" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.85);color:#0f0;padding:8px;max-height:180px;overflow:auto;font-size:11px;font-family:monospace;z-index:99999;">
+    <div style="display:flex;justify-content:flex-end;gap:4px;margin-bottom:4px;">
+      <button id="debug-hide-btn" onclick="toggleDebugPanel()" style="background:#a00;color:#fff;border:1px solid #f00;padding:2px 8px;font-size:10px;cursor:pointer;">隐藏</button>
+      <button id="debug-copy-btn" onclick="copyDebugLog()" style="background:#0a0;color:#0f0;border:1px solid #0f0;padding:2px 8px;font-size:10px;cursor:pointer;">复制</button>
+    </div>
+    <pre id="debug-log-content" style="margin:0;white-space:pre-wrap;word-break:break-all;"></pre>
+  </div>
+  <!-- 调试悬浮按钮 -->
+  <div id="debug-fab" onclick="toggleDebugPanel()" style="position:fixed;bottom:12px;right:12px;width:36px;height:36px;background:rgba(0,0,0,0.6);color:#0f0;border:1px solid #0f0;border-radius:50%;font-size:14px;cursor:pointer;z-index:99998;display:none;align-items:center;justify-content:center;">🐛</div>
+  <div id="app">
+    <!-- 首页 -->
+    <div id="page-home" class="page">
+      <header class="top-bar" id="home-topbar" style="display:none;">
+        <div class="top-bar-left">
+          <span class="scope-selector">组织 ▾</span>
+        </div>
+        <div class="top-bar-center">
+          <div class="search-box"><input type="text" placeholder="搜索" /></div>
+        </div>
+        <div class="top-bar-right">
+          <span class="btn-task">任务</span>
+        </div>
+      </header>
+      <main class="page-content" id="home-content">
+        <!-- 轮播图 -->
+        <div class="banner-container" id="banner-container">
+          <div class="banner-swiper" id="banner-swiper">
+            <!-- JS 渲染 -->
+          </div>
+          <div class="banner-dots" id="banner-dots"></div>
+        </div>
+        <!-- 分类导航 -->
+        <div class="category-scroll">
+          <div class="category-nav" id="category-nav">
+            <div class="category-item active" data-index="0">推荐</div>
+            <div class="category-item" data-index="1">热门</div>
+            <div class="category-item" data-index="2">最新</div>
+            <div class="category-item" data-index="3">精选</div>
+          </div>
+        </div>
+        <!-- 文章列表 -->
+        <div class="post-list" id="article-list">
+          <!-- JS 渲染 -->
+        </div>
+      </main>
+    </div>
+
+    <!-- 智能体页面 -->
+    <div id="page-agent" class="page">
+      <header class="top-bar agent-topbar">
+        <div class="top-bar-left">
+          <img class="agent-avatar-top" id="agent-avatar-top" src="" />
+          <span class="agent-name-top" id="agent-name-top"></span>
+        </div>
+        <div class="top-bar-right">
+          <span class="agent-top-btn" id="btn-log-view">日志</span>
+          <span class="agent-top-btn" data-panel="tasks">任务</span>
+          <span class="agent-top-btn" data-panel="settings">设置</span>
+        </div>
+      </header>
+      <main class="page-content page-agent-content" id="chat-container">
+        <div id="chat-messages"></div>
+        <div class="bottom-card">
+          <div class="immersive-msg-list" id="immersive-msg-list"></div>
+          <div class="quick-actions-scroll">
+            <div class="quick-actions" id="quick-actions"></div>
+          </div>
+          <div class="input-area" id="chat-input-area"></div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 消息页面 -->
+    <div id="page-message" class="page">
+      <header class="top-bar message-topbar">
+        <div class="top-bar-left">
+          <span class="message-topbar-title">消息</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="message-topbar-action" id="msgMerchantEntry" onclick="msgOpenMerchantChat()" style="display:none;"><i class="fa fa-store"></i> 联系商家</span>
+          <span class="message-topbar-action" onclick="msgOpenDirectory()"><i class="fa fa-book"></i> 通讯录</span>
+        </div>
+      </header>
+      <div class="message-login-tip" id="messageLoginTip" style="display:none;">
+        <i class="fa fa-info-circle"></i> 登录后即可查看私聊与群聊
+      </div>
+      <main class="page-content">
+        <div class="message-list" id="message-list"></div>
+      </main>
+    </div>
+
+    <!-- 聊天详情页（AI 助手 / 商家客服 / 用户私聊 共用） -->
+    <div id="page-chat" class="page">
+      <header class="top-bar chat-topbar">
+        <div class="top-bar-left">
+          <span class="chat-back-btn" onclick="msgCloseChat()"><i class="fa fa-arrow-left"></i></span>
+          <span id="chat-peer-avatar"></span>
+          <span class="chat-peer-name" id="chat-peer-name">会话</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="chat-top-btn" id="chat-clear-btn" onclick="msgClearAiChat()" style="display:none;"><i class="fa fa-trash-o"></i> 清空</span>
+        </div>
+      </header>
+      <main class="page-content chat-page-content" id="chat-msg-scroll">
+        <div class="chat-msg-list" id="chat-msg-list"></div>
+      </main>
+      <div class="chat-input-bar">
+        <textarea class="chat-input" id="chat-input" rows="1" placeholder="输入消息..."></textarea>
+        <button class="chat-send-btn" id="chat-send-btn" onclick="msgSend()">发送</button>
+      </div>
+    </div>
+
+    <!-- 我的页面 -->
+    <div id="page-profile" class="page">
+      <main class="page-content">
+        <div class="user-card" id="profile-user-card">
+          <div class="avatar"><img src="assets/logo.png" alt="avatar" /></div>
+          <div class="nickname">未登录</div>
+          <div class="role">请先登录</div>
+        </div>
+        <div class="stats-card" id="profile-stats"></div>
+        <div class="settings-list" id="profile-settings"></div>
+        <div class="profile-footer" id="profile-footer">
+          <div class="login-btn" id="profile-login-btn"></div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 发布页面（二级页面） -->
+    <div id="page-publish" class="page">
+      <header class="top-bar publish-topbar">
+        <div class="top-bar-left">
+          <span class="publish-back-btn" id="publish-back-btn">‹ 返回</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">发布</span>
+        </div>
+        <div class="top-bar-right">
+          <button class="publish-submit-btn" id="publish-submit-btn">发布</button>
+        </div>
+      </header>
+      <main class="page-content publish-content" id="publish-content">
+        <div class="publish-form" id="publish-form">
+          <!-- 标题 -->
+          <div class="publish-field">
+            <label class="publish-label">标题 <span class="publish-required">*</span></label>
+            <input type="text" class="publish-input" id="publish-title-input" placeholder="请输入文章标题" maxlength="50" />
+          </div>
+          <!-- 分类选择（默认隐藏，加载到分类后显示） -->
+          <div class="publish-field" id="publish-category-field" style="display:none;">
+            <label class="publish-label">分类 <span class="publish-required">*</span></label>
+            <div class="publish-category-scroll">
+              <div class="publish-category-list" id="publish-category-list"></div>
+            </div>
+          </div>
+          <!-- 封面图 -->
+          <div class="publish-cover-section">
+            <label class="publish-label">封面图</label>
+            <div class="publish-cover-grid" id="publish-cover-grid">
+              <input type="file" id="publish-cover-input" accept="image/*" multiple style="display:none;" />
+              <div class="publish-cover-add" id="publish-cover-add">
+                <span class="publish-cover-icon">+</span>
+                <span class="publish-cover-text">上传图片</span>
+              </div>
+            </div>
+          </div>
+          <!-- 任务开关：多人 / 悬赏 -->
+          <div class="publish-field publish-toggle-section">
+            <label class="publish-label">任务设置</label>
+            <div class="publish-toggle-row">
+              <div class="publish-toggle-item" id="publish-toggle-duoren">
+                <label class="address-switch">
+                  <input type="checkbox" id="publish-duoren-input" />
+                  <span class="address-switch-slider"></span>
+                </label>
+                <span class="publish-toggle-label">👥 多人</span>
+              </div>
+              <div class="publish-toggle-item" id="publish-toggle-xuanshang">
+                <label class="address-switch">
+                  <input type="checkbox" id="publish-xuanshang-input" />
+                  <span class="address-switch-slider"></span>
+                </label>
+                <span class="publish-toggle-label">💰 悬赏</span>
+                <input type="number" id="publish-xuanshang-amount" class="publish-amount-input" placeholder="输入金额" step="0.01" min="0" style="display:none;" />
+                <span class="publish-amount-unit" style="display:none;">元/人</span>
+              </div>
+            </div>
+          </div>
+          <!-- 摘要 -->
+          <div class="publish-field">
+            <label class="publish-label">摘要</label>
+            <textarea class="publish-textarea" id="publish-summary-input" placeholder="请输入文章摘要（选填）" rows="3" maxlength="200"></textarea>
+          </div>
+          <!-- 正文（Vditor 所见即所得 Markdown 编辑器） -->
+          <div class="publish-field">
+            <label class="publish-label">正文 <span class="publish-required">*</span></label>
+            <div id="vditor"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 积分商城页面（二级页面） -->
+    <div id="page-points" class="page">
+      <header class="top-bar points-topbar">
+        <div class="top-bar-left">
+          <span class="points-back-btn" id="points-back-btn">‹ 返回</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">积分商城</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="points-balance-tag" id="points-balance">0 积分</span>
+        </div>
+      </header>
+      <main class="page-content points-content" id="points-content">
+        <!-- 搜索栏 -->
+        <div class="search-bar">
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="points-search-input" class="search-input" placeholder="搜索积分商品" />
+            <span class="search-clear" id="points-search-clear" style="display:none;"></span>
+          </div>
+        </div>
+        <!-- 商品列表 -->
+        <div class="product-list" id="points-product-list">
+          <div class="loading-state" id="points-loading-state">
+            <div class="loading-spinner"></div>
+            <p>加载中...</p>
+          </div>
+          <div class="empty-state" id="points-empty-state" style="display:none;">
+            <p>暂无积分商品</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 我的订单页面（二级页面） -->
+    <div id="page-orders" class="page">
+      <header class="top-bar orders-topbar">
+        <div class="top-bar-left">
+          <span class="orders-back-btn" id="orders-back-btn">‹ 返回</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">我的订单</span>
+        </div>
+        <div class="top-bar-right"></div>
+      </header>
+      <main class="page-content orders-content" id="orders-content">
+        <div class="orders-list" id="orders-list"></div>
+        <div class="empty-state" id="orders-empty" style="display:none;">
+          <p>暂无订单</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- 收货地址页面（二级页面） -->
+    <div id="page-address" class="page">
+      <header class="top-bar address-topbar">
+        <div class="top-bar-left">
+          <span class="address-back-btn" id="address-back-btn">‹ 返回</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">收货地址</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="address-add-btn" id="address-add-btn" onclick="AddressPage.openAddModal()">+ 新增</span>
+        </div>
+      </header>
+      <main class="page-content address-content" id="address-content">
+        <div class="address-list" id="address-list"></div>
+        <div class="empty-state" id="address-empty" style="display:none;">
+          <p>暂无收货地址</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- 地址编辑弹窗 -->
+    <div id="address-modal" class="modal" style="display:none;">
+      <div class="modal-content address-modal">
+        <div class="modal-header">
+          <span class="modal-title" id="address-modal-title">新增收货地址</span>
+          <span class="modal-close" id="address-modal-close">×</span>
+        </div>
+        <div class="modal-body">
+          <div class="address-form-group">
+            <label class="address-form-label">联系电话</label>
+            <input type="tel" id="addr-phone" class="address-form-input" placeholder="请输入联系电话" />
+          </div>
+          <div class="address-form-group">
+            <label class="address-form-label" id="addr-l1-label">一级地址</label>
+            <select id="addr-l1-select" class="address-form-select">
+              <option value="">请选择</option>
+            </select>
+          </div>
+          <div class="address-form-group">
+            <label class="address-form-label" id="addr-l2-label">二级地址</label>
+            <select id="addr-l2-select" class="address-form-select">
+              <option value="">请选择</option>
+            </select>
+          </div>
+          <div class="address-form-group">
+            <label class="address-form-label" id="addr-l3-label">三级地址</label>
+            <select id="addr-l3-select" class="address-form-select">
+              <option value="">请选择</option>
+            </select>
+          </div>
+          <div class="address-form-group">
+            <label class="address-form-label">详细地址（选填）</label>
+            <textarea id="addr-detail" class="address-form-input address-form-textarea" placeholder="门牌号、楼层等补充信息" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-btn modal-btn-cancel" id="address-modal-cancel">取消</button>
+          <button class="modal-btn modal-btn-confirm" id="address-modal-confirm">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 个人相册页面（二级页面） -->
+    <div id="page-album" class="page">
+      <header class="top-bar album-topbar">
+        <div class="top-bar-left">
+          <span class="album-back-btn" id="album-back-btn">‹ 返回</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">个人相册</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="album-select-btn" id="album-select-btn">选择</span>
+        </div>
+      </header>
+      <main class="page-content album-content" id="album-content">
+        <div class="album-grid" id="album-grid">
+          <div class="loading-state" id="album-loading-state">
+            <div class="loading-spinner"></div>
+            <p>加载中...</p>
+          </div>
+          <div class="empty-state" id="album-empty-state" style="display:none;">
+            <p>暂无相册</p>
+          </div>
+        </div>
+      </main>
+      <!-- 底部上传按钮 -->
+      <button class="album-upload-btn" id="album-upload-btn">
+        <span class="album-upload-icon">+</span>
+        <span class="album-upload-label">上传图片</span>
+      </button>
+      <!-- 选择操作栏 -->
+      <div class="album-select-bar" id="album-select-bar" style="display:none;">
+        <span class="album-select-count" id="album-select-count">已选 0 张</span>
+        <button class="album-delete-btn" id="album-delete-btn">删除</button>
+      </div>
+    </div>
+
+    <!-- 个人空间页面（二级页面） -->
+    <div id="page-kongjian" class="page">
+      <header class="top-bar kongjian-topbar">
+        <div class="top-bar-left">
+          <span class="kongjian-back-btn" id="kongjian-back-btn">‹ 返回</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">我的空间</span>
+        </div>
+        <div class="top-bar-right"></div>
+      </header>
+      <main class="page-content kongjian-content" id="kongjian-content">
+        <!-- 用户信息卡片 -->
+        <div class="kongjian-user-card" id="kongjian-user-card">
+          <div class="kongjian-user-info">
+            <img class="kongjian-avatar" id="kongjian-avatar" src="assets/logo.png" alt="" />
+            <div class="kongjian-nickname" id="kongjian-nickname">未登录</div>
+          </div>
+          <!-- 统计栏 -->
+          <div class="kongjian-stats" id="kongjian-stats">
+            <div class="kongjian-stat-item">
+              <div class="kongjian-stat-num" id="kongjian-publish-count">0</div>
+              <div class="kongjian-stat-label">发布</div>
+            </div>
+            <div class="kongjian-stat-item">
+              <div class="kongjian-stat-num" id="kongjian-fans-count">0</div>
+              <div class="kongjian-stat-label">粉丝</div>
+            </div>
+            <div class="kongjian-stat-item">
+              <div class="kongjian-stat-num" id="kongjian-like-count">0</div>
+              <div class="kongjian-stat-label">获赞</div>
+            </div>
+          </div>
+        </div>
+        <!-- Tab 切换：我的笔记 / 我的悬赏 / 我的任务 -->
+        <div class="kongjian-tabs">
+          <div class="kongjian-tab active" data-tab="note" id="kongjian-tab-note">我的笔记</div>
+          <div class="kongjian-tab" data-tab="reward" id="kongjian-tab-reward">我的悬赏</div>
+          <div class="kongjian-tab" data-tab="task" id="kongjian-tab-task">我的任务</div>
+        </div>
+        <!-- 内容列表 -->
+        <div class="kongjian-list" id="kongjian-list">
+          <div class="kongjian-empty" id="kongjian-empty">暂无内容</div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 内嵌网页 -->
+    <div id="page-webview" class="page">
+      <header class="top-bar webview-topbar">
+        <div class="top-bar-left">
+          <span class="webview-back-btn" id="webview-back-btn">‹ 返回</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title" id="webview-title">外部页面</span>
+        </div>
+        <div class="top-bar-right"></div>
+      </header>
+      <iframe id="webview-iframe" src="" frameborder="0"></iframe>
+    </div>
+
+    <!-- 内容详情页面（二级页面） -->
+    <div id="page-content-detail" class="page">
+      <header class="top-bar content-detail-topbar">
+        <div class="top-bar-left">
+          <span class="content-detail-back-btn" id="content-detail-back-btn">‹ 返回</span>
+        </div>
+        <div class="top-bar-center">
+          <span class="page-title">详情</span>
+        </div>
+        <div class="top-bar-right">
+          <!-- 作者信息 -->
+          <div class="author-info-inline" id="content-detail-author">
+            <img class="author-avatar-inline" id="content-detail-author-avatar" src="assets/logo.png" alt="avatar" />
+            <span class="author-name-inline" id="content-detail-author-name">作者</span>
+          </div>
+        </div>
+      </header>
+      <main class="page-content content-detail-content" id="content-detail-content">
+        <div class="loading-state" id="content-detail-loading-state">
+          <div class="loading-spinner"></div>
+          <p>加载中...</p>
+        </div>
+        <div class="empty-state" id="content-detail-empty-state" style="display:none;">
+          <p>内容不存在</p>
+        </div>
+        <!-- 内容渲染区 -->
+        <div class="content-detail-body" id="content-detail-body" style="display:none;">
+          <!-- 主图 -->
+          <div class="content-detail-cover" id="content-detail-cover"></div>
+          <!-- 标题 -->
+          <h1 class="content-detail-title" id="content-detail-title"></h1>
+          <!-- 正文内容 -->
+          <div class="content-detail-body-content" id="content-detail-body-text"></div>
+          <!-- 评论区 -->
+          <div class="comment-section" id="content-detail-comment-section">
+            <div class="comment-header">
+              <span class="comment-title">评论</span>
+              <span class="comment-count" id="content-detail-comment-count"></span>
+            </div>
+            <!-- 评论列表 -->
+            <div class="comment-list" id="content-detail-comment-list"></div>
+            <!-- 加载更多 -->
+            <div class="comment-load-more" id="content-detail-comment-load-more" style="display:none;">
+              <span>加载更多评论</span>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- 评论输入框（固定在页面底部） -->
+      <div class="comment-input-area" id="content-detail-comment-input-area">
+        <textarea class="comment-textarea" id="content-comment-textarea" placeholder="写下你的想法..." rows="1"></textarea>
+        <div class="comment-input-actions">
+          <span class="comment-reply-cancel" id="content-comment-reply-cancel" style="display:none;">取消</span>
+          <button class="comment-submit-btn" id="content-comment-submit-btn">发表</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部TabBar -->
+    <nav class="tab-bar" id="tab-bar">
+      <div class="tab-item active" data-page="home">
+        <div class="tab-icon-img"></div>
+        <span class="tab-label">首页</span>
+      </div>
+      <div class="tab-item" data-page="agent">
+        <div class="tab-icon-img"></div>
+        <span class="tab-label">智能体</span>
+      </div>
+      <div class="tab-item" data-page="message">
+        <div class="tab-icon-img"></div>
+        <span class="tab-label">消息</span>
+      </div>
+      <div class="tab-item" data-page="profile">
+        <div class="tab-icon-img"></div>
+        <span class="tab-label">我的</span>
+      </div>
+    </nav>
+  </div>
+
+  <script src="js/bridge.js"></script>
+  <script src="js/utils/format.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+  <script src="js/services/login.js"></script>
+  <script src="js/services/wechat-login.js"></script>
+  <script src="js/services/ai.js"></script>
+  <script src="js/services/tts.js"></script>
+  <script src="js/services/agentVideo.js"></script>
+  <script src="js/fsj-api.js"></script>
+  <script src="js/pages/home.js"></script>
+  <!-- AI 组件 -->
+  <script src="js/services/ws-bus.js"></script>
+    <script src="js/services/chat.js"></script>
+  <script src="js/pages/message.js"></script>
+  <script src="js/pages/profile.js"></script>
+  <script src="js/pages/points.js"></script>
+  <script src="js/pages/orders.js"></script>
+  <script src="js/pages/address.js"></script>
+  <script src="js/pages/album.js"></script>
+  <script src="js/pages/kongjian.js"></script>
+  <script src="js/pages/agent.js"></script>
+  <script src="js/pages/content-detail.js"></script>
+  <script src="js/vendor/vditor/index.min.js"></script>
+  <script src="js/pages/publish.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    window.APP_VERSION = '2.2.23';
+
+    // 页面内调试面板
+    (function() {
+      window.DEBUG_LOG = [];
+      // 迁移（2026-09-05）：2.2.7 前的账号登录存的 fsj_user_info 缺 rowid/openid，
+      // ChatService.getUser 会判成未登录——启动时自动补齐，已登录用户无感修复
+      (function() {
+        try {
+          var info = JSON.parse(localStorage.getItem('fsj_user_info') || 'null');
+          if (info && info.id && !info.rowid) {
+            info.rowid = info.id;
+            info.openid = info.openid || info.id;
+            localStorage.setItem('fsj_user_info', JSON.stringify(info));
+            if (!localStorage.getItem('fsj_openid')) localStorage.setItem('fsj_openid', info.id);
+          }
+        } catch (e) {}
+      })();
+
+      // 全局错误捕获（2026-09-05）：带文件/行号完整打印，便于定位偶现报错
+      window.addEventListener('error', function (e) {
+        var msg = '[全局错误] ' + (e.message || '') + ' @ ' + (e.filename || '').split('/').pop() + ':' + e.lineno + ':' + e.colno;
+        console.error(msg, e.error && e.error.stack ? e.error.stack : '');
+        try { logDebug(msg); } catch (e2) {}
+      });
+      window.addEventListener('unhandledrejection', function (e) {
+        var msg = '[未处理的Promise拒绝] ' + ((e.reason && (e.reason.message || e.reason)) || '').toString().slice(0, 200);
+        console.error(msg, e.reason && e.reason.stack ? e.reason.stack : '');
+        try { logDebug(msg); } catch (e2) {}
+      });
+
+      window.logDebug = function(msg) {
+        var el = document.getElementById('debug-log-content');
+        var ts = new Date().toLocaleTimeString();
+        window.DEBUG_LOG.push('[' + ts + '] ' + msg);
+        if (el) {
+          el.textContent = window.DEBUG_LOG.join('\n');
+          el.scrollTop = el.scrollHeight;
+        }
+        console.log('[H5 Debug]', msg);
+      };
+      window.copyDebugLog = function() {
+        var text = window.DEBUG_LOG.join('\n');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            var btn = document.getElementById('debug-copy-btn');
+            btn.textContent = '已复制';
+            setTimeout(function() { btn.textContent = '复制'; }, 1500);
+          }).catch(function() {
+            window.logDebug('复制失败，尝试备用方法');
+            copyFallback(text);
+          });
+        } else {
+          copyFallback(text);
+        }
+      };
+      function copyFallback(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          var btn = document.getElementById('debug-copy-btn');
+          btn.textContent = '已复制';
+          setTimeout(function() { btn.textContent = '复制'; }, 1500);
+        } catch (e) {
+          window.logDebug('复制失败: ' + e.message);
+        }
+        document.body.removeChild(ta);
+      }
+
+      window.toggleDebugPanel = function () {
+        var panel = document.getElementById('debug-overlay');
+        var fab = document.getElementById('debug-fab');
+        var logEl = document.getElementById('debug-log-content');
+        if (!panel || !fab) return;
+        var visible = panel.style.display !== 'none';
+        panel.style.display = visible ? 'none' : 'block';
+        fab.style.display = visible ? 'flex' : 'none';
+        if (!visible && logEl) {
+          logEl.scrollTop = logEl.scrollHeight;
+        }
+      };
+    })();
+  </script>
+</body>
+</html>
