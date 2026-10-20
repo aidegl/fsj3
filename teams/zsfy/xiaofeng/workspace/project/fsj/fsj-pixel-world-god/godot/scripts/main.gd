@@ -6,6 +6,7 @@ extends Node2D
 ##       摇杆挂 HUD：真实像素恒定大小，钉视口右下角；Q/E 切换侠客；ESC 退出。
 
 const TILE := 64.0
+const CHAR_SCALE := 4.0  # 角色放大4倍：一个角色占4x4格（2026-10-20 老板拍板）
 const STEP_INTERVAL := 0.18
 const CHAR_DIR := "res://assets/wuxia"
 const UI_FONT_PATH := "res://assets/fonts/simhei.ttf"  # 中文字体（主题设置不生效时直接覆盖）
@@ -46,6 +47,7 @@ var move_t := 1.0  # 格间插值进度（1=到位）
 var sheets: Array[String] = []
 var sheet_ts: Array[String] = []
 var sheet_index := 0
+var jess: Node2D  # 融合的 dual-grid 地形（Jess.tscn 实例，垫底渲染）
 var player_sprite: AnimatedSprite2D
 var player_label: Label
 var joy: Joystick
@@ -76,10 +78,24 @@ func _ready() -> void:
 	cam.position_smoothing_speed = 8.0
 	add_child(cam)
 	cam.make_current()
+	# 融合 dual-grid 地形：垫底渲染（在玩家/NPC之下、色块地板之上），禁其自带相机
+	jess = (preload("res://examples/Jess.tscn") as PackedScene).instantiate()
+	add_child(jess)
+	move_child(jess, 0)
+	var jc := jess.get_node_or_null("Camera2D")
+	if jc: jc.enabled = false
+	# 游戏内禁用地图编辑（CursorDual）：编辑器里照常可画，互不影响
+	var cur := jess.get_node_or_null("CursorDual")
+	if cur:
+		cur.visible = false
+		cur.process_mode = Node.PROCESS_MODE_DISABLED
+	jess.position = draw_offset
+	jess.scale = Vector2.ONE * (TILE / 16.0)
 	# NPC
 	for i in mini(NPC_SPOTS.size(), maxi(sheets.size() - 1, 0)):
 		var s := AnimatedSprite2D.new()
 		s.sprite_frames = _build_frames(_load_tex(sheets[(i + 1) % sheets.size()]), sheet_ts[(i + 1) % sheet_ts.size()])
+		s.scale = Vector2.ONE * CHAR_SCALE
 		s.animation = &"idle"
 		s.play()
 		add_child(s)
@@ -111,6 +127,7 @@ func _recalc_layout() -> void:
 	var vs := get_viewport_rect().size
 	var map_px := Vector2(MAP[0].size(), MAP.size()) * TILE
 	draw_offset = ((vs - map_px) * 0.5).floor()
+	if jess: jess.position = draw_offset
 	# 相机变焦：可视宽度恒定 TILES_ACROSS 格
 	if cam:
 		cam.zoom = Vector2.ONE * (vs.x / (TILES_ACROSS * TILE))
@@ -118,7 +135,7 @@ func _recalc_layout() -> void:
 	for i in npc_nodes.size():
 		var p := cell_to_world(NPC_SPOTS[i])
 		npc_nodes[i].position = p + draw_offset
-		npc_labels[i].position = p + draw_offset + Vector2(-40, -TILE * 0.55)
+		npc_labels[i].position = p + draw_offset + Vector2(-40 * CHAR_SCALE, -TILE * 0.55 * CHAR_SCALE)
 	# 摇杆：design 单位直接设尺寸（画多大触摸区就多大，绝不用 scale 缩放）
 	var sc := float(get_window().size.y) / maxf(vs.y, 1.0)
 	if sc <= 0.0:
@@ -195,6 +212,7 @@ func _apply_sheet(idx: int) -> void:
 		return
 	sheet_index = posmod(idx, sheets.size())
 	player_sprite.sprite_frames = _build_frames(_load_tex(sheets[sheet_index]), sheet_ts[sheet_index])
+	player_sprite.scale = Vector2.ONE * CHAR_SCALE
 	player_sprite.animation = &"run_down"
 	player_sprite.frame = 0
 	player_sprite.pause()
@@ -307,7 +325,7 @@ func _process(delta: float) -> void:
 				player_sprite.frame = 0
 			player_sprite.play()
 	player_sprite.position = visual_pos + draw_offset
-	player_label.position = visual_pos + draw_offset + Vector2(-40, -TILE * 0.55)
+	player_label.position = visual_pos + draw_offset + Vector2(-40 * CHAR_SCALE, -TILE * 0.55 * CHAR_SCALE)
 	if cam:
 		cam.position = player_sprite.position + pan_offset
 	if dbg:

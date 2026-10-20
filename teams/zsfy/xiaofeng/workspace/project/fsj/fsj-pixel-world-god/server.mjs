@@ -24,8 +24,9 @@ try{ fs.watch('D:/Item/fsj/workspace/wuming', (e,f)=>{ if(f&&f.startsWith('plan-
 const PORT = Number(process.argv[2]) || 8321;
 const FLOWS_DIR = 'D:/Item/fsj/workspace/wuming/flows';
 const SOURCES = {
-  flow: 'D:/Item/fsj/workspace/wuming/flows/flow-20261017-wuming-001.json',
-  plan: 'D:/Item/fsj/workspace/wuming/plan-2026-10-18.json',
+  // flow 自动取 flows 目录下最新修改的 flow-*.json，避免硬编码过期
+  get flow() { try { const f = readdirSync(FLOWS_DIR).filter(n => n.startsWith('flow-') && n.endsWith('.json')).map(n => ({ n, m: statSync(FLOWS_DIR + '/' + n).mtimeMs })).sort((a, b) => b.m - a.m)[0]; return f ? FLOWS_DIR + '/' + f.n : null; } catch { return null; } },
+  plan: 'D:/Item/fsj/workspace/wuming/plan-2026-10-19.json',
   hits: 'D:/Item/fsj/tmp-api/retrieval-hit-log.jsonl',
 };
 

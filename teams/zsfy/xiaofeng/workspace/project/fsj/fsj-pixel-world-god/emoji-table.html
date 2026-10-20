@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>情绪 emoji 映射表</title>
+<style>
+  body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;max-width:680px;margin:0 auto;padding:40px 20px;color:#1d1d1f;background:#fff}
+  h1{font-size:20px;font-weight:600;margin:0 0 4px}
+  .sub{font-size:12px;color:#86868b;margin-bottom:24px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;font-weight:500;color:#86868b;border-bottom:1px solid #e5e5ea;padding:6px 10px}
+  td{padding:7px 10px;border-bottom:1px solid #f2f2f7}
+  .em{font-size:19px;width:44px}
+  tr:hover td{background:#f5f5f7}
+  .err{color:#e0453a;font-size:13px;margin-top:20px}
+</style>
+</head>
+<body>
+<h1>情绪 emoji 映射表</h1>
+<div class="sub">全部人脸表情 · 常用在前 · emoji 由页面按规则算，不归 agent 演</div>
+<div id="app">载入中…</div>
+<script>
+fetch('emoji-map.json').then(r=>r.json()).then(j=>{
+  document.getElementById('app').innerHTML =
+    '<table><tr><th></th><th>情绪</th><th>含义</th></tr>'
+    + j.emojis.map(i=>'<tr><td class="em">'+i.emoji+'</td><td>'+i.key+'</td><td>'+i.meaning+'</td></tr>').join('')
+    + '</table>';
+}).catch(()=>{ document.getElementById('app').innerHTML='<div class="err">读不到 emoji-map.json——请通过 localhost:8321/emoji-table.html 访问（file:// 下 fetch 被浏览器拦截）</div>'; });
+</script>
+</body>
+</html>

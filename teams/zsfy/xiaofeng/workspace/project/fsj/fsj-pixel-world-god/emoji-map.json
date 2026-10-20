@@ -1,0 +1,24 @@
+{
+  "name": "情绪 emoji 映射表",
+  "version": "2.0",
+  "updated": "2026-10-19",
+  "principle": "全部是人脸表情；emoji 由页面按规则算，不是 agent 演的；常用的在前",
+  "emojis": [
+    { "key": "平静", "emoji": "😐", "meaning": "基线：不好不坏，没消息=没坏事" },
+    { "key": "开心", "emoji": "😊", "meaning": "顺利，符合预期" },
+    { "key": "顺畅", "emoji": "😌", "meaning": "干活不磕绊，一步到位" },
+    { "key": "困惑", "emoji": "🤔", "meaning": "琢磨中，问题可能不在手上" },
+    { "key": "焦虑", "emoji": "😰", "meaning": "有麻烦，还没认输" },
+    { "key": "兴奋", "emoji": "🤩", "meaning": "大进展，重要发现" },
+    { "key": "成就", "emoji": "🥳", "meaning": "干成了，值得庆祝" },
+    { "key": "疲惫", "emoji": "😴", "meaning": "干太久，该歇或该收尾" },
+    { "key": "严肃", "emoji": "🫡", "meaning": "停下来了，在等你拍板" },
+    { "key": "挫败", "emoji": "😫", "meaning": "连续失败，快来人" },
+    { "key": "过载", "emoji": "🤯", "meaning": "活太多，该拆了" },
+    { "key": "震惊", "emoji": "😱", "meaning": "出大事了，计划外" },
+    { "key": "无语", "emoji": "😑", "meaning": "离谱但不算坏事" },
+    { "key": "得意", "emoji": "😎", "meaning": "稳了，一切在掌握" },
+    { "key": "离谱", "emoji": "🙃", "meaning": "事情反直觉，说不清" },
+    { "key": "委屈", "emoji": "😢", "meaning": "明明对的被冤枉" }
+  ]
+}
