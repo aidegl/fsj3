@@ -1,0 +1,226 @@
+{
+  "main": {
+    "id": "1f08526fe5d8c2fc",
+    "type": "split",
+    "children": [
+      {
+        "id": "6fd50d0bd4c7a15a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f50111ea168e184a",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7ac86885db0669f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "59a1c3c1e3d89640",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f56b30c60792124d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "7b7f40871049b526",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "86591fffe8b49edf",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2bc27517880ff67a",
+    "type": "split",
+    "children": [
+      {
+        "id": "92dff37a00af5ce8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "56d5d1a844ee2a72",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "templates/日记模板.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "91bdc94f0f55fb38",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "templates/日记模板.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "19088701ab2991ec",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "44d1bcd3b1009cd4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "a67b565a6347866f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "templates/日记模板.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "f56b30c60792124d",
+  "lastOpenFiles": [
+    "未命名.base",
+    "未命名 1.base",
+    "东城的日常与生活/01-首页.md",
+    "[^a-a.md",
+    "templates/复盘模板.md",
+    "东城的日常与生活/01-首页/02-待办清单.md",
+    "东城的日常与生活/01-首页/01-关于东城.md",
+    "东城的日常与生活/01-首页",
+    "东城的日常与生活",
+    "FSJ记忆手册/01-首页/10-常见问题/03-怎样让自己变得更加聪明.md",
+    "FSJ记忆手册/01-首页/10-常见问题/02-怎样才能永不失忆.md",
+    "FSJ记忆手册/01-首页/10-常见问题/01-怎样避免数据越多越笨.md",
+    "FSJ记忆手册/01-首页/10-常见问题",
+    "FSJ记忆手册/01-首页/10-常见问题.md",
+    "FSJ记忆手册/01-首页/09-常用skill/08-冥想.md",
+    "FSJ记忆手册/01-首页/09-常用skill/07-怎么才能把一件事情干得漂亮.md",
+    "FSJ记忆手册/01-首页/09-常用skill/06-网页UI设计.md",
+    "FSJ记忆手册/01-首页/09-常用skill/05-飞书写入blocks生成器固化.md",
+    "FSJ记忆手册/01-首页/09-常用skill/04-Figma制作复杂技术概念讲解图.md",
+    "FSJ记忆手册/01-首页/09-常用skill/03-豆包桌面自动化桥· 方法说明书.md",
+    "FSJ记忆手册/01-首页/09-常用skill/02-FrameRonin 精灵图素材使用方法.md",
+    "FSJ记忆手册/01-首页/09-常用skill/01-Webview 资源全链路强制刷新方案.md",
+    "FSJ记忆手册/01-首页/09-常用skill",
+    "FSJ记忆手册/01-首页/09-常用skill.md",
+    "FSJ记忆手册/01-首页/08-Agent状态/05-冥想.md",
+    "FSJ记忆手册/01-首页/08-Agent状态/04-情绪.md",
+    "FSJ记忆手册/01-首页/08-Agent状态/03-苏醒.md",
+    "FSJ记忆手册/01-首页/08-Agent状态/02-睡觉.md",
+    "FSJ记忆手册/01-首页/08-Agent状态/01-EMO.md",
+    "FSJ记忆手册/01-首页/08-Agent状态",
+    "FSJ记忆手册/01-首页/08-Agent状态.md",
+    "FSJ记忆手册/01-首页/07-像素视界/01-GC模式.md",
+    "FSJ记忆手册/01-首页/07-像素视界",
+    "FSJ记忆手册/01-首页/06-关于FSJ/03-聊天",
+    "FSJ记忆手册/01-首页/06-关于FSJ/02-FSJ组织",
+    "FSJ记忆手册/01-首页/06-关于FSJ"
+  ]
+}
