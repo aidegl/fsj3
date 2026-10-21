@@ -1,0 +1,23 @@
+{
+  "_说明": "天道v2工作区。天道=收件箱巡检操作员（稳定/快/简单），宪法见 ../CLAUDE.md",
+  "_技术原理": "D:/Item/fsj2/天道.md（注入与调度原理，v1.0 两次实战验证）",
+  "_旧宪法": "D:/Item/fsj2/tiandao/CLAUDE.md（v1 调度者版，含 Y/Z 档设计，已由 fsj3/tiandao/CLAUDE.md 稳定版替代）",
+
+  "worker": {
+    "name": "dongcheng-inbox",
+    "workdir": "D:/Item/dongcheng",
+    "signal": "东城的日常与生活/01-首页/03-Agent团队/01-无名/01-任务.md",
+    "receipt": "东城的日常与生活/01-首页/03-Agent团队/01-无名/任务回执.md",
+    "queue": "东城的日常与生活/01-首页/03-Agent团队/01-无名/待执行队列.md",
+    "snapshot": ".inbox-snapshot",
+    "监听脚本": "D:/Item/fsj/workspace/fsj-flow/watch-inbox.mjs（Z档脚本版，schtasks 挂载）",
+    "dispatch": "简单任务→spawn claude -p；【长】→待执行队列；其他新增行→登记"
+  },
+
+  "dispatcher": {
+    "name": "天道",
+    "home": "D:/Item/fsj3/tiandao/",
+    "model_policy": "稳定/快/简单优先——不追求聪明",
+    "维修权限": "无（发现异常写回执标「⏸ 需维修」即止，维修边界三级制见无名答疑清单 Q3）"
+  }
+}
