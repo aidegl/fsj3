@@ -9,6 +9,7 @@ import { WebSocketServer } from 'ws';
 import fs, { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const sseClients = new Set();
@@ -30,8 +31,37 @@ const SOURCES = {
   hits: 'D:/Item/fsj/tmp-api/retrieval-hit-log.jsonl',
 };
 
+
+// ===== HAP 真数据源（#5像素视界冲刺·方案A · 2026-10-22 无名按推荐默认实装，🔵待晨审）=====
+// 🟣三拍板点全部收敛为下面 3 个常量，拍板后改一行即切换：
+const HAP = {
+  TABLE: '6a03ceaa7e29abcb297cbdfc', // 🟣拍板1·真相源表：默认=内容元数据表，改表只动这里
+  SEW: '',                           // 🟣拍板1·维度过滤：默认空=不过滤取最新；要只看某维填如 '4交流'
+  INTERVAL_MIN: 5,                   // 🟣拍板2·刷新频率：默认5分钟；要实时→拍板后升级方案B(webhook)
+  MAX: 30,
+  cache: { ts: 0, ok: false, rows: [], err: '' },
+};
+function hapPull() {
+  try {
+    const filter = HAP.SEW
+      ? ' --filter-json \'{"type":"condition","field":"sew","operator":"eq","value":"' + HAP.SEW + '"}\''
+      : '';
+    const cmd = 'hap worksheet record list ' + HAP.TABLE + ' --page-size ' + HAP.MAX + filter;
+    const raw = execSync(cmd, { encoding: 'utf8', timeout: 120000, shell: true });
+    const j = JSON.parse(raw);
+    const rows = (j.data && j.data.rows) || j.rows || [];
+    HAP.cache = { ts: Date.now(), ok: rows.length > 0, rows, err: rows.length ? '' : '空表(过滤或表选错?)' };
+    // 🟣拍板3·离线策略：拉取失败不清空 cache——保留旧值继续渲染，前端无数据才回退 plan
+  } catch (e) {
+    HAP.cache.ok = false; HAP.cache.err = String((e && e.message) || e).slice(0, 120);
+  }
+  console.log('[hapPull]', HAP.cache.ok ? 'ok ' + HAP.cache.rows.length + '条' : 'fail: ' + HAP.cache.err);
+}
+try { hapPull(); } catch {}
+setInterval(hapPull, HAP.INTERVAL_MIN * 60 * 1000);
+
 function loadData() {
-  const out = { flow: null, flows: [], plan: null, hits: [] };
+  const out = { flow: null, flows: [], plan: null, hits: [], hapTasks: { ...HAP.cache } };
   try { out.flow = JSON.parse(readFileSync(SOURCES.flow, 'utf8')); } catch {}
   try { out.now = JSON.parse(readFileSync(FLOWS_DIR + '/.loopstate.json', 'utf8')); } catch {}
   try { out.flows = readdirSync(FLOWS_DIR).filter(f => f.startsWith('flow-') && f.endsWith('.json')).map(f => { try { return JSON.parse(readFileSync(FLOWS_DIR + '/' + f, 'utf8')); } catch { return null; } }).filter(Boolean); } catch {}

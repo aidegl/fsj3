@@ -318,9 +318,21 @@ function activeFlow(){return ((DATA&&DATA.flows)||[]).find(x=>x.id===FLOWID)||nu
 
 /* 左栏：任务（目标）列表 */
 let TASKTAB='all';
+function renderHapView(){
+  const ht=DATA&&DATA.hapTasks;
+  const rows=(ht&&ht.rows)||[];
+  const meta=ht?`<div class="tcap" style="opacity:.55;padding:4px 2px">${ht.ok?'HAP真数据·'+rows.length+'条·'+new Date(ht.ts).toTimeString().slice(0,5)+'拉取':'⚠ HAP拉取失败：'+(ht.err||'未知')+'——回退本地plan'}</div>`:'<div class="tcap" style="opacity:.5;padding:8px 2px">HAP数据源未就绪</div>';
+  const body=rows.map(r=>{
+    const f=r.mingcheng||r.name||'(无标题)';
+    const tm=(r.fbsj||r.time||'').toString().slice(0,16);
+    return `<div class="trow"><div class="titem"><span class="tdot" style="background:#58a6ff"></span><div class="tbodyx"><div class="tt1">${esc(f)}</div></div><span class="pnum">${esc(tm)}</span></div></div>`;
+  }).join('');
+  document.getElementById('tasklist').innerHTML='<div id="taskitems">'+meta+(rows.length?body+'<div class="tcap" style="opacity:.5;padding:4px 2px">plan本地数据仍在「全部/组织/已完成」标签</div>':'')+'</div>';
+}
 function renderTasks(){
+  if(TASKTAB==='hap'){renderHapView();return;}
   const ps=planSteps(); if(!ps.length)return;
-  const tabs=`<div class="ttabs"><span class="${TASKTAB==='all'?'on':''}" onclick="setTaskTab('all')">全部</span><span class="${TASKTAB==='org'?'on':''}" onclick="setTaskTab('org')">组织</span><span class="${TASKTAB==='done'?'on':''}" onclick="setTaskTab('done')">已完成</span></div>`;
+  const tabs=`<div class="ttabs"><span class="${TASKTAB==='all'?'on':''}" onclick="setTaskTab('all')">全部</span><span class="${TASKTAB==='org'?'on':''}" onclick="setTaskTab('org')">组织</span><span class="${TASKTAB==='done'?'on':''}" onclick="setTaskTab('done')">已完成</span><span class="${TASKTAB==='hap'?'on':''}" onclick="setTaskTab('hap')">HAP</span></div>`;
   const items=ps.map((s,i)=>({s,i})).filter(({s})=>TASKTAB==='done'?s.status==='已完成':(TASKTAB==='org'?s.status!=='已完成':true));
   const body=items.map(({s,i})=>{
     // n/N 进度徽标：n=已完成主步数，N=主步总数（跨该任务所有流；无流回退P号）
