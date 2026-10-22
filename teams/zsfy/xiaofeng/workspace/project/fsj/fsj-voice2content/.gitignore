@@ -1,3 +1,6 @@
 __pycache__/
 hotkey.log
 *.pyc
+dist/
+build/
+*.spec

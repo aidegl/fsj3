@@ -9,8 +9,16 @@ fsj-voice2content — 语音转文字悬浮窗
 import threading
 import time
 import os
+import sys
 
-APP_DIR = os.path.dirname(os.path.abspath(__file__))
+# 打包成 exe 后 __file__ 在临时解包目录，日志/数据要用 exe 所在目录
+if getattr(sys, "frozen", False):
+    APP_DIR = os.path.dirname(sys.executable)
+else:
+    APP_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 国内加速：whisper 模型首次自动下载走镜像
+os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
 
 import numpy as np
 import pyperclip
@@ -130,8 +138,11 @@ class Voice2TextApp:
 
     # ---------- 录音 ----------
     def toggle(self):
-        with open(APP_DIR + "/hotkey.log", "a", encoding="utf-8") as f:
-            f.write(f"{time.strftime('%H:%M:%S')} toggle state={self.state}\n")
+        try:
+            with open(APP_DIR + "/hotkey.log", "a", encoding="utf-8") as f:
+                f.write(f"{time.strftime('%H:%M:%S')} toggle state={self.state}\n")
+        except OSError:
+            pass
         now = time.time()
         if now - self._last_toggle < 0.4:          # 自动重复/手抖防连发
             return
