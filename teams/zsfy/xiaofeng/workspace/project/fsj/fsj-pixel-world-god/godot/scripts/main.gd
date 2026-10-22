@@ -18,6 +18,11 @@ const JOY_REAL_SIZE := 140.0   # 摇杆真实像素直径（不随窗口缩放�
 const JOY_MARGIN := 24.0
 const TILES_ACROSS := 15.0     # 屏幕宽度恒定显示 15 格（2026-10-17 老板拍板：默认场景比例太大，人物缩到设计稿尺寸≈2倍特写；滚轮可现场微调）
 
+# FSJ 团队成员（2026-10-22 老板拍板：角色改团队成员）——按图序对应，超出者回退"侠客·NN"
+const CHAR_NAMES := ["东城", "无名", "小粽", "小风", "阿说", "梦瑶", "小云", "椰果"]
+# 名牌偏移：x=2~3字宽的一半取中，y=角色顶(-TILE*CHAR_SCALE/2=-128)再上抬32px
+const LABEL_OFFSET := Vector2(-18.0, -84.0)
+
 # 1=墙 0=空
 const MAP := [
 	[1,1,1,1,1,1,1,1,1,1,1,1],
@@ -100,7 +105,7 @@ func _ready() -> void:
 		s.play()
 		add_child(s)
 		npc_nodes.append(s)
-		var l := _make_label("侠客·%02d" % (i + 2))
+		var l := _make_label(_char_name((i + 1) % sheets.size()))
 		add_child(l)
 		npc_labels.append(l)
 		npc_cells[NPC_SPOTS[i]] = true
@@ -135,7 +140,7 @@ func _recalc_layout() -> void:
 	for i in npc_nodes.size():
 		var p := cell_to_world(NPC_SPOTS[i])
 		npc_nodes[i].position = p + draw_offset
-		npc_labels[i].position = p + draw_offset + Vector2(-40 * CHAR_SCALE, -TILE * 0.55 * CHAR_SCALE)
+		npc_labels[i].position = p + draw_offset + LABEL_OFFSET
 	# 摇杆：design 单位直接设尺寸（画多大触摸区就多大，绝不用 scale 缩放）
 	var sc := float(get_window().size.y) / maxf(vs.y, 1.0)
 	if sc <= 0.0:
@@ -216,7 +221,13 @@ func _apply_sheet(idx: int) -> void:
 	player_sprite.animation = &"run_down"
 	player_sprite.frame = 0
 	player_sprite.pause()
-	player_label.text = "侠客·%02d" % (sheet_index + 1)
+	player_label.text = _char_name(sheet_index)
+
+## 图序 → 成员名：前 8 张对应 FSJ 团队，其余回退"侠客·NN"
+func _char_name(idx: int) -> String:
+	if idx >= 0 and idx < CHAR_NAMES.size():
+		return CHAR_NAMES[idx]
+	return "侠客·%02d" % (idx + 1)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -243,12 +254,12 @@ func _make_label(text: String) -> Label:
 	var l := Label.new()
 	l.text = text
 	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	l.custom_minimum_size = Vector2(80, 0)
+	l.custom_minimum_size = Vector2(0, 0)
 	l.add_theme_font_override("font", load(UI_FONT_PATH))
-	l.add_theme_font_size_override("font_size", 12)
-	l.add_theme_color_override("font_color", Color(0.95, 0.93, 0.85))
-	l.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
-	l.add_theme_constant_override("outline_size", 4)
+	l.add_theme_font_size_override("font_size", 22)
+	l.add_theme_color_override("font_color", Color(0.98, 0.96, 0.88))
+	l.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
+	l.add_theme_constant_override("outline_size", 6)
 	return l
 
 func cell_to_world(c: Vector2i) -> Vector2:
@@ -325,7 +336,7 @@ func _process(delta: float) -> void:
 				player_sprite.frame = 0
 			player_sprite.play()
 	player_sprite.position = visual_pos + draw_offset
-	player_label.position = visual_pos + draw_offset + Vector2(-40 * CHAR_SCALE, -TILE * 0.55 * CHAR_SCALE)
+	player_label.position = visual_pos + draw_offset + LABEL_OFFSET
 	if cam:
 		cam.position = player_sprite.position + pan_offset
 	if dbg:
