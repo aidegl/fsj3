@@ -59,9 +59,9 @@ class Voice2TextApp:
         self.dot.pack(side="left", padx=(8, 4), pady=3)
         self.status = tk.Label(top, text="模型加载中…", fg=FG, bg=IDLE_BG, font=f)
         self.status.pack(side="left")
-        tk.Label(top, text="✕", fg="#6c7086", bg=IDLE_BG, font=f, cursor="hand2").pack(
-            side="right", padx=8)
-        self.root.children[list(self.root.children)[-1]].bind("<Button-1>", lambda e: self.root.destroy())
+        close_lbl = tk.Label(top, text="✕", fg="#6c7086", bg=IDLE_BG, font=f, cursor="hand2")
+        close_lbl.pack(side="right", padx=8)
+        close_lbl.bind("<Button-1>", lambda e: self.root.destroy())
 
         body = tk.Frame(self.root, bg=IDLE_BG, cursor="hand2")
         body.pack(fill="both", expand=True)
@@ -84,14 +84,14 @@ class Voice2TextApp:
                  font=("Microsoft YaHei UI", 8)).pack(side="right", padx=8, pady=(0, 4))
 
     def _set_bg(self, color):
-        for w in self.root.winfo_children():
+        def rec(w):
             try:
                 w.config(bg=color)
             except tk.TclError:
                 pass
-        self.dot.config(bg=color)
-        self.text_lbl.config(bg=color)
-        self.paste_btn.config(bg=color)
+            for c in w.winfo_children():
+                rec(c)
+        rec(self.root)
 
     def _tick(self):
         self.dot.config(fg={"rec": "#f38ba8", "busy": "#f9e2af", "idle": "#6c7086",
