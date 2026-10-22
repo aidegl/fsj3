@@ -8,6 +8,9 @@ fsj-voice2content — 语音转文字悬浮窗
 """
 import threading
 import time
+import os
+
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
 import numpy as np
 import pyperclip
@@ -40,6 +43,7 @@ class Voice2TextApp:
         self.last_text = ""
         self._drag = None
         self._press_pos = None                     # 区分点击 vs 拖动
+        self._last_toggle = 0.0                    # 防热键自动重复
 
         self._build_ui()
         threading.Thread(target=self._load_model, daemon=True).start()
@@ -126,10 +130,32 @@ class Voice2TextApp:
 
     # ---------- 录音 ----------
     def toggle(self):
-        if self.state == "idle":
-            self._start_rec()
-        elif self.state == "rec":
-            self._stop_rec()
+        with open(APP_DIR + "/hotkey.log", "a", encoding="utf-8") as f:
+            f.write(f"{time.strftime('%H:%M:%S')} toggle state={self.state}\n")
+        now = time.time()
+        if now - self._last_toggle < 0.4:          # 自动重复/手抖防连发
+            return
+        self._last_toggle = now
+        try:
+            if self.state == "idle":
+                self._start_rec()
+            elif self.state == "rec":
+                self._stop_rec()
+        except Exception as ex:                    # 任何异常都不许卡死状态机
+            self._force_idle(f"出错已复位: {ex}")
+
+    def _force_idle(self, msg):
+        if self.stream:
+            try:
+                self.stream.stop()
+                self.stream.close()
+            except Exception:
+                pass
+            self.stream = None
+        self.frames = []
+        self._set_bg(IDLE_BG)
+        self._set_idle()
+        self.text_lbl.config(text=msg, fg="#f38ba8")
 
     def _start_rec(self):
         self.frames = []
@@ -147,7 +173,14 @@ class Voice2TextApp:
     def _stop_rec(self):
         self.stream.stop()
         self.stream.close()
+        self.stream = None
+        if not self.frames:                        # 一帧都没有：别炸，直接复位
+            self._set_bg(IDLE_BG)
+            self._set_idle()
+            self.text_lbl.config(text="(没录到声音，再试一次)", fg="#6c7086")
+            return
         audio = np.concatenate(self.frames)[:, 0]
+        self.frames = []
         dur = len(audio) / SR
         if dur < MIN_SECONDS:
             self._set_idle()

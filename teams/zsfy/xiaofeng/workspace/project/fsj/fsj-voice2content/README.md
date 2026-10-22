@@ -19,10 +19,16 @@
 ## 依赖
 
 ```
-pip install faster-whisper sounddevice keyboard pyperclip
+pip install -r requirements.txt
 ```
 
-（已在本机全局 Python 3.12 装好）
+### 换一台电脑怎么装（三步）
+
+1. 装好 Python 3.10+（python.org 安装时勾选 Add to PATH）
+2. `git clone` 本项目（fsj3 仓，路径 `teams/zsfy/xiaofeng/workspace/project/fsj/fsj-voice2content`）
+3. **双击 `start.bat`** —— 缺依赖会自动 pip 安装（失败自动换清华镜像），whisper 模型首次运行自动下载（约 500MB，已设 hf-mirror 国内加速），之后正常使用
+
+注意：全局热键要求程序以普通用户进程运行（不要在沙箱/受限环境里起）；退出后再启动重新双击 start.bat 即可。
 
 ## 已知限制
 
