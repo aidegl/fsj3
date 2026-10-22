@@ -325,7 +325,9 @@ function renderHapView(){
   const body=rows.map(r=>{
     const f=r.mingcheng||r.name||'(无标题)';
     const tm=(r.fbsj||r.time||'').toString().slice(0,16);
-    return `<div class="trow"><div class="titem"><span class="tdot" style="background:#58a6ff"></span><div class="tbodyx"><div class="tt1">${esc(f)}</div></div><span class="pnum">${esc(tm)}</span></div></div>`;
+    const sew=Array.isArray(r.sew)?(r.sew[0]&&(r.sew[0].value||r.sew[0].name)):(r.sew&&typeof r.sew==='object'?(r.sew.value||r.sew.name):(r.sew||''));
+    const tag=sew?` <span style="opacity:.55;font-size:.72em;border:1px solid #58a6ff55;border-radius:3px;padding:0 4px">${esc(sew)}</span>`:'';
+    return `<div class="trow"><div class="titem"><span class="tdot" style="background:#58a6ff"></span><div class="tbodyx"><div class="tt1">${esc(f)}${tag}</div></div><span class="pnum">${esc(tm)}</span></div></div>`;
   }).join('');
   document.getElementById('tasklist').innerHTML='<div id="taskitems">'+meta+(rows.length?body+'<div class="tcap" style="opacity:.5;padding:4px 2px">plan本地数据仍在「全部/组织/已完成」标签</div>':'')+'</div>';
 }
