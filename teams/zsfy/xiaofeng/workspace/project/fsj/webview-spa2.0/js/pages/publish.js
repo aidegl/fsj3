@@ -214,7 +214,7 @@ var PublishPage = (function () {
           triggerWorkflow: false,
           getSystemControl: 'false',
           controls: [
-            { controlId: 'mingcheng', value: file.name || '正文图片' },
+            { controlId: 'title', value: file.name || '正文图片' },
             { controlId: 'fujian', value: temp.url }
           ]
         })
@@ -401,26 +401,26 @@ var PublishPage = (function () {
     var shangjiaRowid = FsjApi.getShangjiaRowid ? FsjApi.getShangjiaRowid() : '';
 
     var controls = [
-      { controlId: 'mingcheng', value: title },
+      { controlId: 'title', value: title },
       { controlId: 'mdnr', value: summary || '' },
-      { controlId: 'leixing', value: '文章' },
-      { controlId: 'sew', value: '2想法', valueType: 2 },
-      { controlId: 'wznr', value: content },
-      { controlId: 'zhutu', value: coverUrls.join(',') },
-      { controlId: 'fabuzhe', value: userRowid, valueType: 2 },
-      { controlId: 'shangjia1', value: '1', valueType: 2 },
-      { controlId: 'shenhe', value: '待审核' }
+      { controlId: 'kind', value: '文章' },
+      { controlId: 'dimension', value: '2想法', valueType: 2 },
+      { controlId: 'content', value: content },
+      { controlId: 'attachments', value: coverUrls.join(',') },
+      { controlId: 'publisher', value: userRowid, valueType: 2 },
+      { controlId: 'is_published', value: '1', valueType: 2 },
+      { controlId: 'audit_status', value: '待审核' }
     ];
-    if (duoren) controls.push({ controlId: 'duoren', value: duoren, valueType: 2 });
+    if (duoren) controls.push({ controlId: 'is_multi_participant', value: duoren, valueType: 2 });
     if (shangjiaRowid) {
-      controls.push({ controlId: 'shangjia2', value: shangjiaRowid, valueType: 2 });
+      controls.push({ controlId: 'org', value: shangjiaRowid, valueType: 2 });
     }
     if (selectedCategory) {
-      controls.push({ controlId: 'spfl', value: selectedCategory, valueType: 2 });
+      controls.push({ controlId: 'category', value: selectedCategory, valueType: 2 });
     }
 
     FsjApi.callMingdaoAPI('https://api.mingdao.com/v2/open/worksheet/addRow', {
-      worksheetId: 'shangpin',
+      worksheetId: '6a03ceaa7e29abcb297cbdfc',
       triggerWorkflow: true,
       getSystemControl: 'false',
       controls: controls

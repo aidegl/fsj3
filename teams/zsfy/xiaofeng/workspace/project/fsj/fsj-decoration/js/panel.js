@@ -497,17 +497,17 @@ var Panel = (function () {
 
   /** ===== 高级过滤（2026-09-09 重应用）：多字段/多操作符/一层条件组/单选下拉 ===== */
   var ADV_FIELDS=[
-    {id:'mingcheng',name:'名称',type:'text',dataType:2},
-    {id:'miaoshu',name:'描述',type:'text',dataType:2},
-    {id:'leixing',name:'内容类型',type:'select',dataType:11,options:LX_TYPES},
-    {id:'sew',name:'记忆维度',type:'select',dataType:11,options:SEW_OPTS},
+    {id:'title',name:'名称',type:'text',dataType:2},
+    {id:'description',name:'描述',type:'text',dataType:2},
+    {id:'kind',name:'内容类型',type:'select',dataType:11,options:LX_TYPES},
+    {id:'dimension',name:'记忆维度',type:'select',dataType:11,options:SEW_OPTS},
     {id:'6a0521f9104f63109c08d466',name:'分类',type:'relation',dataType:29},
     {id:'6a045ea70507e352629dd2c6',name:'关键词',type:'relation',dataType:29},
-    {id:'fbsj',name:'发布时间',type:'datetime',dataType:16},
+    {id:'published_at',name:'发布时间',type:'datetime',dataType:16},
     {id:'ctime',name:'创建时间',type:'datetime',dataType:16},
-    {id:'yuedu',name:'阅读数',type:'number',dataType:6},
-    {id:'dianzan',name:'点赞数',type:'number',dataType:6},
-    {id:'pinglun',name:'评论数',type:'number',dataType:6}
+    {id:'view_count',name:'阅读数',type:'number',dataType:6},
+    {id:'like_count',name:'点赞数',type:'number',dataType:6},
+    {id:'comment_count',name:'评论数',type:'number',dataType:6}
   ];
   var ADV_OPS={
     text:[['eq','是'],['ne','不是'],['like','包含'],['nlike','不包含'],['start','开头为'],['end','结尾为'],['empty','为空'],['hasvalue','不为空']],
@@ -518,7 +518,7 @@ var Panel = (function () {
   };
   function advFieldDef(fid){ for (var i=0;i<ADV_FIELDS.length;i++) if (ADV_FIELDS[i].id===fid) return ADV_FIELDS[i]; return ADV_FIELDS[0]; }
   function advDefaultOp(type){ var ops = ADV_OPS[type] || []; return ops.length ? ops[0][0] : 'like'; }
-  function advDefaultCond(){ return {kind:'cond',field:'mingcheng',op:'like',value:''}; }
+  function advDefaultCond(){ return {kind:'cond',field:'title',op:'like',value:''}; }
   function parseKwRowids(guanjianciJson, filterSids) {
     var out = [];
     try {
@@ -551,10 +551,13 @@ var Panel = (function () {
   // 语义模型 → 明道云筛选器线格式（与 webview home.js 的 advToWire 同逻辑；
   // 装修器日志打印的就是这个数组——webview 端原样透传给 getFilterRows）
   function advCondToWire(c, splice) {
-    var dtMap = { mingcheng: 2, miaoshu: 2, leixing: 11, sew: 11,
+    var FIELD_RENAME={mingcheng:'title',miaoshu:'description',leixing:'kind',sew:'dimension',fbsj:'published_at',yuedu:'view_count',dianzan:'like_count',pinglun:'comment_count'};
+    var fld = FIELD_RENAME[c.field] || c.field;
+    var dtMap = { title: 2, description: 2, kind: 11, dimension: 11,
+      published_at: 16, view_count: 6, like_count: 6, comment_count: 6,
       '6a0521f9104f63109c08d466': 29, '6a045ea70507e352629dd2c6': 29,
-      fbsj: 16, ctime: 16, yuedu: 6, dianzan: 6, pinglun: 6 };
-    var w = { controlId: c.field, dataType: dtMap[c.field] || 2, spliceType: splice || 1 };
+      ctime: 16 };
+    var w = { controlId: fld, dataType: dtMap[fld] || 2, spliceType: splice || 1 };
     switch (c.op) {
       case 'eq': w.filterType = 2; w.value = c.value; break;
       case 'ne': w.filterType = 6; w.value = c.value; break;

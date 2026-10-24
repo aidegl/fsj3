@@ -354,6 +354,15 @@ async function resolveShangjia2(fabuzheRowid) {
  *  - fu/fuyuan/fabuzhe 等 Relation 字段从 JSON 字符串 → {sid, name} 对象
  *  - 空字符串统一为 ''
  */
+// 2026-10-24 HAP 别名英文化：响应键=当前英文别名，raw[拼音] 失效——按此表兜底解析
+const CURRENT_ALIASES = {
+    mingcheng: 'title', wznr: 'content', sew: 'dimension', fu: 'parent',
+    fuyuan: 'root', zi: 'child', zisuoyou: 'child_all', fabuzhe: 'publisher',
+    fbsj: 'published_at', sjwcrq: 'completed_at', shanchu: 'is_deleted',
+    wancheng: 'is_completed', quanzhong: 'weight', ptyh: 'participant',
+    ptrq: 'group_expire_at', leixing: 'kind', shangjia2: 'org',
+};
+
 function normalizeRow(raw) {
     if (!raw) return raw;
     const out = { rowid: raw.rowid || raw.rowId || raw.rowID };
@@ -363,7 +372,8 @@ function normalizeRow(raw) {
     if (raw.utime) out.utime = raw.utime;
 
     for (const [alias, cid] of Object.entries(FIELD_ALIASES)) {
-        const v = raw[alias];
+        let v = raw[alias];
+        if (v === undefined || v === null) v = raw[CURRENT_ALIASES[alias] || ''];
         if (v === undefined || v === null) continue;
         // Relation 字段：JSON 字符串解析（fu/fuyuan/fabuzhe/ptyh/zi 等）
         // ⚠️ Dropdown 字段（sew/leixing）单独处理：v2 返回纯文本字符串（如 "知识"），不能 JSON.parse！

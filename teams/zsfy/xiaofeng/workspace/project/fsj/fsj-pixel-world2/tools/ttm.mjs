@@ -24,8 +24,8 @@ const CFG = {
   proxy: 'https://100000whys.cn/mingdao',
   api: 'https://api.mingdao.com/v2/open/worksheet/getFilterRows',
   worksheetId: '6a03ceaa7e29abcb297cbdfc',            // 元表
-  controls: ['rowid', 'mingcheng', 'miaoshu', 'wznr', 'leixing', 'quanzhong'],
-  tierField: 'quanzhong',                              // 权重分值字段（实际字段名不同改这里）
+  controls: ['rowid', 'title', 'description', 'content', 'kind', 'weight'],
+  tierField: 'weight',                              // 权重分值字段（实际字段名不同改这里）
   hitLog: 'D:/Item/fsj/tmp-api/retrieval-hit-log.jsonl',
   flowsDir: 'D:/Item/fsj3/teams/zsfy/xiaofeng/workspace/project/fsj/fsj-pixel-world2/workspace/flows',
   agent: process.env.TTM_AGENT || 'wuming'

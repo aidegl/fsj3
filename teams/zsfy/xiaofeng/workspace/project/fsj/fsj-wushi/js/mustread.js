@@ -108,7 +108,7 @@ async function loadFromHap() {
         recordId = rec ? rec.rowid : await createTierRecord();
         if (!rec) toast('已自动创建「' + cfg.label + '-' + agent.name + '」记录', 'success', 3000);
     }
-    const rec = recordId ? await API.getRowById('shangpin', recordId) : null;
+    const rec = recordId ? await API.getRowById('6a03ceaa7e29abcb297cbdfc', recordId) : null;
     let wz = rec ? (rec['wznr'] ?? rec[FIELD_IDS.wznr] ?? '') : '[]';
     wz = stripFence(wz);
     let items = [];

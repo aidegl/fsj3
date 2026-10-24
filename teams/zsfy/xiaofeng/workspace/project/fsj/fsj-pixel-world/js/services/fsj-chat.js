@@ -128,18 +128,19 @@ export const FsjChat = {
     /** 写一条 4交流 消息，返回 {rowid, ctime}（先存后发的"存"）
      *  orgRowid：所属商家 rowid（2026-09-06 拍板：创建 shangpin 必带 shangjia2；不传则跳过，HAP 工作流兜底） */
     async send(convKey, text, fromRowid, orgRowid) {
+        // 2026-10-24 别名英文化：controlId 用新英文别名
         const controls = [
-                { controlId: 'mingcheng', value: text },
-                { controlId: 'leixing', value: '交流' },
-                { controlId: 'sew', value: '4交流' },
-                { controlId: 'quanxian', value: '组织可见' },
-                { controlId: 'kjzz', value: convKey },
-                { controlId: 'fabuzhe', value: fromRowid },
-                { controlId: 'fbsj', value: fmt(new Date()) }
+                { controlId: 'title', value: text },
+                { controlId: 'kind', value: '交流' },
+                { controlId: 'dimension', value: '4交流' },
+                { controlId: 'permission_tags', value: '组织可见' },
+                { controlId: 'visible_org', value: convKey },
+                { controlId: 'publisher', value: fromRowid },
+                { controlId: 'published_at', value: fmt(new Date()) }
             ];
-        if (orgRowid) controls.push({ controlId: 'shangjia2', value: orgRowid });
+        if (orgRowid) controls.push({ controlId: 'org', value: orgRowid });
         const made = await call(M_ADD, {
-            worksheetId: 'shangpin',
+            worksheetId: '6a03ceaa7e29abcb297cbdfc',
             controls: controls
         });
         if (!made.success) throw new Error(made.error_msg || '写入失败');
@@ -149,22 +150,22 @@ export const FsjChat = {
     /** 拉某会话历史（接口侧过滤 + 客户端复核，双保险），按时间正序 */
     async history(convKey) {
         const d = await call(M_API, {
-            worksheetId: 'shangpin', pageSize: 200, pageIndex: 1, listType: 0,
-            controls: ['mingcheng', 'sew', 'kjzz', 'fabuzhe', 'fbsj', 'ctime'],
+            worksheetId: '6a03ceaa7e29abcb297cbdfc', pageSize: 200, pageIndex: 1, listType: 0,
+            controls: ['title', 'dimension', 'visible_org', 'publisher', 'published_at', 'ctime'],
             filters: [
-                { controlId: 'kjzz', dataType: 29, spliceType: 1, filterType: 24, value: convKey },
-                { controlId: 'sew', dataType: 11, spliceType: 1, filterType: 1, value: '4交流' },
-                { controlId: 'leixing', dataType: 11, spliceType: 1, filterType: 1, value: '交流' }
+                { controlId: 'visible_org', dataType: 29, spliceType: 1, filterType: 24, value: convKey },
+                { controlId: 'dimension', dataType: 11, spliceType: 1, filterType: 1, value: '4交流' },
+                { controlId: 'kind', dataType: 11, spliceType: 1, filterType: 1, value: '交流' }
             ]
         });
         const rows = (d.data && d.data.rows) || [];
         return rows
-            .filter(r => r.sew === '4交流' && JSON.stringify(rel(r.kjzz)).includes(convKey))
+            .filter(r => (r.dimension || r.sew) === '4交流' && JSON.stringify(rel(r.visible_org || r.kjzz)).includes(convKey))
             .map(r => {
-                const from = rel(r.fabuzhe)[0] || { sid: '', name: '' };
+                const from = rel(r.publisher || r.fabuzhe)[0] || { sid: '', name: '' };
                 return {
                     rowid: r.rowid, fasongzhe: from.sid, fasongzheName: from.name,
-                    neirong: r.mingcheng || '', ctime: r.fbsj || r.ctime || ''
+                    neirong: r.title || r.mingcheng || '', ctime: r.published_at || r.fbsj || r.ctime || ''
                 };
             })
             .sort((a, b) => new Date(a.ctime.replace(/-/g, '/')) - new Date(b.ctime.replace(/-/g, '/')));
@@ -216,28 +217,28 @@ export const FsjChat = {
      */
     async loadExp(userRowid, orgRowid) {
         const d = await call(M_API, {
-            worksheetId: 'shangpin', pageSize: 5, pageIndex: 1, listType: 0,
-            controls: ['mingcheng', 'szhz', 'jfhz', 'ptyh', 'shangjia2', 'guanjianci'],
+            worksheetId: '6a03ceaa7e29abcb297cbdfc', pageSize: 5, pageIndex: 1, listType: 0,
+            controls: ['title', 'szhz', 'points_total', 'participant', 'org', 'tags'],
             filters: [
-                { controlId: 'ptyh', dataType: 29, spliceType: 1, filterType: 24, value: userRowid },
-                { controlId: 'shangjia2', dataType: 29, spliceType: 1, filterType: 24, value: orgRowid },
-                { controlId: 'guanjianci', dataType: 29, spliceType: 1, filterType: 24, value: this.EXP_KW }
+                { controlId: 'participant', dataType: 29, spliceType: 1, filterType: 24, value: userRowid },
+                { controlId: 'org', dataType: 29, spliceType: 1, filterType: 24, value: orgRowid },
+                { controlId: 'tags', dataType: 29, spliceType: 1, filterType: 24, value: this.EXP_KW }
             ]
         });
         const rows = (d.data && d.data.rows) || [];
         // 客户端复核（防接口侧过滤失效）
         const hit = rows.find(r => {
             const ids = v => rel(v).map(x => x.sid || x.rowid);
-            return ids(r.ptyh).includes(userRowid)
-                && ids(r.shangjia2).includes(orgRowid)
-                && ids(r.guanjianci).includes(this.EXP_KW);
+            return ids(r.participant || r.ptyh).includes(userRowid)
+                && ids(r.org || r.shangjia2).includes(orgRowid)
+                && ids(r.tags || r.guanjianci).includes(this.EXP_KW);
         });
         if (!hit) return null;
         return {
             rowid: hit.rowid,
-            mingcheng: hit.mingcheng || '',
+            mingcheng: hit.title || hit.mingcheng || '',
             szhz: Number(hit.szhz) || 0,   // 累计经验值
-            jfhz: Number(hit.jfhz) || 0    // 积分汇总
+            jfhz: Number(hit.points_total || hit.jfhz) || 0    // 积分汇总
         };
     }
 };

@@ -20,7 +20,7 @@ var DecorationApi = (function () {
   // 组织/商家表（leixing 区分：商家 / 组织 / 部分可见 ...）
   var ORG_WORKSHEET_ID = '69f549c69f1956fc0e171aa6';
   // 内容表（商品/文章/积分商品，leixing 区分）
-  var CONTENT_WORKSHEET_ID = 'shangpin';
+  var CONTENT_WORKSHEET_ID = '6a03ceaa7e29abcb297cbdfc';
   // 功能表
   var FEATURE_WORKSHEET_ID = 'gongnengbiao';
   // shangpin 表内"商品分类"关联字段（content_list.category_filter 的 rowid 指向它）
@@ -155,16 +155,16 @@ var DecorationApi = (function () {
     var merchantRowid = window._decoMerchantRowid || '';
     var filters = [];
     if (merchantRowid) {
-      filters.push({ controlId: 'shangjia2', dataType: 29, spliceType: 1, filterType: 24, value: merchantRowid });
+      filters.push({ controlId: 'org', dataType: 29, spliceType: 1, filterType: 24, value: merchantRowid });
     }
     if (opts.leixing) {
-      filters.push({ controlId: 'leixing', dataType: 1, spliceType: 1, filterType: 1, value: opts.leixing });
+      filters.push({ controlId: 'kind', dataType: 1, spliceType: 1, filterType: 1, value: opts.leixing });
     }
     if (opts.categoryRowid) {
       filters.push({ controlId: CONTENT_CATEGORY_FIELD, dataType: 29, spliceType: 1, filterType: 24, value: opts.categoryRowid });
     }
     if (opts.keyword) {
-      filters.push({ controlId: 'mingcheng', dataType: 1, spliceType: 1, filterType: 3, value: opts.keyword });
+      filters.push({ controlId: 'title', dataType: 1, spliceType: 1, filterType: 3, value: opts.keyword });
     }
     var body = {
       worksheetId: CONTENT_WORKSHEET_ID,
@@ -172,7 +172,7 @@ var DecorationApi = (function () {
       pageSize: opts.pageSize || 20,
       pageIndex: opts.pageIndex || 1,
       listType: 0,
-      controls: ['mingcheng', 'zhutu', 'leixing', 'ctime', 'shoujia'],
+      controls: ['title', 'attachments', 'kind', 'ctime', 'sell_price'],
       filters: filters
     };
     return callMingdaoAPI(MINGDAO_API, body).then(function (res) {
@@ -182,9 +182,9 @@ var DecorationApi = (function () {
         rows: rows.map(function (row) {
           return {
             rowid: row.rowid || '',
-            mingcheng: row.mingcheng || '',
-            zhutu: parseImage(row.zhutu),
-            leixing: row.leixing || '',
+            mingcheng: row.title || row.mingcheng || '',
+            zhutu: parseImage(row.attachments || row.zhutu),
+            leixing: row.kind || row.leixing || '',
             ctime: row.ctime || ''
           };
         })
@@ -207,9 +207,9 @@ var DecorationApi = (function () {
         if (res.success && res.data) {
           return {
             rowid: res.data.rowid || rid,
-            mingcheng: res.data.mingcheng || '',
-            zhutu: parseImage(res.data.zhutu),
-            leixing: res.data.leixing || ''
+            mingcheng: res.data.title || res.data.mingcheng || '',
+            zhutu: parseImage(res.data.attachments || res.data.zhutu),
+            leixing: res.data.kind || res.data.leixing || ''
           };
         }
         return null;

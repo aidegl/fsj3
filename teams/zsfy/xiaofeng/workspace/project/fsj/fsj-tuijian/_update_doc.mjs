@@ -30,7 +30,7 @@ const rec = await call('https://api.mingdao.com/v2/open/worksheet/getRowByIdPost
   rowId: ROW
 });
 const raw = rec.data || rec;
-const wznr = raw.wznr;
+const wznr = raw.content || raw.wznr;   // 2026-10-24 别名英文化：wznr→content
 if (!wznr) throw new Error('wznr 为空，结构: ' + JSON.stringify(rec).slice(0, 300));
 
 // 2. 幂等插入 tuijian 行（紧跟 playground 行后）

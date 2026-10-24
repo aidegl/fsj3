@@ -50,10 +50,13 @@
   }
 
   // ========== adv 语义模型 → HAP 筛选器线格式（兼容旧格式数据） ==========
-var ADV_FIELD_DT = { mingcheng:2, miaoshu:2, leixing:11, sew:11, '6a0521f9104f63109c08d466':29, '6a045ea70507e352629dd2c6':29, fbsj:16, ctime:16, yuedu:6, dianzan:6, pinglun:6 };
+var ADV_FIELD_DT = { title:2, mingcheng:2, description:2, miaoshu:2, kind:11, leixing:11, dimension:11, sew:11, '6a0521f9104f63109c08d466':29, '6a045ea70507e352629dd2c6':29, published_at:16, fbsj:16, ctime:16, view_count:6, yuedu:6, like_count:6, dianzan:6, comment_count:6, pinglun:6 };
+// 旧配置（nav tab.adv）里存的还是拼音字段名 → 发请求前归一成当前英文别名
+var ADV_FIELD_RENAME = { mingcheng:'title', miaoshu:'description', leixing:'kind', sew:'dimension', fbsj:'published_at', yuedu:'view_count', dianzan:'like_count', pinglun:'comment_count' };
 function advCondToWire(c, splice) {
-  var dt = ADV_FIELD_DT[c.field] || 2;
-  var w = { controlId: c.field, dataType: dt, spliceType: splice || 1 };
+  var field = ADV_FIELD_RENAME[c.field] || c.field;
+  var dt = ADV_FIELD_DT[field] || 2;
+  var w = { controlId: field, dataType: dt, spliceType: splice || 1 };
   switch (c.op) {
     case 'eq': w.filterType = 2; w.value = c.value; break;
     case 'ne': w.filterType = 6; w.value = c.value; break;
@@ -361,7 +364,7 @@ var HomePage = {
           self._renderBannerDOM(rows.map(function (row) {
             return {
               image_url: FsjApi.parseImage ? FsjApi.parseImage(row.zhutu) : '',
-              title: row.mingcheng || '',
+              title: row.title || row.mingcheng || '',
               rowid: row.rowid || ''
             };
           }), sectionEl);
@@ -603,7 +606,7 @@ var HomePage = {
     // 兼容旧单条件格式 { type, rowid, sewKey }
     _buildListFilters: function () {
       var filters = [
-        { controlId: 'shangjia1', dataType: 2, spliceType: 1, filterType: 2, value: '1' }
+        { controlId: 'is_published', dataType: 2, spliceType: 1, filterType: 2, value: '1' }
       ];
       var tab = this.currentFilterTab || {};
       // HAP 原生筛选器格式直接透传
@@ -637,7 +640,7 @@ var HomePage = {
       // leixing 集合过滤（任意 tab 都可配；空=不限类型）
       if (Array.isArray(tab.leixing) && tab.leixing.length > 0) {
         filters.push({
-          controlId: 'leixing',
+          controlId: 'kind',
           dataType: 11,
           spliceType: (op === 'or') ? 2 : 1,
           filterType: 2,
@@ -821,7 +824,7 @@ var HomePage = {
       return '<div class="post-card" data-rowid="' + rowid + '" data-url="' + (url || '') + '">' +
         coverHtml +
         '<div class="post-info">' +
-          '<h3 class="post-title">' + (row.mingcheng || '未命名') + '</h3>' +
+          '<h3 class="post-title">' + (row.title || row.mingcheng || '未命名') + '</h3>' +
           '<div class="post-tags">' +
             duoRenHtml +
             '<span class="post-category-tag">' + category + '</span>' +

@@ -15,7 +15,7 @@
  *   const top = await retrieveMemories({ keywords: ['微信登录', '检索'], N: 10 });
  */
 const MINGDAO = 'https://100000whys.cn/mingdao';
-const SHANGPIN = 'shangpin';
+const SHANGPIN = '6a03ceaa7e29abcb297cbdfc';   // 内容元数据表 UUID（原别名 shangpin）
 const KW_WS = '69e04b28924f17c90a970f3d';
 const WEIGHT_WS = '6a90f29daa38289b4e6e7386';
 const KW_REL_FIELD = '6a045ea70507e352629dd2c6';       // shangpin.关键词 关联字段
@@ -78,13 +78,14 @@ export async function retrieveMemories(opts) {
   // ② 反查候选集（关联 24，values 多词 OR；guanjianci 一并取回用于精确计命中）
   var candRes = await callMingdao('getFilterRows', SHANGPIN, {
     pageSize: 200, pageIndex: 1, listType: 0,
-    controls: ['rowid', 'mingcheng', 'guanjianci', 'ctime', 'jifen'],
+    controls: ['rowid', 'title', 'tags', 'ctime', 'points'],
     filters: [{ controlId: KW_REL_FIELD, dataType: 29, spliceType: 2, filterType: 24, values: kwRowids }]
   });
   var candidates = ((candRes.data || {}).rows || []).map(function (r) {
-    var hitSids = parseKwRowids(r.guanjianci, kwRowids);   // 候选实际命中的查询词（服务端 OR 命中可能含宽匹配，此处精确复核）
-    return { rowid: r.rowid, mingcheng: r.mingcheng || '', ctime: r.ctime || '',
-             jifen: Number(r.jifen) || 0, guanjianci: r.guanjianci || '[]',
+    var kwRaw = r.tags || r.guanjianci || '[]';   // 别名英文化后响应键为 tags
+    var hitSids = parseKwRowids(kwRaw, kwRowids);   // 候选实际命中的查询词（服务端 OR 命中可能含宽匹配，此处精确复核）
+    return { rowid: r.rowid, mingcheng: r.title || r.mingcheng || '', ctime: r.ctime || '',
+             jifen: Number(r.points || r.jifen) || 0, guanjianci: kwRaw,
              hitSids: hitSids, hits: hitSids.length };
   }).filter(function (c) { return c.hits > 0; });   // 精确复核后 0 命中的丢弃
   if (!candidates.length) return [];

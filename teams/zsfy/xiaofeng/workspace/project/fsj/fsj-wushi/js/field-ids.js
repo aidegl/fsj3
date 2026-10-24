@@ -31,6 +31,38 @@ export const FIELD_IDS = {
     cjlx: '6aaa3086786452fc2187a572',          // 层级逻辑（Dropdown 单选，2026-09-21 实测；父子关系逻辑类型）
 };
 
+/**
+ * 2026-10-24 HAP 别名英文化全量生效（67 字段清零）：逻辑名 → HAP 当前别名。
+ * getFilterRows/getRowByIdPost 的响应键 = 当前别名，normalizeRow 读响应时按此表做
+ * 「当前英文别名 → controlId UUID」兜底解析。
+ */
+export const CURRENT_ALIASES = {
+    mingcheng: 'title',
+    wznr: 'content',
+    sew: 'dimension',
+    fu: 'parent',
+    fuyuan: 'root',
+    zi: 'child',
+    zisuoyou: 'child_all',
+    fabuzhe: 'publisher',
+    leixing: 'kind',
+    fbsj: 'published_at',
+    sjwcrq: 'completed_at',
+    shanchu: 'is_deleted',
+    quanzhong: 'weight',
+    wancheng: 'is_completed',
+    yynr: 'cite',
+    shangjia1: 'is_published',
+    quanxian: 'permission_tags',
+    kjzz: 'visible_org',
+    miaoshu: 'description',
+    ptyh: 'participant',
+    shangjia2: 'org',
+    wqyy: 'full_cite',
+    wqyywznr: 'full_cite_content',
+    cjlx: 'hierarchy_kind',
+};
+
 // 层级逻辑（cjlx）选项：2026-09-21 getWorksheetInfo 实测
 export const CJLX_OPTIONS = [
     { key: 'tuili',   label: '推理' },

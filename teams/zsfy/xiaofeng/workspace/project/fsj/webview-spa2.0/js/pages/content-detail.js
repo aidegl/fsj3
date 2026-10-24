@@ -186,13 +186,13 @@ var ContentDetailPage = {
       if (imgUrl) {
         var img = document.createElement('img');
         img.src = imgUrl;
-        img.alt = data.mingcheng || '';
+        img.alt = data.title || data.mingcheng || '';
         this.cover.appendChild(img);
       }
     }
 
     // 标题
-    this.title.textContent = data.mingcheng || '';
+    this.title.textContent = data.title || data.mingcheng || '';
 
     // 正文内容：优先解析 wznr 的 JSON 结构做 UI 渲染，否则降级为 markdown/纯文本
     this.renderBody(data);
@@ -339,8 +339,8 @@ var ContentDetailPage = {
 
     this.comments.forEach(function (c) {
       // 判断是一级评论还是回复
-      // fu 字段：一级评论为 "[]" 或空，回复评论填被回复评论的 rowid
-      var fu = c.fu || '';
+      // parent 字段（原 fu）：一级评论为 "[]" 或空，回复评论填被回复评论的 rowid
+      var fu = c.parent || c.fu || '';
       var fuSid = '';
       if (fu) {
         try {
@@ -430,7 +430,7 @@ var ContentDetailPage = {
     var authorName = this._getCommentAuthorName(comment);
     var authorRowid = this._getCommentAuthorRowid(comment);
     var authorAvatar = this._getCommentAuthorAvatar(comment);
-    var text = comment.mingcheng || '';
+    var text = comment.title || comment.mingcheng || '';
     var time = this._formatCommentTime(comment);
 
     var itemClass = 'comment-item' + (isReply ? ' reply-item' : '');

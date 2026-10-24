@@ -4,7 +4,7 @@
  * 写/删：hap-proxy /obj（v2 editRow/addRow/deleteRow）——不走 /mingdao，因为该代理 editRow/addRow
  *        会强制追加 fbsj=当前时间并覆盖显式值（2026-09-04 实测），会污染五事的事件时间语义
  */
-import { FIELD_IDS, QUANXIAN_BY_KEY } from './field-ids.js';
+import { FIELD_IDS, QUANXIAN_BY_KEY, CURRENT_ALIASES } from './field-ids.js';
 
 const API_BASE = 'https://100000whys.cn/obj';
 const M_PROXY = 'https://100000whys.cn/mingdao';
@@ -71,8 +71,9 @@ function normalizeRow(raw) {
     if (!raw) return raw;
     const out = { rowid: raw.rowid, ctime: raw.ctime, utime: raw.utime };
     for (const [alias, cid] of Object.entries(FIELD_IDS)) {
-        // 兼容两种返回键风格：mingdao 代理原样透传（controlId 键）/ 其他通道别名键
+        // 兼容三种返回键风格：mingdao 代理原样透传（controlId 键）/ 当前英文别名键 / 旧拼音别名键
         let v = raw[alias];
+        if (v === undefined || v === null) v = raw[CURRENT_ALIASES[alias] || ''];
         if (v === undefined || v === null) v = raw[cid];
         if (v === undefined || v === null) continue;
         if (alias === 'fu' || alias === 'fabuzhe' || alias === 'fuyuan' || alias === 'ptyh' || alias === 'yynr' || alias === 'kjzz' || alias === 'wqyy') {
@@ -114,11 +115,11 @@ export async function fetchAgentRows(fabuzheRowid, onProgress) {
         FIELD_IDS.wqyy
     ];
     const base = {
-        worksheetId: 'shangpin',
+        worksheetId: '6a03ceaa7e29abcb297cbdfc',   // 内容元数据表 UUID（原别名 shangpin，抗表改名）
         listType: 0,
         controls: LIST_CONTROLS,
         filters: [
-            { controlId: 'fabuzhe', dataType: 29, spliceType: 1, filterType: 24, value: fabuzheRowid },
+            { controlId: FIELD_IDS.fabuzhe, dataType: 29, spliceType: 1, filterType: 24, value: fabuzheRowid },
             // 东城 2026-09-05：只取 leixing=知识（12 维记忆），服务端正向排除聊天消息等非知识类型
             // （dropdown"等于"实测可靠；"不等于"有 bug 不可用）
             { controlId: FIELD_IDS.leixing, dataType: 11, spliceType: 1, filterType: 1, value: '55c1d467-927b-4af8-98a9-d934554ac3bf' }
@@ -182,7 +183,7 @@ export async function searchByKeyword(keyword, pageSize = 20) {
         page.forEach(r => {
             rows.push({
                 rowid: r.rowid,
-                mingcheng: r.mingcheng || '',
+                mingcheng: r.title || r.mingcheng || '',
                 sew: r.sew || '',
                 fabuzhe: (() => { try { const a = typeof r.fabuzhe === 'string' ? JSON.parse(r.fabuzhe) : r.fabuzhe; return Array.isArray(a) && a[0] ? (a[0].name || a[0].sid) : ''; } catch (e) { return ''; } })()
             });
@@ -282,7 +283,7 @@ export async function getRowById(worksheetId, rowId) {
 }
 
 export async function getRecordDetail(rowId) {
-    const body = { worksheetId: 'shangpin', rowId, getSystemControl: 'false' };
+    const body = { worksheetId: '6a03ceaa7e29abcb297cbdfc', rowId, getSystemControl: 'false' };
     let parsed;
     try {
         parsed = await callMingdao('https://api.mingdao.com/v2/open/worksheet/getRowByIdPost', body);

@@ -469,8 +469,8 @@ function hapText(v) {
 function fetchChildren(parentRowid) {
   return hapPost('/v3/app/worksheets/' + HAP_CFG.ws + '/rows/list', {
     pageSize: 100, pageIndex: 1,
-    fields: ['mingcheng', 'wznr'],
-    filter: { type: 'group', logic: 'AND', children: [ { type: 'condition', field: 'fu', operator: 'eq', value: parentRowid } ] }
+    fields: ['title', 'content'],
+    filter: { type: 'group', logic: 'AND', children: [ { type: 'condition', field: 'parent', operator: 'eq', value: parentRowid } ] }
   }).then(r => (r.data && r.data.rows) || []);
 }
 

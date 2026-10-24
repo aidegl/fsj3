@@ -144,18 +144,18 @@
       //   task   = 类型 == 任务接单 且 参与活动用户 包含 我（客户端再排除我发布的）
       if (self.currentTab === 'note') {
         self._loadMyContent(listEl, emptyEl, userRowid, {
-          extraFilters: [{ controlId: 'leixing', dataType: 11, spliceType: 1, filterType: 6, value: TYPE_TASK }],
+          extraFilters: [{ controlId: 'kind', dataType: 11, spliceType: 1, filterType: 6, value: TYPE_TASK }],
           countStat: true
         });
       } else if (self.currentTab === 'reward') {
         self._loadMyContent(listEl, emptyEl, userRowid, {
-          extraFilters: [{ controlId: 'leixing', dataType: 11, spliceType: 1, filterType: 2, value: TYPE_TASK }]
+          extraFilters: [{ controlId: 'kind', dataType: 11, spliceType: 1, filterType: 2, value: TYPE_TASK }]
         });
       } else {
         self._loadMyContent(listEl, emptyEl, userRowid, {
           noAuthorFilter: true,
           extraFilters: [
-            { controlId: 'leixing', dataType: 11, spliceType: 1, filterType: 2, value: TYPE_TASK },
+            { controlId: 'kind', dataType: 11, spliceType: 1, filterType: 2, value: TYPE_TASK },
             { controlId: PARTICIPANT_CONTROL, dataType: 29, spliceType: 2, filterType: 24, value: userRowid }
           ],
           postFilter: function (row) {
@@ -179,19 +179,19 @@
       var filters = [];
       if (!opts.noAuthorFilter) {
         // 发布者 = 当前用户
-        filters.push({ controlId: 'fabuzhe', dataType: 29, spliceType: 1, filterType: 24, value: userRowid });
+        filters.push({ controlId: 'publisher', dataType: 29, spliceType: 1, filterType: 24, value: userRowid });
       }
       (opts.extraFilters || []).forEach(function (f) { filters.push(f); });
       // 排除已逻辑删除
-      filters.push({ controlId: 'shanchu', dataType: 2, spliceType: 1, filterType: 6, value: '1' });
+      filters.push({ controlId: 'is_deleted', dataType: 2, spliceType: 1, filterType: 6, value: '1' });
 
       FsjApi.callMingdaoAPI('https://api.mingdao.com/v2/open/worksheet/getFilterRows', {
-        worksheetId: 'shangpin',
+        worksheetId: '6a03ceaa7e29abcb297cbdfc',
         viewId: '',
         pageSize: 50,
         pageIndex: 1,
         listType: 0,
-        controls: ['rowid', 'mingcheng', 'zhutu', 'mdnr', 'leixing', 'fabuzhe', 'shenhe', 'ctime'],
+        controls: ['rowid', 'title', 'attachments', 'mdnr', 'kind', 'publisher', 'audit_status', 'ctime'],
         filters: filters,
         sortId: 'ctime',
         isAsc: false,
@@ -236,7 +236,7 @@
           return '<div class="kongjian-card" data-rowid="' + (row.rowid || '') + '">' +
             coverHtml +
             '<div class="kongjian-card-info">' +
-              '<div class="kongjian-card-title">' + (row.mingcheng || '未命名') + '</div>' +
+              '<div class="kongjian-card-title">' + (row.title || row.mingcheng || '未命名') + '</div>' +
               '<div class="kongjian-card-meta">' +
                 statusHtml +
                 '<span>' + (row.ctime || '') + '</span>' +

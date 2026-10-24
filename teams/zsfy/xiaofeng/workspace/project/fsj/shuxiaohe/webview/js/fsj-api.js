@@ -159,18 +159,18 @@ var FsjApi = (function () {
   function mapProduct(row) {
     return {
       id: row.rowid || '',
-      code: row.zdbh || '',
-      name: row.mingcheng || '',
-      price: parseFloat(row.shoujia) || 0,
+      code: row.auto_number || row.zdbh || '',
+      name: row.title || row.mingcheng || '',
+      price: parseFloat(row.sell_price || row.shoujia) || 0,
       boxPrice: parseFloat(row.tejia) || 0,
-      imageUrl: parseImage(row.zhutu),
+      imageUrl: parseImage(row.attachments || row.zhutu),
       stock: 999,
       limit: 999,
-      shangjia: parseShangjia(row.shangjia2),
-      category: parseCategory(row.spfl),
-      weight: parseInt(row.quanzhong) || 0,
-      description: row.miaoshu || '',
-      leixing: row.leixing || ''
+      shangjia: parseShangjia(row.org || row.shangjia2),
+      category: parseCategory(row.category || row.spfl),
+      weight: parseInt(row.weight || row.quanzhong) || 0,
+      description: row.description || row.miaoshu || '',
+      leixing: row.kind || row.leixing || ''
     };
   }
 
@@ -181,9 +181,9 @@ var FsjApi = (function () {
   function filterByShangjia(rows, shangjiaRowid) {
     if (!shangjiaRowid) return rows;
     return rows.filter(function (row) {
-      if (!row.shangjia2) return false;
+      if (!row.org && !row.shangjia2) return false;
       try {
-        var shangjiaList = JSON.parse(row.shangjia2);
+        var shangjiaList = JSON.parse(row.org || row.shangjia2);
         return shangjiaList.some(function (item) {
           return item.sid === shangjiaRowid;
         });
@@ -202,9 +202,9 @@ var FsjApi = (function () {
     var categoryRowid = CATEGORY_ROWID_MAP[categoryName];
     if (!categoryRowid) return rows;
     return rows.filter(function (row) {
-      if (!row.spfl) return false;
+      if (!row.category && !row.spfl) return false;
       try {
-        var catList = JSON.parse(row.spfl);
+        var catList = JSON.parse(row.category || row.spfl);
         return catList.some(function (item) {
           return item.sid === categoryRowid || item.rowid === categoryRowid;
         });
@@ -220,7 +220,7 @@ var FsjApi = (function () {
    */
   function excludePointsProducts(rows) {
     return rows.filter(function (row) {
-      return row.leixing !== '积分商城';
+      return (row.kind || row.leixing) !== '积分商城';
     });
   }
 
@@ -229,7 +229,7 @@ var FsjApi = (function () {
    */
   function filterPointsProducts(rows) {
     return rows.filter(function (row) {
-      return row.leixing === '积分商城';
+      return (row.kind || row.leixing) === '积分商城';
     });
   }
 
@@ -274,14 +274,14 @@ var FsjApi = (function () {
     if (shangjiaRowid) {
       body.filters = [
         {
-          controlId: 'shangjia2',
+          controlId: 'org',
           dataType: 29,
           spliceType: 1,
           filterType: 24,
           value: shangjiaRowid
         },
         {
-          controlId: 'shanchu',
+          controlId: 'is_deleted',
           dataType: 2,
           spliceType: 1,
           filterType: 6,
@@ -420,7 +420,7 @@ var FsjApi = (function () {
       var filtered = filterPointsProducts(_cache.allRows);
       if (keyword) {
         filtered = filtered.filter(function (row) {
-          return row.mingcheng && row.mingcheng.indexOf(keyword) !== -1;
+          return (row.title || row.mingcheng) && (row.title || row.mingcheng).indexOf(keyword) !== -1;
         });
       }
       var filteredTotal = filtered.length;
@@ -450,7 +450,7 @@ var FsjApi = (function () {
         var filtered = filterPointsProducts(_cache.allRows);
         if (keyword) {
           filtered = filtered.filter(function (row) {
-            return row.mingcheng && row.mingcheng.indexOf(keyword) !== -1;
+            return (row.title || row.mingcheng) && (row.title || row.mingcheng).indexOf(keyword) !== -1;
           });
         }
         var filteredTotal = filtered.length;
@@ -773,7 +773,7 @@ var FsjApi = (function () {
       return rows.map(function (row) {
         var productInfo = parseProductInfo(row.spspu);
         // 优先用明细表自带的 zhutu/mingcheng，其次用关联商品的信息
-        var imageUrl = parseImage(row.zhutu) || productInfo.imageUrl;
+        var imageUrl = parseImage(row.attachments || row.zhutu) || productInfo.imageUrl;
         var productName = row.mingcheng || productInfo.name;
         if (!productInfo.rowid) {
           console.warn('[OrderAPI] spspu解析失败, 原始spspu:', JSON.stringify(row.spspu).substring(0, 300));

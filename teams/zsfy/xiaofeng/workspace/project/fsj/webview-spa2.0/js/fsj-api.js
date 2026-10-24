@@ -52,6 +52,46 @@ var FsjApi = (function () {
     _shangjiaRowid = rowid;
   }
 
+  /**
+   * 字段别名英文化兼容垫片（2026-10-24 HAP 内容元数据表 67 字段别名全量英文）：
+   * 响应行的新英文键 → 同步补一份旧拼音派生键（旧键已存在时不覆盖），
+   * 让存量代码的 row.mingcheng / row.zhutu 等读取继续工作。逐步消化后可移除本垫片。
+   */
+  var ALIAS_SHIM = {
+    title:'mingcheng', content:'wznr', dimension:'sew', publisher:'fabuzhe', kind:'leixing',
+    published_at:'fbsj', weight:'quanzhong', attachments:'zhutu', tags:'guanjianci', category:'spfl',
+    org:'shangjia2', is_deleted:'shanchu', visible_org:'kjzz', audit_status:'shenhe', audit_note:'shnr',
+    like_count:'dianzan', comment_count:'pinglun', view_count:'yuedu', description:'miaoshu',
+    is_multi_participant:'duoren', permission_tags:'quanxian', blocked_user:'bkjyh',
+    participant:'ptyh', participant_limit:'ptxz', group_expire_at:'ptrq', completed_at:'sjwcrq',
+    icon:'xstb', is_completed:'wancheng', cost_price:'chengbenjia', sell_price:'shoujia',
+    special_price:'tejia', is_published:'shangjia1', like_total:'dianzanshu',
+    comment_total:'pinglunshu', bookmark_total:'shoucangshu', like_factor:'dzyz',
+    comment_factor:'plsyz', bookmark_factor:'scsyz', home_view_total:'zyfw', home_view_factor:'zyyz',
+    recent_score:'jinqizhi', composite_weight:'dianzanzhi', rating_grade:'pingfeng',
+    rating_total:'zongpingfen', rating_vote_total:'pfcs', composite_rating:'zhpf',
+    record:'jilubiao', at_user:'atyonghu', reply_user:'hfyh', author_avatar:'fbztx'
+  };
+
+  function shimAliasKeys(obj) {
+    if (!obj || typeof obj !== 'object') return obj;
+    for (var nk in ALIAS_SHIM) {
+      if (obj[nk] !== undefined && obj[ALIAS_SHIM[nk]] === undefined) obj[ALIAS_SHIM[nk]] = obj[nk];
+    }
+    return obj;
+  }
+
+  function shimRows(result) {
+    try {
+      var d = result && result.data;
+      if (!d) return result;
+      if (Array.isArray(d.rows)) d.rows.forEach(shimAliasKeys);
+      else if (d.rows) shimAliasKeys(d.rows);
+      if (d.rowid && d.controlId === undefined && typeof d === 'object' && !Array.isArray(d)) shimAliasKeys(d);
+    } catch (e) { /* 垫片失败不阻塞响应 */ }
+    return result;
+  }
+
   function callMingdaoAPI(url, body) {
     if (MINGDAO_DEBUG) {
       console.log('[MingdaoAPI] 请求 URL:', url);
@@ -68,6 +108,7 @@ var FsjApi = (function () {
       return res.json();
     })
     .then(function (result) {
+      shimRows(result);
       if (MINGDAO_DEBUG) console.log('[MingdaoAPI] 响应:', JSON.stringify(result).substring(0, 500));
       return result;
     });
@@ -92,8 +133,8 @@ var FsjApi = (function () {
 
   function mapProduct(row) {
     return {
-      id: row.rowid || '', code: row.zdbh || '', name: row.mingcheng || '',
-      price: parseFloat(row.shoujia) || 0, boxPrice: parseFloat(row.jifen) || 0,
+      id: row.rowid || '', code: row.auto_number || row.zdbh || '', name: row.title || row.mingcheng || '',
+      price: parseFloat(row.shoujia) || 0, boxPrice: parseFloat(row.points || row.jifen) || 0,
       imageUrl: parseImage(row.zhutu), stock: 999, limit: 999,
       shangjia: parseShangjia(row.shangjia2), category: parseCategory(row.spfl),
       weight: parseInt(row.quanzhong) || 0, description: row.miaoshu || '',
@@ -151,8 +192,8 @@ var FsjApi = (function () {
     if (keyword) body.keyWords = keyword;
     if (shangjiaRowid) {
       body.filters = [
-        { controlId: 'shangjia2', dataType: 29, spliceType: 1, filterType: 24, value: shangjiaRowid },
-        { controlId: 'shanchu', dataType: 2, spliceType: 1, filterType: 6, value: '1' }
+        { controlId: 'org', dataType: 29, spliceType: 1, filterType: 24, value: shangjiaRowid },
+        { controlId: 'is_deleted', dataType: 2, spliceType: 1, filterType: 6, value: '1' }
       ];
     }
     return callMingdaoAPI(MINGDAO_API, body).then(function (res) {
@@ -201,7 +242,7 @@ var FsjApi = (function () {
     if (keyword !== _cache.keyword) { clearCache(); _cache.keyword = keyword; }
     if (_cache.backendTotal > 0 && _cache.allRows.length >= _cache.backendTotal) {
       var filtered = filterPointsProducts(_cache.allRows);
-      if (keyword) { var kw = keyword; filtered = filtered.filter(function(r) { return r.mingcheng && r.mingcheng.indexOf(kw) !== -1; }); }
+      if (keyword) { var kw = keyword; filtered = filtered.filter(function(r) { var nm = r.title || r.mingcheng; return nm && nm.indexOf(kw) !== -1; }); }
       var start = (pageIndex - 1) * pageSize;
       var pageRows = filtered.slice(start, start + pageSize);
       return Promise.resolve({ success: true, data: { rows: pageRows, total: filtered.length, totalCount: filtered.length } });
@@ -211,7 +252,7 @@ var FsjApi = (function () {
     return loadBackendPage(_cache.backendPageIndex + 1, keyword).then(function () {
       _cache.loading = false;
       var filtered = filterPointsProducts(_cache.allRows);
-      if (keyword) { var kw = keyword; filtered = filtered.filter(function(r) { return r.mingcheng && r.mingcheng.indexOf(kw) !== -1; }); }
+      if (keyword) { var kw = keyword; filtered = filtered.filter(function(r) { var nm = r.title || r.mingcheng; return nm && nm.indexOf(kw) !== -1; }); }
       var filteredTotal = filtered.length;
       var loadRatio = _cache.allRows.length / _cache.backendTotal;
       var projectedTotal = Math.round(filteredTotal / loadRatio);
@@ -433,14 +474,14 @@ var FsjApi = (function () {
   }
 
   // ========== 内容元数据 API ==========
-  var CONTENT_WORKSHEET_ID = 'shangpin';
+  var CONTENT_WORKSHEET_ID = '6a03ceaa7e29abcb297cbdfc';   // 内容元数据表 UUID（原别名 shangpin，抗表改名 notes）
 
   function getContentDetail(rowid) {
     var body = {
       worksheetId: CONTENT_WORKSHEET_ID,
       rowId: rowid,
       getSystemControl: 'false',
-      includeControls: ['mingcheng', 'zhutu', 'mdnr', 'wznr', 'neirong', 'leixing', 'fabuzhe', 'shangjia2', 'quanzhong']
+      includeControls: ['title', 'attachments', 'mdnr', 'content', 'neirong', 'kind', 'publisher', 'org', 'weight']
     };
     return callMingdaoAPI(MINGDAO_GET_ROW_API, body).then(function (res) {
       if (res.success && res.data) {
@@ -456,16 +497,16 @@ var FsjApi = (function () {
     if (pageSize === undefined) pageSize = 20;
     var shangjiaRowid = getShangjiaRowid();
     if (shangjiaRowid) {
-      filters.push({ controlId: 'shangjia2', dataType: 29, spliceType: 1, filterType: 24, value: shangjiaRowid });
+      filters.push({ controlId: 'org', dataType: 29, spliceType: 1, filterType: 24, value: shangjiaRowid });
     }
     // 逻辑删除过滤：排除 shanchu=1 的记录
     // kjzz 过滤（2026-09-11 老板要求）：只显示用户已加入组织的内容
     var userJrdzz = [];
     try { userJrdzz = JSON.parse(localStorage.getItem('fsj_user_jrdzz') || '[]'); } catch(e) {}
     if (userJrdzz.length) {
-      filters.push({ controlId: 'kjzz', dataType: 29, spliceType: 1, filterType: 24, values: userJrdzz });
+      filters.push({ controlId: 'visible_org', dataType: 29, spliceType: 1, filterType: 24, values: userJrdzz });
     }
-    filters.push({ controlId: 'shanchu', dataType: 2, spliceType: 1, filterType: 6, value: '1' });
+    filters.push({ controlId: 'is_deleted', dataType: 2, spliceType: 1, filterType: 6, value: '1' });
     console.log('[ContentListAPI] 最终过滤条件:', JSON.stringify(filters));
     var body = {
       worksheetId: CONTENT_WORKSHEET_ID,
@@ -473,7 +514,7 @@ var FsjApi = (function () {
       pageSize: pageSize,
       pageIndex: pageIndex,
       listType: 0,
-      controls: ['mingcheng', 'zhutu', 'mdnr', 'wznr', 'leixing', 'fabuzhe', 'caid', 'quanzhong', 'shoujia', 'jifen', 'ptxz', 'ptrq', 'ptrx', 'ptyh', 'spfl', 'guanjianci', 'dianzan', 'pinglun', 'yuedu', 'fbztx', 'shenhe', 'ctime'],
+      controls: ['title', 'attachments', 'mdnr', 'content', 'kind', 'publisher', 'caid', 'weight', 'sell_price', 'points', 'participant_limit', 'group_expire_at', 'ptrx', 'participant', 'category', 'tags', 'like_count', 'comment_count', 'view_count', 'author_avatar', 'audit_status', 'ctime'],
       filters: filters
     };
     return callMingdaoAPI(MINGDAO_API, body);
@@ -562,11 +603,11 @@ var FsjApi = (function () {
     if (!pageSize) pageSize = 20;
     var shangjiaRowid = getShangjiaRowid();
     var filters = [
-      { controlId: 'leixing', dataType: 2, spliceType: 1, filterType: 2, value: '个人相册' },
-      { controlId: 'shanchu', dataType: 2, spliceType: 1, filterType: 6, value: '1' }
+      { controlId: 'kind', dataType: 2, spliceType: 1, filterType: 2, value: '个人相册' },
+      { controlId: 'is_deleted', dataType: 2, spliceType: 1, filterType: 6, value: '1' }
     ];
     if (shangjiaRowid) {
-      filters.push({ controlId: 'shangjia2', dataType: 29, spliceType: 1, filterType: 24, value: shangjiaRowid });
+      filters.push({ controlId: 'org', dataType: 29, spliceType: 1, filterType: 24, value: shangjiaRowid });
     }
     // 按当前登录用户过滤（只查自己的相册）
     var userRowid = '';
@@ -575,7 +616,7 @@ var FsjApi = (function () {
       try { userRowid = JSON.parse(storedInfo).id || ''; } catch (e) {}
     }
     if (userRowid) {
-      filters.push({ controlId: 'fabuzhe', dataType: 29, spliceType: 1, filterType: 24, value: userRowid });
+      filters.push({ controlId: 'publisher', dataType: 29, spliceType: 1, filterType: 24, value: userRowid });
     }
     var body = {
       worksheetId: CONTENT_WORKSHEET_ID,
@@ -583,7 +624,7 @@ var FsjApi = (function () {
       pageSize: pageSize,
       pageIndex: pageIndex,
       listType: 0,
-      controls: ['mingcheng', 'zhutu', 'mdnr', 'wznr', 'leixing', 'fabuzhe', 'quanzhong', 'ctime'],
+      controls: ['title', 'attachments', 'mdnr', 'content', 'kind', 'publisher', 'weight', 'ctime'],
       filters: filters,
       sortId: 'ctime',
       isAsc: true
@@ -597,7 +638,7 @@ var FsjApi = (function () {
   function mapAlbumItem(row) {
     return {
       id: row.rowid || '',
-      name: row.mingcheng || '',
+      name: row.title || row.mingcheng || '',
       imageUrl: parseImage(row.zhutu),
       description: row.wznr || '',
       content: row.mdnr || '',
@@ -624,15 +665,15 @@ var FsjApi = (function () {
 
     // 直接传 URL 字符串，Mingdao 会自动从 URL 下载文件并注册为附件
     var controls = [
-      { controlId: 'leixing', value: '个人相册' },
-      { controlId: 'shangjia2', value: shangjiaRowid },
-      { controlId: 'zhutu', value: imageUrl }
+      { controlId: 'kind', value: '个人相册' },
+      { controlId: 'org', value: shangjiaRowid },
+      { controlId: 'attachments', value: imageUrl }
     ];
     if (userRowid) {
-      controls.push({ controlId: 'fabuzhe', value: userRowid });
+      controls.push({ controlId: 'publisher', value: userRowid });
     }
     if (title) {
-      controls.push({ controlId: 'mingcheng', value: title });
+      controls.push({ controlId: 'title', value: title });
     }
 
     var body = {
@@ -670,7 +711,7 @@ var FsjApi = (function () {
         worksheetId: CONTENT_WORKSHEET_ID,
         rowId: rowid,
         controls: [
-          { controlId: 'shanchu', value: '1' }
+          { controlId: 'is_deleted', value: '1' }
         ],
         getSystemControl: 'false'
       };
@@ -691,14 +732,14 @@ var FsjApi = (function () {
     if (!contentRowid) return Promise.resolve({ success: true, data: { rows: [], total: 0 } });
     if (!pageIndex) pageIndex = 1;
     if (!pageSize) pageSize = COMMENT_PAGE_SIZE;
-    // 过滤：leixing=评论, fuyuan=当前内容rowid, shangjia2=当前商家
+    // 过滤：leixing=评论, root=当前内容rowid（原 fuyuan，2026-10-24 别名英文化）, shangjia2=当前商家
     var filters = [
-      { controlId: 'leixing', dataType: 2, spliceType: 1, filterType: 2, value: '评论' },
-      { controlId: 'fuyuan', dataType: 29, spliceType: 1, filterType: 24, value: contentRowid }
+      { controlId: 'kind', dataType: 2, spliceType: 1, filterType: 2, value: '评论' },
+      { controlId: 'root', dataType: 29, spliceType: 1, filterType: 24, value: contentRowid }
     ];
     var shangjiaRowid = getShangjiaRowid();
     if (shangjiaRowid) {
-      filters.push({ controlId: 'shangjia2', dataType: 6, spliceType: 1, filterType: 24, value: shangjiaRowid });
+      filters.push({ controlId: 'org', dataType: 6, spliceType: 1, filterType: 24, value: shangjiaRowid });
     }
     var body = {
       worksheetId: CONTENT_WORKSHEET_ID,
@@ -706,7 +747,7 @@ var FsjApi = (function () {
       pageSize: pageSize,
       pageIndex: pageIndex,
       listType: 0,
-      controls: ['mingcheng', 'fuyuan', 'fu', 'hfyh', 'zi', 'fabuzhe', 'leixing', 'shangjia2', 'ctime'],
+      controls: ['title', 'root', 'parent', 'hfyh', 'child', 'publisher', 'kind', 'org', 'ctime'],
       filters: filters,
       sort: [{ controlId: 'ctime', isAsc: false }]
     };
@@ -741,18 +782,18 @@ var FsjApi = (function () {
 
   function _doCreateComment(contentRowid, text, parentCommentRowid, parentCommentAuthorRowid, userRowid, shangjiaRowid) {
     var controls = [
-      { controlId: 'leixing', value: '评论' },
-      { controlId: 'mingcheng', value: text },
-      { controlId: 'shangjia2', value: shangjiaRowid },
-      { controlId: 'fabuzhe', value: userRowid },
-      // fuyuan 永远指向文章/内容 rowid
-      { controlId: 'fuyuan', value: contentRowid }
+      { controlId: 'kind', value: '评论' },
+      { controlId: 'title', value: text },
+      { controlId: 'org', value: shangjiaRowid },
+      { controlId: 'publisher', value: userRowid },
+      // root 永远指向文章/内容 rowid（原 fuyuan，2026-10-24 别名英文化）
+      { controlId: 'root', value: contentRowid }
     ];
 
-    // 回复评论：填 hfyh（被回复者 rowid）和 fu（被回复评论 rowid）
+    // 回复评论：填 hfyh（被回复者 rowid）和 parent（被回复评论 rowid，原 fu）
     if (parentCommentRowid) {
-      controls.push({ controlId: 'hfyh', value: parentCommentAuthorRowid || '' });
-      controls.push({ controlId: 'fu', value: parentCommentRowid });
+      controls.push({ controlId: 'reply_user', value: parentCommentAuthorRowid || '' });
+      controls.push({ controlId: 'parent', value: parentCommentRowid });
     }
 
     var body = {
@@ -1334,22 +1375,22 @@ var FsjApi = (function () {
     } catch(e) {}
 
     var controls = [
-      { controlId: 'leixing', value: 'article' },
-      { controlId: 'shangjia2', value: shangjiaRowid },
-      { controlId: 'mingcheng', value: articleData.title || '' },
-      { controlId: 'wznr', value: articleData.content || '' }
+      { controlId: 'kind', value: 'article' },
+      { controlId: 'org', value: shangjiaRowid },
+      { controlId: 'title', value: articleData.title || '' },
+      { controlId: 'content', value: articleData.content || '' }
     ];
 
     if (articleData.summary) {
       controls.push({ controlId: 'mdnr', value: articleData.summary });
     }
     if (articleData.coverUrls && articleData.coverUrls.length > 0) {
-      controls.push({ controlId: 'zhutu', value: articleData.coverUrls.join(',') });
+      controls.push({ controlId: 'attachments', value: articleData.coverUrls.join(',') });
     } else if (articleData.coverUrl) {
-      controls.push({ controlId: 'zhutu', value: articleData.coverUrl });
+      controls.push({ controlId: 'attachments', value: articleData.coverUrl });
     }
     if (articleData.duoren) {
-      controls.push({ controlId: 'ptxz', value: articleData.duoren });
+      controls.push({ controlId: 'participant_limit', value: articleData.duoren });
     }
     if (articleData.xuanshang) {
       controls.push({ controlId: 'xianshang', value: articleData.xuanshang });
@@ -1358,7 +1399,7 @@ var FsjApi = (function () {
       controls.push({ controlId: 'xianshang_amount', value: articleData.xuanshangAmount });
     }
     if (userRowid) {
-      controls.push({ controlId: 'fabuzhe', value: userRowid });
+      controls.push({ controlId: 'publisher', value: userRowid });
     }
 
     var body = {
@@ -1475,21 +1516,21 @@ var FsjApi = (function () {
    */
   function nodeToControls(node, parentControlId) {
     var controls = [
-      { controlId: 'leixing', value: '十二维', valueType: 2 },
-      { controlId: 'mingcheng', value: node.mingcheng },
-      { controlId: 'sew', value: node.sew, valueType: 2 },
-      { controlId: 'guanjianci', value: JSON.stringify(node.guanjianci) },
+      { controlId: 'kind', value: '十二维', valueType: 2 },
+      { controlId: 'title', value: node.mingcheng },
+      { controlId: 'dimension', value: node.sew, valueType: 2 },
+      { controlId: 'tags', value: JSON.stringify(node.guanjianci) },
       { controlId: 'neirong', value: node.neirong },
-      { controlId: 'quanzhong', value: node.quanzhong },
+      { controlId: 'weight', value: node.quanzhong },
       { controlId: 'zhixindu', value: node.zhixindu }
     ];
 
     if (node.ctime) controls.push({ controlId: 'ctime', value: node.ctime });
     if (node.utime) controls.push({ controlId: 'utime', value: node.utime });
-    if (node.fabuzhe) controls.push({ controlId: 'fabuzhe', value: node.fabuzhe });
-    if (node.shangjia1) controls.push({ controlId: 'shangjia1', value: node.shangjia1, valueType: 2 });
+    if (node.fabuzhe) controls.push({ controlId: 'publisher', value: node.fabuzhe });
+    if (node.shangjia1) controls.push({ controlId: 'is_published', value: node.shangjia1, valueType: 2 });
     // 所属商家（2026-09-06 拍板：创建 shangpin 必带；节点带 shangjia2 则写入，取不到跳过由 HAP 工作流兜底）
-    if (node.shangjia2) controls.push({ controlId: 'shangjia2', value: node.shangjia2, valueType: 2 });
+    if (node.shangjia2) controls.push({ controlId: 'org', value: node.shangjia2, valueType: 2 });
 
     // 父子关联字段（需在明道云表新增 parent_node 关联记录字段）
     if (node.parentId) {

@@ -45,15 +45,22 @@ async function hapPull() {
   try {
     const input = {
       worksheetId: HAP.TABLE, pageSize: HAP.MAX, pageIndex: 1, listType: 0,
-      controls: ['rowid', 'mingcheng', 'sew', 'fbsj'],
-      filters: HAP.SEW ? [{ controlId: 'sew', dataType: 2, spliceType: 1, filterType: 2, value: HAP.SEW }] : [],
+      // 2026-10-24 别名英文化：请求/响应用新别名，下方 shim 再补旧拼音键给前端
+      controls: ['rowid', 'title', 'dimension', 'published_at'],
+      filters: HAP.SEW ? [{ controlId: 'dimension', dataType: 2, spliceType: 1, filterType: 2, value: HAP.SEW }] : [],
     };
     const r = await fetch('https://100000whys.cn/mingdao', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ url: 'https://api.mingdao.com/v2/open/worksheet/getFilterRows', input }),
       signal: AbortSignal.timeout(60000),
     }).then(x => x.json());
-    const rows = (r.data && r.data.rows) || [];
+    const rows = ((r.data && r.data.rows) || []).map(row => {
+      // 别名垫片：前端 index.html 读 r.mingcheng/r.sew —— 新键补旧键（不覆盖已有）
+      if (row.title !== undefined && row.mingcheng === undefined) row.mingcheng = row.title;
+      if (row.dimension !== undefined && row.sew === undefined) row.sew = row.dimension;
+      if (row.published_at !== undefined && row.fbsj === undefined) row.fbsj = row.published_at;
+      return row;
+    });
     HAP.cache = { ts: Date.now(), ok: rows.length > 0, rows, err: rows.length ? '' : '空表(过滤或表选错?)' };
     // 🟣拍板3·离线策略：拉取失败不清空 cache——保留旧值继续渲染，前端无数据才回退 plan
   } catch (e) {

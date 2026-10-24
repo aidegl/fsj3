@@ -23,7 +23,7 @@ var ChatService = (function () {
 
   var ORG_WS = '69f549c69f1956fc0e171aa6';   // 会话容器（组织表）
   var USER_WS = '69b0077358322d512e60bad0';  // 用户表（通讯录）
-  var CONTENT_WS = 'shangpin';               // 消息（内容元数据表）
+  var CONTENT_WS = '6a03ceaa7e29abcb297cbdfc';               // 消息（内容元数据表 UUID，原别名 shangpin）
   var MINGDAO_API = 'https://api.mingdao.com/v2/open/worksheet/getFilterRows';
   var MINGDAO_ADD = 'https://api.mingdao.com/v2/open/worksheet/addRow';
 
@@ -211,10 +211,10 @@ var ChatService = (function () {
       pageSize: 200,
       pageIndex: 1,
       listType: 0,
-      controls: ['mingcheng', 'leixing', 'sew', 'kjzz', 'fabuzhe', 'fbsj', 'ctime'],
+      controls: ['title', 'kind', 'dimension', 'visible_org', 'publisher', 'published_at', 'ctime'],
       filters: [
-        { controlId: 'kjzz', dataType: 29, spliceType: 1, filterType: 24, value: convKey },
-        { controlId: 'sew', dataType: 11, spliceType: 1, filterType: 1, value: SEW_JIAOLIU_KEY }
+        { controlId: 'visible_org', dataType: 29, spliceType: 1, filterType: 24, value: convKey },
+        { controlId: 'dimension', dataType: 11, spliceType: 1, filterType: 1, value: SEW_JIAOLIU_KEY }
       ]
     }).then(function (res) {
       var rows = (res.success && res.data && res.data.rows) || [];
@@ -223,7 +223,7 @@ var ChatService = (function () {
         return {
           rowid: r.rowid,
           huiche: convKey,
-          neirong: r.mingcheng || '',
+          neirong: r.title || r.mingcheng || '',
           fasongzhe: from.sid,
           fasongzheName: from.name,
           ctime: r.fbsj || r.ctime || ''
@@ -240,17 +240,17 @@ var ChatService = (function () {
   function fsjSendMessage(convKey, text, user) {
     console.log('[发送调试] addRow 请求发出：conv=' + convKey + ' 发送者=' + user.rowid);
     var controls = [
-        { controlId: 'mingcheng', value: text },
-        { controlId: 'leixing', value: LEIXING_JIAOLIU_KEY, valueType: 2 },
-        { controlId: 'sew', value: SEW_JIAOLIU_KEY, valueType: 2 },
-        { controlId: 'quanxian', value: QUANXIAN_ZUZHI_KEY, valueType: 2 },
-        { controlId: 'kjzz', value: convKey, valueType: 2 },
-        { controlId: 'fabuzhe', value: user.rowid, valueType: 2 },
-        { controlId: 'fbsj', value: fmtTime(new Date()) }
+        { controlId: 'title', value: text },
+        { controlId: 'kind', value: LEIXING_JIAOLIU_KEY, valueType: 2 },
+        { controlId: 'dimension', value: SEW_JIAOLIU_KEY, valueType: 2 },
+        { controlId: 'permission_tags', value: QUANXIAN_ZUZHI_KEY, valueType: 2 },
+        { controlId: 'visible_org', value: convKey, valueType: 2 },
+        { controlId: 'publisher', value: user.rowid, valueType: 2 },
+        { controlId: 'published_at', value: fmtTime(new Date()) }
     ];
     // 所属商家（2026-09-06 拍板：创建必带；取不到则跳过，HAP 工作流兜底）
     var sj2 = FsjApi.getShangjiaRowid();
-    if (sj2) controls.push({ controlId: 'shangjia2', value: sj2, valueType: 2 });
+    if (sj2) controls.push({ controlId: 'org', value: sj2, valueType: 2 });
     return MINGDAO_API_call(MINGDAO_ADD, {
       worksheetId: CONTENT_WS,
       controls: controls
@@ -312,10 +312,10 @@ var ChatService = (function () {
         worksheetId: ORG_WS,
         controls: [
           { controlId: 'mingcheng', value: convName },
-          { controlId: 'leixing', value: '61221926-f9e6-4941-847a-5625538dc120', valueType: 2 },
+          { controlId: 'kind', value: '61221926-f9e6-4941-847a-5625538dc120', valueType: 2 },
           { controlId: 'ltlx', value: '私聊' },
           { controlId: 'zzyh', value: user.rowid + ',' + peer.rowid },
-          { controlId: 'fabuzhe', value: user.rowid }
+          { controlId: 'publisher', value: user.rowid }
         ]
       }).then(function (res2) {
         if (!res2.success) throw new Error(res2.error_msg || '创建会话失败');
@@ -335,10 +335,10 @@ var ChatService = (function () {
       worksheetId: ORG_WS,
       controls: [
         { controlId: 'mingcheng', value: groupName },
-        { controlId: 'leixing', value: '61221926-f9e6-4941-847a-5625538dc120', valueType: 2 },
+        { controlId: 'kind', value: '61221926-f9e6-4941-847a-5625538dc120', valueType: 2 },
         { controlId: 'ltlx', value: '群聊' },
         { controlId: 'zzyh', value: all.join(',') },
-        { controlId: 'fabuzhe', value: user.rowid }
+        { controlId: 'publisher', value: user.rowid }
       ]
     }).then(function (res) {
       if (!res.success) throw new Error(res.error_msg || '建群失败');

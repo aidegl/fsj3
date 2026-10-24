@@ -22,7 +22,7 @@
  */
 const MINGDAO_PROXY = 'https://100000whys.cn/mingdao';
 const M_API = 'https://api.mingdao.com/v2/open/worksheet/getFilterRows';
-const SHANGPIN_WS = 'shangpin';
+const SHANGPIN_WS = '6a03ceaa7e29abcb297cbdfc';
 const CACHE_PREFIX = 'pxw_hapskills_';
 const TTL = 5 * 60 * 1000;
 
@@ -56,8 +56,8 @@ function parseXstb(v) {
 /** fu 关联过滤（values 数组 = OR 语义）+ 必带的删除排除 */
 function childFilters(parentIds) {
     return [
-        { controlId: 'fu', dataType: 29, spliceType: 1, filterType: 24, values: parentIds.slice(0, 100) },
-        { controlId: 'shanchu', dataType: 2, spliceType: 1, filterType: 6, value: '1' }
+        { controlId: 'parent', dataType: 29, spliceType: 1, filterType: 24, values: parentIds.slice(0, 100) },
+        { controlId: 'is_deleted', dataType: 2, spliceType: 1, filterType: 6, value: '1' }
     ];
 }
 
@@ -77,26 +77,26 @@ async function findSkeletonRoot(memberRowid) {
     const d = await call(M_API, {
         worksheetId: SHANGPIN_WS,
         pageSize: 100, pageIndex: 1, listType: 0,
-        controls: ['rowid', 'mingcheng', 'sew'],
+        controls: ['rowid', 'title', 'dimension'],
         filters: [
-            { controlId: 'fabuzhe', dataType: 29, spliceType: 1, filterType: 24, value: memberRowid },
-            { controlId: 'fu', dataType: 29, spliceType: 1, filterType: 7 }
+            { controlId: 'publisher', dataType: 29, spliceType: 1, filterType: 24, value: memberRowid },
+            { controlId: 'parent', dataType: 29, spliceType: 1, filterType: 7 }
         ]
     });
     const rows = (d.data && d.data.rows) || [];
-    return rows.find(r => r.sew === '0骨架' && (r.mingcheng || '').startsWith('五事-')) || null;
+    return rows.find(r => (r.dimension || r.sew) === '0骨架' && (r.title || r.mingcheng || '').startsWith('五事-')) || null;
 }
 
-const LIST_CONTROLS = ['rowid', 'mingcheng', 'sew', 'miaoshu', 'xstb', 'guanjianci', 'zi'];
+const LIST_CONTROLS = ['rowid', 'title', 'dimension', 'description', 'icon', 'tags', 'child'];
 
 function toSkill(r, layer) {
     return {
         rowid: r.rowid,
-        mingcheng: r.mingcheng || '',
-        miaoshu: r.miaoshu || '',
-        xstb: parseXstb(r.xstb),
-        guanjianci: rel(r.guanjianci).map(g => g.sid || g.rowid),
-        ziCount: rel(r.zi).length,
+        mingcheng: r.title || r.mingcheng || '',
+        miaoshu: r.description || r.miaoshu || '',
+        xstb: parseXstb(r.icon || r.xstb),
+        guanjianci: rel(r.tags || r.guanjianci).map(g => g.sid || g.rowid),
+        ziCount: rel(r.child || r.zi).length,
         layer: layer   // 1=骨架根第1层（如将-XX直下），2=第2层（如道→全局技能直下）
     };
 }
@@ -137,20 +137,20 @@ export default {
      * @returns {Promise<Array>} [{rowid, mingcheng, sew, miaoshu, ziCount}] ziCount=null 表示太多没算（懒加载兜底）
      */
     async children(rowid) {
-        const rows = await queryChildren([rowid], ['rowid', 'mingcheng', 'sew', 'miaoshu']);
+        const rows = await queryChildren([rowid], ['rowid', 'title', 'dimension', 'description']);
         const kids = rows.map(r => ({
             rowid: r.rowid,
-            mingcheng: r.mingcheng || '',
-            sew: r.sew || '',
-            miaoshu: r.miaoshu || '',
+            mingcheng: r.title || r.mingcheng || '',
+            sew: r.dimension || r.sew || '',
+            miaoshu: r.description || r.miaoshu || '',
             ziCount: null
         }));
         // 批量子计数：一批 fu OR 查询拉回所有孙条目的 fu，按父分组
         if (kids.length && kids.length <= 100) {
             try {
-                const grand = await queryChildren(kids.map(k => k.rowid), ['fu']);
+                const grand = await queryChildren(kids.map(k => k.rowid), ['parent']);
                 const cnt = new Map();
-                for (const g of grand) for (const p of rel(g.fu)) {
+                for (const g of grand) for (const p of rel(g.parent || g.fu)) {
                     const pid = p.sid || p.rowid;
                     cnt.set(pid, (cnt.get(pid) || 0) + 1);
                 }

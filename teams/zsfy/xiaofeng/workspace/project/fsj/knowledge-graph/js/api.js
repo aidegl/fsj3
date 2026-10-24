@@ -42,8 +42,23 @@ function numOrNull(v) {
 /**
  * 原始行 → 精简记录。
  * 保留字段最小集：身份 + 关系 + 度量 + 展示。
+ * 2026-10-24 HAP 别名英文化：入口先把新英文键回填旧拼音键（不覆盖已有），下方读取零改动。
  */
-export function pickRow(row) {
+const ALIAS_BACKFILL = {
+    title: 'mingcheng', content: 'wznr', dimension: 'sew', kind: 'leixing',
+    publisher: 'fabuzhe', parent: 'fu', child: 'zi', child_all: 'zisuoyou',
+    cite: 'yynr', cited_by: 'beiyinyong', tags: 'guanjianci',
+    is_published: 'shangjia1', is_deleted: 'shanchu', weight: 'quanzhong', auto_number: 'zdbh',
+};
+
+export function pickRow(row0) {
+    let row = row0;
+    for (const [nk, ok] of Object.entries(ALIAS_BACKFILL)) {
+        if (row[ok] === undefined && row[nk] !== undefined) {
+            if (row === row0) row = { ...row };
+            row[ok] = row[nk];
+        }
+    }
     const fb = relFirst(row.fabuzhe);
     return {
         rowid: row.rowid,
